@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1312194624746872}
+  m_IsPrefabParent: 1
+--- !u!1 &1312194624746872
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4366799000437149}
+  - component: {fileID: 33851490378546366}
+  - component: {fileID: 114276057147964034}
+  - component: {fileID: 114354566334252469}
+  m_Layer: 0
+  m_Name: VFX_WeaponTrail_Common
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4366799000437149
+Transform:
+  m_GameObject: {fileID: 1312194624746872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &33851490378546366
+MeshFilter:
+  m_GameObject: {fileID: 1312194624746872}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114276057147964034
+MonoBehaviour:
+  m_GameObject: {fileID: 1312194624746872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f173fc9b4786e8e4598f38c08efaa90a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  endpointOffset: {x: -3, y: 3, z: 0}
+  time: 0.15
+  color1: {r: 1, g: 0.6666667, b: 0.2941177, a: 1}
+  color2: {r: 1, g: 0.6666667, b: 0.2941177, a: 0}
+  material: {fileID: 2100000, guid: 6526bbf52de0e2744b322fd95fbf5f83, type: 2}
+  endWidthScale: 0.1
+  minVertexDistance: 0
+  maxTrailNodes: 100
+  trail_enabled: 1
+  trail_layer: 0
+  lastMaxTrailNodes: -1
+--- !u!114 &114354566334252469
+MonoBehaviour:
+  m_GameObject: {fileID: 1312194624746872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228691589bee03c4e8020d2e0da02388, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  mTarget: {fileID: 0}
+  mQueue: 3050
+  mWidgetQueue: 0
+  mType: 0
+  ShouldScaleVFX: 0
+  SetQueManually: 1

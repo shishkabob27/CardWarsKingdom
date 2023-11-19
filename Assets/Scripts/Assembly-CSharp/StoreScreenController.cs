@@ -1,0 +1,56 @@
+using UnityEngine;
+
+public class StoreScreenController : Singleton<StoreScreenController>
+{
+	public int BlankLeaderSlots;
+	public float HardCurrencyTickTime;
+	public GameObject MainPanel;
+	public GameObject StoreEntryPrefab;
+	public GameObject HeroPrefab;
+	public GameObject[] StoreEntryVFXPrefabs;
+	public UITweenController ShowTween;
+	public UITweenController HideTween;
+	public UITweenController HardCurrencyGainTween;
+	public UILabel TitleLabel;
+	public UILabel StaminaRefillCost;
+	public UILabel InventoryIncreaseCost;
+	public UILabel InventoryIncreaseAmount;
+	public UILabel AllyIncreaseCost;
+	public UILabel AllyIncreaseAmount;
+	public UILabel HardCurrencyAvailable;
+	public UILabel CustomizationCurrencyAvailable;
+	public UIStreamingGrid HeroGrid;
+	public UILabel HeroName;
+	public UILabel HeroAge;
+	public UILabel HeroHeight;
+	public UILabel HeroWeight;
+	public UILabel HeroSpecies;
+	public UITexture HeroImage;
+	public GameObject HeroCardNodeParent;
+	public UILabel HeroCost;
+	public GameObject HeroPurchaseButton;
+	public UIStreamingGrid StoreGrid;
+	public GameObject HeroButtonLock;
+	public Collider HeroButtonCollider;
+	public GameObject CustomizationButtonLock;
+	public Collider CustomizationButtonCollider;
+	public UIStreamingGrid SkinGrid;
+	public UIGrid CustomizationPurchaseGrid;
+	public UILabel SkinName;
+	public UITexture SkinImage;
+	public UILabel SkinCost;
+	public UILabel SkinButtonLabel;
+	public GameObject BuySkinButton;
+	public GameObject SkinEquippedParent;
+	public UIGrid TabsGrid;
+	public UIToggle HeroTabButton;
+	public UIToggle HardCurrencyTabButton;
+	public UIToggle CustomizationTabButton;
+	public GameObject SaleButton;
+	public UILabel HeroAvailableLabel;
+	public string SaleTitleText;
+	public string GemsTitleText;
+	public string ExtrasTitleText;
+	public string HeroesTitleText;
+	public string CustomizeTitleText;
+}

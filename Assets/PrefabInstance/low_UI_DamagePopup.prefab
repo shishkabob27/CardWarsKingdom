@@ -1,0 +1,847 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1768397339546997}
+  m_IsPrefabParent: 1
+--- !u!1 &1768397339546997
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4589365164567830}
+  - component: {fileID: 114146886029516310}
+  m_Layer: 9
+  m_Name: low_UI_DamagePopup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4589365164567830
+Transform:
+  m_GameObject: {fileID: 1768397339546997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4038835977128502}
+  - {fileID: 4823086117181891}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114146886029516310
+MonoBehaviour:
+  m_GameObject: {fileID: 1768397339546997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6930e5ebf2c74469a90130e57d9970, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DamageTween: {fileID: 114504388288527015}
+  CritDamageTween: {fileID: 114639041632672303}
+  DamageText: {fileID: 114763161786685386}
+  CritLabel: {fileID: 114634938515759507}
+  MagicDamageColor: {r: 0, g: 0.2941177, b: 0.8235294, a: 1}
+  HybridDamageColor: {r: 0.5450981, g: 0, b: 0.7686275, a: 1}
+  HealColor: {r: 0.4392157, g: 1, b: 0.4784314, a: 1}
+--- !u!1 &1398376440238903
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4038835977128502}
+  - component: {fileID: 114763161786685386}
+  - component: {fileID: 114817471779240917}
+  m_Layer: 9
+  m_Name: Damage_Val
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4038835977128502
+Transform:
+  m_GameObject: {fileID: 1398376440238903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4694939900458889}
+  m_Father: {fileID: 4589365164567830}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114763161786685386
+MonoBehaviour:
+  m_GameObject: {fileID: 1398376440238903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 190
+  mHeight: 58
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 3.275862
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: 9999
+  mFontSize: 50
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 1
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1.5, y: 1.5}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!114 &114817471779240917
+MonoBehaviour:
+  m_GameObject: {fileID: 1398376440238903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3765b42ce7d3548a873c0f06078b0d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  Offset: {x: 1, y: -3}
+  ShadowTextColor: {r: 0, g: 0, b: 0, a: 0}
+  ShadowEffectColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!1 &1593998564202443
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4694939900458889}
+  - component: {fileID: 114634938515759507}
+  - component: {fileID: 114147031278098637}
+  m_Layer: 9
+  m_Name: CritLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4694939900458889
+Transform:
+  m_GameObject: {fileID: 1593998564202443}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4038835977128502}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114634938515759507
+MonoBehaviour:
+  m_GameObject: {fileID: 1593998564202443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 0.9019608, b: 0.1764706, a: 1}
+  mPivot: 4
+  mWidth: 191
+  mHeight: 36
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 5.305555
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: '!!CRITICAL'
+  mFontSize: 20
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 1
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!114 &114147031278098637
+MonoBehaviour:
+  m_GameObject: {fileID: 1593998564202443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3765b42ce7d3548a873c0f06078b0d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  Offset: {x: 1, y: -1}
+  ShadowTextColor: {r: 0, g: 0, b: 0, a: 0}
+  ShadowEffectColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!1 &1012831750392185
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4823086117181891}
+  m_Layer: 9
+  m_Name: TweenControllers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4823086117181891
+Transform:
+  m_GameObject: {fileID: 1012831750392185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4664149745183880}
+  - {fileID: 4350820999608249}
+  m_Father: {fileID: 4589365164567830}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1930396375324752
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4664149745183880}
+  - component: {fileID: 114504388288527015}
+  - component: {fileID: 114915627465529369}
+  - component: {fileID: 114352552792800725}
+  - component: {fileID: 114485339175763653}
+  m_Layer: 9
+  m_Name: NormalDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4664149745183880
+Transform:
+  m_GameObject: {fileID: 1930396375324752}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4823086117181891}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114504388288527015
+MonoBehaviour:
+  m_GameObject: {fileID: 1930396375324752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 0
+  ResetOnPlay: 1
+  DisableWhenFinished: 0
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished:
+  - mTarget: {fileID: 114146886029516310}
+    mMethodName: OnFinish
+    mParameters: []
+    oneShot: 0
+--- !u!114 &114915627465529369
+MonoBehaviour:
+  m_GameObject: {fileID: 1930396375324752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbeb9547b32c2f4db3856c8886a84ea, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114763161786685386}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2143662
+      value: 0.758613
+      inSlope: 0.9740509
+      outSlope: 0.9076267
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0.08062418
+      outSlope: 0.08062418
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 1
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: 0, z: 0}
+  to: {x: 0, y: 70, z: 0}
+  worldSpace: 0
+--- !u!114 &114352552792800725
+MonoBehaviour:
+  m_GameObject: {fileID: 1930396375324752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2484b07c8a7dcb40a9fdc214f0787f3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114763161786685386}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 1.1
+  duration: 0.3
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: 1
+  to: 0
+--- !u!114 &114485339175763653
+MonoBehaviour:
+  m_GameObject: {fileID: 1930396375324752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a599f2c17ed12408bf58c74c592695, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114763161786685386}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.03070569
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1014337
+      value: 0.6299255
+      inSlope: 0.9699644
+      outSlope: 0.9699644
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1252653
+      value: 0.3635337
+      inSlope: 0.03527051
+      outSlope: 0.03527051
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1460288
+      value: 0.5724348
+      inSlope: 1.000166
+      outSlope: 1.000166
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1634825
+      value: 0.4355005
+      inSlope: -0.397563
+      outSlope: -0.397563
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1733716
+      value: 0.5004919
+      inSlope: -0.05096197
+      outSlope: -0.0004000688
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8469372
+      value: 0.5002224
+      inSlope: -0.0004000688
+      outSlope: 0.2783537
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8608747
+      value: 0.4657918
+      inSlope: -0.3179908
+      outSlope: -0.3179908
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1.030706
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 1.3
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: 0, z: 1}
+  to: {x: 1.5, y: 1.5, z: 1}
+  updateTable: 0
+--- !u!1 &1820173973831402
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4350820999608249}
+  - component: {fileID: 114639041632672303}
+  - component: {fileID: 114302883809293536}
+  - component: {fileID: 114446931914651626}
+  - component: {fileID: 114461509025941073}
+  - component: {fileID: 114540637754908017}
+  - component: {fileID: 114151922077141175}
+  - component: {fileID: 114870145550640806}
+  m_Layer: 9
+  m_Name: CritDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4350820999608249
+Transform:
+  m_GameObject: {fileID: 1820173973831402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4823086117181891}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114639041632672303
+MonoBehaviour:
+  m_GameObject: {fileID: 1820173973831402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 0
+  ResetOnPlay: 1
+  DisableWhenFinished: 0
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished:
+  - mTarget: {fileID: 114146886029516310}
+    mMethodName: OnFinish
+    mParameters: []
+    oneShot: 0
+--- !u!114 &114302883809293536
+MonoBehaviour:
+  m_GameObject: {fileID: 1820173973831402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbeb9547b32c2f4db3856c8886a84ea, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114763161786685386}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2143662
+      value: 0.758613
+      inSlope: 0.9740509
+      outSlope: 0.9076267
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0.08062418
+      outSlope: 0.08062418
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 1
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: 0, z: 0}
+  to: {x: 0, y: 70, z: 0}
+  worldSpace: 0
+--- !u!114 &114446931914651626
+MonoBehaviour:
+  m_GameObject: {fileID: 1820173973831402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2484b07c8a7dcb40a9fdc214f0787f3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114763161786685386}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 1.1
+  duration: 0.3
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: 1
+  to: 0
+--- !u!114 &114461509025941073
+MonoBehaviour:
+  m_GameObject: {fileID: 1820173973831402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a599f2c17ed12408bf58c74c592695, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114763161786685386}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.03070569
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1014337
+      value: 0.6299255
+      inSlope: 0.9699644
+      outSlope: 0.9699644
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1252653
+      value: 0.3581573
+      inSlope: 0.03527051
+      outSlope: 0.03527051
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1460288
+      value: 0.5778111
+      inSlope: 0.1654471
+      outSlope: 0.1654471
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1634825
+      value: 0.428332
+      inSlope: -0.05524399
+      outSlope: -0.05524399
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1733716
+      value: 0.5004919
+      inSlope: -0.05096197
+      outSlope: -0.0004000688
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8469372
+      value: 0.5002224
+      inSlope: -0.0004000688
+      outSlope: 0.2783537
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8608747
+      value: 0.4657918
+      inSlope: -0.3179908
+      outSlope: -0.3179908
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1.030706
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 1.3
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: 0, z: 1}
+  to: {x: 3, y: 3, z: 1}
+  updateTable: 0
+--- !u!114 &114540637754908017
+MonoBehaviour:
+  m_GameObject: {fileID: 1820173973831402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbeb9547b32c2f4db3856c8886a84ea, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114634938515759507}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2143662
+      value: 0.758613
+      inSlope: 0.9740509
+      outSlope: 0.9076267
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0.08062418
+      outSlope: 0.08062418
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 1
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: -26, z: 0}
+  to: {x: 0, y: 34, z: 0}
+  worldSpace: 0
+--- !u!114 &114151922077141175
+MonoBehaviour:
+  m_GameObject: {fileID: 1820173973831402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a599f2c17ed12408bf58c74c592695, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114634938515759507}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.03070569
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1014337
+      value: 0.5689936
+      inSlope: 0.9699644
+      outSlope: 0.9699644
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1252653
+      value: 0.4280498
+      inSlope: 0.03527051
+      outSlope: 0.03527051
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1460288
+      value: 0.5491373
+      inSlope: 1.000166
+      outSlope: 1.000166
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1634825
+      value: 0.4498374
+      inSlope: -0.397563
+      outSlope: -0.397563
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1733716
+      value: 0.5004919
+      inSlope: -0.05096197
+      outSlope: -0.0004000688
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8469372
+      value: 0.5002224
+      inSlope: -0.0004000688
+      outSlope: 0.2783537
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8608747
+      value: 0.4657918
+      inSlope: -0.3179908
+      outSlope: -0.3179908
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1.030706
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 1.3
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: 0, z: 1}
+  to: {x: 2, y: 2, z: 1}
+  updateTable: 0
+--- !u!114 &114870145550640806
+MonoBehaviour:
+  m_GameObject: {fileID: 1820173973831402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ec50b13dffd1a4898266294fd3befb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  audioClip: {fileID: 8300000, guid: 1bb1eb322e74b254881b301383048d49, type: 3}
+  trigger: 0
+  delay: 0
+  volume: 1
+  pitch: 1

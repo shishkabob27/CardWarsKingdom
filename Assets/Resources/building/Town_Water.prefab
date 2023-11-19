@@ -1,0 +1,265 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1575708064238519}
+  m_IsPrefabParent: 1
+--- !u!1 &1575708064238519
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4808908882329485}
+  - component: {fileID: 95636378214530598}
+  m_Layer: 29
+  m_Name: Town_Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4808908882329485
+Transform:
+  m_GameObject: {fileID: 1575708064238519}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4919788893976773}
+  - {fileID: 4261703424829642}
+  - {fileID: 4152177871434131}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95636378214530598
+Animator:
+  serializedVersion: 3
+  m_GameObject: {fileID: 1575708064238519}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 12946c09179fced4e9a9cd1b81f1896d, type: 2}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage:
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &1222893499824778
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4919788893976773}
+  - component: {fileID: 33561543786598489}
+  - component: {fileID: 23563340336763740}
+  - component: {fileID: 114313656642823489}
+  m_Layer: 29
+  m_Name: Town_Water_Fall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4919788893976773
+Transform:
+  m_GameObject: {fileID: 1222893499824778}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4808908882329485}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!33 &33561543786598489
+MeshFilter:
+  m_GameObject: {fileID: 1222893499824778}
+  m_Mesh: {fileID: 4300000, guid: ec111c07365b58b4181650bebd0f2e86, type: 2}
+--- !u!23 &23563340336763740
+MeshRenderer:
+  m_GameObject: {fileID: 1222893499824778}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 76a3ca325456bfd4a887678ffc3527f2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &114313656642823489
+MonoBehaviour:
+  m_GameObject: {fileID: 1222893499824778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704c908b27990644ca752e04be3b1038, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  materialIndex: 0
+  uvAnimationRate: {x: 0, y: 0.65}
+  textureName: _MainTex
+--- !u!1 &1076179788567441
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4261703424829642}
+  - component: {fileID: 33257350269340344}
+  - component: {fileID: 23337596010547205}
+  - component: {fileID: 114558587948330335}
+  m_Layer: 29
+  m_Name: Town_Water_Pond
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4261703424829642
+Transform:
+  m_GameObject: {fileID: 1076179788567441}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4808908882329485}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!33 &33257350269340344
+MeshFilter:
+  m_GameObject: {fileID: 1076179788567441}
+  m_Mesh: {fileID: 4300000, guid: d238d91924c007043af9130ea0bca8dc, type: 2}
+--- !u!23 &23337596010547205
+MeshRenderer:
+  m_GameObject: {fileID: 1076179788567441}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 76a3ca325456bfd4a887678ffc3527f2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &114558587948330335
+MonoBehaviour:
+  m_GameObject: {fileID: 1076179788567441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704c908b27990644ca752e04be3b1038, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  materialIndex: 0
+  uvAnimationRate: {x: 0, y: 0.05}
+  textureName: _MainTex
+--- !u!1 &1114959949988278
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4152177871434131}
+  - component: {fileID: 33383703077892533}
+  - component: {fileID: 23528805059524725}
+  - component: {fileID: 114783097805083241}
+  m_Layer: 29
+  m_Name: Town_Water_River
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4152177871434131
+Transform:
+  m_GameObject: {fileID: 1114959949988278}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4808908882329485}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!33 &33383703077892533
+MeshFilter:
+  m_GameObject: {fileID: 1114959949988278}
+  m_Mesh: {fileID: 4300000, guid: 71a2232a86d248a46a88a1f57ceb6535, type: 2}
+--- !u!23 &23528805059524725
+MeshRenderer:
+  m_GameObject: {fileID: 1114959949988278}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 76a3ca325456bfd4a887678ffc3527f2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &114783097805083241
+MonoBehaviour:
+  m_GameObject: {fileID: 1114959949988278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704c908b27990644ca752e04be3b1038, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  materialIndex: 0
+  uvAnimationRate: {x: 0, y: 0.15}
+  textureName: _MainTex

@@ -1,0 +1,55 @@
+using UnityEngine;
+
+public class HandCardController : Singleton<HandCardController>
+{
+	public bool Debug_PositionCards;
+	public UITweenController ShowHandTween;
+	public UITweenController HideHandTween;
+	public UITweenController ShowOpponentTween;
+	public UITweenController HideOpponentTween;
+	public UITweenController ShowDiscardTween;
+	public UITweenController HideDiscardTween;
+	public UITweenController ShowCreatureHandTween;
+	public UITweenController HideCreatureHandTween;
+	public UITweenController ShowLogTargetTween;
+	public UITweenController HideLogTargetTween;
+	public GameObject HandCardsSpawnParent;
+	public GameObject HandCreatureCardsSpawnParent;
+	public Transform HandCardsTargetingParent;
+	public UIWidget HandPosition;
+	public UIWidget CreatureHandPosition;
+	public Transform ZoomPosition;
+	public Transform CreatureZoomPosition;
+	public Transform OpponentPlayPosition;
+	public GameObject BlockingHandCollider;
+	public GameObject BlockingCreatureHandCollider;
+	public GameObject OpponentCardsSpawnParent;
+	public GameObject OpponentPlaySpawnParent;
+	public UIWidget OpponentPosition;
+	public UIWidget CreatureOpponentPosition;
+	public Collider ZoomCollider;
+	public Collider DeckCollider;
+	public UILabel PlayedOnText;
+	public UILabel PlayedOnTargetText;
+	public GameObject DealtCardText;
+	public float CardZDepth;
+	public float ScreenZAdjust;
+	public float BoardHeightAdjust;
+	public float FullCardDrawTime;
+	public float CardDrawDelay;
+	public float CardDiscardDelay;
+	public float OpponentCardDiscardDelay;
+	public int CardSpeedupPoint;
+	public float DrawCardSpacing;
+	public float MaxHandCardSpacing;
+	public float OpponentCardSpacing;
+	public float CreatureCardSpacing;
+	public float OpponentCreatureCardSpacing;
+	public float CurveAmount;
+	public float AngleAmount;
+	public int CurveAtCards;
+	public float OpponentCurveAmount;
+	public float OpponentAngleAmount;
+	public float CreatureCardAngle;
+	public float CreatureCardScale;
+}

@@ -1,0 +1,53 @@
+using UnityEngine;
+
+public class InventoryTile : UIStreamingGridListItem
+{
+	public UITweenController EquipTween;
+	public UITweenController BasicRevealTween;
+	public UITweenController FancyRevealTween;
+	public UITweenController FlyInTween;
+	public TweenRotation FlyInTweenRot;
+	public UITweenController NewTilePopTween;
+	public UITweenController DefaultStarArrangement;
+	public UITweenController FrameStarArrangement;
+	public UITweenController AlgebraicFrameTween;
+	public UITweenController AlgebraicFrameMiniTween;
+	public GameObject FlyInStartPos;
+	public GameObject CreatureParent;
+	public GameObject CardParent;
+	public GameObject EvoMaterialParent;
+	public GameObject PortraitParent;
+	public GameObject CurrencyParent;
+	public GameObject BuyInventoryParent;
+	public BoxCollider PortraitCollider;
+	public UITexture PortraitTexture;
+	public UILabel CreatureLevel;
+	public UILabel CardCost;
+	public UILabel CardName;
+	public GameObject FadeGroup;
+	public GameObject SelectedGroup;
+	public GameObject Selected2Group;
+	public GameObject UnavailableGroup;
+	public GameObject InUseGroup;
+	public GameObject FavoriteGroup;
+	public GameObject RarityStarGroup;
+	public GameObject HelperTagGroup;
+	public GameObject ExpeditionTagGroup;
+	public UISprite FrameSprite;
+	public UISprite BackgroundSprite;
+	public UISprite[] RarityStars;
+	public Transform EggSpawnPoint;
+	public UISprite CurrencySprite;
+	public UILabel CurrencyAmount;
+	public GameObject Shine;
+	public bool suppressRarityFrame;
+	public GameObject[] RarityFrames;
+	public GameObject[] RarityFramesMini;
+	public GameObject[] RarityNewTiles;
+	public GameObject[] RarityNewTilesSparklesFX;
+	public bool DisableCardEditing;
+	public Vector3 Velocity;
+	public int DepthAdjust;
+	public float BlinkTweenInterval;
+	public float BlinkSpeedIndex;
+}

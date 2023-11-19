@@ -1,0 +1,532 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1453320396786636}
+  m_IsPrefabParent: 1
+--- !u!1 &1453320396786636
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4062406110588468}
+  - component: {fileID: 111839246894655828}
+  - component: {fileID: 114271381076980235}
+  m_Layer: 9
+  m_Name: low_Battle_OpponentsTurn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4062406110588468
+Transform:
+  m_GameObject: {fileID: 1453320396786636}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: -1.629207E-07}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_Children:
+  - {fileID: 4155497711330457}
+  - {fileID: 4140478634982130}
+  - {fileID: 4747612388175212}
+  - {fileID: 4239775677357668}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -180, y: -1.866934E-05, z: 180}
+--- !u!111 &111839246894655828
+Animation:
+  m_GameObject: {fileID: 1453320396786636}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 2311f8384f105fa469b361959c78c8fd, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &114271381076980235
+MonoBehaviour:
+  m_GameObject: {fileID: 1453320396786636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228691589bee03c4e8020d2e0da02388, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  mTarget: {fileID: 0}
+  mQueue: 0
+  mWidgetQueue: 0
+  mType: 0
+  ShouldScaleVFX: 0
+  SetQueManually: 0
+--- !u!1 &1579710672120865
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4155497711330457}
+  - component: {fileID: 33764670300815530}
+  - component: {fileID: 23302315631550349}
+  m_Layer: 9
+  m_Name: OpponentsTurn_Banner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4155497711330457
+Transform:
+  m_GameObject: {fileID: 1579710672120865}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: -0.1758549, y: 19.73458, z: -1.216815}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4500484886072470}
+  - {fileID: 4490730194507338}
+  m_Father: {fileID: 4062406110588468}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!33 &33764670300815530
+MeshFilter:
+  m_GameObject: {fileID: 1579710672120865}
+  m_Mesh: {fileID: 4300000, guid: 0b738b5aa334e1949a802fef2c02bcce, type: 2}
+--- !u!23 &23302315631550349
+MeshRenderer:
+  m_GameObject: {fileID: 1579710672120865}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2366d61be75a36a4e9ab697b49a54200, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1788046528756405
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4500484886072470}
+  - component: {fileID: 114043669014996277}
+  m_Layer: 9
+  m_Name: Label_Opponents_Turn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4500484886072470
+Transform:
+  m_GameObject: {fileID: 1788046528756405}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 0.5, y: -0.05, z: 0.42}
+  m_LocalScale: {x: -0.0225, y: 0.0225, z: 0.0225}
+  m_Children:
+  - {fileID: 4528124032970993}
+  m_Father: {fileID: 4155497711330457}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
+--- !u!114 &114043669014996277
+MonoBehaviour:
+  m_GameObject: {fileID: 1788046528756405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 424
+  mHeight: 52
+  mDepth: 8
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 8.153846
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: Opponent's Turn
+  mFontSize: 42
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1.3, y: 1.3}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &1910170269097489
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4528124032970993}
+  - component: {fileID: 114334462912189987}
+  m_Layer: 9
+  m_Name: Text Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4528124032970993
+Transform:
+  m_GameObject: {fileID: 1910170269097489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.999996, y: -2.999997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4500484886072470}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114334462912189987
+MonoBehaviour:
+  m_GameObject: {fileID: 1910170269097489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 4500484886072470}
+    relative: 0
+    absolute: 3
+  rightAnchor:
+    target: {fileID: 4500484886072470}
+    relative: 1
+    absolute: 3
+  bottomAnchor:
+    target: {fileID: 4500484886072470}
+    relative: 0
+    absolute: -3
+  topAnchor:
+    target: {fileID: 4500484886072470}
+    relative: 1
+    absolute: -3
+  updateAnchors: 1
+  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 424
+  mHeight: 52
+  mDepth: 7
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 8.153846
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: Opponent's Turn
+  mFontSize: 42
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1.3, y: 1.3}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &1591265026208122
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4490730194507338}
+  - component: {fileID: 33343749528814063}
+  - component: {fileID: 23039361581768203}
+  m_Layer: 9
+  m_Name: OpponentsTurn_Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4490730194507338
+Transform:
+  m_GameObject: {fileID: 1591265026208122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1766299, y: -0.3575925, z: 0.3799934}
+  m_LocalScale: {x: 0.9490946, y: 0.9999999, z: 0.9490946}
+  m_Children: []
+  m_Father: {fileID: 4155497711330457}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &33343749528814063
+MeshFilter:
+  m_GameObject: {fileID: 1591265026208122}
+  m_Mesh: {fileID: 4300000, guid: fec11044e87dec14bb4fee3d80f301c3, type: 2}
+--- !u!23 &23039361581768203
+MeshRenderer:
+  m_GameObject: {fileID: 1591265026208122}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2366d61be75a36a4e9ab697b49a54200, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1992313245757327
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4140478634982130}
+  - component: {fileID: 33762058040932731}
+  - component: {fileID: 23557823370647708}
+  m_Layer: 9
+  m_Name: OpponentsTurn_Bone1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4140478634982130
+Transform:
+  m_GameObject: {fileID: 1992313245757327}
+  m_LocalRotation: {x: -0.6549032, y: -0.2666492, z: 0.2666492, w: 0.6549032}
+  m_LocalPosition: {x: -0.6552315, y: 21.22273, z: -1.434865}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4062406110588468}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 4.152921E-07, z: -44.30819}
+--- !u!33 &33762058040932731
+MeshFilter:
+  m_GameObject: {fileID: 1992313245757327}
+  m_Mesh: {fileID: 4300000, guid: 26ba042b6326f264daa6b23e536ff63b, type: 2}
+--- !u!23 &23557823370647708
+MeshRenderer:
+  m_GameObject: {fileID: 1992313245757327}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2366d61be75a36a4e9ab697b49a54200, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1141437452838865
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4747612388175212}
+  - component: {fileID: 33080100848483790}
+  - component: {fileID: 23525896589083257}
+  m_Layer: 9
+  m_Name: OpponentsTurn_Bone2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4747612388175212
+Transform:
+  m_GameObject: {fileID: 1141437452838865}
+  m_LocalRotation: {x: -0.5443289, y: 0.4513382, z: -0.4513381, w: 0.5443288}
+  m_LocalPosition: {x: 0.3307907, y: 21.16661, z: -1.592582}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4062406110588468}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -90.00001, y: -6.35144E-07, z: 79.32864}
+--- !u!33 &33080100848483790
+MeshFilter:
+  m_GameObject: {fileID: 1141437452838865}
+  m_Mesh: {fileID: 4300000, guid: 12b4fe6772eef4c49a450e1418993aea, type: 2}
+--- !u!23 &23525896589083257
+MeshRenderer:
+  m_GameObject: {fileID: 1141437452838865}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2366d61be75a36a4e9ab697b49a54200, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1379954482319349
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4239775677357668}
+  - component: {fileID: 33611742530312875}
+  - component: {fileID: 23121514384372683}
+  m_Layer: 9
+  m_Name: OpponentsTurn_Skull
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4239775677357668
+Transform:
+  m_GameObject: {fileID: 1379954482319349}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: 0.003851235, y: 27.38799, z: -1.694366}
+  m_LocalScale: {x: 0.6679953, y: 0.6679953, z: 1.497017}
+  m_Children: []
+  m_Father: {fileID: 4062406110588468}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!33 &33611742530312875
+MeshFilter:
+  m_GameObject: {fileID: 1379954482319349}
+  m_Mesh: {fileID: 4300000, guid: c2f2d2591b9a53d4a86fa9aba03b5867, type: 2}
+--- !u!23 &23121514384372683
+MeshRenderer:
+  m_GameObject: {fileID: 1379954482319349}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2366d61be75a36a4e9ab697b49a54200, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

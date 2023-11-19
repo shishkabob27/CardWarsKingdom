@@ -1,0 +1,652 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1720809477947082}
+  m_IsPrefabParent: 1
+--- !u!1 &1720809477947082
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4445720746689457}
+  - component: {fileID: 111784474249376690}
+  - component: {fileID: 114585444456230389}
+  m_Layer: 9
+  m_Name: Battle_YourTurn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4445720746689457
+Transform:
+  m_GameObject: {fileID: 1720809477947082}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: -1.629207E-07}
+  m_LocalPosition: {x: -25, y: 0, z: -20}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_Children:
+  - {fileID: 4701208583619832}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -180, y: -1.866934E-05, z: 180}
+--- !u!111 &111784474249376690
+Animation:
+  m_GameObject: {fileID: 1720809477947082}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 7ab7c90e5faaaef4da7f84f428bbf5c7, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &114585444456230389
+MonoBehaviour:
+  m_GameObject: {fileID: 1720809477947082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228691589bee03c4e8020d2e0da02388, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  mTarget: {fileID: 0}
+  mQueue: 0
+  mWidgetQueue: 0
+  mType: 0
+  ShouldScaleVFX: 0
+  SetQueManually: 0
+--- !u!1 &1089037503943874
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4701208583619832}
+  - component: {fileID: 33904718215583400}
+  - component: {fileID: 23589446409304780}
+  m_Layer: 9
+  m_Name: YourTurn_Banner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4701208583619832
+Transform:
+  m_GameObject: {fileID: 1089037503943874}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalPosition: {x: -0.2738306, y: -19.735, z: -1.008603}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4212989428928494}
+  - {fileID: 4239509107975197}
+  - {fileID: 4286342328522680}
+  - {fileID: 4362949326893360}
+  - {fileID: 4397660489873056}
+  - {fileID: 4089498285777111}
+  - {fileID: 4781445598352430}
+  m_Father: {fileID: 4445720746689457}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!33 &33904718215583400
+MeshFilter:
+  m_GameObject: {fileID: 1089037503943874}
+  m_Mesh: {fileID: 4300000, guid: 3b2c8e0781555d14d9e0f08936e40cff, type: 2}
+--- !u!23 &23589446409304780
+MeshRenderer:
+  m_GameObject: {fileID: 1089037503943874}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 17e248704079ed44ab1c335fc49dfbec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1149705372512825
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4212989428928494}
+  - component: {fileID: 33112574209526849}
+  - component: {fileID: 23704961276951014}
+  m_Layer: 9
+  m_Name: YourTurn_Burst
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4212989428928494
+Transform:
+  m_GameObject: {fileID: 1149705372512825}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05908898, y: 0.4341567, z: 0.934916}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4701208583619832}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &33112574209526849
+MeshFilter:
+  m_GameObject: {fileID: 1149705372512825}
+  m_Mesh: {fileID: 4300000, guid: 22d42f67863c96c4981fc146bf319372, type: 2}
+--- !u!23 &23704961276951014
+MeshRenderer:
+  m_GameObject: {fileID: 1149705372512825}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 17e248704079ed44ab1c335fc49dfbec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1738824044723847
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4239509107975197}
+  - component: {fileID: 33461365391023888}
+  - component: {fileID: 23604580149295385}
+  m_Layer: 9
+  m_Name: YourTurn_Burst001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4239509107975197
+Transform:
+  m_GameObject: {fileID: 1738824044723847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03062317, y: 0.6640875, z: 1.073292}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4701208583619832}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &33461365391023888
+MeshFilter:
+  m_GameObject: {fileID: 1738824044723847}
+  m_Mesh: {fileID: 4300000, guid: ca85be0ba707c4e4b8581747bc6d6cf8, type: 2}
+--- !u!23 &23604580149295385
+MeshRenderer:
+  m_GameObject: {fileID: 1738824044723847}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 17e248704079ed44ab1c335fc49dfbec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1039433488543854
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4286342328522680}
+  - component: {fileID: 33933987988812958}
+  - component: {fileID: 23056061350559748}
+  m_Layer: 9
+  m_Name: YourTurn_Card01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4286342328522680
+Transform:
+  m_GameObject: {fileID: 1039433488543854}
+  m_LocalRotation: {x: 0, y: 0.1264314, z: 0, w: 0.9919754}
+  m_LocalPosition: {x: 2.245173, y: 0.05058771, z: 1.341332}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4701208583619832}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -14.52685, z: 0}
+--- !u!33 &33933987988812958
+MeshFilter:
+  m_GameObject: {fileID: 1039433488543854}
+  m_Mesh: {fileID: 4300000, guid: a28c7f791c9a09743819e6532e9e3915, type: 2}
+--- !u!23 &23056061350559748
+MeshRenderer:
+  m_GameObject: {fileID: 1039433488543854}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 17e248704079ed44ab1c335fc49dfbec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1777022556678681
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4362949326893360}
+  - component: {fileID: 33471971991637956}
+  - component: {fileID: 23277037176176005}
+  m_Layer: 9
+  m_Name: YourTurn_Card02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4362949326893360
+Transform:
+  m_GameObject: {fileID: 1777022556678681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3957314, y: 0.1045563, z: 1.320695}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4701208583619832}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &33471971991637956
+MeshFilter:
+  m_GameObject: {fileID: 1777022556678681}
+  m_Mesh: {fileID: 4300000, guid: 79007596e8ade43418907e7a51338a7d, type: 2}
+--- !u!23 &23277037176176005
+MeshRenderer:
+  m_GameObject: {fileID: 1777022556678681}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 17e248704079ed44ab1c335fc49dfbec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1183153489917924
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4397660489873056}
+  - component: {fileID: 33528929352786274}
+  - component: {fileID: 23999695190599340}
+  m_Layer: 9
+  m_Name: YourTurn_Card03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4397660489873056
+Transform:
+  m_GameObject: {fileID: 1183153489917924}
+  m_LocalRotation: {x: 0, y: -0.1744275, z: 0, w: 0.98467}
+  m_LocalPosition: {x: -1.850663, y: 0.1247178, z: 1.562586}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4701208583619832}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 20.09068, z: 0}
+--- !u!33 &33528929352786274
+MeshFilter:
+  m_GameObject: {fileID: 1183153489917924}
+  m_Mesh: {fileID: 4300000, guid: 1e8e2e36f9e0b794a80d49aced948434, type: 2}
+--- !u!23 &23999695190599340
+MeshRenderer:
+  m_GameObject: {fileID: 1183153489917924}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 17e248704079ed44ab1c335fc49dfbec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1903725373874158
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4089498285777111}
+  - component: {fileID: 114683809792431623}
+  m_Layer: 9
+  m_Name: Label_Your_Turn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4089498285777111
+Transform:
+  m_GameObject: {fileID: 1903725373874158}
+  m_LocalRotation: {x: -0.7071068, y: 2.304046E-07, z: -2.304047E-07, w: -0.7071067}
+  m_LocalPosition: {x: -0.24, y: -0.05, z: 0.69}
+  m_LocalScale: {x: -0.0225, y: 0.0225, z: 0.0225}
+  m_Children:
+  - {fileID: 4252030591907270}
+  m_Father: {fileID: 4701208583619832}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 90.00001, y: 3.733867E-05, z: 8.44447E-13}
+--- !u!114 &114683809792431623
+MonoBehaviour:
+  m_GameObject: {fileID: 1903725373874158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 306
+  mHeight: 65
+  mDepth: 8
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 4.707692
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: Your Turn
+  mFontSize: 58
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1.3, y: 1.3}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &1143563346937030
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4252030591907270}
+  - component: {fileID: 114400448503861197}
+  m_Layer: 9
+  m_Name: Text Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4252030591907270
+Transform:
+  m_GameObject: {fileID: 1143563346937030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.000004, y: -2.999979, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4089498285777111}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114400448503861197
+MonoBehaviour:
+  m_GameObject: {fileID: 1143563346937030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 4089498285777111}
+    relative: 0
+    absolute: 3
+  rightAnchor:
+    target: {fileID: 4089498285777111}
+    relative: 1
+    absolute: 3
+  bottomAnchor:
+    target: {fileID: 4089498285777111}
+    relative: 0
+    absolute: -3
+  topAnchor:
+    target: {fileID: 4089498285777111}
+    relative: 1
+    absolute: -3
+  updateAnchors: 1
+  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 306
+  mHeight: 65
+  mDepth: 7
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 4.707692
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: Your Turn
+  mFontSize: 58
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1.3, y: 1.3}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &1608791800452862
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4781445598352430}
+  - component: {fileID: 33200853616105665}
+  - component: {fileID: 23742000868172628}
+  m_Layer: 9
+  m_Name: YourTurn_Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4781445598352430
+Transform:
+  m_GameObject: {fileID: 1608791800452862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3014426, y: -0.26995, z: 0.5157852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4701208583619832}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &33200853616105665
+MeshFilter:
+  m_GameObject: {fileID: 1608791800452862}
+  m_Mesh: {fileID: 4300000, guid: 341e645dde814f94f86f833b00cc7ed0, type: 2}
+--- !u!23 &23742000868172628
+MeshRenderer:
+  m_GameObject: {fileID: 1608791800452862}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 17e248704079ed44ab1c335fc49dfbec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

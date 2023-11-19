@@ -1,0 +1,714 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1239019091103499}
+  m_IsPrefabParent: 1
+--- !u!1 &1239019091103499
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4618680219098631}
+  - component: {fileID: 82790015894497975}
+  - component: {fileID: 65061291188439490}
+  - component: {fileID: 114375747280169743}
+  m_Layer: 0
+  m_Name: LootEgg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4618680219098631
+Transform:
+  m_GameObject: {fileID: 1239019091103499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_Children:
+  - {fileID: 4176840438847638}
+  - {fileID: 4840916478856271}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82790015894497975
+AudioSource:
+  m_GameObject: {fileID: 1239019091103499}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 57d49e6882964bd419ab44c72d2dfef2, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!65 &65061291188439490
+BoxCollider:
+  m_GameObject: {fileID: 1239019091103499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100, z: 100}
+  m_Center: {x: 0, y: 50, z: 0}
+--- !u!114 &114375747280169743
+MonoBehaviour:
+  m_GameObject: {fileID: 1239019091103499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91c7b19cd002b14a8eec95b0dc49121, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  lane: 0
+  LootFlyFXPrefab: {fileID: 1161426588974686, guid: 787c221bdd830c3498a9e01ff348a05f, type: 2}
+  LootAddFXPrefab: {fileID: 1895766540883263, guid: 87f225223a5e99d4990914d95c397d4b, type: 2}
+  MainParticle: {fileID: 0}
+  UITex: {fileID: 0}
+  UITexParent: {fileID: 0}
+  EvoTexture: {fileID: 0}
+  AdditionalSpawnVFXPrefab: {fileID: 1879135073534107, guid: 39a6a364e77f32b45b47e3f018c6bed0, type: 2}
+  AdditionalSpawnVFXParent: {fileID: 0}
+  SpawnAdditionalVFX: 1
+  ExtraSparkleFX: {fileID: 0}
+  PickUp: 1
+  PickedUpScale: 0.4
+--- !u!1 &1479498127562528
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4176840438847638}
+  - component: {fileID: 95704593025587915}
+  - component: {fileID: 114580499248532793}
+  m_Layer: 0
+  m_Name: LootEgg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4176840438847638
+Transform:
+  m_GameObject: {fileID: 1479498127562528}
+  m_LocalRotation: {x: 1.110223E-16, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 119.063, z: 5.231683E-06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4928892135809719}
+  - {fileID: 4867498094145184}
+  m_Father: {fileID: 4618680219098631}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.272222E-14, y: 0, z: 0}
+--- !u!95 &95704593025587915
+Animator:
+  serializedVersion: 3
+  m_GameObject: {fileID: 1479498127562528}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: c34ef29be8d7268498c6a61060a19fc8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 87ce0a00e08eddb4d90136289473b5b0, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage:
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114580499248532793
+MonoBehaviour:
+  m_GameObject: {fileID: 1479498127562528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a559f7ff2cd38743af91552e21b4c9e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  anim: {fileID: 95704593025587915}
+--- !u!1 &1362408837415920
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4928892135809719}
+  - component: {fileID: 33685229418868670}
+  - component: {fileID: 23880570804029305}
+  m_Layer: 0
+  m_Name: LootEgg_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4928892135809719
+Transform:
+  m_GameObject: {fileID: 1362408837415920}
+  m_LocalRotation: {x: -0.7071069, y: 4.214685E-08, z: 4.214685E-08, w: 0.7071068}
+  m_LocalPosition: {x: -1.119609E-05, y: 32.47765, z: 1.178892E-06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4176840438847638}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90.00001, y: -6.830189E-06, z: 0}
+--- !u!33 &33685229418868670
+MeshFilter:
+  m_GameObject: {fileID: 1362408837415920}
+  m_Mesh: {fileID: 4300000, guid: a72b743f3f58c714d90d80678d048d16, type: 2}
+--- !u!23 &23880570804029305
+MeshRenderer:
+  m_GameObject: {fileID: 1362408837415920}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1609077200411741
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4867498094145184}
+  - component: {fileID: 33188052316310617}
+  - component: {fileID: 23997753730779925}
+  m_Layer: 0
+  m_Name: LootEgg_01_Deco
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4867498094145184
+Transform:
+  m_GameObject: {fileID: 1609077200411741}
+  m_LocalRotation: {x: -0.7071069, y: 4.214685E-08, z: 4.214685E-08, w: 0.7071068}
+  m_LocalPosition: {x: -1.119609E-05, y: 32.47765, z: 1.178892E-06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4176840438847638}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90.00001, y: -6.830189E-06, z: 0}
+--- !u!33 &33188052316310617
+MeshFilter:
+  m_GameObject: {fileID: 1609077200411741}
+  m_Mesh: {fileID: 4300000, guid: a200c64291222de4eb3a16eec0fd396e, type: 2}
+--- !u!23 &23997753730779925
+MeshRenderer:
+  m_GameObject: {fileID: 1609077200411741}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &1651699700168914
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4840916478856271}
+  - component: {fileID: 111781459801862414}
+  - component: {fileID: 114176227590179395}
+  m_Layer: 0
+  m_Name: LootChest_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4840916478856271
+Transform:
+  m_GameObject: {fileID: 1651699700168914}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.629207E-07}
+  m_LocalPosition: {x: -10.2, y: 0, z: 10.2}
+  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_Children:
+  - {fileID: 4954558088236053}
+  - {fileID: 4608798902001745}
+  - {fileID: 4811229549280053}
+  - {fileID: 4911490507220877}
+  - {fileID: 4094566025358184}
+  m_Father: {fileID: 4618680219098631}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 180, y: 1.866934E-05, z: 180}
+--- !u!111 &111781459801862414
+Animation:
+  m_GameObject: {fileID: 1651699700168914}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1
+--- !u!114 &114176227590179395
+MonoBehaviour:
+  m_GameObject: {fileID: 1651699700168914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0338e110169a243a1d75119805b2f8, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 0}
+  method: 0
+  style: 2
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4020931
+      value: 0.9946929
+      inSlope: 0.04673871
+      outSlope: 0.04673871
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 6, y: 0, z: 0}
+  to: {x: -6, y: 0, z: 0}
+--- !u!1 &1925561119397112
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4954558088236053}
+  - component: {fileID: 137159112314774646}
+  m_Layer: 0
+  m_Name: Chest_Card
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4954558088236053
+Transform:
+  m_GameObject: {fileID: 1925561119397112}
+  m_LocalRotation: {x: -0.7071068, y: 6.181725E-08, z: 6.181725E-08, w: 0.7071068}
+  m_LocalPosition: {x: -4.902203, y: 3.021301, z: 3.308868}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4840916478856271}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: -1.001791E-05, z: 0}
+--- !u!137 &137159112314774646
+SkinnedMeshRenderer:
+  m_GameObject: {fileID: 1925561119397112}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: cfaa37af890e63541868fcdd7e9328f2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_skinnedMotionVectors: 0
+  m_Mesh: {fileID: 4300000, guid: 5a01c9d117e8abf47ad0befc292d2df3, type: 2}
+  m_Bones:
+  - {fileID: 4349718684136821}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4349718684136821}
+  m_AABB:
+    m_Center: {x: -5.960464E-07, y: -2.533197E-07, z: 2.384186E-07}
+    m_Extent: {x: 1.871, y: 0.05277411, z: 2.693224}
+  m_DirtyAABB: 0
+--- !u!1 &1498487821022925
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4608798902001745}
+  - component: {fileID: 137351625282650879}
+  m_Layer: 0
+  m_Name: LootChest_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4608798902001745
+Transform:
+  m_GameObject: {fileID: 1498487821022925}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.4832714, z: 0.7608258}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4840916478856271}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!137 &137351625282650879
+SkinnedMeshRenderer:
+  m_GameObject: {fileID: 1498487821022925}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 1d262df3b88ef584a996673890cf6b1a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_skinnedMotionVectors: 0
+  m_Mesh: {fileID: 4300000, guid: b0c82c8fab3118f46a83adff6e013a2f, type: 2}
+  m_Bones:
+  - {fileID: 4713933631588228}
+  - {fileID: 4881177687294667}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4713933631588228}
+  m_AABB:
+    m_Center: {x: -3.415001, y: 0.6364807, z: 0.007987022}
+    m_Extent: {x: 3.40987, y: 2.767418, z: 3.659641}
+  m_DirtyAABB: 0
+--- !u!1 &1182806370389350
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4811229549280053}
+  - component: {fileID: 137332017814389613}
+  m_Layer: 0
+  m_Name: LootChest_01_Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4811229549280053
+Transform:
+  m_GameObject: {fileID: 1182806370389350}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.4832714, z: 0.7608258}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4840916478856271}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!137 &137332017814389613
+SkinnedMeshRenderer:
+  m_GameObject: {fileID: 1182806370389350}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 1d262df3b88ef584a996673890cf6b1a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_skinnedMotionVectors: 0
+  m_Mesh: {fileID: 4300000, guid: dbff28be98d5d3e43b28ee4d36199cc8, type: 2}
+  m_Bones:
+  - {fileID: 4713933631588228}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 4713933631588228}
+  m_AABB:
+    m_Center: {x: -1.699297, y: 0.7063378, z: 0.007981777}
+    m_Extent: {x: 0.8372416, y: 0.890125, z: 3.620818}
+  m_DirtyAABB: 0
+--- !u!1 &1257745268529020
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4911490507220877}
+  m_Layer: 0
+  m_Name: Puppet_Global
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4911490507220877
+Transform:
+  m_GameObject: {fileID: 1257745268529020}
+  m_LocalRotation: {x: 0.4999226, y: -0.4999226, z: -0.5000774, w: 0.5000774}
+  m_LocalPosition: {x: 0, y: 1.907349E-06, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
+  m_Children:
+  - {fileID: 4713933631588228}
+  - {fileID: 4349718684136821}
+  m_Father: {fileID: 4840916478856271}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 89.98227, y: 0, z: 90}
+--- !u!1 &1739936370392547
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4713933631588228}
+  m_Layer: 0
+  m_Name: Puppet_Base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4713933631588228
+Transform:
+  m_GameObject: {fileID: 1739936370392547}
+  m_LocalRotation: {x: 0.0001549064, y: -4.815841E-05, z: -4.807832E-05, w: 1}
+  m_LocalPosition: {x: 1.907349E-06, y: -1.837381E-10, z: 1.836813E-10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4881177687294667}
+  m_Father: {fileID: 4911490507220877}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.01775123, y: 0.005517694, z: 0.005510225}
+--- !u!1 &1774027861552485
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4881177687294667}
+  m_Layer: 0
+  m_Name: Puppet_Lid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4881177687294667
+Transform:
+  m_GameObject: {fileID: 1774027861552485}
+  m_LocalRotation: {x: 2.449854E-20, y: -1.489446E-08, z: 7.105427E-15, w: 1}
+  m_LocalPosition: {x: -3.206028, y: -1.970095, z: 6.419394E-07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4713933631588228}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 2.795198E-18, y: 1.706779E-06, z: -8.14222E-13}
+--- !u!1 &1829806161019650
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4349718684136821}
+  m_Layer: 0
+  m_Name: Puppet_Card
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4349718684136821
+Transform:
+  m_GameObject: {fileID: 1829806161019650}
+  m_LocalRotation: {x: 0.7071068, y: -3.40584E-05, z: -0.7071068, w: -3.40584E-05}
+  m_LocalPosition: {x: -3.021452, y: 3.307642, z: 4.902936}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4911490507220877}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -179.9945, y: -90, z: 0}
+--- !u!1 &1802268546195525
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4094566025358184}
+  m_Layer: 0
+  m_Name: Puppet_Root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4094566025358184
+Transform:
+  m_GameObject: {fileID: 1802268546195525}
+  m_LocalRotation: {x: -0.7071068, y: -6.181724E-08, z: 2.702117E-15, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4840916478856271}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -90, y: 5.008956E-06, z: -5.008957E-06}

@@ -1,0 +1,54 @@
+using UnityEngine;
+
+public class BattleResultsController : Singleton<BattleResultsController>
+{
+	public float StateChangeDelay;
+	public float CurrencyTickTime;
+	public float RareCurrencyTickRate;
+	public float LootOpenDelay;
+	public float RewardAppearDelay;
+	public UITweenController ShowCoolGuyBannerTween;
+	public UITweenController ShowDweebBannerTween;
+	public UITweenController ShowVictoryTween;
+	public AnimatedBannerScript BannerAnim;
+	public UITweenController VictoryBannerBGTween;
+	public UITweenController FailBannerBGTween;
+	public UITweenController HideFailBannerTween;
+	public UITweenController ShowPvPVictoryTween;
+	public UITweenController ShowLevelUpIconTween;
+	public UITweenController ShowBlackFadeTween;
+	public UITweenController FinalTween;
+	public UITweenController ShowRewardLabelTween;
+	public UITweenController ShowRewardGridTween;
+	public UITweenController[] ShowRewardSlotTweens;
+	public UITweenController ShowRewardLootTween;
+	public UITweenController ShowRewardTotalsTween;
+	public UITweenController RewardTallyFinishedTween;
+	public UITweenController[] StarGetTweens;
+	public UITweenController ShowTipTween;
+	public UITweenController ShowCreaturesLostTween;
+	public UITweenController HideRewardsDuringGacha;
+	public UITweenController ShowRewardsAfterGacha;
+	public UILabel[] ReceivedRewardAmounts;
+	public UILabel[] TotalRewardAmounts;
+	public GameObject[] ReceivedRewardObjects;
+	public GameObject[] TotalRewardObjects;
+	public UIGrid ReceivedRewardsGrid;
+	public UIGrid TotalRewardsGrid;
+	public UISprite ExpBar;
+	public UILabel ExpLevel;
+	public UIGrid DropsGrid;
+	public Transform DropsGridParent;
+	public UILabel AvailableStamina;
+	public UILabel RetryStaminaCost;
+	public UILabel TipLabel;
+	public UILabel CreatureLostLabel;
+	public GameObject[] WinLoseBanner;
+	public UIGrid ButtonsGrid;
+	public GameObject ReplayButton;
+	public GameObject TownButton;
+	public GameObject WorldButton;
+	public GameObject NextRandomBattleButton;
+	public Texture2D[] EvoMisteryTextures;
+	public UILabel PrintDebugState;
+}

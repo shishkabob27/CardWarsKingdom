@@ -1,0 +1,2921 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1778564364316362}
+  m_IsPrefabParent: 1
+--- !u!1 &1778564364316362
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4578309961293363}
+  - component: {fileID: 114670045448986772}
+  - component: {fileID: 114738028525372520}
+  - component: {fileID: 65227202610345835}
+  - component: {fileID: 114059837751004181}
+  - component: {fileID: 114890858158122937}
+  - component: {fileID: 114491424256505749}
+  - component: {fileID: 114233150224528594}
+  m_Layer: 9
+  m_Name: UI_FrontEnd_PreMatch_QuestSelectTile_League
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4578309961293363
+Transform:
+  m_GameObject: {fileID: 1778564364316362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4085117214088728}
+  - {fileID: 4461846668495221}
+  - {fileID: 4455655147623941}
+  - {fileID: 4520504004590580}
+  - {fileID: 4040078010552713}
+  - {fileID: 4110202390796058}
+  - {fileID: 4897527714724792}
+  - {fileID: 4632847062346212}
+  - {fileID: 4112113102648663}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114670045448986772
+MonoBehaviour:
+  m_GameObject: {fileID: 1778564364316362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb03eabf68f5ad40b5ddc3ad3ed9f2d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  MoveTween: {fileID: 114947429238767026}
+  MoveAlphaTween: {fileID: 114175942550828643}
+  CompleteTween: {fileID: 114190008401519147}
+  UnlockTween: {fileID: 114735014995246919}
+  ResetTween: {fileID: 114658904572869730}
+  FlashBonus: {fileID: 114457593298614034}
+  Name: {fileID: 114455954184670950}
+  Battles: {fileID: 114753743922974676}
+  Background: {fileID: 114357444870152539}
+  BossPortrait: {fileID: 114595412602679500}
+  Lock: {fileID: 1780104719423800}
+  HideWhenLocked: {fileID: 1480716311258736}
+  TimeLabel: {fileID: 0}
+  UnavailableOverlay: {fileID: 0}
+  Button: {fileID: 0}
+  BonusText: {fileID: 114036679932809474}
+  LeagueInfoParent: {fileID: 1575929226969715}
+  StoredPosition: {x: 0, y: 0, z: 0}
+  EnterText: '!!START_QUEST'
+  ExitText: '!!BACK'
+  EnterExitLabel: {fileID: 114626615072326965}
+  DelayToShowUnlockedElements: 1.8
+  _TitleOutlineColors:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.2392157, b: 0.01568628, a: 1}
+  - {r: 0.3333333, g: 0.1647059, b: 0.003921569, a: 1}
+  - {r: 0.6509804, g: 0.01568628, b: 0.4745098, a: 1}
+  - {r: 0.07058824, g: 0.2039216, b: 0.1215686, a: 1}
+  - {r: 0.6039216, g: 0.02352941, b: 0.007843138, a: 1}
+  - {r: 0.01176471, g: 0.2588235, b: 0.4705883, a: 1}
+  - {r: 0.1764706, g: 0.3098039, b: 0.2470588, a: 1}
+  - {r: 0.01176471, g: 0.2470588, b: 0.4627451, a: 1}
+  _BonusOutlineColors:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.3176471, g: 0.2745098, b: 0.1294118, a: 1}
+  - {r: 0.454902, g: 0.1764706, b: 0.4235294, a: 1}
+  - {r: 0.1254902, g: 0.1803922, b: 0.3137255, a: 1}
+  - {r: 0.2, g: 0.254902, b: 0.3764706, a: 1}
+  - {r: 0.1176471, g: 0.1764706, b: 0.3098039, a: 1}
+  - {r: 0.1882353, g: 0.2784314, b: 0.1803922, a: 1}
+  - {r: 0.1176471, g: 0.1764706, b: 0.3098039, a: 1}
+--- !u!114 &114738028525372520
+MonoBehaviour:
+  m_GameObject: {fileID: 1778564364316362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d03d9f95a9ee4c87a7931ded99292, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 248
+  mHeight: 540
+  mDepth: 0
+  autoResizeBoxCollider: 1
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.4592593
+--- !u!65 &65227202610345835
+BoxCollider:
+  m_GameObject: {fileID: 1778564364316362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 248, y: 540, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114059837751004181
+MonoBehaviour:
+  m_GameObject: {fileID: 1778564364316362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64e66f447ae22e4092faf2d52ac4e17, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  scrollView: {fileID: 0}
+  draggablePanel: {fileID: 0}
+--- !u!114 &114890858158122937
+MonoBehaviour:
+  m_GameObject: {fileID: 1778564364316362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b2a80afadb25448b615a815c3e5b0e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  onHoverOver: []
+  onHoverOut: []
+  onPress: []
+  onRelease: []
+  onSelect: []
+  onDeselect: []
+  onClick:
+  - mTarget: {fileID: 114670045448986772}
+    mMethodName: OnLeagueClicked
+    mParameters: []
+    oneShot: 0
+  - mTarget: {fileID: 114750972321383274}
+    mMethodName: Play
+    mParameters: []
+    oneShot: 0
+  onDoubleClick: []
+  onDragOver: []
+  onDragOut: []
+--- !u!114 &114491424256505749
+MonoBehaviour:
+  m_GameObject: {fileID: 1778564364316362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03683cab37c9dfb4b84e587f61e339b8, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  tweenTarget: {fileID: 1933967151291985}
+  hover: {r: 0.9960784, g: 0.9960784, b: 0.9960784, a: 1}
+  pressed: {r: 0.9921569, g: 0.9921569, b: 0.9921569, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.1
+  dragHighlight: 0
+  hoverSprite:
+  pressedSprite: UI_Action_Button_Green_Pressed
+  disabledSprite:
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
+--- !u!114 &114233150224528594
+MonoBehaviour:
+  m_GameObject: {fileID: 1778564364316362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9176c7db445fde84ba7f17792ba8c553, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  myButton: {fileID: 0}
+  pushAmount: {x: 0, y: -9}
+  multiplyColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
+  childSprites: []
+  childLabels:
+  - {fileID: 114626615072326965}
+--- !u!1 &1219499845791464
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4085117214088728}
+  - component: {fileID: 114455954184670950}
+  - component: {fileID: 114214359743136105}
+  m_Layer: 9
+  m_Name: Val_LeagueName
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4085117214088728
+Transform:
+  m_GameObject: {fileID: 1219499845791464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 209, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114455954184670950
+MonoBehaviour:
+  m_GameObject: {fileID: 1219499845791464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 195
+  mHeight: 62
+  mDepth: 8
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 3.145161
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: 'Diamond
+
+    League'
+  mFontSize: 30
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 2
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1.2, y: 1.2}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: -2
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!114 &114214359743136105
+MonoBehaviour:
+  m_GameObject: {fileID: 1219499845791464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3765b42ce7d3548a873c0f06078b0d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  Offset: {x: 1, y: -2.5}
+  ShadowTextColor: {r: 0, g: 0, b: 0, a: 1}
+  ShadowEffectColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!1 &1642223475598154
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4461846668495221}
+  - component: {fileID: 114036679932809474}
+  m_Layer: 9
+  m_Name: Val_Bonus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4461846668495221
+Transform:
+  m_GameObject: {fileID: 1642223475598154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 160, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114036679932809474
+MonoBehaviour:
+  m_GameObject: {fileID: 1642223475598154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 1
+  mWidth: 190
+  mHeight: 41
+  mDepth: 2
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 4.634146
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: '1.5x Creature 
+
+    Drops for 99:99'
+  mFontSize: 20
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 2
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0, b: 0, a: 0.784}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &1369657697321834
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4455655147623941}
+  - component: {fileID: 114357444870152539}
+  m_Layer: 9
+  m_Name: BACKGROUND TEXTURE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4455655147623941
+Transform:
+  m_GameObject: {fileID: 1369657697321834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114357444870152539
+MonoBehaviour:
+  m_GameObject: {fileID: 1369657697321834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d90a6a670751f45ad7ecb139db39fe, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 274
+  mHeight: 560
+  mDepth: -2
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.4892857
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 0}
+  mMat: {fileID: 0}
+  mShader: {fileID: 4800000, guid: f4099eded63aae846b452e1aebd58178, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mTrackReferenceCounts: 1
+  mTexturePath:
+--- !u!1 &1575929226969715
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4520504004590580}
+  m_Layer: 11
+  m_Name: League Info Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4520504004590580
+Transform:
+  m_GameObject: {fileID: 1575929226969715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4047397342686389}
+  - {fileID: 4112879618305961}
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1870126791072762
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4047397342686389}
+  - component: {fileID: 114595412602679500}
+  m_Layer: 9
+  m_Name: LEADER TEXTURE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4047397342686389
+Transform:
+  m_GameObject: {fileID: 1870126791072762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4520504004590580}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114595412602679500
+MonoBehaviour:
+  m_GameObject: {fileID: 1870126791072762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d90a6a670751f45ad7ecb139db39fe, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 195
+  mHeight: 272
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 1
+  aspectRatio: 0.7172775
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 0}
+  mMat: {fileID: 0}
+  mShader: {fileID: 4800000, guid: f4099eded63aae846b452e1aebd58178, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mTrackReferenceCounts: 1
+  mTexturePath:
+--- !u!1 &1225317742687671
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4112879618305961}
+  - component: {fileID: 114562318378379229}
+  m_Layer: 9
+  m_Name: BattleCountFrame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4112879618305961
+Transform:
+  m_GameObject: {fileID: 1225317742687671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -102, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4733117772654283}
+  m_Father: {fileID: 4520504004590580}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114562318378379229
+MonoBehaviour:
+  m_GameObject: {fileID: 1225317742687671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 249
+  mHeight: 79
+  mDepth: 20
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 1
+  aspectRatio: 3.160494
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: BattleNumber_Banner
+  mFillCenter: 1
+--- !u!1 &1488946075175045
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4733117772654283}
+  - component: {fileID: 114753743922974676}
+  m_Layer: 9
+  m_Name: Val_BattleCount
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4733117772654283
+Transform:
+  m_GameObject: {fileID: 1488946075175045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4112879618305961}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114753743922974676
+MonoBehaviour:
+  m_GameObject: {fileID: 1488946075175045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 0.4078432, g: 0.1882353, b: 0.003921569, a: 1}
+  mPivot: 4
+  mWidth: 184
+  mHeight: 45
+  mDepth: 22
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 4.088889
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: Battle Count
+  mFontSize: 30
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 2
+  mEffectStyle: 1
+  mEffectColor: {r: 1, g: 1, b: 1, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: -0.5, y: 1}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &1334188562321532
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4040078010552713}
+  m_Layer: 9
+  m_Name: Unlock VFX Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4040078010552713
+Transform:
+  m_GameObject: {fileID: 1334188562321532}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23, y: -183, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1780104719423800
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4110202390796058}
+  - component: {fileID: 114296568357772445}
+  m_Layer: 9
+  m_Name: Lock Plaque
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4110202390796058
+Transform:
+  m_GameObject: {fileID: 1780104719423800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -182, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4656955553401215}
+  - {fileID: 4996357834328507}
+  - {fileID: 4840320522038859}
+  - {fileID: 4473587755022317}
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114296568357772445
+MonoBehaviour:
+  m_GameObject: {fileID: 1780104719423800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d03d9f95a9ee4c87a7931ded99292, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+--- !u!1 &1972081931242534
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4656955553401215}
+  - component: {fileID: 114938385816363419}
+  - component: {fileID: 65203811014805065}
+  - component: {fileID: 114939381248952327}
+  m_Layer: 9
+  m_Name: Debug Unlock Button (HIDE/DELETE) (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4656955553401215
+Transform:
+  m_GameObject: {fileID: 1972081931242534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 148.7, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4110202390796058}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114938385816363419
+MonoBehaviour:
+  m_GameObject: {fileID: 1972081931242534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 164
+  mHeight: 84
+  mDepth: 45
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.952381
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: UI_Action_Button_Green
+  mFillCenter: 1
+--- !u!65 &65203811014805065
+BoxCollider:
+  m_GameObject: {fileID: 1972081931242534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 164, y: 84, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114939381248952327
+MonoBehaviour:
+  m_GameObject: {fileID: 1972081931242534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b2a80afadb25448b615a815c3e5b0e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  onHoverOver: []
+  onHoverOut: []
+  onPress: []
+  onRelease: []
+  onSelect: []
+  onDeselect: []
+  onClick:
+  - mTarget: {fileID: 114670045448986772}
+    mMethodName: DelayedShowUnlockedElements
+    mParameters: []
+    oneShot: 0
+  onDoubleClick: []
+  onDragOver: []
+  onDragOut: []
+--- !u!1 &1746143614073136
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4996357834328507}
+  - component: {fileID: 114048488023068763}
+  m_Layer: 9
+  m_Name: Plaque
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4996357834328507
+Transform:
+  m_GameObject: {fileID: 1746143614073136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4110202390796058}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114048488023068763
+MonoBehaviour:
+  m_GameObject: {fileID: 1746143614073136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 120
+  mHeight: 90
+  mDepth: 29
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.333333
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: Icon_LockPlaque
+  mFillCenter: 1
+--- !u!1 &1371669203851837
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4840320522038859}
+  - component: {fileID: 114745994489326595}
+  m_Layer: 9
+  m_Name: Hasp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4840320522038859
+Transform:
+  m_GameObject: {fileID: 1371669203851837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 30, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4110202390796058}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114745994489326595
+MonoBehaviour:
+  m_GameObject: {fileID: 1371669203851837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 59
+  mHeight: 23
+  mDepth: 33
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 1
+  aspectRatio: 2.565217
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: Icon_LockHasp
+  mFillCenter: 1
+--- !u!1 &1345010229985515
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4473587755022317}
+  - component: {fileID: 114662614278213193}
+  - component: {fileID: 114869794592078987}
+  m_Layer: 9
+  m_Name: LockParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4473587755022317
+Transform:
+  m_GameObject: {fileID: 1345010229985515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18, y: 42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4601978726995718}
+  m_Father: {fileID: 4110202390796058}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114662614278213193
+MonoBehaviour:
+  m_GameObject: {fileID: 1345010229985515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbeb9547b32c2f4db3856c8886a84ea, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 0}
+  method: 0
+  style: 2
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 3
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 16, y: 42, z: 0}
+  to: {x: 20, y: 42, z: 0}
+  worldSpace: 0
+--- !u!114 &114869794592078987
+MonoBehaviour:
+  m_GameObject: {fileID: 1345010229985515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d03d9f95a9ee4c87a7931ded99292, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 40
+  mHeight: 40
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+--- !u!1 &1591490793301663
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4601978726995718}
+  - component: {fileID: 114833884460979262}
+  - component: {fileID: 114191121285800056}
+  m_Layer: 9
+  m_Name: Lock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4601978726995718
+Transform:
+  m_GameObject: {fileID: 1591490793301663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: -39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4226062304091507}
+  m_Father: {fileID: 4473587755022317}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114833884460979262
+MonoBehaviour:
+  m_GameObject: {fileID: 1591490793301663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 65
+  mHeight: 104
+  mDepth: 32
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 1
+  aspectRatio: 0.625
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: Icon_PadLock
+  mFillCenter: 1
+--- !u!114 &114191121285800056
+MonoBehaviour:
+  m_GameObject: {fileID: 1591490793301663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbeb9547b32c2f4db3856c8886a84ea, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 0}
+  method: 0
+  style: 2
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 4
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 5, y: -36, z: 0}
+  to: {x: 5, y: -40, z: 0}
+  worldSpace: 0
+--- !u!1 &1036473506959754
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4226062304091507}
+  - component: {fileID: 114367550632702193}
+  m_Layer: 9
+  m_Name: Overlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4226062304091507
+Transform:
+  m_GameObject: {fileID: 1036473506959754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.2, y: 32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4601978726995718}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114367550632702193
+MonoBehaviour:
+  m_GameObject: {fileID: 1036473506959754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 29
+  mHeight: 42
+  mDepth: 35
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.6904762
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: Icon_PadlockOverlay
+  mFillCenter: 1
+--- !u!1 &1975524716835971
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4897527714724792}
+  - component: {fileID: 114766893539814209}
+  m_Layer: 11
+  m_Name: CompletionStamp (HIDE)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4897527714724792
+Transform:
+  m_GameObject: {fileID: 1975524716835971}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659259}
+  m_LocalPosition: {x: 0, y: 31.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4000226723133948}
+  - {fileID: 4284522475439032}
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
+--- !u!114 &114766893539814209
+MonoBehaviour:
+  m_GameObject: {fileID: 1975524716835971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88d03d9f95a9ee4c87a7931ded99292, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+--- !u!1 &1814200406712038
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4000226723133948}
+  - component: {fileID: 114714217212220386}
+  m_Layer: 11
+  m_Name: Label_Complete
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000226723133948
+Transform:
+  m_GameObject: {fileID: 1814200406712038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4897527714724792}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114714217212220386
+MonoBehaviour:
+  m_GameObject: {fileID: 1814200406712038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 0, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 200
+  mHeight: 80
+  mDepth: 16
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 2.5
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: '!!LEAGUE_COMPLETE'
+  mFontSize: 80
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 2
+  mEffectColor: {r: 0.4485294, g: 0.003298014, b: 0.003298014, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &1154975187608605
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4284522475439032}
+  - component: {fileID: 114340272986485719}
+  m_Layer: 11
+  m_Name: Frame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4284522475439032
+Transform:
+  m_GameObject: {fileID: 1154975187608605}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4269752714752497}
+  m_Father: {fileID: 4897527714724792}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114340272986485719
+MonoBehaviour:
+  m_GameObject: {fileID: 1154975187608605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 0, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 225
+  mHeight: 75
+  mDepth: 14
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 3
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 0
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: GenRoundedRect
+  mFillCenter: 1
+--- !u!1 &1438291964127823
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4269752714752497}
+  - component: {fileID: 114318699454616642}
+  m_Layer: 11
+  m_Name: Bg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4269752714752497
+Transform:
+  m_GameObject: {fileID: 1438291964127823}
+  m_LocalRotation: {x: 0, y: 0, z: -4.470348E-08, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4284522475439032}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.122642E-06}
+--- !u!114 &114318699454616642
+MonoBehaviour:
+  m_GameObject: {fileID: 1438291964127823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 4284522475439032}
+    relative: 0
+    absolute: 2
+  rightAnchor:
+    target: {fileID: 4284522475439032}
+    relative: 1
+    absolute: -2
+  bottomAnchor:
+    target: {fileID: 4284522475439032}
+    relative: 0
+    absolute: 5
+  topAnchor:
+    target: {fileID: 4284522475439032}
+    relative: 1
+    absolute: -3
+  updateAnchors: 0
+  mColor: {r: 0.1617647, g: 0, b: 0, a: 0.672}
+  mPivot: 4
+  mWidth: 221
+  mHeight: 67
+  mDepth: 13
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 2.87013
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: GenSquare
+  mFillCenter: 1
+--- !u!1 &1480716311258736
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4632847062346212}
+  m_Layer: 11
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4632847062346212
+Transform:
+  m_GameObject: {fileID: 1480716311258736}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -159, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4996207783509620}
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1933967151291985
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4996207783509620}
+  - component: {fileID: 114125933965331197}
+  m_Layer: 9
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4996207783509620
+Transform:
+  m_GameObject: {fileID: 1933967151291985}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_Children:
+  - {fileID: 4140370445441454}
+  m_Father: {fileID: 4632847062346212}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114125933965331197
+MonoBehaviour:
+  m_GameObject: {fileID: 1933967151291985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bad58d64e44ab4eb9d921d868d08fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 188
+  mHeight: 84
+  mDepth: 8
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 2.238095
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114970822492097842, guid: d99d4d11db3359349a1ea3d598875aed, type: 2}
+  mSpriteName: UI_Action_Button_Green
+  mFillCenter: 1
+--- !u!1 &1744103437606161
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4140370445441454}
+  - component: {fileID: 114626615072326965}
+  - component: {fileID: 114575270525893513}
+  m_Layer: 9
+  m_Name: Label_Enter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4140370445441454
+Transform:
+  m_GameObject: {fileID: 1744103437606161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4996207783509620}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114626615072326965
+MonoBehaviour:
+  m_GameObject: {fileID: 1744103437606161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05811cf903dfaf41a877ef8d5919a20, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 147
+  mHeight: 40
+  mDepth: 10
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 3.675
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 0}
+  mFont: {fileID: 114989919755556195, guid: ae3e3a58a1401c04fa6453c5c7521aef, type: 2}
+  mText: '!!START_QUEST'
+  mFontSize: 32
+  mFontStyle: 0
+  mAlignment: 0
+  mCurveRadius: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 2
+  mEffectColor: {r: 0, g: 0.2720588, b: 0.108168, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1.5, y: 1.5}
+  mOverflow: 0
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  LabelShadow: {fileID: 0}
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!114 &114575270525893513
+MonoBehaviour:
+  m_GameObject: {fileID: 1744103437606161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3765b42ce7d3548a873c0f06078b0d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  Offset: {x: 1, y: -3.5}
+  ShadowTextColor: {r: 0, g: 0, b: 0, a: 0}
+  ShadowEffectColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!1 &1791511489292301
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4112113102648663}
+  m_Layer: 11
+  m_Name: TweenControllers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4112113102648663
+Transform:
+  m_GameObject: {fileID: 1791511489292301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4502958635578099}
+  - {fileID: 4909136823964617}
+  - {fileID: 4735279235322428}
+  - {fileID: 4014780469629713}
+  - {fileID: 4321591391397410}
+  - {fileID: 4363932531763688}
+  - {fileID: 4561479924004229}
+  m_Father: {fileID: 4578309961293363}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1164970669210944
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4502958635578099}
+  - component: {fileID: 114947429238767026}
+  - component: {fileID: 114620858578094265}
+  - component: {fileID: 114572448752853192}
+  - component: {fileID: 114255582188653541}
+  m_Layer: 11
+  m_Name: LeagueSelect_Move_Show
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4502958635578099
+Transform:
+  m_GameObject: {fileID: 1164970669210944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 400, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4112113102648663}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114947429238767026
+MonoBehaviour:
+  m_GameObject: {fileID: 1164970669210944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 0
+  ResetOnPlay: 1
+  DisableWhenFinished: 0
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished: []
+--- !u!114 &114620858578094265
+MonoBehaviour:
+  m_GameObject: {fileID: 1164970669210944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbeb9547b32c2f4db3856c8886a84ea, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114738028525372520}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0.3
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: 0, z: 0}
+  to: {x: 0, y: 0, z: 0}
+  worldSpace: 0
+--- !u!114 &114572448752853192
+MonoBehaviour:
+  m_GameObject: {fileID: 1164970669210944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ec50b13dffd1a4898266294fd3befb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  audioClip: {fileID: 8300000, guid: e451b1fed28bf0648ab7aec89b342fd9, type: 3}
+  trigger: 0
+  delay: 0
+  volume: 1
+  pitch: 1
+--- !u!114 &114255582188653541
+MonoBehaviour:
+  m_GameObject: {fileID: 1164970669210944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2484b07c8a7dcb40a9fdc214f0787f3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114738028525372520}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 6.281473
+      outSlope: 6.281473
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.500109
+      value: 0.9972533
+      inSlope: 0.03683324
+      outSlope: 0.03683324
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 2.164301E-05
+      inSlope: -5.595304
+      outSlope: -5.595304
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0.2
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: 1
+  to: 0.8
+--- !u!1 &1703744654909038
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4909136823964617}
+  - component: {fileID: 114175942550828643}
+  - component: {fileID: 114590963830045073}
+  m_Layer: 11
+  m_Name: LeagueSelect_Move_ShowAlpha
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4909136823964617
+Transform:
+  m_GameObject: {fileID: 1703744654909038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 400, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4112113102648663}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114175942550828643
+MonoBehaviour:
+  m_GameObject: {fileID: 1703744654909038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 0
+  ResetOnPlay: 0
+  DisableWhenFinished: 0
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished: []
+--- !u!114 &114590963830045073
+MonoBehaviour:
+  m_GameObject: {fileID: 1703744654909038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2484b07c8a7dcb40a9fdc214f0787f3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114738028525372520}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0.2
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: 1
+  to: 0
+--- !u!1 &1126386635702130
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4735279235322428}
+  - component: {fileID: 114735014995246919}
+  - component: {fileID: 114454355711985169}
+  - component: {fileID: 114489122426981588}
+  - component: {fileID: 114001102689597120}
+  - component: {fileID: 114498792026874740}
+  - component: {fileID: 114252213165552157}
+  m_Layer: 11
+  m_Name: LeagueSelectTile_LeagueUnlock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4735279235322428
+Transform:
+  m_GameObject: {fileID: 1126386635702130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4112113102648663}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114735014995246919
+MonoBehaviour:
+  m_GameObject: {fileID: 1126386635702130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 1
+  ResetOnPlay: 1
+  DisableWhenFinished: 0
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished: []
+--- !u!114 &114454355711985169
+MonoBehaviour:
+  m_GameObject: {fileID: 1126386635702130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0338e110169a243a1d75119805b2f8, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114869794592078987}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.02052987
+      value: 0.9944376
+      inSlope: -0.03981319
+      outSlope: -0.03981319
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.05115485
+      value: 0.002565145
+      inSlope: 0.04486199
+      outSlope: 0.04486199
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.07540548
+      value: 0.9992587
+      inSlope: 0.03527051
+      outSlope: 0.03527051
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1002129
+      value: 0.0005133748
+      inSlope: 0.05171796
+      outSlope: 0.05171796
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1246166
+      value: 0.9901659
+      inSlope: -0.06010373
+      outSlope: -0.06010373
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1504835
+      value: 0.009342573
+      inSlope: 0.01172984
+      outSlope: 0.01172984
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1722741
+      value: 0.9885379
+      inSlope: 0.007827835
+      outSlope: 0.007827835
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1991392
+      value: 0.004480004
+      inSlope: -0.06501376
+      outSlope: -0.06501376
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2288066
+      value: 0.9940919
+      inSlope: -0.7399917
+      outSlope: -0.7399917
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2497675
+      value: 0.002297044
+      inSlope: -0.04107076
+      outSlope: -0.04107076
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2771199
+      value: 0.992184
+      inSlope: -1.207292
+      outSlope: -1.207292
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2987134
+      value: 0.002840281
+      inSlope: -1.394451
+      outSlope: -1.394451
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.322163
+      value: 0.9926121
+      inSlope: -1.603663
+      outSlope: -1.603663
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.3513287
+      value: -6.383657E-05
+      inSlope: 0.2466152
+      outSlope: 0.2466152
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.3716941
+      value: 0.9937448
+      inSlope: 0.05197046
+      outSlope: 0.05197046
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.3987627
+      value: 0.006880641
+      inSlope: -2.061725
+      outSlope: -2.061725
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4238368
+      value: 0.9853758
+      inSlope: -2.182126
+      outSlope: -2.182126
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4503058
+      value: -0.003150284
+      inSlope: -2.252162
+      outSlope: -2.252162
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4727459
+      value: 0.9840691
+      inSlope: -2.304614
+      outSlope: -2.304614
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5012633
+      value: 0.00135684
+      inSlope: -2.340972
+      outSlope: -2.340972
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5200542
+      value: 0.988353
+      inSlope: -2.353638
+      outSlope: -2.353638
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5482525
+      value: 0.005431563
+      inSlope: -2.344996
+      outSlope: -2.344996
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5709828
+      value: 0.9859018
+      inSlope: -2.299994
+      outSlope: -2.299994
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5998335
+      value: -0.001678169
+      inSlope: -2.245009
+      outSlope: -2.245009
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6260338
+      value: 0.9915552
+      inSlope: -2.178252
+      outSlope: -2.178252
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6523304
+      value: 0.01362658
+      inSlope: -2.047122
+      outSlope: -2.047122
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6745358
+      value: 0.9947555
+      inSlope: -1.933873
+      outSlope: -1.933873
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7000449
+      value: 0.01439042
+      inSlope: -1.772568
+      outSlope: -1.772568
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7250223
+      value: 0.9875246
+      inSlope: -1.57434
+      outSlope: -1.57434
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7502497
+      value: 0.007762823
+      inSlope: -1.389692
+      outSlope: -1.389692
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7803997
+      value: 0.9887505
+      inSlope: -1.163129
+      outSlope: -1.163129
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7970294
+      value: 0.01167558
+      inSlope: -0.8923933
+      outSlope: -0.8923933
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.824092
+      value: 0.9911344
+      inSlope: -0.5473569
+      outSlope: -0.5473569
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8479101
+      value: 0.01045914
+      inSlope: -0.3454834
+      outSlope: -0.3454834
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8744757
+      value: 0.9869995
+      inSlope: 0.04895031
+      outSlope: 0.04895031
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9004163
+      value: 0.00903438
+      inSlope: 0.3018603
+      outSlope: 0.3018603
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.926134
+      value: 0.9861476
+      inSlope: 0.7000193
+      outSlope: 0.7000193
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9500064
+      value: -0.0001894031
+      inSlope: 0.3367809
+      outSlope: Infinity
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9999995
+      value: -3.9734E-06
+      inSlope: 1.953099
+      outSlope: 1.953099
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 1.8
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: 0, z: -10}
+  to: {x: 0, y: 0, z: 10}
+--- !u!114 &114489122426981588
+MonoBehaviour:
+  m_GameObject: {fileID: 1126386635702130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f95b3045e5aba1a4e8c42054ed3c8941, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  fxPrefab: {fileID: 1282158937930021, guid: ad344591388a55342bb5b6c4a2181b53, type: 2}
+  parentTr: {fileID: 4040078010552713}
+  parentFlag: 1
+  audioFadeFlag: 0
+  clipName:
+  ShouldMatchLayerToParent: 0
+  DelayToSpawn: 1.7
+--- !u!114 &114001102689597120
+MonoBehaviour:
+  m_GameObject: {fileID: 1126386635702130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ec50b13dffd1a4898266294fd3befb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  audioClip: {fileID: 8300000, guid: 01de90aa04979c44896c81231f237a96, type: 3}
+  trigger: 0
+  delay: 1.6
+  volume: 1
+  pitch: 1
+--- !u!114 &114498792026874740
+MonoBehaviour:
+  m_GameObject: {fileID: 1126386635702130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2484b07c8a7dcb40a9fdc214f0787f3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114296568357772445}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 1.8
+  duration: 0.3
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: 1
+  to: 0
+--- !u!114 &114252213165552157
+MonoBehaviour:
+  m_GameObject: {fileID: 1126386635702130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a599f2c17ed12408bf58c74c592695, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114296568357772445}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 1.8
+  duration: 0.4
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 1, y: 1, z: 1}
+  to: {x: 5, y: 5, z: 5}
+  updateTable: 0
+--- !u!1 &1877381974802399
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4014780469629713}
+  - component: {fileID: 114190008401519147}
+  - component: {fileID: 114131995420921377}
+  - component: {fileID: 114462290940049126}
+  m_Layer: 11
+  m_Name: LeagueSelectTile_LeagueComplete
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4014780469629713
+Transform:
+  m_GameObject: {fileID: 1877381974802399}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4112113102648663}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114190008401519147
+MonoBehaviour:
+  m_GameObject: {fileID: 1877381974802399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 1
+  ResetOnPlay: 1
+  DisableWhenFinished: 0
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished: []
+--- !u!114 &114131995420921377
+MonoBehaviour:
+  m_GameObject: {fileID: 1877381974802399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a599f2c17ed12408bf58c74c592695, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114766893539814209}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4059757
+      value: 1.078034
+      inSlope: 0.9699644
+      outSlope: 0.9699644
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6047682
+      value: 0.8352123
+      inSlope: 0.03527051
+      outSlope: 0.03527051
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7755909
+      value: 0.9902204
+      inSlope: 1.000166
+      outSlope: 1.000166
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0.1
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 5, y: 5, z: 1}
+  to: {x: 1, y: 1, z: 1}
+  updateTable: 0
+--- !u!114 &114462290940049126
+MonoBehaviour:
+  m_GameObject: {fileID: 1877381974802399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2484b07c8a7dcb40a9fdc214f0787f3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114766893539814209}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0.1
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: 0
+  to: 0
+--- !u!1 &1678431767467807
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4321591391397410}
+  - component: {fileID: 114658904572869730}
+  - component: {fileID: 114423259999941214}
+  m_Layer: 11
+  m_Name: LeagueSelectTile_Reset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4321591391397410
+Transform:
+  m_GameObject: {fileID: 1678431767467807}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4112113102648663}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114658904572869730
+MonoBehaviour:
+  m_GameObject: {fileID: 1678431767467807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 0
+  ResetOnPlay: 1
+  DisableWhenFinished: 1
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished: []
+--- !u!114 &114423259999941214
+MonoBehaviour:
+  m_GameObject: {fileID: 1678431767467807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2484b07c8a7dcb40a9fdc214f0787f3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114766893539814209}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: 0
+  to: 0
+--- !u!1 &1695855241830436
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4363932531763688}
+  - component: {fileID: 114457593298614034}
+  - component: {fileID: 114239354615986651}
+  m_Layer: 11
+  m_Name: LeagueSelect_FlashBonus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4363932531763688
+Transform:
+  m_GameObject: {fileID: 1695855241830436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 400.0001, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4112113102648663}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114457593298614034
+MonoBehaviour:
+  m_GameObject: {fileID: 1695855241830436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 0
+  ResetOnPlay: 0
+  DisableWhenFinished: 0
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished: []
+--- !u!114 &114239354615986651
+MonoBehaviour:
+  m_GameObject: {fileID: 1695855241830436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42ad642cf497644ea372fe6ebed0f80, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114036679932809474}
+  method: 0
+  style: 2
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {r: 0.6392157, g: 0.6392157, b: 0.6392157, a: 1}
+  to: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &1342757977340586
+GameObject:
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4561479924004229}
+  - component: {fileID: 114750972321383274}
+  - component: {fileID: 114947309573284921}
+  - component: {fileID: 114275120125061535}
+  m_Layer: 11
+  m_Name: LeagueSelectTile_LeagueLocked_Fidget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4561479924004229
+Transform:
+  m_GameObject: {fileID: 1342757977340586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4112113102648663}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114750972321383274
+MonoBehaviour:
+  m_GameObject: {fileID: 1342757977340586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef1346af888cd94dbdf86892d2609ba, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  DisableInput: 1
+  ResetOnPlay: 1
+  DisableWhenFinished: 0
+  CallCleanupTweensOnPlay: 0
+  CleanupTween: {fileID: 0}
+  TweenToCancel: {fileID: 0}
+  MenuStackCloseButton: {fileID: 0}
+  OnFinished: []
+--- !u!114 &114947309573284921
+MonoBehaviour:
+  m_GameObject: {fileID: 1342757977340586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0338e110169a243a1d75119805b2f8, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  target: {fileID: 114869794592078987}
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.4990292
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.1493812
+      value: -0.006983871
+      inSlope: 0.001192093
+      outSlope: 0.001192093
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.452244
+      value: 0.9932248
+      inSlope: 0.08455729
+      outSlope: 0.08455729
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5985901
+      value: 0.2559249
+      inSlope: -0.01735065
+      outSlope: -0.01735065
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7501635
+      value: 0.747348
+      inSlope: 0.03350859
+      outSlope: 0.03350859
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8827263
+      value: 0.4004844
+      inSlope: -0.07490981
+      outSlope: -0.07490981
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9502214
+      value: 0.5904288
+      inSlope: 0.09198232
+      outSlope: 0.09198232
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.997799
+      value: 0.500971
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShouldIgnoreTimeScale: 0
+  delay: 0
+  duration: 0.6
+  steeperCurves: 0
+  tweenGroup: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished:
+  from: {x: 0, y: 0, z: -10}
+  to: {x: 0, y: 0, z: 10}
+--- !u!114 &114275120125061535
+MonoBehaviour:
+  m_GameObject: {fileID: 1342757977340586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ec50b13dffd1a4898266294fd3befb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  audioClip: {fileID: 8300000, guid: 7c3f920883fe31548b738936573a6f0b, type: 3}
+  trigger: 0
+  delay: 0
+  volume: 1
+  pitch: 1
