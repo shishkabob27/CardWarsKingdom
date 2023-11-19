@@ -5,7 +5,10 @@ using UnityEngine;
 public struct ExpeditionsColorPalette
 {
 	public string Name;
+
 	public Color[] Colors;
+
 	public Color[] BackgroundColors;
+
 	public Color[] SelectorColors;
 }

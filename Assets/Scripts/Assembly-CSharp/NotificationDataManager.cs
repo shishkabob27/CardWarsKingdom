@@ -1,8 +1,37 @@
+using System.Collections.Generic;
+using System.IO;
+
 public class NotificationDataManager : DataManager<NotificationData>
 {
-	public NotificationDataManager(string path)
+	private static NotificationDataManager _instance;
+
+	public bool isLoaded;
+
+	public static NotificationDataManager Instance
 	{
+		get
+		{
+			if (_instance == null)
+			{
+				string path = Path.Combine("Blueprints", "db_Notifications.json");
+				_instance = new NotificationDataManager(path);
+			}
+			return _instance;
+		}
 	}
 
-	public new bool isLoaded;
+	public NotificationDataManager(string path)
+	{
+		base.FilePath = path;
+	}
+
+	public List<NotificationData> GetNotificationList(NotificationType type)
+	{
+		return DatabaseArray.FindAll((NotificationData m) => m.nType == type);
+	}
+
+	protected override void PostLoad()
+	{
+		isLoaded = true;
+	}
 }

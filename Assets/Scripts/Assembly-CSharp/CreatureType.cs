@@ -1,0 +1,20 @@
+public enum CreatureType
+{
+	None,
+	Aberration,
+	Animal,
+	Construct,
+	Dragon,
+	Elemental,
+	Fey,
+	Giant,
+	Humanoid,
+	Magical_Beast,
+	Monstrous_Humanoid,
+	Ooze,
+	Outsider,
+	Plant,
+	Undead,
+	Vermin,
+	Count
+}

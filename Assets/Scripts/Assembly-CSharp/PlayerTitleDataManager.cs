@@ -1,7 +1,24 @@
+using System.IO;
+
 public class PlayerTitleDataManager : DataManager<PlayerTitleData>
 {
-	public PlayerTitleDataManager(string path)
+	private static PlayerTitleDataManager _instance;
+
+	public static PlayerTitleDataManager Instance
 	{
+		get
+		{
+			if (_instance == null)
+			{
+				string path = Path.Combine("Blueprints", "db_PlayerTitles.json");
+				_instance = new PlayerTitleDataManager(path);
+			}
+			return _instance;
+		}
 	}
 
+	public PlayerTitleDataManager(string path)
+	{
+		base.FilePath = path;
+	}
 }

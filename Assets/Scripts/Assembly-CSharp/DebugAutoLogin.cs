@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class DebugAutoLogin : MonoBehaviour
 {
-	public bool ForceGuestLogin;
+	public bool ForceGuestLogin = true;
 }

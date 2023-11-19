@@ -1,3 +1,3 @@
-public class UnlockableData
+public interface UnlockableData : ILoadableData
 {
 }

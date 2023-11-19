@@ -1,0 +1,27 @@
+public enum PromoBannerItemType
+{
+	PromoBannerItem_Generic,
+	PromoBannerItem_Generic_Left,
+	PromoBannerItem_Generic_Center,
+	PromoBannerItem_Generic_Right,
+	PromoBannerItem_Boss,
+	PromoBannerItem_Boss_Left,
+	PromoBannerItem_Boss_Center,
+	PromoBannerItem_Boss_Right,
+	PromoBannerItem_Creature,
+	PromoBannerItem_Creature_Left,
+	PromoBannerItem_Creature_Center,
+	PromoBannerItem_Creature_Right,
+	PromoBannerItem_DailyDungeon,
+	PromoBannerItem_DailyDungeon_Left,
+	PromoBannerItem_DailyDungeon_Center,
+	PromoBannerItem_DailyDungeon_Right,
+	PromoBannerItem_Faction,
+	PromoBannerItem_Faction_Left,
+	PromoBannerItem_Faction_Center,
+	PromoBannerItem_Faction_Right,
+	PromoBannerItem_Hero,
+	PromoBannerItem_Hero_Left,
+	PromoBannerItem_Hero_Center,
+	PromoBannerItem_Hero_Right
+}

@@ -1,7 +1,26 @@
+using System.IO;
+
 public class CardBackDataManager : DataManager<CardBackData>
 {
-	public CardBackDataManager(string path)
+	public static CardBackData DefaultData;
+
+	private static CardBackDataManager _instance;
+
+	public static CardBackDataManager Instance
 	{
+		get
+		{
+			if (_instance == null)
+			{
+				string path = Path.Combine("Blueprints", "db_CardBacks.json");
+				_instance = new CardBackDataManager(path);
+			}
+			return _instance;
+		}
 	}
 
+	public CardBackDataManager(string path)
+	{
+		base.FilePath = path;
+	}
 }
