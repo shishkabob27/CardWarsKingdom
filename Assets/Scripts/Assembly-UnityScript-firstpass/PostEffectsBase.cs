@@ -16,7 +16,7 @@ public class PostEffectsBase : MonoBehaviour
 		isSupported = true;
 	}
 
-	public override Material CheckShaderAndCreateMaterial(Shader s, Material m2Create)
+	public Material CheckShaderAndCreateMaterial(Shader s, Material m2Create)
 	{
 		object result;
 		if (!s)
@@ -44,7 +44,7 @@ public class PostEffectsBase : MonoBehaviour
 		return (Material)result;
 	}
 
-	public override Material CreateMaterial(Shader s, Material m2Create)
+	public Material CreateMaterial(Shader s, Material m2Create)
 	{
 		object result;
 		if (!s)
@@ -69,28 +69,28 @@ public class PostEffectsBase : MonoBehaviour
 		return (Material)result;
 	}
 
-	public override void OnEnable()
+	public void OnEnable()
 	{
 		isSupported = true;
 	}
 
-	public override bool CheckSupport()
+	public bool CheckSupport()
 	{
 		return CheckSupport(needDepth: false);
 	}
 
-	public override bool CheckResources()
+	public bool CheckResources()
 	{
 		Debug.LogWarning("CheckResources () for " + ToString() + " should be overwritten.");
 		return isSupported;
 	}
 
-	public override void Start()
+	public void Start()
 	{
 		CheckResources();
 	}
 
-	public override bool CheckSupport(bool needDepth)
+	public bool CheckSupport(bool needDepth)
 	{
 		isSupported = true;
 		supportHDRTextures = SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBHalf);
@@ -116,7 +116,7 @@ public class PostEffectsBase : MonoBehaviour
 		return (byte)result != 0;
 	}
 
-	public override bool CheckSupport(bool needDepth, bool needHdr)
+	public bool CheckSupport(bool needDepth, bool needHdr)
 	{
 		int result;
 		if (!CheckSupport(needDepth))
@@ -135,12 +135,12 @@ public class PostEffectsBase : MonoBehaviour
 		return (byte)result != 0;
 	}
 
-	public override void ReportAutoDisable()
+	public void ReportAutoDisable()
 	{
 		Debug.LogWarning("The image effect " + ToString() + " has been disabled as it's not supported on the current platform.");
 	}
 
-	public override bool CheckShader(Shader s)
+	public bool CheckShader(Shader s)
 	{
 		Debug.Log("The shader " + s.ToString() + " on effect " + ToString() + " is not part of the Unity 3.2+ effects suite anymore. For best performance and quality, please ensure you are using the latest Standard Assets Image Effects (Pro only) package.");
 		int result;
@@ -156,13 +156,13 @@ public class PostEffectsBase : MonoBehaviour
 		return (byte)result != 0;
 	}
 
-	public override void NotSupported()
+	public void NotSupported()
 	{
 		enabled = false;
 		isSupported = false;
 	}
 
-	public override void DrawBorder(RenderTexture dest, Material material)
+	public void DrawBorder(RenderTexture dest, Material material)
 	{
 		float num = default(float);
 		float num2 = default(float);
@@ -241,7 +241,7 @@ public class PostEffectsBase : MonoBehaviour
 		GL.PopMatrix();
 	}
 
-	public override void Main()
+	public void Main()
 	{
 	}
 }

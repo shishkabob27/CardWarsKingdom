@@ -1,3 +1,4 @@
+// WeaponTrail
 using System;
 using Boo.Lang.Runtime;
 using UnityEngine;
@@ -52,7 +53,7 @@ public class WeaponTrail : MonoBehaviour
 		trailNodes = new UnityScript.Lang.Array();
 	}
 
-	public override void DestroyMesh()
+	public void DestroyMesh()
 	{
 		if ((bool)mesh)
 		{
@@ -61,7 +62,7 @@ public class WeaponTrail : MonoBehaviour
 		}
 	}
 
-	public override void LateUpdate()
+	public void LateUpdate()
 	{
 		if (!trail_enabled || material == null)
 		{
@@ -121,7 +122,7 @@ public class WeaponTrail : MonoBehaviour
 		}
 	}
 
-	public override void UpdateTrailMesh()
+	public void UpdateTrailMesh()
 	{
 		if ((bool)mesh)
 		{
@@ -157,20 +158,16 @@ public class WeaponTrail : MonoBehaviour
 			trailNodeInfo = (TrailNodeInfo)obj;
 			if (endWidthScale == 1f || num4 == 1f)
 			{
-				ref Vector3 reference = ref vertices[num3 * 2 + 0];
-				reference = trailNodeInfo.pt;
-				ref Vector3 reference2 = ref vertices[num3 * 2 + 1];
-				reference2 = trailNodeInfo.endpt;
+				vertices[num3 * 2 + 0] = trailNodeInfo.pt;
+				vertices[num3 * 2 + 1] = trailNodeInfo.endpt;
 			}
 			else
 			{
 				Vector3 vector = trailNodeInfo.endpt - trailNodeInfo.pt;
 				Vector3 vector2 = vector * 0.5f;
 				Vector3 vector3 = trailNodeInfo.pt + vector2;
-				ref Vector3 reference3 = ref vertices[num3 * 2 + 0];
-				reference3 = vector3 - vector2 * num4;
-				ref Vector3 reference4 = ref vertices[num3 * 2 + 1];
-				reference4 = vector3 + vector2 * num4;
+				vertices[num3 * 2 + 0] = vector3 - vector2 * num4;
+				vertices[num3 * 2 + 1] = vector3 + vector2 * num4;
 			}
 			triangles[num3 * 6 + 0] = num3 * 2 + 0;
 			triangles[num3 * 6 + 1] = num3 * 2 + 1;
@@ -178,19 +175,13 @@ public class WeaponTrail : MonoBehaviour
 			triangles[num3 * 6 + 3] = num3 * 2 + 1;
 			triangles[num3 * 6 + 4] = num3 * 2 + 3;
 			triangles[num3 * 6 + 5] = num3 * 2 + 2;
-			ref Vector2 reference5 = ref uv[num3 * 2 + 0];
-			reference5 = new Vector2(0f, num2);
-			ref Vector2 reference6 = ref uv[num3 * 2 + 1];
-			reference6 = new Vector2(1f, num2);
-			ref Vector3 reference7 = ref normals[num3 * 2 + 0];
-			reference7 = new Vector3(0f, 0f, -1f);
-			ref Vector3 reference8 = ref normals[num3 * 2 + 1];
-			reference8 = new Vector3(0f, 0f, -1f);
+			uv[num3 * 2 + 0] = new Vector2(0f, num2);
+			uv[num3 * 2 + 1] = new Vector2(1f, num2);
+			normals[num3 * 2 + 0] = new Vector3(0f, 0f, -1f);
+			normals[num3 * 2 + 1] = new Vector3(0f, 0f, -1f);
 			color = new Color(color2.r + (color1.r - color2.r) * num4, color2.g + (color1.g - color2.g) * num4, color2.b + (color1.b - color2.b) * num4, color2.a + (color1.a - color2.a) * num4);
-			ref Color reference9 = ref vertexcolors[num3 * 2 + 0];
-			reference9 = new Color(color.r, color.g, color.b, color.a);
-			ref Color reference10 = ref vertexcolors[num3 * 2 + 1];
-			reference10 = new Color(color.r, color.g, color.b, color.a);
+			vertexcolors[num3 * 2 + 0] = new Color(color.r, color.g, color.b, color.a);
+			vertexcolors[num3 * 2 + 1] = new Color(color.r, color.g, color.b, color.a);
 			num2 += num;
 		}
 		object obj2 = trailNodes[0];
@@ -199,22 +190,14 @@ public class WeaponTrail : MonoBehaviour
 			obj2 = RuntimeServices.Coerce(obj2, typeof(TrailNodeInfo));
 		}
 		trailNodeInfo = (TrailNodeInfo)obj2;
-		ref Vector3 reference11 = ref vertices[num3 * 2 + 0];
-		reference11 = trailNodeInfo.pt;
-		ref Vector3 reference12 = ref vertices[num3 * 2 + 1];
-		reference12 = trailNodeInfo.endpt;
-		ref Vector2 reference13 = ref uv[num3 * 2 + 0];
-		reference13 = new Vector2(0f, num2);
-		ref Vector2 reference14 = ref uv[num3 * 2 + 1];
-		reference14 = new Vector2(1f, num2);
-		ref Vector3 reference15 = ref normals[num3 * 2 + 0];
-		reference15 = new Vector3(0f, 0f, -1f);
-		ref Vector3 reference16 = ref normals[num3 * 2 + 1];
-		reference16 = new Vector3(0f, 0f, -1f);
-		ref Color reference17 = ref vertexcolors[num3 * 2 + 0];
-		reference17 = new Color(color.r, color.g, color.b, 0f);
-		ref Color reference18 = ref vertexcolors[num3 * 2 + 1];
-		reference18 = new Color(color.r, color.g, color.b, 0f);
+		vertices[num3 * 2 + 0] = trailNodeInfo.pt;
+		vertices[num3 * 2 + 1] = trailNodeInfo.endpt;
+		uv[num3 * 2 + 0] = new Vector2(0f, num2);
+		uv[num3 * 2 + 1] = new Vector2(1f, num2);
+		normals[num3 * 2 + 0] = new Vector3(0f, 0f, -1f);
+		normals[num3 * 2 + 1] = new Vector3(0f, 0f, -1f);
+		vertexcolors[num3 * 2 + 0] = new Color(color.r, color.g, color.b, 0f);
+		vertexcolors[num3 * 2 + 1] = new Color(color.r, color.g, color.b, 0f);
 		mesh.vertices = vertices;
 		mesh.uv = uv;
 		mesh.normals = normals;
@@ -224,34 +207,34 @@ public class WeaponTrail : MonoBehaviour
 		mesh.RecalculateNormals();
 	}
 
-	public override void Reset()
+	public void Reset()
 	{
 		ClearTrailNodes();
 	}
 
-	public override void ClearTrailNodes()
+	public void ClearTrailNodes()
 	{
 		trailNodes.Clear();
 	}
 
-	public override void OnDrawGizmosSelected()
+	public void OnDrawGizmosSelected()
 	{
 		Vector3 position = transform.position;
 		Vector3 to = transform.TransformPoint(endpointOffset);
 		Gizmos.DrawLine(position, to);
 	}
 
-	public override Vector3 GetBasePosition()
+	public Vector3 GetBasePosition()
 	{
 		return transform.position;
 	}
 
-	public override Vector3 GetTipPosition()
+	public Vector3 GetTipPosition()
 	{
 		return transform.TransformPoint(endpointOffset);
 	}
 
-	public override void Enable(bool e)
+	public void Enable(bool e)
 	{
 		trail_enabled = e;
 		if (!e)
@@ -260,7 +243,7 @@ public class WeaponTrail : MonoBehaviour
 		}
 	}
 
-	public override void Main()
+	public void Main()
 	{
 	}
 }

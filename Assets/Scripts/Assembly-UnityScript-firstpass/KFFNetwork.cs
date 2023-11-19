@@ -23,12 +23,12 @@ public class KFFNetwork : MonoBehaviour
 	[XmlRoot("RequestResult")]
 	public class WWWRequestResult : KFFDictionary
 	{
-		public override bool isValid()
+		public bool isValid()
 		{
 			return IsValid();
 		}
 
-		public override bool IsValid()
+		public bool IsValid()
 		{
 			int result;
 			if (entries.Count < 2)
@@ -134,6 +134,7 @@ public class KFFNetwork : MonoBehaviour
 		return the_instance;
 	}
 
+	/*
 	public override WWWInfo SendWWWRequest(string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam)
 	{
 		return SendWWWRequestWithForm(null, url, WWWRequestCallback, callbackParam, rawrequest: false);
@@ -228,8 +229,8 @@ public class KFFNetwork : MonoBehaviour
 		}
 		return wWWInfo;
 	}
-
-	public override void CancelWWWRequest(WWWInfo info)
+	*/
+	public void CancelWWWRequest(WWWInfo info)
 	{
 		if (!RuntimeServices.EqualityOperator(info, null))
 		{
@@ -250,7 +251,7 @@ public class KFFNetwork : MonoBehaviour
 		manualSleepControl = enable;
 	}
 
-	public override void Update()
+	public void Update()
 	{
 		int num = ((wwwList.Count <= 0) ? (-2) : (-1));
 		if (!manualSleepControl && currSleepTimeout != num)
@@ -387,7 +388,7 @@ public class KFFNetwork : MonoBehaviour
 		return MAX_CONCURRENT_WWW_REQUEST_COUNT;
 	}
 
-	public override void Main()
+	public void Main()
 	{
 	}
 }

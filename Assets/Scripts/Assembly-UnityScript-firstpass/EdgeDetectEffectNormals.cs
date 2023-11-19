@@ -29,7 +29,7 @@ public class EdgeDetectEffectNormals : PostEffectsBase
 		edgesOnlyBgColor = Color.white;
 	}
 
-	public override void OnDisable()
+	public void OnDisable()
 	{
 		if ((bool)edgeDetectMaterial)
 		{
@@ -37,7 +37,7 @@ public class EdgeDetectEffectNormals : PostEffectsBase
 		}
 	}
 
-	public override bool CheckResources()
+	public bool CheckResources()
 	{
 		CheckSupport(needDepth: true);
 		edgeDetectMaterial = CheckShaderAndCreateMaterial(edgeDetectShader, edgeDetectMaterial);
@@ -49,7 +49,7 @@ public class EdgeDetectEffectNormals : PostEffectsBase
 	}
 
 	[ImageEffectOpaque]
-	public override void OnRenderImage(RenderTexture source, RenderTexture destination)
+	public void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		if (!CheckResources())
 		{
@@ -72,7 +72,7 @@ public class EdgeDetectEffectNormals : PostEffectsBase
 		}
 	}
 
-	public override void Main()
+	public void Main()
 	{
 	}
 }

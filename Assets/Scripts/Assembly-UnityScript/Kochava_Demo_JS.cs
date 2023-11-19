@@ -15,21 +15,21 @@ public class Kochava_Demo_JS : MonoBehaviour
 		WindowControllerRect = new Rect(0f, 0f, 200f, 0f);
 	}
 
-	public override void Start()
+	public void Start()
 	{
 	}
 
-	public override void Update()
+	public void Update()
 	{
 	}
 
-	public override void OnGUI()
+	public void OnGUI()
 	{
 		WindowControllerRect = new Rect(Screen.width - 260, 20f, 250f, Screen.height - 30);
 		WindowControllerRect = GUI.Window(10, WindowControllerRect, WindowController, "Kochava SDK Demo (JS)");
 	}
 
-	public override void WindowController(int windowID)
+	public void WindowController(int windowID)
 	{
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition);
 		GUILayout.Label("Event Queue Length: " + Kochava.eventQueueLength);
@@ -111,7 +111,7 @@ public class Kochava_Demo_JS : MonoBehaviour
 		GUILayout.EndScrollView();
 	}
 
-	public override void Main()
+	public void Main()
 	{
 	}
 }

@@ -1,38 +1,38 @@
+// ExitGames.Client.Photon.OperationResponse
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 
-namespace ExitGames.Client.Photon
+public class OperationResponse
 {
-	public class OperationResponse
+	public byte OperationCode;
+
+	public short ReturnCode;
+
+	public string DebugMessage;
+
+	public Dictionary<byte, object> Parameters;
+
+	public object this[byte parameterCode]
 	{
-		public byte OperationCode;
-
-		public short ReturnCode;
-
-		public string DebugMessage;
-
-		public Dictionary<byte, object> Parameters;
-
-		public object this[byte parameterCode]
+		get
 		{
-			get
-			{
-				Parameters.TryGetValue(parameterCode, out var value);
-				return value;
-			}
-			set
-			{
-				Parameters[parameterCode] = value;
-			}
+			object value;
+			Parameters.TryGetValue(parameterCode, out value);
+			return value;
 		}
-
-		public override string ToString()
+		set
 		{
-			return $"OperationResponse {OperationCode}: ReturnCode: {ReturnCode}.";
+			Parameters[parameterCode] = value;
 		}
+	}
 
-		public string ToStringFull()
-		{
-			return string.Format("OperationResponse {0}: ReturnCode: {1} ({3}). Parameters: {2}", OperationCode, ReturnCode, SupportClass.DictionaryToString(Parameters), DebugMessage);
-		}
+	public override string ToString()
+	{
+		return string.Format("OperationResponse {0}: ReturnCode: {1}.", OperationCode, ReturnCode);
+	}
+
+	public string ToStringFull()
+	{
+		return string.Format("OperationResponse {0}: ReturnCode: {1} ({3}). Parameters: {2}", OperationCode, ReturnCode, SupportClass.DictionaryToString(Parameters), DebugMessage);
 	}
 }

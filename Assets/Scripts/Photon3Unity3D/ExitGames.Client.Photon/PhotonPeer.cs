@@ -1,585 +1,746 @@
+// ExitGames.Client.Photon.PhotonPeer
 using System;
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 
-namespace ExitGames.Client.Photon
+public class PhotonPeer
 {
-	public class PhotonPeer
+	public const bool NoSocket = false;
+
+	internal PeerBase peerBase;
+
+	private readonly object SendOutgoingLockObject = new object();
+
+	private readonly object DispatchLockObject = new object();
+
+	private readonly object EnqueueLock = new object();
+
+	public Type SocketImplementation
 	{
-		public const bool NoSocket = false;
-
-		internal PeerBase peerBase;
-
-		private readonly object SendOutgoingLockObject = new object();
-
-		private readonly object DispatchLockObject = new object();
-
-		private readonly object EnqueueLock = new object();
-
-		public Type SocketImplementation
+		get
 		{
-			get
-			{
-				return peerBase.SocketImplementation;
-			}
-			set
-			{
-				peerBase.SocketImplementation = value;
-			}
+			return peerBase.SocketImplementation;
 		}
-
-		public DebugLevel DebugOut
+		set
 		{
-			get
-			{
-				return peerBase.debugOut;
-			}
-			set
-			{
-				peerBase.debugOut = value;
-			}
+			peerBase.SocketImplementation = value;
 		}
+	}
 
-		public IPhotonPeerListener Listener
+	public DebugLevel DebugOut
+	{
+		get
 		{
-			get
-			{
-				return peerBase.Listener;
-			}
-			protected set
-			{
-				peerBase.Listener = value;
-			}
+			return peerBase.debugOut;
 		}
-
-		public long BytesIn => peerBase.BytesIn;
-
-		public long BytesOut => peerBase.BytesOut;
-
-		public int ByteCountCurrentDispatch => peerBase.ByteCountCurrentDispatch;
-
-		public string CommandInfoCurrentDispatch => (peerBase.CommandInCurrentDispatch != null) ? peerBase.CommandInCurrentDispatch.ToString() : string.Empty;
-
-		public int ByteCountLastOperation => peerBase.ByteCountLastOperation;
-
-		public bool TrafficStatsEnabled
+		set
 		{
-			get
-			{
-				return peerBase.TrafficStatsEnabled;
-			}
-			set
-			{
-				peerBase.TrafficStatsEnabled = value;
-			}
+			peerBase.debugOut = value;
 		}
+	}
 
-		public long TrafficStatsElapsedMs => peerBase.TrafficStatsEnabledTime;
-
-		public TrafficStats TrafficStatsIncoming => peerBase.TrafficStatsIncoming;
-
-		public TrafficStats TrafficStatsOutgoing => peerBase.TrafficStatsOutgoing;
-
-		public TrafficStatsGameLevel TrafficStatsGameLevel => peerBase.TrafficStatsGameLevel;
-
-		public int CommandLogSize
+	public IPhotonPeerListener Listener
+	{
+		get
 		{
-			get
-			{
-				return peerBase.CommandLogSize;
-			}
-			set
-			{
-				peerBase.CommandLogSize = value;
-				peerBase.CommandLogResize();
-			}
+			return peerBase.Listener;
 		}
-
-		public byte QuickResendAttempts
+		protected set
 		{
-			get
-			{
-				return peerBase.QuickResendAttempts;
-			}
-			set
-			{
-				peerBase.QuickResendAttempts = (byte)((value > 4) ? 4 : value);
-			}
+			peerBase.Listener = value;
 		}
+	}
 
-		public PeerStateValue PeerState
+	public long BytesIn
+	{
+		get
 		{
-			get
+			return peerBase.BytesIn;
+		}
+	}
+
+	public long BytesOut
+	{
+		get
+		{
+			return peerBase.BytesOut;
+		}
+	}
+
+	public int ByteCountCurrentDispatch
+	{
+		get
+		{
+			return peerBase.ByteCountCurrentDispatch;
+		}
+	}
+
+	public string CommandInfoCurrentDispatch
+	{
+		get
+		{
+			return (peerBase.CommandInCurrentDispatch != null) ? peerBase.CommandInCurrentDispatch.ToString() : string.Empty;
+		}
+	}
+
+	public int ByteCountLastOperation
+	{
+		get
+		{
+			return peerBase.ByteCountLastOperation;
+		}
+	}
+
+	public bool TrafficStatsEnabled
+	{
+		get
+		{
+			return peerBase.TrafficStatsEnabled;
+		}
+		set
+		{
+			peerBase.TrafficStatsEnabled = value;
+		}
+	}
+
+	public long TrafficStatsElapsedMs
+	{
+		get
+		{
+			return peerBase.TrafficStatsEnabledTime;
+		}
+	}
+
+	public TrafficStats TrafficStatsIncoming
+	{
+		get
+		{
+			return peerBase.TrafficStatsIncoming;
+		}
+	}
+
+	public TrafficStats TrafficStatsOutgoing
+	{
+		get
+		{
+			return peerBase.TrafficStatsOutgoing;
+		}
+	}
+
+	public TrafficStatsGameLevel TrafficStatsGameLevel
+	{
+		get
+		{
+			return peerBase.TrafficStatsGameLevel;
+		}
+	}
+
+	public int CommandLogSize
+	{
+		get
+		{
+			return peerBase.CommandLogSize;
+		}
+		set
+		{
+			peerBase.CommandLogSize = value;
+			peerBase.CommandLogResize();
+		}
+	}
+
+	public byte QuickResendAttempts
+	{
+		get
+		{
+			return peerBase.QuickResendAttempts;
+		}
+		set
+		{
+			peerBase.QuickResendAttempts = (byte)((value > 4) ? 4 : value);
+		}
+	}
+
+	public PeerStateValue PeerState
+	{
+		get
+		{
+			if (peerBase.peerConnectionState == PeerBase.ConnectionStateValue.Connected && !peerBase.ApplicationIsInitialized)
 			{
-				if (peerBase.peerConnectionState == PeerBase.ConnectionStateValue.Connected && !peerBase.ApplicationIsInitialized)
+				return PeerStateValue.InitializingApplication;
+			}
+			return (PeerStateValue)peerBase.peerConnectionState;
+		}
+	}
+
+	public string PeerID
+	{
+		get
+		{
+			return peerBase.PeerID;
+		}
+	}
+
+	public int CommandBufferSize
+	{
+		get
+		{
+			return peerBase.commandBufferSize;
+		}
+	}
+
+	public int RhttpMinConnections
+	{
+		get
+		{
+			return peerBase.rhttpMinConnections;
+		}
+		set
+		{
+			if (value >= 8)
+			{
+				if ((int)DebugOut >= 2)
 				{
-					return PeerStateValue.InitializingApplication;
+					Listener.DebugReturn(DebugLevel.WARNING, "Forcing RhttpMinConnections=7 the currently max supported value.");
 				}
-				return (PeerStateValue)peerBase.peerConnectionState;
+				peerBase.rhttpMinConnections = 7;
+			}
+			else
+			{
+				peerBase.rhttpMinConnections = value;
 			}
 		}
+	}
 
-		public string PeerID => peerBase.PeerID;
-
-		public int CommandBufferSize => peerBase.commandBufferSize;
-
-		public int RhttpMinConnections
+	public int RhttpMaxConnections
+	{
+		get
 		{
-			get
+			return peerBase.rhttpMaxConnections;
+		}
+		set
+		{
+			peerBase.rhttpMaxConnections = value;
+		}
+	}
+
+	public int LimitOfUnreliableCommands
+	{
+		get
+		{
+			return peerBase.limitOfUnreliableCommands;
+		}
+		set
+		{
+			peerBase.limitOfUnreliableCommands = value;
+		}
+	}
+
+	public int QueuedIncomingCommands
+	{
+		get
+		{
+			return peerBase.QueuedIncomingCommandsCount;
+		}
+	}
+
+	public int QueuedOutgoingCommands
+	{
+		get
+		{
+			return peerBase.QueuedOutgoingCommandsCount;
+		}
+	}
+
+	public byte ChannelCount
+	{
+		get
+		{
+			return peerBase.ChannelCount;
+		}
+		set
+		{
+			if (value == 0 || PeerState != 0)
 			{
-				return peerBase.rhttpMinConnections;
+				throw new Exception("ChannelCount can only be set while disconnected and must be > 0.");
 			}
-			set
+			peerBase.ChannelCount = value;
+		}
+	}
+
+	public bool CrcEnabled
+	{
+		get
+		{
+			return peerBase.crcEnabled;
+		}
+		set
+		{
+			if (peerBase.peerConnectionState != 0)
 			{
-				if (value >= 8)
-				{
-					if ((int)DebugOut >= 2)
-					{
-						Listener.DebugReturn(DebugLevel.WARNING, "Forcing RhttpMinConnections=7 the currently max supported value.");
-					}
-					peerBase.rhttpMinConnections = 7;
-				}
-				else
-				{
-					peerBase.rhttpMinConnections = value;
-				}
+				throw new Exception("CrcEnabled can only be set while disconnected.");
+			}
+			peerBase.crcEnabled = value;
+		}
+	}
+
+	public int PacketLossByCrc
+	{
+		get
+		{
+			return peerBase.packetLossByCrc;
+		}
+	}
+
+	public int PacketLossByChallenge
+	{
+		get
+		{
+			return peerBase.packetLossByChallenge;
+		}
+	}
+
+	public int ResentReliableCommands
+	{
+		get
+		{
+			return (UsedProtocol == ConnectionProtocol.Udp) ? ((EnetPeer)peerBase).reliableCommandsRepeated : 0;
+		}
+	}
+
+	public int WarningSize
+	{
+		get
+		{
+			return peerBase.warningSize;
+		}
+		set
+		{
+			peerBase.warningSize = value;
+		}
+	}
+
+	public int SentCountAllowance
+	{
+		get
+		{
+			return peerBase.sentCountAllowance;
+		}
+		set
+		{
+			peerBase.sentCountAllowance = value;
+		}
+	}
+
+	public int TimePingInterval
+	{
+		get
+		{
+			return peerBase.timePingInterval;
+		}
+		set
+		{
+			peerBase.timePingInterval = value;
+		}
+	}
+
+	public int DisconnectTimeout
+	{
+		get
+		{
+			return peerBase.DisconnectTimeout;
+		}
+		set
+		{
+			peerBase.DisconnectTimeout = value;
+		}
+	}
+
+	public int ServerTimeInMilliSeconds
+	{
+		get
+		{
+			return peerBase.serverTimeOffsetIsAvailable ? (peerBase.serverTimeOffset + SupportClass.GetTickCount()) : 0;
+		}
+	}
+
+	public int ConnectionTime
+	{
+		get
+		{
+			return peerBase.timeInt;
+		}
+	}
+
+	public int LastSendAckTime
+	{
+		get
+		{
+			return peerBase.timeLastSendAck;
+		}
+	}
+
+	public int LastSendOutgoingTime
+	{
+		get
+		{
+			return peerBase.timeLastSendOutgoing;
+		}
+	}
+
+	[Obsolete("Should be replaced by: SupportClass.GetTickCount(). Internally this is used, too.")]
+	public int LocalTimeInMilliSeconds
+	{
+		get
+		{
+			return SupportClass.GetTickCount();
+		}
+	}
+
+	public SupportClass.IntegerMillisecondsDelegate LocalMsTimestampDelegate
+	{
+		set
+		{
+			if (PeerState != 0)
+			{
+				throw new Exception("LocalMsTimestampDelegate only settable while disconnected. State: " + PeerState);
+			}
+			SupportClass.IntegerMilliseconds = value;
+		}
+	}
+
+	public int RoundTripTime
+	{
+		get
+		{
+			return peerBase.roundTripTime;
+		}
+	}
+
+	public int RoundTripTimeVariance
+	{
+		get
+		{
+			return peerBase.roundTripTimeVariance;
+		}
+	}
+
+	public int TimestampOfLastSocketReceive
+	{
+		get
+		{
+			return peerBase.timestampOfLastReceive;
+		}
+	}
+
+	public string ServerAddress
+	{
+		get
+		{
+			return peerBase.ServerAddress;
+		}
+		set
+		{
+			if ((int)DebugOut >= 1)
+			{
+				Listener.DebugReturn(DebugLevel.ERROR, "Failed to set ServerAddress. Can be set only when using HTTP.");
 			}
 		}
+	}
 
-		public int RhttpMaxConnections
+	public ConnectionProtocol UsedProtocol
+	{
+		get
 		{
-			get
-			{
-				return peerBase.rhttpMaxConnections;
-			}
-			set
-			{
-				peerBase.rhttpMaxConnections = value;
-			}
+			return peerBase.usedProtocol;
 		}
+	}
 
-		public int LimitOfUnreliableCommands
+	public virtual bool IsSimulationEnabled
+	{
+		get
 		{
-			get
-			{
-				return peerBase.limitOfUnreliableCommands;
-			}
-			set
-			{
-				peerBase.limitOfUnreliableCommands = value;
-			}
+			return NetworkSimulationSettings.IsSimulationEnabled;
 		}
-
-		public int QueuedIncomingCommands => peerBase.QueuedIncomingCommandsCount;
-
-		public int QueuedOutgoingCommands => peerBase.QueuedOutgoingCommandsCount;
-
-		public byte ChannelCount
+		set
 		{
-			get
+			if (value == NetworkSimulationSettings.IsSimulationEnabled)
 			{
-				return peerBase.ChannelCount;
-			}
-			set
-			{
-				if (value == 0 || PeerState != 0)
-				{
-					throw new Exception("ChannelCount can only be set while disconnected and must be > 0.");
-				}
-				peerBase.ChannelCount = value;
-			}
-		}
-
-		public bool CrcEnabled
-		{
-			get
-			{
-				return peerBase.crcEnabled;
-			}
-			set
-			{
-				if (peerBase.peerConnectionState != 0)
-				{
-					throw new Exception("CrcEnabled can only be set while disconnected.");
-				}
-				peerBase.crcEnabled = value;
-			}
-		}
-
-		public int PacketLossByCrc => peerBase.packetLossByCrc;
-
-		public int PacketLossByChallenge => peerBase.packetLossByChallenge;
-
-		public int ResentReliableCommands => (UsedProtocol == ConnectionProtocol.Udp) ? ((EnetPeer)peerBase).reliableCommandsRepeated : 0;
-
-		public int WarningSize
-		{
-			get
-			{
-				return peerBase.warningSize;
-			}
-			set
-			{
-				peerBase.warningSize = value;
-			}
-		}
-
-		public int SentCountAllowance
-		{
-			get
-			{
-				return peerBase.sentCountAllowance;
-			}
-			set
-			{
-				peerBase.sentCountAllowance = value;
-			}
-		}
-
-		public int TimePingInterval
-		{
-			get
-			{
-				return peerBase.timePingInterval;
-			}
-			set
-			{
-				peerBase.timePingInterval = value;
-			}
-		}
-
-		public int DisconnectTimeout
-		{
-			get
-			{
-				return peerBase.DisconnectTimeout;
-			}
-			set
-			{
-				peerBase.DisconnectTimeout = value;
-			}
-		}
-
-		public int ServerTimeInMilliSeconds => peerBase.serverTimeOffsetIsAvailable ? (peerBase.serverTimeOffset + SupportClass.GetTickCount()) : 0;
-
-		public int ConnectionTime => peerBase.timeInt;
-
-		public int LastSendAckTime => peerBase.timeLastSendAck;
-
-		public int LastSendOutgoingTime => peerBase.timeLastSendOutgoing;
-
-		[Obsolete("Should be replaced by: SupportClass.GetTickCount(). Internally this is used, too.")]
-		public int LocalTimeInMilliSeconds => SupportClass.GetTickCount();
-
-		public SupportClass.IntegerMillisecondsDelegate LocalMsTimestampDelegate
-		{
-			set
-			{
-				if (PeerState != 0)
-				{
-					throw new Exception("LocalMsTimestampDelegate only settable while disconnected. State: " + PeerState);
-				}
-				SupportClass.IntegerMilliseconds = value;
-			}
-		}
-
-		public int RoundTripTime => peerBase.roundTripTime;
-
-		public int RoundTripTimeVariance => peerBase.roundTripTimeVariance;
-
-		public int TimestampOfLastSocketReceive => peerBase.timestampOfLastReceive;
-
-		public string ServerAddress
-		{
-			get
-			{
-				return peerBase.ServerAddress;
-			}
-			set
-			{
-				if ((int)DebugOut >= 1)
-				{
-					Listener.DebugReturn(DebugLevel.ERROR, "Failed to set ServerAddress. Can be set only when using HTTP.");
-				}
-			}
-		}
-
-		public ConnectionProtocol UsedProtocol => peerBase.usedProtocol;
-
-		public virtual bool IsSimulationEnabled
-		{
-			get
-			{
-				return NetworkSimulationSettings.IsSimulationEnabled;
-			}
-			set
-			{
-				if (value == NetworkSimulationSettings.IsSimulationEnabled)
-				{
-					return;
-				}
-				lock (SendOutgoingLockObject)
-				{
-					NetworkSimulationSettings.IsSimulationEnabled = value;
-				}
-			}
-		}
-
-		public NetworkSimulationSet NetworkSimulationSettings => peerBase.NetworkSimulationSettings;
-
-		public static int OutgoingStreamBufferSize
-		{
-			get
-			{
-				return PeerBase.outgoingStreamBufferSize;
-			}
-			set
-			{
-				PeerBase.outgoingStreamBufferSize = value;
-			}
-		}
-
-		public int MaximumTransferUnit
-		{
-			get
-			{
-				return peerBase.mtu;
-			}
-			set
-			{
-				if (PeerState != 0)
-				{
-					throw new Exception("MaximumTransferUnit is only settable while disconnected. State: " + PeerState);
-				}
-				if (value < 576)
-				{
-					value = 576;
-				}
-				peerBase.mtu = value;
-			}
-		}
-
-		public bool IsEncryptionAvailable => peerBase.isEncryptionAvailable;
-
-		public bool IsSendingOnlyAcks
-		{
-			get
-			{
-				return peerBase.IsSendingOnlyAcks;
-			}
-			set
-			{
-				lock (SendOutgoingLockObject)
-				{
-					peerBase.IsSendingOnlyAcks = value;
-				}
-			}
-		}
-
-		public void TrafficStatsReset()
-		{
-			peerBase.InitializeTrafficStats();
-			peerBase.TrafficStatsEnabled = true;
-		}
-
-		public string CommandLogToString()
-		{
-			return peerBase.CommandLogToString();
-		}
-
-		public PhotonPeer(ConnectionProtocol protocolType)
-		{
-			switch (protocolType)
-			{
-			case ConnectionProtocol.Tcp:
-				peerBase = new TPeer();
-				peerBase.usedProtocol = protocolType;
-				break;
-			case ConnectionProtocol.Udp:
-				peerBase = new EnetPeer();
-				peerBase.usedProtocol = protocolType;
-				break;
-			default:
-				if (protocolType != ConnectionProtocol.WebSocketSecure)
-				{
-					break;
-				}
-				goto case ConnectionProtocol.WebSocket;
-			case ConnectionProtocol.WebSocket:
-				peerBase = new TPeer
-				{
-					DoFraming = false
-				};
-				peerBase.usedProtocol = protocolType;
-				break;
-			}
-		}
-
-		public PhotonPeer(IPhotonPeerListener listener, ConnectionProtocol protocolType)
-			: this(protocolType)
-		{
-			Listener = listener;
-		}
-
-		[Obsolete("Use the constructor with ConnectionProtocol instead.")]
-		public PhotonPeer(IPhotonPeerListener listener)
-			: this(listener, ConnectionProtocol.Udp)
-		{
-		}
-
-		[Obsolete("Use the constructor with ConnectionProtocol instead.")]
-		public PhotonPeer(IPhotonPeerListener listener, bool useTcp)
-			: this(listener, useTcp ? ConnectionProtocol.Tcp : ConnectionProtocol.Udp)
-		{
-		}
-
-		public virtual bool Connect(string serverAddress, string applicationName)
-		{
-			lock (DispatchLockObject)
-			{
-				lock (SendOutgoingLockObject)
-				{
-					return peerBase.Connect(serverAddress, applicationName);
-				}
-			}
-		}
-
-		public virtual void Disconnect()
-		{
-			lock (DispatchLockObject)
-			{
-				lock (SendOutgoingLockObject)
-				{
-					peerBase.Disconnect();
-				}
-			}
-		}
-
-		public virtual void StopThread()
-		{
-			lock (DispatchLockObject)
-			{
-				lock (SendOutgoingLockObject)
-				{
-					peerBase.StopConnection();
-				}
-			}
-		}
-
-		public virtual void FetchServerTimestamp()
-		{
-			peerBase.FetchServerTimestamp();
-		}
-
-		public bool EstablishEncryption()
-		{
-			return peerBase.ExchangeKeysForEncryption();
-		}
-
-		public virtual void Service()
-		{
-			while (DispatchIncomingCommands())
-			{
-			}
-			while (SendOutgoingCommands())
-			{
-			}
-		}
-
-		public virtual bool SendOutgoingCommands()
-		{
-			if (TrafficStatsEnabled)
-			{
-				TrafficStatsGameLevel.SendOutgoingCommandsCalled();
+				return;
 			}
 			lock (SendOutgoingLockObject)
 			{
-				return peerBase.SendOutgoingCommands();
+				NetworkSimulationSettings.IsSimulationEnabled = value;
 			}
 		}
+	}
 
-		public virtual bool SendAcksOnly()
+	public NetworkSimulationSet NetworkSimulationSettings
+	{
+		get
 		{
-			if (TrafficStatsEnabled)
+			return peerBase.NetworkSimulationSettings;
+		}
+	}
+
+	public static int OutgoingStreamBufferSize
+	{
+		get
+		{
+			return PeerBase.outgoingStreamBufferSize;
+		}
+		set
+		{
+			PeerBase.outgoingStreamBufferSize = value;
+		}
+	}
+
+	public int MaximumTransferUnit
+	{
+		get
+		{
+			return peerBase.mtu;
+		}
+		set
+		{
+			if (PeerState != 0)
 			{
-				TrafficStatsGameLevel.SendOutgoingCommandsCalled();
+				throw new Exception("MaximumTransferUnit is only settable while disconnected. State: " + PeerState);
 			}
+			if (value < 576)
+			{
+				value = 576;
+			}
+			peerBase.mtu = value;
+		}
+	}
+
+	public bool IsEncryptionAvailable
+	{
+		get
+		{
+			return peerBase.isEncryptionAvailable;
+		}
+	}
+
+	public bool IsSendingOnlyAcks
+	{
+		get
+		{
+			return peerBase.IsSendingOnlyAcks;
+		}
+		set
+		{
 			lock (SendOutgoingLockObject)
 			{
-				return peerBase.SendAcksOnly();
+				peerBase.IsSendingOnlyAcks = value;
 			}
 		}
+	}
 
-		public virtual bool DispatchIncomingCommands()
-		{
-			peerBase.ByteCountCurrentDispatch = 0;
-			if (TrafficStatsEnabled)
-			{
-				TrafficStatsGameLevel.DispatchIncomingCommandsCalled();
-			}
-			lock (DispatchLockObject)
-			{
-				return peerBase.DispatchIncomingCommands();
-			}
-		}
+	public void TrafficStatsReset()
+	{
+		peerBase.InitializeTrafficStats();
+		peerBase.TrafficStatsEnabled = true;
+	}
 
-		public string VitalStatsToString(bool all)
-		{
-			if (TrafficStatsGameLevel == null)
-			{
-				return "Stats not available. Use PhotonPeer.TrafficStatsEnabled.";
-			}
-			if (!all)
-			{
-				return string.Format("Rtt(variance): {0}({1}). Ms since last receive: {2}. Stats elapsed: {4}sec.\n{3}", RoundTripTime, RoundTripTimeVariance, SupportClass.GetTickCount() - TimestampOfLastSocketReceive, TrafficStatsGameLevel.ToStringVitalStats(), TrafficStatsElapsedMs / 1000);
-			}
-			return string.Format("Rtt(variance): {0}({1}). Ms since last receive: {2}. Stats elapsed: {6}sec.\n{3}\n{4}\n{5}", RoundTripTime, RoundTripTimeVariance, SupportClass.GetTickCount() - TimestampOfLastSocketReceive, TrafficStatsGameLevel.ToStringVitalStats(), TrafficStatsIncoming.ToString(), TrafficStatsOutgoing.ToString(), TrafficStatsElapsedMs / 1000);
-		}
+	public string CommandLogToString()
+	{
+		return peerBase.CommandLogToString();
+	}
 
-		public virtual bool OpCustom(byte customOpCode, Dictionary<byte, object> customOpParameters, bool sendReliable)
+	public PhotonPeer(ConnectionProtocol protocolType)
+	{
+		switch (protocolType)
 		{
-			return OpCustom(customOpCode, customOpParameters, sendReliable, 0);
-		}
-
-		public virtual bool OpCustom(byte customOpCode, Dictionary<byte, object> customOpParameters, bool sendReliable, byte channelId)
-		{
-			lock (EnqueueLock)
+		case ConnectionProtocol.Tcp:
+			peerBase = new TPeer();
+			peerBase.usedProtocol = protocolType;
+			break;
+		case ConnectionProtocol.Udp:
+			peerBase = new EnetPeer();
+			peerBase.usedProtocol = protocolType;
+			break;
+		default:
+			if (protocolType != ConnectionProtocol.WebSocketSecure)
 			{
-				return peerBase.EnqueueOperation(customOpParameters, customOpCode, sendReliable, channelId, encrypted: false);
+				break;
+			}
+			goto case ConnectionProtocol.WebSocket;
+		case ConnectionProtocol.WebSocket:
+			peerBase = new TPeer
+			{
+				DoFraming = false
+			};
+			peerBase.usedProtocol = protocolType;
+			break;
+		}
+	}
+
+	public PhotonPeer(IPhotonPeerListener listener, ConnectionProtocol protocolType)
+		: this(protocolType)
+	{
+		Listener = listener;
+	}
+
+	[Obsolete("Use the constructor with ConnectionProtocol instead.")]
+	public PhotonPeer(IPhotonPeerListener listener)
+		: this(listener, ConnectionProtocol.Udp)
+	{
+	}
+
+	[Obsolete("Use the constructor with ConnectionProtocol instead.")]
+	public PhotonPeer(IPhotonPeerListener listener, bool useTcp)
+		: this(listener, useTcp ? ConnectionProtocol.Tcp : ConnectionProtocol.Udp)
+	{
+	}
+
+	public virtual bool Connect(string serverAddress, string applicationName)
+	{
+		lock (DispatchLockObject)
+		{
+			lock (SendOutgoingLockObject)
+			{
+				return peerBase.Connect(serverAddress, applicationName);
 			}
 		}
+	}
 
-		public virtual bool OpCustom(byte customOpCode, Dictionary<byte, object> customOpParameters, bool sendReliable, byte channelId, bool encrypt)
+	public virtual void Disconnect()
+	{
+		lock (DispatchLockObject)
 		{
-			if (encrypt && !IsEncryptionAvailable)
+			lock (SendOutgoingLockObject)
 			{
-				throw new ArgumentException("Can't use encryption yet. Exchange keys first.");
-			}
-			lock (EnqueueLock)
-			{
-				return peerBase.EnqueueOperation(customOpParameters, customOpCode, sendReliable, channelId, encrypt);
-			}
-		}
-
-		public virtual bool OpCustom(OperationRequest operationRequest, bool sendReliable, byte channelId, bool encrypt)
-		{
-			if (encrypt && !IsEncryptionAvailable)
-			{
-				throw new ArgumentException("Can't use encryption yet. Exchange keys first.");
-			}
-			lock (EnqueueLock)
-			{
-				return peerBase.EnqueueOperation(operationRequest.Parameters, operationRequest.OperationCode, sendReliable, channelId, encrypt);
+				peerBase.Disconnect();
 			}
 		}
+	}
 
-		public static bool RegisterType(Type customType, byte code, SerializeMethod serializeMethod, DeserializeMethod constructor)
+	public virtual void StopThread()
+	{
+		lock (DispatchLockObject)
 		{
-			return Protocol.TryRegisterType(customType, code, serializeMethod, constructor);
+			lock (SendOutgoingLockObject)
+			{
+				peerBase.StopConnection();
+			}
 		}
+	}
 
-		public static bool RegisterType(Type customType, byte code, SerializeStreamMethod serializeMethod, DeserializeStreamMethod constructor)
+	public virtual void FetchServerTimestamp()
+	{
+		peerBase.FetchServerTimestamp();
+	}
+
+	public bool EstablishEncryption()
+	{
+		return peerBase.ExchangeKeysForEncryption();
+	}
+
+	public virtual void Service()
+	{
+		while (DispatchIncomingCommands())
 		{
-			return Protocol.TryRegisterType(customType, code, serializeMethod, constructor);
 		}
+		while (SendOutgoingCommands())
+		{
+		}
+	}
+
+	public virtual bool SendOutgoingCommands()
+	{
+		if (TrafficStatsEnabled)
+		{
+			TrafficStatsGameLevel.SendOutgoingCommandsCalled();
+		}
+		lock (SendOutgoingLockObject)
+		{
+			return peerBase.SendOutgoingCommands();
+		}
+	}
+
+	public virtual bool SendAcksOnly()
+	{
+		if (TrafficStatsEnabled)
+		{
+			TrafficStatsGameLevel.SendOutgoingCommandsCalled();
+		}
+		lock (SendOutgoingLockObject)
+		{
+			return peerBase.SendAcksOnly();
+		}
+	}
+
+	public virtual bool DispatchIncomingCommands()
+	{
+		peerBase.ByteCountCurrentDispatch = 0;
+		if (TrafficStatsEnabled)
+		{
+			TrafficStatsGameLevel.DispatchIncomingCommandsCalled();
+		}
+		lock (DispatchLockObject)
+		{
+			return peerBase.DispatchIncomingCommands();
+		}
+	}
+
+	public string VitalStatsToString(bool all)
+	{
+		if (TrafficStatsGameLevel == null)
+		{
+			return "Stats not available. Use PhotonPeer.TrafficStatsEnabled.";
+		}
+		if (!all)
+		{
+			return string.Format("Rtt(variance): {0}({1}). Ms since last receive: {2}. Stats elapsed: {4}sec.\n{3}", RoundTripTime, RoundTripTimeVariance, SupportClass.GetTickCount() - TimestampOfLastSocketReceive, TrafficStatsGameLevel.ToStringVitalStats(), TrafficStatsElapsedMs / 1000);
+		}
+		return string.Format("Rtt(variance): {0}({1}). Ms since last receive: {2}. Stats elapsed: {6}sec.\n{3}\n{4}\n{5}", RoundTripTime, RoundTripTimeVariance, SupportClass.GetTickCount() - TimestampOfLastSocketReceive, TrafficStatsGameLevel.ToStringVitalStats(), TrafficStatsIncoming.ToString(), TrafficStatsOutgoing.ToString(), TrafficStatsElapsedMs / 1000);
+	}
+
+	public virtual bool OpCustom(byte customOpCode, Dictionary<byte, object> customOpParameters, bool sendReliable)
+	{
+		return OpCustom(customOpCode, customOpParameters, sendReliable, 0);
+	}
+
+	public virtual bool OpCustom(byte customOpCode, Dictionary<byte, object> customOpParameters, bool sendReliable, byte channelId)
+	{
+		lock (EnqueueLock)
+		{
+			return peerBase.EnqueueOperation(customOpParameters, customOpCode, sendReliable, channelId, false);
+		}
+	}
+
+	public virtual bool OpCustom(byte customOpCode, Dictionary<byte, object> customOpParameters, bool sendReliable, byte channelId, bool encrypt)
+	{
+		if (encrypt && !IsEncryptionAvailable)
+		{
+			throw new ArgumentException("Can't use encryption yet. Exchange keys first.");
+		}
+		lock (EnqueueLock)
+		{
+			return peerBase.EnqueueOperation(customOpParameters, customOpCode, sendReliable, channelId, encrypt);
+		}
+	}
+
+	public virtual bool OpCustom(OperationRequest operationRequest, bool sendReliable, byte channelId, bool encrypt)
+	{
+		if (encrypt && !IsEncryptionAvailable)
+		{
+			throw new ArgumentException("Can't use encryption yet. Exchange keys first.");
+		}
+		lock (EnqueueLock)
+		{
+			return peerBase.EnqueueOperation(operationRequest.Parameters, operationRequest.OperationCode, sendReliable, channelId, encrypt);
+		}
+	}
+
+	public static bool RegisterType(Type customType, byte code, SerializeMethod serializeMethod, DeserializeMethod constructor)
+	{
+		return Protocol.TryRegisterType(customType, code, serializeMethod, constructor);
+	}
+
+	public static bool RegisterType(Type customType, byte code, SerializeStreamMethod serializeMethod, DeserializeStreamMethod constructor)
+	{
+		return Protocol.TryRegisterType(customType, code, serializeMethod, constructor);
 	}
 }

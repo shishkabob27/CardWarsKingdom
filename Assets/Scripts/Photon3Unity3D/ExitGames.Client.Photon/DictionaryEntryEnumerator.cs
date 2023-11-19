@@ -1,41 +1,69 @@
+// ExitGames.Client.Photon.DictionaryEntryEnumerator
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ExitGames.Client.Photon
+public class DictionaryEntryEnumerator : IEnumerator<DictionaryEntry>, IDisposable, IEnumerator
 {
-	public class DictionaryEntryEnumerator : IEnumerator<DictionaryEntry>, IDisposable, IEnumerator
+	private IDictionaryEnumerator enumerator;
+
+	object IEnumerator.Current
 	{
-		private IDictionaryEnumerator enumerator;
-
-		object IEnumerator.Current => (DictionaryEntry)enumerator.Current;
-
-		public DictionaryEntry Current => (DictionaryEntry)enumerator.Current;
-
-		public object Key => enumerator.Key;
-
-		public object Value => enumerator.Value;
-
-		public DictionaryEntry Entry => enumerator.Entry;
-
-		public DictionaryEntryEnumerator(IDictionaryEnumerator original)
+		get
 		{
-			enumerator = original;
+			return (DictionaryEntry)enumerator.Current;
 		}
+	}
 
-		public bool MoveNext()
+	public DictionaryEntry Current
+	{
+		get
 		{
-			return enumerator.MoveNext();
+			return (DictionaryEntry)enumerator.Current;
 		}
+	}
 
-		public void Reset()
+	public object Key
+	{
+		get
 		{
-			enumerator.Reset();
+			return enumerator.Key;
 		}
+	}
 
-		public void Dispose()
+	public object Value
+	{
+		get
 		{
-			enumerator = null;
+			return enumerator.Value;
 		}
+	}
+
+	public DictionaryEntry Entry
+	{
+		get
+		{
+			return enumerator.Entry;
+		}
+	}
+
+	public DictionaryEntryEnumerator(IDictionaryEnumerator original)
+	{
+		enumerator = original;
+	}
+
+	public bool MoveNext()
+	{
+		return enumerator.MoveNext();
+	}
+
+	public void Reset()
+	{
+		enumerator.Reset();
+	}
+
+	public void Dispose()
+	{
+		enumerator = null;
 	}
 }

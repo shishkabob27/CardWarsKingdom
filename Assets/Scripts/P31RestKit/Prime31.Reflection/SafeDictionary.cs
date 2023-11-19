@@ -1,33 +1,37 @@
+// Prime31.Reflection.SafeDictionary<TKey,TValue>
 using System.Collections.Generic;
 
-namespace Prime31.Reflection
+public class SafeDictionary<TKey, TValue>
 {
-	public class SafeDictionary<TKey, TValue>
+	private readonly object _padlock = new object();
+
+	private readonly Dictionary<TKey, TValue> _dictionary = new Dictionary<TKey, TValue>();
+
+	public TValue this[TKey key]
 	{
-		private readonly object _padlock = new object();
-
-		private readonly Dictionary<TKey, TValue> _dictionary = new Dictionary<TKey, TValue>();
-
-		public TValue this[TKey key] => _dictionary[key];
-
-		public bool tryGetValue(TKey key, out TValue value)
+		get
 		{
-			return _dictionary.TryGetValue(key, out value);
+			return _dictionary[key];
 		}
+	}
 
-		public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-		{
-			return ((IEnumerable<KeyValuePair<TKey, TValue>>)_dictionary).GetEnumerator();
-		}
+	public bool tryGetValue(TKey key, out TValue value)
+	{
+		return _dictionary.TryGetValue(key, out value);
+	}
 
-		public void add(TKey key, TValue value)
+	public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+	{
+		return ((IEnumerable<KeyValuePair<TKey, TValue>>)_dictionary).GetEnumerator();
+	}
+
+	public void add(TKey key, TValue value)
+	{
+		lock (_padlock)
 		{
-			lock (_padlock)
+			if (!_dictionary.ContainsKey(key))
 			{
-				if (!_dictionary.ContainsKey(key))
-				{
-					_dictionary.Add(key, value);
-				}
+				_dictionary.Add(key, value);
 			}
 		}
 	}
