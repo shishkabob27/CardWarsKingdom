@@ -179,16 +179,16 @@ public class EditDeckController : Singleton<EditDeckController>
 				CreatureStats[i, j] = uILabel;
 			}
 			CardParents[i] = CreatureSlots[i].FindInChildren("ExCards");
-			Transform transform = CreatureSlots[i].transform.FindChild("ActionCardIcons");
+			Transform transform = CreatureSlots[i].transform.Find("ActionCardIcons");
 			for (int k = 0; k < 5; k++)
 			{
-				CardIcons[i, k] = transform.FindChild("Card_" + (k + 1).ToString("D2")).GetComponent<UISprite>();
+				CardIcons[i, k] = transform.Find("Card_" + (k + 1).ToString("D2")).GetComponent<UISprite>();
 			}
-			Transform transform2 = CreatureSlots[i].transform.FindChild("ExCards");
+			Transform transform2 = CreatureSlots[i].transform.Find("ExCards");
 			for (int l = 0; l < 3; l++)
 			{
-				ExCardIcons[i, l] = transform2.FindChild("CardSlot_0" + (l + 1)).GetComponent<UISprite>();
-				ExCardLocks[i, l] = ExCardIcons[i, l].transform.FindChild("Lock").gameObject;
+				ExCardIcons[i, l] = transform2.Find("CardSlot_0" + (l + 1)).GetComponent<UISprite>();
+				ExCardLocks[i, l] = ExCardIcons[i, l].transform.Find("Lock").gameObject;
 			}
 			CardLayoutCreatureSlots[i] = CardLayoutCreatureSlotsParent.FindInChildren("Creature_" + (i + 1));
 			GameObject gameObject2 = CardLayoutCreatureCardsParent.FindInChildren("ActionCards_" + (i + 1));
@@ -199,8 +199,8 @@ public class EditDeckController : Singleton<EditDeckController>
 			CardLayoutExCardNodes[i] = new Transform[3];
 			for (int n = 0; n < 3; n++)
 			{
-				CardLayoutExCardNodes[i][n] = gameObject2.transform.FindChild("ExCardSlot_" + (n + 1)).transform;
-				CardLayoutExCardLocks[i, n] = CardLayoutExCardNodes[i][n].transform.FindChild("Lock").gameObject;
+				CardLayoutExCardNodes[i][n] = gameObject2.transform.Find("ExCardSlot_" + (n + 1)).transform;
+				CardLayoutExCardLocks[i, n] = CardLayoutExCardNodes[i][n].transform.Find("Lock").gameObject;
 			}
 			mCardLayoutSpawnedExCardTiles[i] = new InventoryTile[3];
 		}

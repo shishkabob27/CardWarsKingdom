@@ -45,7 +45,7 @@ public class EvoStatsPanelController : Singleton<EvoStatsPanelController>
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			SkillCardNodes[i] = SkillCardNodeParent.FindChild("ActionCardSpawnNode_0" + (i + 1)).gameObject;
+			SkillCardNodes[i] = SkillCardNodeParent.Find("ActionCardSpawnNode_0" + (i + 1)).gameObject;
 		}
 	}
 

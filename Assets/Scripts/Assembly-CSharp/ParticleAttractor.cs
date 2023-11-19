@@ -46,7 +46,7 @@ public class ParticleAttractor : MonoBehaviour
 			Vector3 vector2 = vector.normalized * Speed * Time.deltaTime;
 			if (vector2.sqrMagnitude >= vector.sqrMagnitude)
 			{
-				mParticles[i].lifetime = 0f;
+				mParticles[i].remainingLifetime = 0f;
 			}
 			else
 			{

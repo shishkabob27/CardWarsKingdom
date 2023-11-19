@@ -50,7 +50,7 @@ public class QuestSelectQuest : UIStreamingGridListItem
 		{
 			for (int i = 0; i < MiscParams.CreaturesOnTeam; i++)
 			{
-				CreatureNodes[i] = CreatureNodeParent.FindChild("CreatureNode_" + (i + 1).ToString("D2"));
+				CreatureNodes[i] = CreatureNodeParent.Find("CreatureNode_" + (i + 1).ToString("D2"));
 			}
 		}
 		mInitialzed = true;

@@ -2586,7 +2586,7 @@ namespace DarkTonic.MasterAudio
 			}
 			string text = aGroup.transform.name;
 			MasterAudio instance = Instance;
-			if (Instance.Trans.FindChild(text) != null)
+			if (Instance.Trans.Find(text) != null)
 			{
 				if (errorOnExisting)
 				{

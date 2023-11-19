@@ -18,7 +18,7 @@ public class KFFRequestorController : MonoBehaviour
 
 	public GameObject GetRequestor(string name)
 	{
-		Transform transform = base.gameObject.transform.FindChild(name);
+		Transform transform = base.gameObject.transform.Find(name);
 		if (transform != null)
 		{
 			return transform.gameObject;

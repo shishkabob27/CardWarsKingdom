@@ -96,7 +96,7 @@ public class CreatureDetailsController : Singleton<CreatureDetailsController>
 		mBaseStatsPanelBGHeight = StatsPanelBackground.height;
 		for (int i = 0; i < 5; i++)
 		{
-			SkillCardNodes[i] = SkillCardNodeParent.FindChild("ActionCardSpawn_0" + (i + 1)).gameObject;
+			SkillCardNodes[i] = SkillCardNodeParent.Find("ActionCardSpawn_0" + (i + 1)).gameObject;
 		}
 	}
 

@@ -136,7 +136,7 @@ public class CreatureStatsPanel : MonoBehaviour
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				InfoRarityStars[i] = InfoRarityStarsParent.FindChild("Icon_RarityStar_" + (i + 1));
+				InfoRarityStars[i] = InfoRarityStarsParent.Find("Icon_RarityStar_" + (i + 1));
 			}
 		}
 	}

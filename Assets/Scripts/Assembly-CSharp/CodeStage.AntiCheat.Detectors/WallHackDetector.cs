@@ -519,7 +519,7 @@ namespace CodeStage.AntiCheat.Detectors
 						if (renderTexture == null)
 						{
 							renderTexture = new RenderTexture(4, 4, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
-							renderTexture.generateMips = false;
+							renderTexture.autoGenerateMips = false;
 							renderTexture.filterMode = FilterMode.Point;
 							renderTexture.Create();
 						}

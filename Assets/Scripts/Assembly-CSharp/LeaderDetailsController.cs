@@ -55,11 +55,11 @@ public class LeaderDetailsController : Singleton<LeaderDetailsController>
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			CardNodes[i] = CardsParent.FindChild("ActionCardSpawn_" + (i + 1).ToString("D2"));
+			CardNodes[i] = CardsParent.Find("ActionCardSpawn_" + (i + 1).ToString("D2"));
 		}
 		for (int j = 0; j < 7; j++)
 		{
-			ComboPips[j] = ComboPipsParent.transform.FindChild("ComboPip_" + (j + 1).ToString("D2")).GetComponent<UISprite>();
+			ComboPips[j] = ComboPipsParent.transform.Find("ComboPip_" + (j + 1).ToString("D2")).GetComponent<UISprite>();
 		}
 	}
 

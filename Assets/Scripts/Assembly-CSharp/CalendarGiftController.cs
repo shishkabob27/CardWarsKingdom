@@ -71,7 +71,7 @@ public class CalendarGiftController : Singleton<CalendarGiftController>
 		for (int i = 0; i < gifts.Count - 1; i++)
 		{
 			string nodeName = "Node_Day_" + (i + 1).ToString("D2");
-			Transform dayNode = DayNodesParent.FindChild(nodeName);
+			Transform dayNode = DayNodesParent.Find(nodeName);
 			if (!(dayNode == null))
 			{
 				DailyCalendarGiftItem dayPrefab = dayNode.InstantiateAsChild(DayTemplatePrefab).GetComponent<DailyCalendarGiftItem>();

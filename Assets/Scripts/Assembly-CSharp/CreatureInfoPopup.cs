@@ -88,15 +88,15 @@ public class CreatureInfoPopup : Singleton<CreatureInfoPopup>
 		mStatBaseColor = Stats[0].color;
 		for (int i = 0; i < 5; i++)
 		{
-			RarityStars[i] = RarityStarsParent.transform.FindChild("RarityStar_" + (i + 1));
+			RarityStars[i] = RarityStarsParent.transform.Find("RarityStar_" + (i + 1));
 		}
 		for (int j = 0; j < 5; j++)
 		{
-			CardSpawnPoints[j] = CardsParent.FindChild("ActionCardNode_" + (j + 1).ToString("D2"));
+			CardSpawnPoints[j] = CardsParent.Find("ActionCardNode_" + (j + 1).ToString("D2"));
 		}
 		for (int k = 0; k < 3; k++)
 		{
-			ExCardSpawnPoints[k] = ExCardsParent.FindChild("ExpansionCardSpawn_" + (k + 1).ToString("D2"));
+			ExCardSpawnPoints[k] = ExCardsParent.Find("ExpansionCardSpawn_" + (k + 1).ToString("D2"));
 		}
 	}
 

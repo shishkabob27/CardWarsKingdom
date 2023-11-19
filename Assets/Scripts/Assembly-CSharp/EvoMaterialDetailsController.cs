@@ -18,7 +18,7 @@ public class EvoMaterialDetailsController : Singleton<EvoMaterialDetailsControll
 		int num = 0;
 		while (true)
 		{
-			Transform transform = StarGrid.transform.FindChild("Icon_RarityStar_" + (num + 1));
+			Transform transform = StarGrid.transform.Find("Icon_RarityStar_" + (num + 1));
 			if (transform != null)
 			{
 				Stars.Add(transform.gameObject);

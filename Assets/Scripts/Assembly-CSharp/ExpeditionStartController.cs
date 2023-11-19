@@ -175,7 +175,7 @@ public class ExpeditionStartController : Singleton<ExpeditionStartController>
 		int num = 1;
 		while (true)
 		{
-			Transform transform = SlotGrid.transform.FindChild("CreatureSlot_" + num.ToString("D2"));
+			Transform transform = SlotGrid.transform.Find("CreatureSlot_" + num.ToString("D2"));
 			if (transform == null)
 			{
 				break;

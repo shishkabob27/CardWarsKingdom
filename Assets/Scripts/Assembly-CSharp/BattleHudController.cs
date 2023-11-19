@@ -260,7 +260,7 @@ public class BattleHudController : Singleton<BattleHudController>
 		MagicSpendCount.text = string.Empty;
 		for (int i = 0; i < LeaderPopupCardNodes.Length; i++)
 		{
-			LeaderPopupCardNodes[i] = LeaderPopupCardParent.FindChild("ActionCardSpawn_0" + (i + 1)).gameObject;
+			LeaderPopupCardNodes[i] = LeaderPopupCardParent.Find("ActionCardSpawn_0" + (i + 1)).gameObject;
 		}
 		if (!Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
 		{
@@ -783,14 +783,14 @@ public class BattleHudController : Singleton<BattleHudController>
 		List<Transform> childList = LootCollectGrid.GetChildList();
 		for (int i = 0; i < childList.Count; i++)
 		{
-			Transform transform2 = childList[i].FindChild("LootSpawnNode");
+			Transform transform2 = childList[i].Find("LootSpawnNode");
 			if (transform2 != null)
 			{
 				transform2.transform.localPosition = new Vector3(0f, 0f, -50 * i);
 				transform2.transform.localRotation = Quaternion.Euler(0f, -20f, 0f);
 			}
 		}
-		return transform.FindChild("LootSpawnNode");
+		return transform.Find("LootSpawnNode");
 	}
 
 	public void OnClickUserLeader()
