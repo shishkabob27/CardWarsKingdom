@@ -789,6 +789,7 @@ namespace DarkTonic.MasterAudio
 				_instance = (MasterAudio)UnityEngine.Object.FindObjectOfType(typeof(MasterAudio));
 				if (!(_instance == null) || Application.isPlaying)
 				{
+					_instance = new MasterAudio();
 				}
 				return _instance;
 			}

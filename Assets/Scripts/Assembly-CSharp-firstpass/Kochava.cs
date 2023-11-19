@@ -1611,55 +1611,6 @@ public class Kochava : MonoBehaviour
 		}
 	}
 
-	public void OnApplicationPause(bool didPause)
-	{
-		if (sessionTracking == KochSessionTracking.full && appData != null)
-		{
-			_S._fireEvent("session", new Dictionary<string, object> { 
-			{
-				"state",
-				(!didPause) ? "resume" : "pause"
-			} });
-		}
-		if (didPause)
-		{
-			saveQueue();
-			return;
-		}
-		Log("received - app resume");
-		AndroidJNIHelper.debug = true;
-		using (AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
-		{
-			AndroidJavaObject @static = androidJavaClass.GetStatic<AndroidJavaObject>("currentActivity");
-			AndroidJavaObject androidJavaObject = @static.Call<AndroidJavaObject>("getApplicationContext", new object[0]);
-			AndroidJavaClass androidJavaClass2 = new AndroidJavaClass("com.kochava.android.tracker.lite.KochavaSDKLite");
-			androidJavaClass2.CallStatic<string>("GetExternalKochavaInfo_Android", new object[5]
-			{
-				androidJavaObject,
-				whitelist,
-				device_id_delay,
-				PlayerPrefs.GetString("blacklist"),
-				AdidSupressed
-			});
-		}
-		if (doReportLocation)
-		{
-			double num = CurrentTime();
-			double num2 = double.Parse(PlayerPrefs.GetString("last_location_time"));
-			if (!(num - num2 > (double)(locationStaleness * 60)))
-			{
-			}
-		}
-	}
-
-	public void OnApplicationQuit()
-	{
-		if (sessionTracking == KochSessionTracking.full || sessionTracking == KochSessionTracking.basic || sessionTracking == KochSessionTracking.minimal)
-		{
-			_S._fireEvent("session", new Dictionary<string, object> { { "state", "quit" } });
-		}
-		saveQueue();
-	}
 
 	private void saveQueue()
 	{

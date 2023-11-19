@@ -29,141 +29,22 @@ namespace Helpshift
 
 		private AndroidJavaObject convertToJavaHashMap(Dictionary<string, object> configD)
 		{
-			AndroidJavaObject androidJavaObject = new AndroidJavaObject("java.util.HashMap");
-			if (configD != null)
-			{
-				Dictionary<string, object> dictionary = configD.Where((KeyValuePair<string, object> kv) => kv.Value != null).ToDictionary((KeyValuePair<string, object> kv) => kv.Key, (KeyValuePair<string, object> kv) => kv.Value);
-				IntPtr methodID = AndroidJNIHelper.GetMethodID(androidJavaObject.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
-				object[] array = new object[2];
-				array[0] = (array[1] = null);
-				{
-					foreach (KeyValuePair<string, object> item in dictionary)
-					{
-						using (AndroidJavaObject androidJavaObject2 = new AndroidJavaObject("java.lang.String", item.Key))
-						{
-							array[0] = androidJavaObject2;
-							if ((item.Value != null && item.Value.Equals("yes")) || item.Value.Equals("no"))
-							{
-								string text = ((!item.Value.Equals("yes")) ? "false" : "true");
-								array[1] = new AndroidJavaObject("java.lang.Boolean", text);
-							}
-							else if (item.Value != null)
-							{
-								if (item.Value.GetType().ToString() == "System.String")
-								{
-									array[1] = new AndroidJavaObject("java.lang.String", item.Value);
-								}
-								else if (item.Key == "hs-custom-metadata")
-								{
-									Dictionary<string, object> dictionary2 = (Dictionary<string, object>)item.Value;
-									AndroidJavaObject androidJavaObject3 = new AndroidJavaObject("java.util.HashMap");
-									IntPtr methodID2 = AndroidJNIHelper.GetMethodID(androidJavaObject3.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
-									object[] array2 = new object[2];
-									array2[0] = (array2[1] = null);
-									foreach (KeyValuePair<string, object> item2 in dictionary2)
-									{
-										array2[0] = new AndroidJavaObject("java.lang.String", item2.Key);
-										if (item2.Value.GetType().ToString() == "System.String")
-										{
-											array2[1] = new AndroidJavaObject("java.lang.String", item2.Value);
-										}
-										else if (item2.Key == "hs-tags" && item2.Value.GetType().ToString() == "System.String[]")
-										{
-											string[] array3 = (string[])item2.Value;
-											AndroidJavaObject androidJavaObject4 = new AndroidJavaObject("java.util.ArrayList");
-											IntPtr methodID3 = AndroidJNIHelper.GetMethodID(androidJavaObject4.GetRawClass(), "add", "(Ljava/lang/String;)Z");
-											object[] array4 = new object[1];
-											string[] array5 = array3;
-											foreach (string text2 in array5)
-											{
-												if (text2 != null)
-												{
-													array4[0] = new AndroidJavaObject("java.lang.String", text2);
-													AndroidJNI.CallBooleanMethod(androidJavaObject4.GetRawObject(), methodID3, AndroidJNIHelper.CreateJNIArgArray(array4));
-												}
-											}
-											array2[1] = new AndroidJavaObject("java.util.ArrayList", androidJavaObject4);
-										}
-										if (array2[1] != null)
-										{
-											AndroidJNI.CallObjectMethod(androidJavaObject3.GetRawObject(), methodID2, AndroidJNIHelper.CreateJNIArgArray(array2));
-										}
-									}
-									array[1] = new AndroidJavaObject("java.util.HashMap", androidJavaObject3);
-								}
-							}
-							if (array[1] != null)
-							{
-								AndroidJNI.CallObjectMethod(androidJavaObject.GetRawObject(), methodID, AndroidJNIHelper.CreateJNIArgArray(array));
-							}
-						}
-					}
-					return androidJavaObject;
-				}
-			}
-			return androidJavaObject;
+			return null;
 		}
 
 		private AndroidJavaObject convertMetadataToJavaHashMap(Dictionary<string, object> metaMap)
 		{
-			AndroidJavaObject androidJavaObject = new AndroidJavaObject("java.util.HashMap");
-			if (metaMap != null)
-			{
-				IntPtr methodID = AndroidJNIHelper.GetMethodID(androidJavaObject.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
-				object[] array = new object[2];
-				array[0] = (array[1] = null);
-				{
-					foreach (KeyValuePair<string, object> item in metaMap)
-					{
-						array[0] = new AndroidJavaObject("java.lang.String", item.Key);
-						if (item.Value.GetType().ToString() == "System.String")
-						{
-							if ((item.Value != null && item.Value.Equals("yes")) || item.Value.Equals("no"))
-							{
-								string text = ((!item.Value.Equals("yes")) ? "false" : "true");
-								array[1] = new AndroidJavaObject("java.lang.Boolean", text);
-							}
-							else
-							{
-								array[1] = new AndroidJavaObject("java.lang.String", item.Value);
-							}
-						}
-						else if (item.Key == "hs-tags" && item.Value.GetType().ToString() == "System.String[]")
-						{
-							string[] array2 = (string[])item.Value;
-							AndroidJavaObject androidJavaObject2 = new AndroidJavaObject("java.util.ArrayList");
-							IntPtr methodID2 = AndroidJNIHelper.GetMethodID(androidJavaObject2.GetRawClass(), "add", "(Ljava/lang/String;)Z");
-							object[] array3 = new object[1];
-							string[] array4 = array2;
-							foreach (string text2 in array4)
-							{
-								if (text2 != null)
-								{
-									array3[0] = new AndroidJavaObject("java.lang.String", text2);
-									AndroidJNI.CallBooleanMethod(androidJavaObject2.GetRawObject(), methodID2, AndroidJNIHelper.CreateJNIArgArray(array3));
-								}
-							}
-							array[1] = new AndroidJavaObject("java.util.ArrayList", androidJavaObject2);
-						}
-						if (array[1] != null)
-						{
-							AndroidJNI.CallObjectMethod(androidJavaObject.GetRawObject(), methodID, AndroidJNIHelper.CreateJNIArgArray(array));
-						}
-					}
-					return androidJavaObject;
-				}
-			}
-			return androidJavaObject;
+			return null;
 		}
 
 		private void hsApiCall(string api, params object[] args)
 		{
-			hsPlugin.CallStatic(api, args);
+			//hsPlugin.CallStatic(api, args);
 		}
 
 		private void hsApiCall(string api)
 		{
-			hsPlugin.CallStatic(api);
+			//hsPlugin.CallStatic(api);
 		}
 
 		public void install(string apiKey, string domain, string appId, Dictionary<string, string> configMap)

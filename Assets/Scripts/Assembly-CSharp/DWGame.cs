@@ -1229,7 +1229,9 @@ public class DWGame : Singleton<DWGame>
 			Transform tr = ((i != 0) ? Singleton<DWBattleLane>.Instance.P2CharacterPos : Singleton<DWBattleLane>.Instance.P1CharacterPos);
 			yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadLeaderResources(CurrentCharacter, delegate(Object loadedObjData)
 			{
-				NewCharacter = SLOTGame.InstantiateFX(loadedObjData, tr.position, tr.rotation) as GameObject;
+				//NewCharacter = SLOTGame.InstantiateFX(loadedObjData, tr.position, tr.rotation) as GameObject;
+				GameObject resource = Resources.Load("Characters/" + CurrentCharacter.Prefab + "/" + CurrentCharacter.Prefab, typeof(GameObject)) as GameObject;
+				NewCharacter = Instantiate(resource, tr.position, tr.rotation) as GameObject;
 			}));
 			if (NewCharacter == null)
 			{
@@ -1317,18 +1319,22 @@ public class DWGame : Singleton<DWGame>
 		bool inIntroBattle = Singleton<TutorialController>.Instance.IsBlockActive("IntroBattle");
 		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadEnvironmentResources(qData, delegate(Object loadedObjData)
 		{
-			GameObject gameObject2 = SLOTGame.InstantiateFX(loadedObjData) as GameObject;
+			//GameObject gameObject2 = SLOTGame.InstantiateFX(loadedObjData) as GameObject;
+			GameObject resource = Resources.Load("Environment/" + qData.LevelPrefab + "/" + qData.LevelPrefab, typeof(GameObject)) as GameObject;
+			GameObject gameObject2 = Instantiate(resource);
 			gameObject2.transform.parent = Singleton<DWBattleLane>.Instance.transform;
 			Singleton<DWBattleLane>.Instance.EnvironmentObj = gameObject2;
 		}));
 		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadGameBoardResources(qData, delegate(Object loadedObjData)
 		{
-			GameObject gameObject = SLOTGame.InstantiateFX(loadedObjData) as GameObject;
-			gameObject.transform.parent = Singleton<DWBattleLane>.Instance.transform;
-			Singleton<DWBattleLane>.Instance.BoardObj = gameObject;
+			//GameObject gameObject = SLOTGame.InstantiateFX(loadedObjData) as GameObject;
+			GameObject resource = Resources.Load("GameBoard/" + qData.BoardPrefab + "/" + qData.BoardPrefab, typeof(GameObject)) as GameObject;
+			GameObject gameObject2 = Instantiate(resource);
+			gameObject2.transform.parent = Singleton<DWBattleLane>.Instance.transform;
+			Singleton<DWBattleLane>.Instance.BoardObj = gameObject2;
 			if (!inIntroBattle)
 			{
-				gameObject.SetActive(false);
+				gameObject2.SetActive(false);
 			}
 		}));
 		yield return StartCoroutine(CreateCharacters());
@@ -1465,7 +1471,11 @@ public class DWGame : Singleton<DWGame>
 			objData = loadedObjData;
 			tex = loadedTexture;
 		}));
-		GameObject creatureObj = SLOTGame.InstantiateFX(objData) as GameObject;
+		GameObject resource = Resources.Load("Creatures/" + creature.Form.Prefab + "/" + creature.Form.Prefab, typeof(GameObject)) as GameObject;
+		GameObject creatureObj = Instantiate(resource) as GameObject;
+
+		Texture2D resourceTex = Resources.Load("Creatures/" + creature.Form.Prefab + "/Textures/" + creature.Faction + "/" + creature.Form.PrefabTexture, typeof(Texture2D)) as Texture2D;
+
 		Singleton<DWBattleLane>.Instance.CreaturePool.Add(creature, creatureObj);
 		if (tex != null)
 		{
@@ -1473,7 +1483,7 @@ public class DWGame : Singleton<DWGame>
 			Renderer[] array = mats;
 			foreach (Renderer mat in array)
 			{
-				mat.material.mainTexture = tex;
+				mat.material.mainTexture = resourceTex;
 			}
 		}
 		if (creatureObj != null)

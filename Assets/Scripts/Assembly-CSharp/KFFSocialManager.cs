@@ -104,7 +104,7 @@ public class KFFSocialManager : Singleton<KFFSocialManager>
 	{
 		if (!FbInitCalled)
 		{
-			FB.Init(InitComplete);
+			//FB.Init(InitComplete);
 			FbInitCalled = true;
 		}
 		else

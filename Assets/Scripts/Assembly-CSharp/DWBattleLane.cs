@@ -226,7 +226,7 @@ public class DWBattleLane : Singleton<DWBattleLane>
 				gameObject2.SetActive(false);
 			}
 		}
-		VanishFXAfterDeath = (GameObject)Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Actions/VFX_Action_Death");
+		VanishFXAfterDeath = Resources.Load("VFX/Actions/VFX_Action_Death", typeof(GameObject)) as GameObject;
 	}
 
 	public void HideTargetIndicators()
@@ -1345,7 +1345,7 @@ public class DWBattleLane : Singleton<DWBattleLane>
 		{
 			foreach (DWBattleLaneObject item in BattleLaneObjects[i])
 			{
-				if (item != null)
+				if (item != null && item.HealthBar != null)
 				{
 					item.HealthBar.SetAttackValues(DamageType.Physical);
 				}
@@ -1413,8 +1413,8 @@ public class DWBattleLane : Singleton<DWBattleLane>
 	{
 		foreach (DWBattleLaneObject item in BattleLaneObjects[0])
 		{
-			item.HealthBar.CanAttackIndicator.SetActive(false);
-		}
+			if (item.HealthBar != null) item.HealthBar.CanAttackIndicator.SetActive(false);
+        }
 		foreach (CardPrefabScript handCard in Singleton<HandCardController>.Instance.GetHandCards())
 		{
 			handCard.SetPlayableIndicator(false);
