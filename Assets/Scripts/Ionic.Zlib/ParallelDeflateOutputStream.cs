@@ -516,10 +516,10 @@ namespace Ionic.Zlib
 				lock (_outputLock)
 				{
 					int hashCode = Thread.CurrentThread.GetHashCode();
-					Console.ForegroundColor = (ConsoleColor)(hashCode % 8 + 8);
+					//Console.ForegroundColor = (ConsoleColor)(hashCode % 8 + 8);
 					Console.Write("{0:000} PDOS ", hashCode);
 					Console.WriteLine(format, varParams);
-					Console.ResetColor();
+					//Console.ResetColor();
 				}
 			}
 		}

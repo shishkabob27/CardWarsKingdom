@@ -134,17 +134,11 @@ public class FBUtil : ScriptableObject
 
 	public static void Log(string message)
 	{
-		if (Application.isWebPlayer)
-		{
-			JavascriptLog(message);
-		}
+
 	}
 
 	public static void LogError(string message)
 	{
-		if (Application.isWebPlayer)
-		{
-			JavascriptLog(message);
-		}
+		
 	}
 }

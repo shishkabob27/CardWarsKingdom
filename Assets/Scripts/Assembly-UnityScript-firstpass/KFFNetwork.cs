@@ -134,23 +134,22 @@ public class KFFNetwork : MonoBehaviour
 		return the_instance;
 	}
 
-	/*
-	public override WWWInfo SendWWWRequest(string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam)
+	public WWWInfo SendWWWRequest(string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam)
 	{
 		return SendWWWRequestWithForm(null, url, WWWRequestCallback, callbackParam, rawrequest: false);
 	}
 
-	public override WWWInfo SendWWWRequestWithForm(WWWForm form, string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam)
+	public WWWInfo SendWWWRequestWithForm(WWWForm form, string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam)
 	{
 		return SendWWWRequestWithForm(form, url, WWWRequestCallback, callbackParam, rawrequest: false);
 	}
 
-	public override WWWInfo SendWWWRequestWithForm(WWWForm form, string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam, bool rawrequest)
+	public WWWInfo SendWWWRequestWithForm(WWWForm form, string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam, bool rawrequest)
 	{
 		return SendWWWRequestWithForm(form, url, WWWRequestCallback, callbackParam, rawrequest, null);
 	}
 
-	public override WWWInfo SendWWWRequestWithForm(WWWForm form, string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam, bool rawrequest, byte[] postData)
+	public WWWInfo SendWWWRequestWithForm(WWWForm form, string url, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam, bool rawrequest, byte[] postData)
 	{
 		WWWInfo wWWInfo = null;
 		if (activeRequestCount < MAX_CONCURRENT_WWW_REQUEST_COUNT)
@@ -190,7 +189,7 @@ public class KFFNetwork : MonoBehaviour
 		return wWWInfo;
 	}
 
-	public override WWWInfo LoadFromCacheOrDownload(string url, int version, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam)
+	public WWWInfo LoadFromCacheOrDownload(string url, int version, __WWWInfo_callback_0024callable1_002464_32__ WWWRequestCallback, object callbackParam)
 	{
 		WWWInfo wWWInfo = null;
 		if (activeRequestCount < MAX_CONCURRENT_WWW_REQUEST_COUNT)
@@ -229,7 +228,6 @@ public class KFFNetwork : MonoBehaviour
 		}
 		return wWWInfo;
 	}
-	*/
 	public void CancelWWWRequest(WWWInfo info)
 	{
 		if (!RuntimeServices.EqualityOperator(info, null))

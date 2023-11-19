@@ -637,7 +637,7 @@ public class UIInput : MonoBehaviour
 			return false;
 		}
 		RuntimePlatform platform = Application.platform;
-		bool flag = ((platform != 0 && platform != RuntimePlatform.OSXPlayer && platform != RuntimePlatform.OSXWebPlayer) ? ((ev.modifiers & EventModifiers.Control) != 0) : ((ev.modifiers & EventModifiers.Command) != 0));
+		bool flag = ((platform != 0) ? ((ev.modifiers & EventModifiers.Control) != 0) : ((ev.modifiers & EventModifiers.Command) != 0));
 		bool flag2 = (ev.modifiers & EventModifiers.Shift) != 0;
 		switch (ev.keyCode)
 		{

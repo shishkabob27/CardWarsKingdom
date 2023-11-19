@@ -180,7 +180,7 @@ public class Protocol16 : IProtocol
 		case 42:
 			return typeof(object);
 		default:
-			Debug.WriteLine("missing type: " + typeCode);
+			UnityEngine.Debug.LogError("missing type: " + typeCode);
 			throw new Exception("deserialize(): " + typeCode);
 		}
 	}
@@ -860,7 +860,7 @@ public class Protocol16 : IProtocol
 		case 42:
 			return null;
 		default:
-			Debug.WriteLine("missing type: " + type);
+			UnityEngine.Debug.Log("missing type: " + type);
 			throw new Exception("deserialize(): " + type);
 		}
 	}

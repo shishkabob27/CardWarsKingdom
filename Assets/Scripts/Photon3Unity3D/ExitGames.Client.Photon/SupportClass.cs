@@ -97,9 +97,9 @@ namespace ExitGames.Client.Photon
 				stream.Flush();
 			}
 			else
-			{
-				Debug.WriteLine(throwable.ToString());
-				Debug.WriteLine(throwable.StackTrace);
+			{	
+				UnityEngine.Debug.Log(throwable.ToString());
+				UnityEngine.Debug.Log(throwable.StackTrace);
 			}
 		}
 

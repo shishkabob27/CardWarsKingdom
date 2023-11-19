@@ -136,7 +136,7 @@ public class SQSettings
 	public static void Init()
 	{
 		TFUtils.DebugLog("Entering SQSettings Init()");
-		bundleIdentifier = Application.bundleIdentifier;
+		bundleIdentifier = Application.identifier;
 		bundleVersion = KFFAndroidPlugin.GetManifestVersionName();
 		bundleShortVersion = KFFAndroidPlugin.GetManifestVersionCode().ToString();
 		string empty = string.Empty;

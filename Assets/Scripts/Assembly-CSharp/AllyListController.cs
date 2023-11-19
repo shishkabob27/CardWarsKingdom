@@ -103,7 +103,7 @@ public class AllyListController : MonoBehaviour
 
 	private IEnumerator RetrieveAlliesList(AlliesPopulatedCallback callback)
 	{
-		bool retry;
+		bool retry = false;
 		do
 		{
 			mFetchedAllies.Clear();

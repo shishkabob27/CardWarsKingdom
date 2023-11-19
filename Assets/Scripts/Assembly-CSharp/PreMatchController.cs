@@ -531,11 +531,11 @@ public class PreMatchController : Singleton<PreMatchController>
 		Singleton<BuyStaminaPopupController>.Instance.Show(OnClickPlay);
 	}
 
-	public unsafe void OnClickEditDeck()
+	public void OnClickEditDeck()
 	{
 		Singleton<FrontEndPIPController>.Instance.HideModelPortrait();
 		HideHelperSlot(true);
-		Singleton<EditDeckController>.Instance.Show(new EditDeckController.Callback(this, (IntPtr)__ldftn(PreMatchController.RefreshLoadouts)));
+		Singleton<EditDeckController>.Instance.Show(new EditDeckController.Callback(() => this.RefreshLoadouts()));
 	}
 
 	public void OnClickMyLeader()

@@ -70,7 +70,7 @@ public class AmazonPurchaseListener : IPurchaseListener
 		text = text + "&userid=" + userID;
 		WWWForm wWWForm = new WWWForm();
 		wWWForm.AddField("purchaseToken", WWW.EscapeURL(receiptId));
-		KFFNetwork.GetInstance().SendWWWRequestWithForm(wWWForm, text, WWWVerifyReceiptCallback, receipt);
+		//KFFNetwork.GetInstance().SendWWWRequestWithForm(wWWForm, text, WWWVerifyReceiptCallback, receipt);
 	}
 
 	public PurchaseManager.ProductDataRequestResult GetProductData(string[] a_ProductIDs, PurchaseManager.ReceivedProductDataCallback a_Callback)

@@ -115,7 +115,8 @@ public class GooglePurchaseListener : IPurchaseListener
 		WWWForm wWWForm = new WWWForm();
 		wWWForm.AddField("signedData", a_OriginalJson);
 		wWWForm.AddField("signature", a_Signature);
-		return KFFNetwork.GetInstance().SendWWWRequestWithForm(wWWForm, text, WWWVerifyReceiptCallback, a_ProductID);
+		return null;
+		//return KFFNetwork.GetInstance().SendWWWRequestWithForm(wWWForm, text, WWWVerifyReceiptCallback, a_ProductID);
 	}
 
 	public void ProcessOldPurchases()
