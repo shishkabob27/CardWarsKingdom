@@ -8,10 +8,6 @@ public class KontagentBinding
 
 	static KontagentBinding()
 	{
-		using (AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.prime31.KontagentPlugin"))
-		{
-			_plugin = androidJavaClass.CallStatic<AndroidJavaObject>("instance", new object[0]);
-		}
 	}
 
 	public static AndroidJavaObject mapFromDictionary(Dictionary<string, string> dict)

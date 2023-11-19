@@ -171,7 +171,7 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 
 	private string KontagentApiKey;
 
-	private bool TurnOff;
+	private bool TurnOff = true;
 
 	private string deviceId;
 

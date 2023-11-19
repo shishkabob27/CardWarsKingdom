@@ -127,7 +127,7 @@ public class AndroidPermissions : MonoBehaviour
 	public IEnumerator StartAndroidPermissionsRoutine()
 	{
 		yield return null;
-		if (!TFUtils.AmazonDevice)
+		if (Application.platform == RuntimePlatform.Android)
 		{
 			AndroidPermissionGranter.Init();
 			if (AndroidPermissionGranter.instance != null)

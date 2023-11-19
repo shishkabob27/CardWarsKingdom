@@ -42,12 +42,7 @@ public class TFUtils
 		DeviceName = SystemInfo.deviceName;
 		FacebookID = ((fbid != null) ? fbid : DeviceID);
 		DebugLog("This device is:" + DeviceID + " / FacebookID is:" + FacebookID);
-		string text = SystemInfo.deviceModel.ToLower();
-		int num = text.IndexOf("amazon");
-		if (num >= 0)
-		{
-			AmazonDevice = true;
-		}
+		AmazonDevice = false;
 	}
 
 	public static void UpdateServerTime(DateTime serverTime)
@@ -724,14 +719,17 @@ public class TFUtils
 
 	public static void DebugLog(object message)
 	{
+		UnityEngine.Debug.Log(message);
 	}
 
 	public static void ErrorLog(object message)
 	{
+		UnityEngine.Debug.LogError(message);
 	}
 
 	public static void WarningLog(object message)
 	{
+		UnityEngine.Debug.LogWarning(message);
 	}
 
 	[Conditional("DEBUG")]
@@ -798,7 +796,9 @@ public class TFUtils
 
 	public static void PlayMovie(string movie)
 	{
+#if UNITY_ANDROID || UNITY_IOS
 		Handheld.PlayFullScreenMovie(movie, Color.black, FullScreenMovieControlMode.CancelOnInput);
+#endif
 	}
 
 	public static byte[] Zip(string str)

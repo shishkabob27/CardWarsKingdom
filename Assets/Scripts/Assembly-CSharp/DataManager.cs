@@ -144,7 +144,7 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 		{
 			try
 			{
-				manager.Load();
+				if (manager != null) manager.Load();
 			}
 			catch (Exception ex)
 			{

@@ -42,7 +42,7 @@ public class VersionCheckSceneController : MonoBehaviour
 	private void CheckClientVersion()
 	{
 		KFFNetwork.deserializeJSONCallback = DeserializeJSON;
-		string url = "http://live-android.cdubsgame.net/static/version.txt";
+		string url = "http://127.0.0.1:5000/static/version.txt";
 		KFFNetwork.GetInstance().SendWWWRequestWithForm(null, url, checkClientVersionCallback, null, true);
 	}
 
@@ -92,12 +92,7 @@ public class VersionCheckSceneController : MonoBehaviour
 					ShowUpdateMessage(msg, canClick, null, icon);
 					return;
 				}
-				if (TFUtils.AmazonDevice)
-				{
-					text3 = TFUtils.TryLoadString(dictionary, "amazon_version");
-					text4 = TFUtils.TryLoadString(dictionary, "amazon_url");
-				}
-				else
+				if (Application.platform == RuntimePlatform.Android)
 				{
 					text3 = TFUtils.TryLoadString(dictionary, "android_version");
 					text4 = TFUtils.TryLoadString(dictionary, "android_url");
@@ -109,9 +104,7 @@ public class VersionCheckSceneController : MonoBehaviour
 				if (text3 != null)
 				{
 					Version version = new Version(text3);
-					string manifestVersionName = KFFAndroidPlugin.GetManifestVersionName();
-					string text6 = KFFAndroidPlugin.GetManifestVersionCode().ToString();
-					if (version > new Version((!string.IsNullOrEmpty(manifestVersionName)) ? manifestVersionName : "1.0"))
+					if (version > new Version(Application.version))
 					{
 						msg = KFFLocalization.Get("!!GAME_OUTDATED");
 						ShowUpdateMessage(msg, canClick, text4, icon);

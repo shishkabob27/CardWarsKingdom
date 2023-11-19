@@ -45,9 +45,11 @@ public class MoviePlayer : MonoBehaviour
 		yield return null;
 		for (int i = 0; i < Videos.Length; i++)
 		{
+#if UNITY_ANDROID || UNITY_IOS
 			if (!Handheld.PlayFullScreenMovie(Videos[i], Color.black, FullScreenMovieControlMode.CancelOnInput))
 			{
 			}
+#endif
 			Background.color = Color.black;
 			LoadingLogo.color = Color.black;
 			yield return null;

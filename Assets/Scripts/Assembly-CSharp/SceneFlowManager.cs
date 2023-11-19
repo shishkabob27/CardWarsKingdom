@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 {
@@ -52,7 +53,7 @@ public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 		mLowResSceneMap[4] = "low_ConnectScene";
 		mLowResSceneMap[5] = "low_FrontEndScene";
 		mLowResSceneMap[6] = "low_BattleScene";
-		mCurrentScene = GetSceneFromName(Application.loadedLevelName);
+		mCurrentScene = GetSceneFromName(SceneManager.GetActiveScene().name);
 	}
 
 	public ReturnLocation GetReturnLocation()
@@ -119,11 +120,11 @@ public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 		DoManualAnimationCleanup();
 		if (!bypass)
 		{
-			Application.LoadLevel(GetNameFromScene(Scene.Loading));
+			SceneManager.LoadScene(GetNameFromScene(Scene.Loading));
 		}
 		else
 		{
-			Application.LoadLevel(GetNameFromScene(mCurrentScene));
+			SceneManager.LoadScene(GetNameFromScene(mCurrentScene));
 		}
 	}
 

@@ -355,7 +355,7 @@ public class Kochava : MonoBehaviour
 			{
 				_S = this;
 			}
-			Init();
+			//Init();
 		}
 	}
 
@@ -1757,6 +1757,7 @@ public class Kochava : MonoBehaviour
 
 	private void Log(string msg)
 	{
+		UnityEngine.Debug.Log(msg);
 		Log(msg, KochLogLevel.warning);
 	}
 
