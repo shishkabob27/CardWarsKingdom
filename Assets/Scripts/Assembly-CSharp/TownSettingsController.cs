@@ -461,7 +461,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 		int num = ((!KFFLODManager.IsLowEndDevice()) ? 1 : 0);
 		if (versionLbl != null)
 		{
-			versionLbl.text = SQSettings.SERVER_PREFIX + " v." + KFFAndroidPlugin.GetManifestVersionName() + "(" + KFFAndroidPlugin.GetManifestVersionCode().ToString() + "-" + num + ")";
+			versionLbl.text = SQSettings.SERVER_PREFIX + " v." + Application.version;
 		}
 	}
 
