@@ -908,7 +908,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 			SaveData.RandomDungeonLevel = TFUtils.LoadInt(dictionary, "RandomDungeonLevel", 1);
 			SaveData.DateOfBirth = TFUtils.LoadUint(dictionary, "DateOfBirth", 0u);
 			SaveData.ConfirmedTOSVersion = TFUtils.LoadInt(dictionary, "ConfirmedTOSVersion", 0);
-			updateHelpShiftPrivacy();
 			string text2 = TFUtils.LoadString(dictionary, "SelectedSale", null);
 			if (text2 != null)
 			{
@@ -3231,11 +3230,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 	{
 		DateTime dateTime = new DateTime(1950, 1, 1).AddSeconds(SaveData.DateOfBirth).AddYears(ageGateInt);
 		return TFUtils.ServerTime >= dateTime;
-	}
-
-	public void updateHelpShiftPrivacy()
-	{
-		HelpshiftConfig.Instance.EnablePrivacy = !Singleton<PlayerInfoScript>.Instance.IsPastAgeGate(MiscParams.fbAgeGate);
 	}
 
 	public void CalculateGoldPacksNeeded(int cost, out int packs, out int totalGold, out int totalGemCost)

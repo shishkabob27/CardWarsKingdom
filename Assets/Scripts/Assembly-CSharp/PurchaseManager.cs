@@ -331,7 +331,6 @@ public class PurchaseManager : Singleton<PurchaseManager>
 			dictionary.Add("sum", 1);
 			Dictionary<string, object> value = dictionary;
 			string eventData = JsonWriter.Serialize(value);
-			Kochava.FireEvent(eventName, eventData);
 		}
 	}
 

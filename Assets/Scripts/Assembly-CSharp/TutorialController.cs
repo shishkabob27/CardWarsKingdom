@@ -1981,11 +1981,6 @@ public class TutorialController : Singleton<TutorialController>
 		Singleton<PlayerInfoScript>.Instance.AddHardCurrency2(0, MiscParams.ReviveCost, "tutorial revive", -1, string.Empty);
 	}
 
-	private void ShowRateAppPopup()
-	{
-		Singleton<HelpShiftManager>.Instance.PopupRateThisApp();
-	}
-
 	private void ZoomToLab()
 	{
 		TownBuildingScript component = Singleton<TownController>.Instance.GetBuildingObject("TBuilding_Lab").GetComponent<TownBuildingScript>();
@@ -2048,7 +2043,6 @@ public class TutorialController : Singleton<TutorialController>
 		DateTime enteredTime = Singleton<SimplePopupController>.Instance.GetEnteredDate();
 		uint d = (uint)(enteredTime + TFUtils.GetServerTimeDiff()).Subtract(new DateTime(1950, 1, 1)).TotalSeconds;
 		Singleton<PlayerInfoScript>.Instance.SaveData.DateOfBirth = d;
-		Singleton<PlayerInfoScript>.Instance.updateHelpShiftPrivacy();
 		AdvanceTutorialState();
 	}
 

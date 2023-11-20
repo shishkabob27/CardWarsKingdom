@@ -28,16 +28,6 @@ public class HelpScreenController : Singleton<HelpScreenController>
 		HelpKPITrack(entry.Title);
 	}
 
-	public void OnCustomerSupportClick()
-	{
-		Singleton<HelpShiftManager>.Instance.ShowConversation(HelpshiftConfig.Instance.getApiConfig());
-	}
-
-	public void OnFAQClick()
-	{
-		Singleton<HelpShiftManager>.Instance.ShowFAQ();
-	}
-
 	private void HelpKPITrack(string topic)
 	{
 		string upsightEvent = "Help.HelpTopic";
