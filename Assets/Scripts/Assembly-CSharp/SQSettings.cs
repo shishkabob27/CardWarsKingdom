@@ -13,6 +13,8 @@ public class SQSettings
 
 	private static string serverUrl;
 
+	private static string photonChatAppID;
+
 	private static int saveInterval;
 
 	private static int patchingFileLimit;
@@ -29,7 +31,7 @@ public class SQSettings
 	{
 		get
 		{
-			return cdnUrl;
+			return serverUrl + "persist/static/";
 		}
 	}
 
@@ -37,7 +39,7 @@ public class SQSettings
 	{
 		get
 		{
-			return manifestUrl;
+			return serverUrl + "persist/static/manifest.json";
 		}
 	}
 
@@ -46,6 +48,14 @@ public class SQSettings
 		get
 		{
 			return serverUrl;
+		}
+	}
+
+	public static string PHOTON_CHAT_APP_ID
+	{
+		get
+		{
+			return photonChatAppID;
 		}
 	}
 
@@ -144,8 +154,7 @@ public class SQSettings
 		empty = ((!streamingAssetsFile.Contains("://")) ? File.ReadAllText(streamingAssetsFile) : getJsonPath(streamingAssetsFile));
 		Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(empty);
 		serverUrl = (string)dictionary["server_url"];
-		cdnUrl = (string)dictionary["cdn_url"];
-		manifestUrl = (string)dictionary["manifest_file_url"];
+		photonChatAppID = (string)dictionary["photon_chat_app_id"];
 		streamingAssetsFile = TFUtils.GetStreamingAssetsFile("global_settings.json");
 		empty = ((!streamingAssetsFile.Contains("://")) ? File.ReadAllText(streamingAssetsFile) : getJsonPath(streamingAssetsFile));
 		dictionary = (Dictionary<string, object>)Json.Deserialize(empty);

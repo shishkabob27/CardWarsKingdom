@@ -361,14 +361,14 @@ public class StoreScreenController : Singleton<StoreScreenController>
 					SaleButton.SetActive(true);
 					TabsGrid.Reposition();
 					SpecialSaleData saleToDisplay = Singleton<PlayerInfoScript>.Instance.GetSaleToDisplay();
-					if (saleToDisplay != null)
-					{
-						Singleton<SalePopupController>.Instance.Show(saleToDisplay, SalePopupController.ShowLocation.StoreScreen);
-					}
-					else
-					{
+					//if (saleToDisplay != null)
+					//{
+					//	Singleton<SalePopupController>.Instance.Show(saleToDisplay, SalePopupController.ShowLocation.StoreScreen);
+					//}
+					//else
+					//{
 						AdvanceTutorialPastSale();
-					}
+					//}
 				}
 				else
 				{

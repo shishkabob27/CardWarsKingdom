@@ -88,9 +88,9 @@ public class SLOTMusic : Singleton<SLOTMusic>
 		float num = 1f;
 		if (lower)
 		{
-			GroupBus groupBus = MasterAudio.GrabBusByName("Music");
-			mPrevMusicVolume = groupBus.volume;
-			num = Mathf.Min(0.1f, mPrevMusicVolume);
+			//GroupBus groupBus = MasterAudio.GrabBusByName("Music");
+			//mPrevMusicVolume = groupBus.volume;
+			//num = Mathf.Min(0.1f, mPrevMusicVolume);
 		}
 		else
 		{

@@ -261,7 +261,7 @@ public class ChatManager : Singleton<ChatManager>, IChatClientListener
 		}
 		myChatName = CreateChatName(username, userid);
 		chatEventCallback = callback;
-		chatClient.Connect(ChatAppId, MiscParams.ChatCompatibilityVersion.ToString(), new AuthenticationValues(myChatName));
+		chatClient.Connect(SQSettings.PHOTON_CHAT_APP_ID, MiscParams.ChatCompatibilityVersion.ToString(), new AuthenticationValues(myChatName));
 		chatClient.Service();
 		HMACSHA1 hMACSHA = new HMACSHA1();
 		hMACSHA.Key = Encoding.UTF8.GetBytes(hval);
@@ -290,7 +290,7 @@ public class ChatManager : Singleton<ChatManager>, IChatClientListener
 			{
 				ChannelsToJoinOnConnect[2] = SpammerChannel;
 			}
-			chatClient.Connect(ChatAppId, MiscParams.ChatCompatibilityVersion.ToString(), new AuthenticationValues(myChatName));
+			chatClient.Connect(SQSettings.PHOTON_CHAT_APP_ID, MiscParams.ChatCompatibilityVersion.ToString(), new AuthenticationValues(myChatName));
 			chatClient.Service();
 		}
 	}

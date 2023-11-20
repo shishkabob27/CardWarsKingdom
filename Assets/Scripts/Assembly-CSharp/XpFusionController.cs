@@ -815,8 +815,10 @@ public class XpFusionController : Singleton<XpFusionController>
 		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mPowerUpCreature.InventoryItem.Creature.Form, delegate(UnityEngine.Object objData, Texture2D texture)
 		{
 			CreatureSpawnPoint.transform.localRotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-			mCreatureModelInstance = CreatureSpawnPoint.InstantiateAsChild((GameObject)objData);
-			mPowerUpCreature.InventoryItem.Creature.Form.SwapCreatureTexture(mCreatureModelInstance, texture);
+            GameObject resource = Resources.Load("Creatures/" + mPowerUpCreature.InventoryItem.Creature.Form.Prefab + "/" + mPowerUpCreature.InventoryItem.Creature.Form.Prefab, typeof(GameObject)) as GameObject;
+            Texture2D texture2D = Resources.Load("Creatures/" + mPowerUpCreature.InventoryItem.Creature.Form.Prefab + "/Textures/" + mPowerUpCreature.InventoryItem.Creature.Form.Faction + "/" + mPowerUpCreature.InventoryItem.Creature.Form.PrefabTexture, typeof(Texture2D)) as Texture2D;
+            mCreatureModelInstance = CreatureSpawnPoint.InstantiateAsChild(resource);
+			mPowerUpCreature.InventoryItem.Creature.Form.SwapCreatureTexture(mCreatureModelInstance, texture2D);
 			mCreatureModelInstance.transform.localScale = PowerUpCreatureScale();
 			VFXRenderQueueSorter vFXRenderQueueSorter = mCreatureModelInstance.AddComponent<VFXRenderQueueSorter>();
 			vFXRenderQueueSorter.mType = VFXRenderQueueSorter.RenderSortingType.BACK;
