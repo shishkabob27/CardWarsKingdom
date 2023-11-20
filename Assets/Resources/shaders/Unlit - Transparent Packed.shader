@@ -1,213 +1,78 @@
-Shader "Unlit/Transparent Packed" {
-Properties {
- _MainTex ("Base (RGB), Alpha (A)", 2D) = "black" { }
-}
-SubShader { 
- LOD 200
- Tags { "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
- Pass {
-  Tags { "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
-  ZWrite Off
-  Cull Off
-  Blend SrcAlpha OneMinusSrcAlpha
-  ColorMask RGB
-  Offset -1, -1
-  GpuProgramID 57496
-Program "vp" {
-SubProgram "gles " {
-"!!GLES
-					#version 100
-					
-					#ifdef VERTEX
-					attribute vec4 _glesVertex;
-					attribute vec4 _glesColor;
-					attribute vec4 _glesMultiTexCoord0;
-					uniform highp mat4 glstate_matrix_mvp;
-					varying mediump vec4 xlv_COLOR;
-					varying highp vec2 xlv_TEXCOORD0;
-					void main ()
-					{
-					  gl_Position = (glstate_matrix_mvp * _glesVertex);
-					  xlv_COLOR = _glesColor;
-					  xlv_TEXCOORD0 = _glesMultiTexCoord0.xy;
-					}
-					
-					
-					#endif
-					#ifdef FRAGMENT
-					uniform sampler2D _MainTex;
-					varying mediump vec4 xlv_COLOR;
-					varying highp vec2 xlv_TEXCOORD0;
-					void main ()
-					{
-					  mediump vec4 col_1;
-					  mediump vec4 mask_2;
-					  lowp vec4 tmpvar_3;
-					  tmpvar_3 = texture2D (_MainTex, xlv_TEXCOORD0);
-					  mask_2 = tmpvar_3;
-					  mediump vec4 tmpvar_4;
-					  tmpvar_4 = clamp (ceil((xlv_COLOR - 0.5)), 0.0, 1.0);
-					  mediump vec4 tmpvar_5;
-					  tmpvar_5 = clamp (((
-					    (tmpvar_4 * 0.51)
-					   - xlv_COLOR) / -0.49), 0.0, 1.0);
-					  col_1.xyz = tmpvar_5.xyz;
-					  mask_2 = (mask_2 * tmpvar_4);
-					  col_1.w = (tmpvar_5.w * ((mask_2.x + mask_2.y) + (mask_2.z + mask_2.w)));
-					  gl_FragData[0] = col_1;
-					}
-					
-					
-					#endif"
-}
-SubProgram "gles3 " {
-"!!GLES3
-					#ifdef VERTEX
-					#version 300 es
-					uniform 	vec4 _Time;
-					uniform 	vec4 _SinTime;
-					uniform 	vec4 _CosTime;
-					uniform 	vec4 unity_DeltaTime;
-					uniform 	vec3 _WorldSpaceCameraPos;
-					uniform 	vec4 _ProjectionParams;
-					uniform 	vec4 _ScreenParams;
-					uniform 	vec4 _ZBufferParams;
-					uniform 	vec4 unity_OrthoParams;
-					uniform 	vec4 unity_CameraWorldClipPlanes[6];
-					uniform 	mat4x4 unity_CameraProjection;
-					uniform 	mat4x4 unity_CameraInvProjection;
-					uniform 	vec4 _WorldSpaceLightPos0;
-					uniform 	vec4 _LightPositionRange;
-					uniform 	vec4 unity_4LightPosX0;
-					uniform 	vec4 unity_4LightPosY0;
-					uniform 	vec4 unity_4LightPosZ0;
-					uniform 	mediump vec4 unity_4LightAtten0;
-					uniform 	mediump vec4 unity_LightColor[8];
-					uniform 	vec4 unity_LightPosition[8];
-					uniform 	mediump vec4 unity_LightAtten[8];
-					uniform 	vec4 unity_SpotDirection[8];
-					uniform 	mediump vec4 unity_SHAr;
-					uniform 	mediump vec4 unity_SHAg;
-					uniform 	mediump vec4 unity_SHAb;
-					uniform 	mediump vec4 unity_SHBr;
-					uniform 	mediump vec4 unity_SHBg;
-					uniform 	mediump vec4 unity_SHBb;
-					uniform 	mediump vec4 unity_SHC;
-					uniform 	mediump vec3 unity_LightColor0;
-					uniform 	mediump vec3 unity_LightColor1;
-					uniform 	mediump vec3 unity_LightColor2;
-					uniform 	mediump vec3 unity_LightColor3;
-					uniform 	vec4 unity_ShadowSplitSpheres[4];
-					uniform 	vec4 unity_ShadowSplitSqRadii;
-					uniform 	vec4 unity_LightShadowBias;
-					uniform 	vec4 _LightSplitsNear;
-					uniform 	vec4 _LightSplitsFar;
-					uniform 	mat4x4 unity_World2Shadow[4];
-					uniform 	mediump vec4 _LightShadowData;
-					uniform 	vec4 unity_ShadowFadeCenterAndType;
-					uniform 	mat4x4 glstate_matrix_mvp;
-					uniform 	mat4x4 glstate_matrix_modelview0;
-					uniform 	mat4x4 glstate_matrix_invtrans_modelview0;
-					uniform 	mat4x4 _Object2World;
-					uniform 	mat4x4 _World2Object;
-					uniform 	vec4 unity_LODFade;
-					uniform 	vec4 unity_WorldTransformParams;
-					uniform 	mat4x4 glstate_matrix_transpose_modelview0;
-					uniform 	mat4x4 glstate_matrix_projection;
-					uniform 	lowp vec4 glstate_lightmodel_ambient;
-					uniform 	mat4x4 unity_MatrixV;
-					uniform 	mat4x4 unity_MatrixVP;
-					uniform 	lowp vec4 unity_AmbientSky;
-					uniform 	lowp vec4 unity_AmbientEquator;
-					uniform 	lowp vec4 unity_AmbientGround;
-					uniform 	lowp vec4 unity_FogColor;
-					uniform 	vec4 unity_FogParams;
-					uniform 	vec4 unity_LightmapST;
-					uniform 	vec4 unity_DynamicLightmapST;
-					uniform 	vec4 unity_SpecCube0_BoxMax;
-					uniform 	vec4 unity_SpecCube0_BoxMin;
-					uniform 	vec4 unity_SpecCube0_ProbePosition;
-					uniform 	mediump vec4 unity_SpecCube0_HDR;
-					uniform 	vec4 unity_SpecCube1_BoxMax;
-					uniform 	vec4 unity_SpecCube1_BoxMin;
-					uniform 	vec4 unity_SpecCube1_ProbePosition;
-					uniform 	mediump vec4 unity_SpecCube1_HDR;
-					uniform 	lowp vec4 unity_ColorSpaceGrey;
-					uniform 	lowp vec4 unity_ColorSpaceDouble;
-					uniform 	mediump vec4 unity_ColorSpaceDielectricSpec;
-					uniform 	mediump vec4 unity_ColorSpaceLuminance;
-					uniform 	mediump vec4 unity_Lightmap_HDR;
-					uniform 	mediump vec4 unity_DynamicLightmap_HDR;
-					uniform 	mediump vec4 _MainTex_ST;
-					in highp vec4 in_POSITION0;
-					in mediump vec4 in_COLOR0;
-					in highp vec2 in_TEXCOORD0;
-					out mediump vec4 vs_COLOR0;
-					out highp vec2 vs_TEXCOORD0;
-					vec4 t0;
-					void main()
-					{
-					t0 = vec4(0.0);
-					    t0 = in_POSITION0.yyyy * glstate_matrix_mvp[1];
-					    t0 = glstate_matrix_mvp[0] * in_POSITION0.xxxx + t0;
-					    t0 = glstate_matrix_mvp[2] * in_POSITION0.zzzz + t0;
-					    gl_Position = glstate_matrix_mvp[3] * in_POSITION0.wwww + t0;
-					    vs_COLOR0 = in_COLOR0;
-					    vs_TEXCOORD0.xy = in_TEXCOORD0.xy;
-					    return;
-					}
-					#endif
-					#ifdef FRAGMENT
-					#version 300 es
-					precision highp float;
-					precision highp int;
-					uniform lowp sampler2D _MainTex;
-					in mediump vec4 vs_COLOR0;
-					in highp vec2 vs_TEXCOORD0;
-					layout(location = 0) out mediump vec4 SV_Target0;
-					mediump vec4 t16_0;
-					lowp vec4 t10_1;
-					mediump vec2 t16_2;
-					void main()
-					{
-					t16_0 = vec4(0.0);
-					t10_1 = vec4(0.0);
-					t16_2 = vec2(0.0);
-					    t16_0 = vs_COLOR0 + vec4(-0.5, -0.5, -0.5, -0.5);
-					    t16_0 = ceil(t16_0);
-					#ifdef UNITY_ADRENO_ES3
-					    t16_0 = min(max(t16_0, 0.0), 1.0);
-					#else
-					    t16_0 = clamp(t16_0, 0.0, 1.0);
-					#endif
-					    t10_1 = texture(_MainTex, vs_TEXCOORD0.xy);
-					    t16_2.xy = t16_0.xy * t10_1.xy;
-					    t16_2.x = t16_2.y + t16_2.x;
-					    t16_2.x = t10_1.z * t16_0.z + t16_2.x;
-					    t16_2.x = t10_1.w * t16_0.w + t16_2.x;
-					    t16_0 = t16_0 * vec4(0.50999999, 0.50999999, 0.50999999, 0.50999999) + (-vs_COLOR0);
-					    t16_0 = t16_0 * vec4(-2.04081631, -2.04081631, -2.04081631, -2.04081631);
-					#ifdef UNITY_ADRENO_ES3
-					    t16_0 = min(max(t16_0, 0.0), 1.0);
-					#else
-					    t16_0 = clamp(t16_0, 0.0, 1.0);
-					#endif
-					    SV_Target0.w = t16_2.x * t16_0.w;
-					    SV_Target0.xyz = t16_0.xyz;
-					    return;
-					}
-					#endif"
-}
-}
-Program "fp" {
-SubProgram "gles " {
-"!!GLES"
-}
-SubProgram "gles3 " {
-"!!GLES3"
-}
-}
- }
-}
-Fallback Off
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Unlit/Transparent Packed"
+{
+	Properties
+	{
+		_MainTex ("Base (RGB), Alpha (A)", 2D) = "black" {}
+	}
+
+	SubShader
+	{
+		LOD 200
+
+		Tags
+		{
+			"Queue" = "Transparent"
+			"IgnoreProjector" = "True"
+			"RenderType" = "Transparent"
+		}
+		
+		Pass
+		{
+			Cull Off
+			Lighting Off
+			ZWrite Off
+			Offset -1, -1
+			Fog { Mode Off }
+			//ColorMask RGB
+			Blend SrcAlpha OneMinusSrcAlpha
+
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+
+			#include "UnityCG.cginc"
+
+			sampler2D _MainTex;
+			half4 _MainTex_ST;
+
+			struct appdata_t
+			{
+				float4 vertex : POSITION;
+				half4 color : COLOR;
+				float2 texcoord : TEXCOORD0;
+			};
+
+			struct v2f
+			{
+				float4 vertex : SV_POSITION;
+				half4 color : COLOR;
+				float2 texcoord : TEXCOORD0;
+			};
+
+			v2f o;
+
+			v2f vert (appdata_t v)
+			{
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.color = v.color;
+				o.texcoord = v.texcoord;
+				return o;
+			}
+
+			half4 frag (v2f IN) : SV_Target
+			{
+				half4 mask = tex2D(_MainTex, IN.texcoord);
+				half4 mixed = saturate(ceil(IN.color - 0.5));
+				half4 col = saturate((mixed * 0.51 - IN.color) / -0.49);
+
+				mask *= mixed;
+				col.a *= mask.r + mask.g + mask.b + mask.a;
+				return col;
+			}
+			ENDCG
+		}
+	}
+	Fallback Off
 }
