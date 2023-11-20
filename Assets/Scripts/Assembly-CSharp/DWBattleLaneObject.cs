@@ -521,14 +521,14 @@ public class DWBattleLaneObject : MonoBehaviour
 			}
 		}
 		GameEventFXData data = GameEventFXDataManager.Instance.GetData(ms.Action.ToString());
-		UnityEngine.Object @object = Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Actions/" + data.CreatureStatusFXPrefab);
-		if (@object != null)
+		GameObject resource = Resources.Load("VFX/Actions/" + data.CreatureStatusFXPrefab, typeof(GameObject)) as GameObject;
+		if (resource != null)
 		{
 			if (data.DetachStatusFXFromCreature)
 			{
 				transform = transform.transform.parent;
 			}
-			GameObject gameObject = transform.InstantiateAsChild(@object as GameObject);
+			GameObject gameObject = transform.InstantiateAsChild(resource);
 			gameObject.transform.localPosition = localPosition;
 			ActiveCreaturePersistentFXList.Add(ms.Action);
 			CreatureStatusFXObjects.Add(gameObject);

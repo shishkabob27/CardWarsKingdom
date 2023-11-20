@@ -39,10 +39,12 @@ public class VersionChecker : Singleton<VersionChecker>
 
 	private IEnumerator CheckVersionCo(Action callbackWhenUpToDate)
 	{
-		mChecking = true;
+        callbackWhenUpToDate();
+        mChecking = true;
 		Singleton<BusyIconPanelController>.Instance.Show();
 		int result = -1;
 		Dictionary<string, object> data = null;
+
 		using (TFWebClient client = new TFWebClient(null))
 		{
 			client.DownloadDataCompleted += delegate(object sender, DownloadDataCompletedEventArgs e)

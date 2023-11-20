@@ -219,7 +219,8 @@ public class SQServer
 	public void MultiplayerNewPlayer(string name, string icon, string deck, float deckRank, string landscapes, string helpercreature, string leader, int leaderLevel, int maxLevel, int allyboxspace, TFServer.JsonResponseHandler callback)
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary["name"] = name;
+        dictionary["player_id"] = PlayerInfoScript.Instance.GetPlayerCode();
+        dictionary["name"] = name;
 		dictionary["icon"] = icon;
 		dictionary["deck"] = deck;
 		dictionary["deck_rank"] = deckRank;
@@ -237,6 +238,7 @@ public class SQServer
 	public void MultiplayerUpdateDeck(string name, string deck, int needUpdate, string landscapes, string helpercreature, string leader, int leaderLevel, int allyboxspace, TFServer.JsonResponseHandler callback)
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
+		dictionary["player_id"] = PlayerInfoScript.Instance.GetPlayerCode();
 		dictionary["name"] = name;
 		dictionary["deck"] = deck;
 		dictionary["deck_rank"] = needUpdate;

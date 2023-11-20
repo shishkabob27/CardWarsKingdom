@@ -272,23 +272,23 @@ public class UIDrawCall : MonoBehaviour
 				text = text.Substring(0, text.Length - 2);
 			}
 		}
-		if (text.StartsWith("Hidden/"))
-		{
-			text = text.Substring(7);
-		}
-		text = text.Replace(" (SoftClip)", string.Empty);
+		//if (text.StartsWith("Hidden/"))
+		//{
+		//	text = text.Substring(7);
+		//}
+		//text = text.Replace(" (SoftClip)", string.Empty);
 		if (mClipCount != 0)
 		{
 			shader = Shader.Find("Hidden/" + text + " " + mClipCount);
-			if (shader == null)
+            if (shader == null)
 			{
 				Shader.Find(text + " " + mClipCount);
-			}
+            }
 			if (shader == null && mClipCount == 1)
 			{
 				mLegacyShader = true;
 				shader = Shader.Find(text + " (SoftClip)");
-			}
+            }
 		}
 		else
 		{
@@ -314,8 +314,8 @@ public class UIDrawCall : MonoBehaviour
 		}
 		else
 		{
-			mDynamicMat = new Material(shader);
-			mDynamicMat.hideFlags = HideFlags.DontSave | HideFlags.NotEditable;
+				mDynamicMat = new Material(shader);
+				mDynamicMat.hideFlags = HideFlags.DontSave | HideFlags.NotEditable;
 		}
 	}
 

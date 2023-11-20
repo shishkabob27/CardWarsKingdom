@@ -321,7 +321,7 @@ public class TownBuildingScript : MonoBehaviour
 	{
 		if (mPopulateMethod != null)
 		{
-			Singleton<AnalyticsManager>.Instance.LogMainMenuClick(mBuilding.ControllerScript);
+			//Singleton<AnalyticsManager>.Instance.LogMainMenuClick(mBuilding.ControllerScript);
 			if (mBuilding.Param != null)
 			{
 				object[] parameters = new object[1] { mBuilding.Param };

@@ -966,7 +966,7 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 		{
 			yield break;
 		}
-		Object eventFXPrefab = Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Actions/" + eventFX.ActionFXPrefab);
+		GameObject eventFXPrefab = Resources.Load("VFX/Actions/" + eventFX.ActionFXPrefab, typeof(GameObject)) as GameObject;
 		if (eventFXPrefab != null)
 		{
 			if (eventFX.RezInOut != "In")
@@ -1042,7 +1042,7 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 			Transform spawnPoint = GetGameEventEffectTarget(player: (cardPlayedMessage.Creature == null) ? cardPlayedMessage.WhichPlayer.Type : cardPlayedMessage.Creature.Owner.Type, spawnPointType: cardPlayedMessage.Card.FXSpawnPoint, creature: cardPlayedMessage.Creature);
 			if (spawnPoint != null)
 			{
-				Object eventFXPrefab = Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Actions/" + cardPlayedMessage.Card.DirectDamageFX);
+				GameObject eventFXPrefab = Resources.Load("VFX/Actions/" + cardPlayedMessage.Card.DirectDamageFX, typeof(GameObject)) as GameObject;
 				if (eventFXPrefab != null)
 				{
 					spawnPoint.transform.InstantiateAsChild(eventFXPrefab as GameObject);
@@ -1344,7 +1344,7 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 				Singleton<DWBattleLane>.Instance.CreatureVFXPool.TryGetValue(creatureData.AttackChargeVFX, out hitVFX2);
 				if (hitVFX2 == null)
 				{
-					hitVFX2 = (GameObject)Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Creatures/" + creatureData.AttackChargeVFX);
+					hitVFX2 = Resources.Load("VFX/Creatures/" + creatureData.AttackChargeVFX, typeof(GameObject)) as GameObject;
 				}
 				if (hitVFX2 != null)
 				{
@@ -1410,7 +1410,7 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 				Singleton<DWBattleLane>.Instance.CreatureVFXPool.TryGetValue(creatureData.ShootVFX, out shootVFX);
 				if (shootVFX == null)
 				{
-					shootVFX = (GameObject)Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Creatures/" + creatureData.ShootVFX);
+					shootVFX = Resources.Load("VFX/Creatures/" + creatureData.ShootVFX, typeof(GameObject)) as GameObject;
 				}
 				if (!(shootVFX != null))
 				{
@@ -1467,7 +1467,7 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 			Singleton<DWBattleLane>.Instance.CreatureVFXPool.TryGetValue(creatureData.HitVFX, out hitVFX3);
 			if (hitVFX3 == null)
 			{
-				hitVFX3 = (GameObject)Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Creatures/" + creatureData.HitVFX);
+				hitVFX3 = Resources.Load("VFX/Creatures/" + creatureData.HitVFX, typeof(GameObject)) as GameObject;
 			}
 			Vector3 effectPos = GetAttackPosition(target.Creature);
 			if (hit.Shield)
@@ -1497,11 +1497,11 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 					Singleton<DWBattleLane>.Instance.CreatureVFXPool.TryGetValue(creatureData.CritHitVFX, out hitVFX3);
 					if (hitVFX3 == null)
 					{
-						hitVFX3 = (GameObject)Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Creatures/" + creatureData.CritHitVFX);
+						hitVFX3 = Resources.Load("VFX/Creatures/" + creatureData.CritHitVFX, typeof(GameObject)) as GameObject;
 					}
 					if ((bool)hitVFX3)
 					{
-						GameObject fxObj = SLOTGame.InstantiateFX(hitVFX3, effectPos, Quaternion.identity) as GameObject;
+						GameObject fxObj = Instantiate(hitVFX3, effectPos, Quaternion.identity) as GameObject;
 					}
 				}
 			}

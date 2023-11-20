@@ -21,7 +21,7 @@ public class TownEnvironmentHolder : Singleton<TownEnvironmentHolder>
 		{
 			Loaded = true;
 			string townPrefab = TownScheduleDataManager.Instance.GetCurrentScheduledTownData().TownPrefab;
-			base.transform.InstantiateAsChild((GameObject)Singleton<SLOTResourceManager>.Instance.LoadResource(townPrefab));
+			base.transform.InstantiateAsChild(Resources.Load(townPrefab, typeof(GameObject)) as GameObject);
 		}
 	}
 }

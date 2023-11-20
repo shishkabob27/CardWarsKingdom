@@ -15,7 +15,7 @@ public static class UnityExtensions
 
 	public static GameObject InstantiateAsChild(this Transform parent, GameObject original)
 	{
-		GameObject gameObject = SLOTGame.InstantiateFX(original, parent.position, parent.rotation) as GameObject;
+		GameObject gameObject = UnityEngine.Object.Instantiate(original, parent.position, parent.rotation) as GameObject;
 		gameObject.transform.parent = parent;
 		gameObject.transform.localScale = original.transform.localScale;
 		gameObject.transform.localPosition = original.transform.localPosition;
@@ -33,7 +33,7 @@ public static class UnityExtensions
 
 	public static GameObject InstantiateAsChild(this GameObject parent, GameObject original)
 	{
-		GameObject gameObject = SLOTGame.InstantiateFX(original, parent.transform.position, parent.transform.rotation) as GameObject;
+		GameObject gameObject = UnityEngine.Object.Instantiate(original, parent.transform.position, parent.transform.rotation) as GameObject;
 		gameObject.transform.parent = parent.transform;
 		gameObject.transform.localScale = original.transform.localScale;
 		gameObject.transform.localPosition = original.transform.localPosition;

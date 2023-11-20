@@ -458,7 +458,7 @@ public class DWGame : Singleton<DWGame>
 		Singleton<DWBattleLane>.Instance.CreatureVFXPool.TryGetValue(creatureState.Data.Form.PersistentVFX, out objData2);
 		if (objData2 == null)
 		{
-			objData2 = (GameObject)Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Creatures/" + creatureState.Data.Form.PersistentVFX);
+			objData2 = Resources.Load("VFX/Creatures/" + creatureState.Data.Form.PersistentVFX, typeof(GameObject)) as GameObject;
 		}
 		if (objData2 != null)
 		{
@@ -472,7 +472,7 @@ public class DWGame : Singleton<DWGame>
 		Singleton<DWBattleLane>.Instance.CreatureVFXPool.TryGetValue(creatureState.Data.Form.RezInVFX, out objData2);
 		if (objData2 == null)
 		{
-			objData2 = (GameObject)Singleton<SLOTResourceManager>.Instance.LoadResource("VFX/Creatures/" + creatureState.Data.Form.RezInVFX);
+			objData2 = Resources.Load("VFX/Creatures/" + creatureState.Data.Form.RezInVFX, typeof(GameObject)) as GameObject;
 		}
 		if (objData2 != null)
 		{
