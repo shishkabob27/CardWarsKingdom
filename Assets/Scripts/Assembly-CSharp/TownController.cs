@@ -416,15 +416,15 @@ public class TownController : Singleton<TownController>
 		}
 		else if (mIntroState == IntroState.ShowSale)
 		{
-			SpecialSaleData saleToDisplay = Singleton<PlayerInfoScript>.Instance.GetSaleToDisplay();
-			if (saleToDisplay != null)
-			{
-				Singleton<SalePopupController>.Instance.Show(saleToDisplay, SalePopupController.ShowLocation.TownIntro);
-			}
-			else
-			{
+			//SpecialSaleData saleToDisplay = Singleton<PlayerInfoScript>.Instance.GetSaleToDisplay();
+			//if (saleToDisplay != null)
+			//{
+			//	Singleton<SalePopupController>.Instance.Show(saleToDisplay, SalePopupController.ShowLocation.TownIntro);
+			//}
+			//else
+			//{
 				AdvanceIntroState();
-			}
+			//}
 		}
 		else if (mIntroState == IntroState.ShowSaleResults && !Singleton<SalePopupController>.Instance.CheckGrantedSale())
 		{

@@ -295,19 +295,13 @@ public class PurchaseManager : Singleton<PurchaseManager>
 
 	private void DetectAmazonDevice()
 	{
-		string text = SystemInfo.deviceModel.ToLower();
-		AmazonDevice = text.IndexOf("amazon") >= 0;
-		AmazonDevice |= KFFCSUtils.GetManifestKeyBool("force_amazon_store");
+		AmazonDevice = false;
 	}
 
 	public ProductDataRequestResult GetProductData(string[] a_StringIDs, ReceivedProductDataCallback a_Callback)
 	{
 		if (a_StringIDs.Length > 0)
 		{
-		}
-		if (IsAmazon)
-		{
-			StartCoroutine(StartGetProductDataTimer());
 		}
 		return m_Listener.GetProductData(a_StringIDs, a_Callback);
 	}

@@ -288,7 +288,8 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	private void OnVersionCheckComplete()
 	{
 		Singleton<BusyIconPanelController>.Instance.Show();
-		Singleton<PurchaseManager>.Instance.GetProductData(ProductDataCallback);
+		//Singleton<PurchaseManager>.Instance.GetProductData(ProductDataCallback);
+		PopulateDummyData();
 	}
 
 	public void SetTitleLabel(string inLabelText)
@@ -477,6 +478,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	private void ProductDataCallback(bool a_Success, List<PurchaseManager.ProductData> a_ProductList, string error)
 	{
 		TFUtils.DebugLog(string.Format("StoreScreenController::ProductDataCallback, success={0} error={1}", a_Success, error));
+		/*
 		if (a_Success && a_ProductList != null && a_ProductList.Count > 0)
 		{
 			TFUtils.DebugLog(string.Format("StoreScreenController::ProductDataCallback, num products={0}", a_ProductList.Count));
@@ -524,7 +526,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 			}
 		}
 		else
-		{
+		{*/
 			Singleton<BusyIconPanelController>.Instance.Hide();
 			if (Singleton<TutorialController>.Instance.IsBlockActive("Bank"))
 			{
@@ -534,7 +536,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 			{
 				Singleton<SimplePopupController>.Instance.ShowPrompt(string.Empty, KFFLocalization.Get("!!SERVER_ERROR_MESSAGE"), RetryConnection, CancelConnection, KFFLocalization.Get("!!RETRY"), KFFLocalization.Get("!!CANCEL"));
 			}
-		}
+		//}
 	}
 
 	private void RetryConnection()

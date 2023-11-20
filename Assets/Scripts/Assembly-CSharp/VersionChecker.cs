@@ -39,8 +39,19 @@ public class VersionChecker : Singleton<VersionChecker>
 
 	private IEnumerator CheckVersionCo(Action callbackWhenUpToDate)
 	{
-        callbackWhenUpToDate();
-        mChecking = true;
+		//Skip version checking
+		mChecking = true;
+		Singleton<BusyIconPanelController>.Instance.Show();
+		mCheckTimer = TimeBetweenChecks;
+		mChecking = false;
+		Singleton<BusyIconPanelController>.Instance.Hide();
+		if (callbackWhenUpToDate != null)
+		{
+			callbackWhenUpToDate();
+		}
+		yield break;
+
+		mChecking = true;
 		Singleton<BusyIconPanelController>.Instance.Show();
 		int result = -1;
 		Dictionary<string, object> data = null;
