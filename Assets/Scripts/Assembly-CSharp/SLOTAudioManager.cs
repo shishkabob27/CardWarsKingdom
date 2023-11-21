@@ -575,16 +575,16 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 			string sType = text + "_" + faction.CDubsName();
 			if (MasterAudio.SoundExists(sType))
 			{
-				MasterAudio.PlaySound(sType);
+				PlaySound(sType);
 			}
 			else
 			{
-				MasterAudio.PlaySound(text);
-			}
+                PlaySound(text);
+            }
 		}
 		else
 		{
-			MasterAudio.PlaySound(text);
+			PlaySound(text);
 		}
 		mCurrentVoEventCooldowns[(int)voEvent] = mVoEventCooldowns[(int)voEvent];
 	}
