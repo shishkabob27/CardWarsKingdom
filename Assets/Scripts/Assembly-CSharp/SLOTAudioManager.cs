@@ -61,7 +61,7 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 
 	public AudioSource gui_audiosource;
 
-	public bool useMasterAudio;
+	private bool useMasterAudio = false;
 
 	private AudioListener listener;
 
