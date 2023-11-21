@@ -42,8 +42,6 @@ public class TBPvPManager : Singleton<TBPvPManager>
 
 	public PhotonInterface GameClientInstance;
 
-	public string AppId;
-
 	public GameState CurrentState;
 
 	public string PvPCompatibilityVersion = "110";
@@ -122,13 +120,10 @@ public class TBPvPManager : Singleton<TBPvPManager>
 
 	public void Awake()
 	{
-		if (string.IsNullOrEmpty(AppId))
-		{
-		}
 		Application.runInBackground = true;
 		GameClientInstance = new PhotonInterface();
 		GameClientInstance.photonManager = this;
-		GameClientInstance.AppId = AppId;
+		GameClientInstance.AppId = SQSettings.PHOTON_PUN_APP_ID;
 	}
 
 	public void Start()
@@ -186,7 +181,7 @@ public class TBPvPManager : Singleton<TBPvPManager>
 		}
 		GameClientInstance.init();
 		GameClientInstance.AppVersion = GetCompatibilityVersion(ranked);
-		GameClientInstance.PlayerName = playerName;
+		GameClientInstance.NickName = playerName;
 		PhotonInterface gameClientInstance = GameClientInstance;
 		gameClientInstance.OnStateChangeAction = (Action<ClientState>)Delegate.Combine(gameClientInstance.OnStateChangeAction, new Action<ClientState>(OnStateChanged));
 		GameClientInstance.ConnectToRegionMaster("US");
