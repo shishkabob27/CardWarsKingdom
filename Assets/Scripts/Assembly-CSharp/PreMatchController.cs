@@ -426,8 +426,6 @@ public class PreMatchController : Singleton<PreMatchController>
 				}
 			}
 		}
-		Singleton<AnalyticsManager>.Instance.LogQuestStart(currentActiveQuest.ID);
-		Singleton<PlayerInfoScript>.Instance.LogTeamUsedAnalytics(false);
 		RewardManager.UpdatePvPInfo();
 		if (Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper != null)
 		{

@@ -20,18 +20,15 @@ public class InviteSelectController : Singleton<InviteSelectController>
 	public void OnClickSendEmail()
 	{
 		EMailer.PrefillAndShow(null, RedemptionCodeMessager.GenerateMessageSubject(), RedemptionCodeMessager.GenerateLongMessageBody());
-		Singleton<AnalyticsManager>.Instance.LogInviteCodeSent((int)DateTime.UtcNow.UnixTimestamp());
 	}
 
 	public void OnClickSendFacebook()
 	{
 		FacebookPoster.PrefillAndShow(RedemptionCodeMessager.GenerateMessageSubject(), RedemptionCodeMessager.GenerateLongMessageSubject(), RedemptionCodeMessager.GenerateTweetMessage());
-		Singleton<AnalyticsManager>.Instance.LogInviteCodeSent((int)DateTime.UtcNow.UnixTimestamp());
 	}
 
 	public void OnClickSendTweet()
 	{
 		Twitterer.Tweet(RedemptionCodeMessager.GenerateTweetMessage());
-		Singleton<AnalyticsManager>.Instance.LogInviteCodeSent((int)DateTime.UtcNow.UnixTimestamp());
 	}
 }

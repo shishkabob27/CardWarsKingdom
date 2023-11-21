@@ -1128,7 +1128,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 			{
 				int num2 = (int)dictionary["LastAccessUTC"];
 				int diff = unixTime - num2;
-				Singleton<AnalyticsManager>.Instance.LogLastAccessInterval(diff);
 			}
 			SaveData.LastAccessUTC = unixTime;
 			if (!SaveData.UIDFixApplied)
@@ -2175,14 +2174,8 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 			SaveData.PvpSpecialDomainNumber = 1;
 			SaveData.ChatSpecialDomainNumber = 1;
 		}
-		if (Singleton<AnalyticsManager>.Instance.JailBroken)
-		{
-			SaveData.ReadWriteParam = 1780;
-		}
-		else
-		{
-			SaveData.ReadWriteParam = 1981;
-		}
+
+		SaveData.ReadWriteParam = 1981;
 	}
 
 	public void SaveLocal()
@@ -2922,7 +2915,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 				}
 			}
 			pvpMatchResultDetails.WinRewards = GrantPvpWinRewards();
-			LogTeamWonAnalytics(true);
 		}
 		else
 		{
@@ -2991,7 +2983,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 					grantedRewards.Add(item);
 				}
 			}
-			Singleton<AnalyticsManager>.Instance.logPvpRankAttained(i);
 		}
 		if ((int)SaveData.PvpRankRewardsGranted == -1 || (int)SaveData.PvpRankRewardsGranted > SaveData.MultiplayerLevel)
 		{
@@ -3036,38 +3027,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 		}
 		catch
 		{
-		}
-	}
-
-	public void LogTeamUsedAnalytics(bool pvp)
-	{
-		Singleton<AnalyticsManager>.Instance.logHeroUsed(pvp);
-		foreach (InventorySlotItem item in GetCurrentLoadout().CreatureSet)
-		{
-			if (item != null)
-			{
-				Singleton<AnalyticsManager>.Instance.logCreatureUsed(item.Creature.Form.ID, pvp);
-			}
-			else
-			{
-				Singleton<AnalyticsManager>.Instance.logCreatureUsed("Empty Slot", pvp);
-			}
-		}
-	}
-
-	public void LogTeamWonAnalytics(bool pvp)
-	{
-		Singleton<AnalyticsManager>.Instance.logHeroWon(pvp);
-		foreach (InventorySlotItem item in GetCurrentLoadout().CreatureSet)
-		{
-			if (item != null)
-			{
-				Singleton<AnalyticsManager>.Instance.logCreatureWon(item.Creature.Form.ID, pvp);
-			}
-			else
-			{
-				Singleton<AnalyticsManager>.Instance.logCreatureWon("Empty Slot", pvp);
-			}
 		}
 	}
 

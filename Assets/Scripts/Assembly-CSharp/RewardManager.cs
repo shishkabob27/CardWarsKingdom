@@ -215,7 +215,6 @@ public class RewardManager
 					{
 						Singleton<KFFSocialManager>.Instance.ReportAchievement(KFFSocialManager.AchievementIDs.DW_QUEST_50);
 					}
-					Singleton<AnalyticsManager>.Instance.logHighestQuest(intQuestId);
 					if (saveData.TopCompletedQuestId < intQuestId)
 					{
 						saveData.TopCompletedQuestId = intQuestId;
@@ -231,7 +230,6 @@ public class RewardManager
 					Singleton<PlayerInfoScript>.Instance.SetDungeonStars(mCurrentQuest.ID, questRewards.Stars);
 				}
 			}
-			Singleton<PlayerInfoScript>.Instance.LogTeamWonAnalytics(false);
 		}
 		foreach (CreatureDrop mSelectedDrop in mSelectedDrops)
 		{

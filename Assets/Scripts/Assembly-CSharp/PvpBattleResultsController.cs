@@ -151,7 +151,6 @@ public class PvpBattleResultsController : Singleton<PvpBattleResultsController>
 		mResults = resultDetails;
 		if (mResults.Won)
 		{
-			Singleton<AnalyticsManager>.Instance.LogMultiplayerWon();
 			RewardManager.TransferPvPRewardsToPlayerInfo();
 			if (Singleton<PlayerInfoScript>.Instance.PvPData.RankedMode)
 			{

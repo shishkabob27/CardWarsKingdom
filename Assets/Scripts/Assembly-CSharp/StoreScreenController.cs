@@ -747,7 +747,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 			}
 			saveData.PvPCurrency += data.SocialCurrency;
 			saveData.SoftCurrency += data.SoftCurrency;
-			Singleton<AnalyticsManager>.Instance.logIAP(productId);
 			mProductIdBeingPurchased = null;
 			Singleton<BusyIconPanelController>.Instance.Hide();
 		}
@@ -766,7 +765,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 				item.Grant(sale.ID);
 			}
 		}
-		Singleton<AnalyticsManager>.Instance.logIAP(sale.ID);
 		Singleton<PlayerInfoScript>.Instance.Save();
 		if (Singleton<StoreScreenController>.Instance != null)
 		{
@@ -1129,7 +1127,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 			{
 				leaderItem.SelectedSkin = mHighlightedSkin;
 				PopulateSkin(mHighlightedSkin);
-				Singleton<AnalyticsManager>.Instance.logHeroSkinEquip(leaderItem.SelectedSkin.ID);
 			}
 			else
 			{
@@ -1169,10 +1166,8 @@ public class StoreScreenController : Singleton<StoreScreenController>
 		leaderItem.OwnedSkins.Add(mHighlightedSkin);
 		leaderItem.SelectedSkin = mHighlightedSkin;
 		Singleton<PlayerInfoScript>.Instance.Save();
-		Singleton<AnalyticsManager>.Instance.logHeroSkinBought(mHighlightedSkin.ID);
 		PopulateSkinList();
 		PopulateSkin(mHighlightedSkin);
-		Singleton<AnalyticsManager>.Instance.logHeroSkinEquip(mHighlightedSkin.ID);
 	}
 
 	public bool IsHeroHighlighted(LeaderData leader)

@@ -682,7 +682,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 		int levelRange2nd = ((!ranked) ? MiscParams.MultiplayerUnrankedSearchRange2nd : MiscParams.MultiplayerRankedSearchRange2nd);
 		int levelRange3rd = ((!ranked) ? MiscParams.MultiplayerUnrankedSearchRange3rd : MiscParams.MultiplayerRankedSearchRange3rd);
 		Singleton<OnlinePvPManager>.Instance.SearchGame(Singleton<PlayerInfoScript>.Instance.SaveData.MultiplayerPlayerName, GetMyLevel(), levelRange, levelRange2nd, levelRange3rd, ranked, OnlineEventCallback);
-		Singleton<AnalyticsManager>.Instance.LogPvPSearch(Singleton<TBPvPManager>.Instance.CountryCode);
 	}
 
 	private int GetMyLevel()
@@ -707,7 +706,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 			mCancelingMatchmaking = true;
 		}
 		Singleton<OnlinePvPManager>.Instance.LeaveGame();
-		Singleton<AnalyticsManager>.Instance.LogPvPEnd("timeout");
 	}
 
 	private IEnumerator StartDisconnectDelay()
@@ -749,35 +747,10 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 	{
 		if (mJoinStatus == JoinStatusEnum.NotJoined && !mCancelingMatchmaking && !mRestartingMatchmaking)
 		{
-			KPIMatchFound();
-			if (amIPrimary)
-			{
-				Singleton<AnalyticsManager>.Instance.LogPvPFound("created");
-			}
-			else
-			{
-				Singleton<AnalyticsManager>.Instance.LogPvPFound("joined");
-			}
-			mRestartMatchmakingTimeout = 30f;
+            if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode) Singleton<PVPPrepScreenController>.Instance.matchFound = true;
+            mRestartMatchmakingTimeout = 30f;
 			mJoinStatus = (amIPrimary ? JoinStatusEnum.JoinedAsHost : JoinStatusEnum.JoinedAsClient);
 			Singleton<PVPPrepScreenController>.Instance.OnConnectionComplete(amIPrimary);
-		}
-	}
-
-	private void KPIMatchFound()
-	{
-		if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
-		{
-			Singleton<PVPPrepScreenController>.Instance.matchFound = true;
-			string upsightEvent = "Multiplayer.PvPSearch.Found";
-			string value = Singleton<PlayerInfoScript>.Instance.RankData.Level.ToString();
-			string playerRank = Singleton<PlayerInfoScript>.Instance.PvPData.PlayerRank;
-			string text = Singleton<PlayerInfoScript>.Instance.PvPData.OpponentLevel.ToString();
-			string value2 = (30f - mRestartMatchmakingTimeout).ToString();
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("playerRank", value);
-			dictionary.Add("progression", playerRank);
-			dictionary.Add("searchDuration", value2);
 		}
 	}
 
@@ -848,7 +821,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 	{
 		mWaitingForMatchRequestResponseFrom = null;
 		LeaveGame();
-		Singleton<AnalyticsManager>.Instance.LogPvPEnd("cancel");
 	}
 
 	public void ReceiveMatchRequest(Dictionary<string, object> jsonDict)
@@ -1191,31 +1163,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 	public void OnStartBattle()
 	{
 		bool amIPrimary = Singleton<PlayerInfoScript>.Instance.PvPData.AmIPrimary;
-		if (mSentFriendStartData)
-		{
-			if (amIPrimary)
-			{
-				Singleton<AnalyticsManager>.Instance.LogPvPStart("fhost");
-			}
-			else
-			{
-				Singleton<AnalyticsManager>.Instance.LogPvPStart("fclient");
-			}
-		}
-		else
-		{
-			if (amIPrimary)
-			{
-				Singleton<AnalyticsManager>.Instance.LogPvPStart("host");
-			}
-			else
-			{
-				Singleton<AnalyticsManager>.Instance.LogPvPStart("client");
-			}
-			int difference = Mathf.Abs(Singleton<PlayerInfoScript>.Instance.SaveData.MultiplayerLevel - Singleton<PlayerInfoScript>.Instance.PvPData.OpponentLevel);
-			Singleton<AnalyticsManager>.Instance.LogPvPLeagueDifference(difference);
-		}
-		Singleton<PlayerInfoScript>.Instance.LogTeamUsedAnalytics(true);
 		mSentFriendStartData = false;
 		mInBattle = true;
 	}
@@ -1357,7 +1304,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 				LeaveGame();
 			}
 		}
-		Singleton<AnalyticsManager>.Instance.LogPvPEnd(reason);
 		mInBattle = false;
 	}
 
@@ -1378,7 +1324,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 		Singleton<SLOTMusic>.Instance.PlayVictoryMusic();
 		Singleton<DWGame>.Instance.SetGameState(GameState.P2Defeated);
 		LeaveGame();
-		Singleton<AnalyticsManager>.Instance.LogPvPEnd("left");
 	}
 
 	private void ReceiveDisconnect()
@@ -1398,7 +1343,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 		Singleton<SLOTMusic>.Instance.PlayLoserMusic();
 		Singleton<DWGame>.Instance.SetGameState(GameState.P1Defeated);
 		LeaveGame();
-		Singleton<AnalyticsManager>.Instance.LogPvPEnd("disconnect");
 	}
 
 	private void EndGameAtDisconnect()

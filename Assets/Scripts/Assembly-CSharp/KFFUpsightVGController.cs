@@ -12,31 +12,6 @@ public class KFFUpsightVGController : Singleton<KFFUpsightVGController>
 		PlacementFailed
 	}
 
-	public enum BattleTrackProgress
-	{
-		QuestStart,
-		QuestResult
-	}
-
-	public enum BattleTrackEvent
-	{
-		BattleStart,
-		BattleRetry,
-		BattleWon,
-		BattleLost,
-		BattleSuspended,
-		BattleQuit,
-		BattleContinue
-	}
-
-	public enum PVPWinCondition
-	{
-		Victory = 0,
-		Concede = 0,
-		Disconnect = 0,
-		TimeOut = 0
-	}
-
 	private PlacementStates _PlacementState;
 
 	private PlacementStates PlacementState

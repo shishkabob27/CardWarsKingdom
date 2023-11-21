@@ -426,7 +426,6 @@ public class PurchaseManager : Singleton<PurchaseManager>
 			empty2 = googlePurchase.productId;
 			empty3 = googlePurchase.signature;
 		}
-		bool jailBroken = Singleton<AnalyticsManager>.Instance.JailBroken;
 		float Price;
 		string CurrencyType;
 		GetPriceInfo(text, out Price, out CurrencyType);

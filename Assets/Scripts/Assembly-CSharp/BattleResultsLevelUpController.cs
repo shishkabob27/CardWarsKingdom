@@ -76,7 +76,6 @@ public class BattleResultsLevelUpController : Singleton<BattleResultsLevelUpCont
 				Singleton<KFFSocialManager>.Instance.ReportAchievement(KFFSocialManager.AchievementIDs.DW_LVL_50);
 				break;
 			}
-			Singleton<AnalyticsManager>.Instance.logHighestRank(gainedLevel);
 			if (gainedLevel == socialUnlockLevel)
 			{
 				Singleton<PlayerInfoScript>.Instance.SetDefaultHelperCreature();

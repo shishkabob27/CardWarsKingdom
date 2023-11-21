@@ -573,7 +573,6 @@ public class BattleResultsController : Singleton<BattleResultsController>
 		}
 		mLootOpenIndex = 0;
 		mLoot.Clear();
-		Singleton<AnalyticsManager>.Instance.LogQuestWon(Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.ID);
 		InventoryTile.ClearDelegates(true);
 		foreach (InventorySlotItem item in mQuestRewards.CreaturesLooted)
 		{
@@ -763,7 +762,6 @@ public class BattleResultsController : Singleton<BattleResultsController>
 		}
 		DetachedSingleton<StaminaManager>.Instance.ConsumeStamina(StaminaType.Quests, num);
 		Singleton<SLOTMusic>.Instance.StopMusic(0.5f);
-		Singleton<PlayerInfoScript>.Instance.LogTeamUsedAnalytics(false);
 		Singleton<ScreenFadeController>.Instance.ShowLoadScreen(delegate
 		{
 			DetachedSingleton<SceneFlowManager>.Instance.LoadBattleScene();

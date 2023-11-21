@@ -491,14 +491,7 @@ public class SQServer
 		dictionary["hd"] = hd.ToString();
 		dictionary["misc"] = misc.ToString();
 		dictionary["evt"] = evt;
-		if (Singleton<AnalyticsManager>.Instance.JailBroken)
-		{
-			dictionary["cc"] = "ZE";
-		}
-		else
-		{
-			dictionary["cc"] = cc;
-		}
+		dictionary["cc"] = cc;
 		dictionary["ad"] = 1;
 		dictionary["signature"] = SignDictionary(dictionary, nonce, "xc0u18^g0!ac3k%0+2vgglmnr1)x^!o(n6@$m3t^(7l!(#kv!-");
 		tfServer.PostToJSON(SQSettings.SERVER_URL + "persist/user_action2/", dictionary, callback);

@@ -350,7 +350,6 @@ public class SocialController : Singleton<SocialController>
 		}
 		Singleton<PlayerInfoScript>.Instance.SaveData.InviteCodeRedeemed = true;
 		Singleton<PlayerInfoScript>.Instance.Save();
-		Singleton<AnalyticsManager>.Instance.LogInviteCodeUsed((int)DateTime.UtcNow.UnixTimestamp());
 		RefreshCurrentTab();
 		Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, KFFLocalization.Get("!!CODE_REDEEMED"));
 	}
@@ -363,18 +362,15 @@ public class SocialController : Singleton<SocialController>
 	public void OnClickSendEmail()
 	{
 		EMailer.PrefillAndShow(null, RedemptionCodeMessager.GenerateMessageSubject(), RedemptionCodeMessager.GenerateLongMessageBody());
-		Singleton<AnalyticsManager>.Instance.LogInviteCodeSent((int)DateTime.UtcNow.UnixTimestamp());
 	}
 
 	public void OnClickSendFacebook()
 	{
 		FacebookPoster.PrefillAndShow(RedemptionCodeMessager.GenerateMessageSubject(), RedemptionCodeMessager.GenerateLongMessageSubject(), RedemptionCodeMessager.GenerateTweetMessage());
-		Singleton<AnalyticsManager>.Instance.LogInviteCodeSent((int)DateTime.UtcNow.UnixTimestamp());
 	}
 
 	public void OnClickSendTweet()
 	{
 		Twitterer.Tweet(RedemptionCodeMessager.GenerateTweetMessage());
-		Singleton<AnalyticsManager>.Instance.LogInviteCodeSent((int)DateTime.UtcNow.UnixTimestamp());
 	}
 }

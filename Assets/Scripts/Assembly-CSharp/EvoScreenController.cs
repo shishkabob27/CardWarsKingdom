@@ -878,7 +878,6 @@ public class EvoScreenController : Singleton<EvoScreenController>
 		}
 		saveData.RemoveEvoMaterials(list);
 		creature.Evolve();
-		Singleton<AnalyticsManager>.Instance.logCreatureEvo(creature.Form.ID);
 		StartCoroutine(AwakenSequence());
 		Singleton<PlayerInfoScript>.Instance.Save();
 		Singleton<PlayerInfoScript>.Instance.UpdateBadgeCount(BadgeEnum.Evo);

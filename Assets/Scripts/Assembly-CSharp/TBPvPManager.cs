@@ -199,7 +199,7 @@ public class TBPvPManager : Singleton<TBPvPManager>
 		string text3;
 		if (pvPCompatibilityVersion >= 0)
 		{
-			string text = ((!Singleton<AnalyticsManager>.Instance.JailBroken && Singleton<PlayerInfoScript>.Instance.SaveData.PvpSpecialDomainNumber == 0) ? "y" : "x");
+			string text = ((Singleton<PlayerInfoScript>.Instance.SaveData.PvpSpecialDomainNumber == 0) ? "y" : "x");
 			string text2 = Convert.ToString(pvPCompatibilityVersion) + "D" + text;
 			text3 = text2;
 		}

@@ -182,7 +182,6 @@ public class PauseController : Singleton<PauseController>
 		UICamera.AlwaysAllowedColliders.RemoveAll((GameObject m) => m == ResumeButton || m == QuitButton || m == PauseBackCollider);
 		if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
 		{
-			Singleton<AnalyticsManager>.Instance.LogMultiplayerQuit();
 			Singleton<MultiplayerMessageHandler>.Instance.SendLeaveGame("leave");
 			PvpMatchResultDetails resultDetails = Singleton<PlayerInfoScript>.Instance.RegisterPvpMatchResult(false);
 			if (Singleton<PlayerInfoScript>.Instance.PvPData.RankedMode)
@@ -217,7 +216,6 @@ public class PauseController : Singleton<PauseController>
 		else
 		{
 			Singleton<SLOTMusic>.Instance.StopMusic(0.5f);
-			Singleton<AnalyticsManager>.Instance.LogQuestQuit(Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.ID);
 			Singleton<ScreenFadeController>.Instance.ShowLoadScreen(delegate
 			{
 				StartCoroutine(ChangeScene());

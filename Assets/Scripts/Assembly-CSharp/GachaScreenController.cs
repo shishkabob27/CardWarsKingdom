@@ -663,13 +663,11 @@ public class GachaScreenController : Singleton<GachaScreenController>
 		{
 			priorBalance = saveData.SoftCurrency;
 			saveData.SoftCurrency -= slot.Cost * count;
-			Singleton<AnalyticsManager>.Instance.logNormalGatcha();
 		}
 		else if (slot.CurrencyType == DropTypeEnum.SocialCurrency)
 		{
 			priorBalance = saveData.PvPCurrency;
 			saveData.PvPCurrency -= slot.Cost * count;
-			Singleton<AnalyticsManager>.Instance.logNormalGatcha();
 		}
 		else if (slot.CurrencyType == DropTypeEnum.HardCurrency)
 		{
@@ -693,7 +691,6 @@ public class GachaScreenController : Singleton<GachaScreenController>
 				EnableSparkleFX(false);
 				yield break;
 			}
-			Singleton<AnalyticsManager>.Instance.logPremiumGatcha();
 		}
 		List<InventorySlotItem> results = new List<InventorySlotItem>();
 		for (int i = 0; i < count; i++)

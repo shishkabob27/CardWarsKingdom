@@ -564,13 +564,10 @@ public class PlayerSaveData
 		ModifyFreeHardCurrency(free);
 		if (paid > 0)
 		{
-			Singleton<AnalyticsManager>.Instance.logAccountDepositePaid(paid, _PaidHardCurrency, eventName, Singleton<TBPvPManager>.Instance.CountryCode, price);
-			int num = 0;
 			LogUserTransactionServerHistory(tier: eventName.Contains("package1") ? 1 : (eventName.Contains("package2") ? 2 : (eventName.Contains("package3") ? 3 : (eventName.Contains("package4") ? 4 : (eventName.Contains("package5") ? 5 : (eventName.Contains("package6") ? 6 : ((!eventName.Contains("Sale")) ? 8 : 7)))))), session: theSession, country: Singleton<TBPvPManager>.Instance.CountryCode, transaction: paid);
 		}
 		if (free > 0)
 		{
-			Singleton<AnalyticsManager>.Instance.logAccountDepositeFree(free, _FreeHardCurrency, eventName);
 			LogUserTransactionServerHistory(theSession, Singleton<TBPvPManager>.Instance.CountryCode, free, 9);
 		}
 	}
@@ -595,12 +592,10 @@ public class PlayerSaveData
 		}
 		if (num > 0)
 		{
-			Singleton<AnalyticsManager>.Instance.logAccountConsumePaid(num, _PaidHardCurrency, eventName);
 			LogUserTransactionServerHistory(theSession, Singleton<TBPvPManager>.Instance.CountryCode, -num, 8);
 		}
 		if (num2 > 0)
 		{
-			Singleton<AnalyticsManager>.Instance.logAccountConsumeFree(num2, _FreeHardCurrency, eventName);
 			LogUserTransactionServerHistory(theSession, Singleton<TBPvPManager>.Instance.CountryCode, -num2, 9);
 		}
 	}
@@ -692,7 +687,6 @@ public class PlayerSaveData
 		{
 			InventorySpace = (int)InventorySpace + count;
 			CheckEmptyInventorySlots();
-			Singleton<AnalyticsManager>.Instance.logIncreaseCreatureInventory();
 		}
 	}
 
@@ -1276,7 +1270,7 @@ public class PlayerSaveData
 			}
 		};
 		string country2 = country;
-		if (Singleton<AnalyticsManager>.Instance.JailBroken || (int)_PaidHardCurrency > MiscParams.PvPHackThreshold || (int)_FreeHardCurrency > MiscParams.PvPHackThreshold)
+		if ((int)_PaidHardCurrency > MiscParams.PvPHackThreshold || (int)_FreeHardCurrency > MiscParams.PvPHackThreshold)
 		{
 			country2 = "ZE";
 		}
@@ -1305,7 +1299,6 @@ public class PlayerSaveData
 		string empty = string.Empty;
 		if (paid > 0)
 		{
-			Singleton<AnalyticsManager>.Instance.logAccountDepositePaid(paid, _PaidHardCurrency, eventName, Singleton<TBPvPManager>.Instance.CountryCode, price);
 			int num = 0;
 			if (eventName.Contains("package1"))
 			{
@@ -1352,7 +1345,6 @@ public class PlayerSaveData
 		if (free > 0)
 		{
 			empty = eventName;
-			Singleton<AnalyticsManager>.Instance.logAccountDepositeFree(free, _FreeHardCurrency, eventName);
 			LogUserTransactionServerHistory(theSession, Singleton<TBPvPManager>.Instance.CountryCode, free, 9);
 		}
 		TFServer.JsonResponseHandler callback2 = delegate(Dictionary<string, object> data, HttpStatusCode status)
@@ -1481,12 +1473,10 @@ public class PlayerSaveData
 		}
 		if (num > 0)
 		{
-			Singleton<AnalyticsManager>.Instance.logAccountConsumePaid(num, _PaidHardCurrency, eventName);
 			LogUserTransactionServerHistory(theSession, Singleton<TBPvPManager>.Instance.CountryCode, -num, 8);
 		}
 		if (num2 > 0)
 		{
-			Singleton<AnalyticsManager>.Instance.logAccountConsumeFree(num2, _FreeHardCurrency, eventName);
 			LogUserTransactionServerHistory(theSession, Singleton<TBPvPManager>.Instance.CountryCode, -num2, 9);
 		}
 		theSession.Server.User_action(_PaidHardCurrency, _FreeHardCurrency, CustomizationCurrency, -num, -num2, 0, hashSTRING, -1, 0, eventName, Singleton<TBPvPManager>.Instance.CountryCode, callback2);

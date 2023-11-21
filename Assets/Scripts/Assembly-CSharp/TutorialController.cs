@@ -337,7 +337,6 @@ public class TutorialController : Singleton<TutorialController>
 			state.Passed = false;
 			AttachTutorialObjects(state);
 		}
-		Singleton<AnalyticsManager>.Instance.logTutorialStateStarted(state.ID);
 		foreach (string entryFunctionCall in state.EntryFunctionCalls)
 		{
 			SendMessage(entryFunctionCall);

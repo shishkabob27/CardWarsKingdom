@@ -219,7 +219,7 @@ public class ChatManager : Singleton<ChatManager>, IChatClientListener
 		}
 		UserName = username;
 		UserId = userid;
-		if (Singleton<PlayerInfoScript>.Instance.SaveData.ChatSpecialDomainNumber != 0 || Singleton<AnalyticsManager>.Instance.JailBroken)
+		if (Singleton<PlayerInfoScript>.Instance.SaveData.ChatSpecialDomainNumber != 0)
 		{
 			UseSpammerChannel = true;
 		}
@@ -280,7 +280,7 @@ public class ChatManager : Singleton<ChatManager>, IChatClientListener
 	{
 		if (chatClient != null)
 		{
-			if (Singleton<PlayerInfoScript>.Instance.SaveData.ChatSpecialDomainNumber != 0 || Singleton<AnalyticsManager>.Instance.JailBroken)
+			if (Singleton<PlayerInfoScript>.Instance.SaveData.ChatSpecialDomainNumber != 0)
 			{
 				UseSpammerChannel = true;
 			}

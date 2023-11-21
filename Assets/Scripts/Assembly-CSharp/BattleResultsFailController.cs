@@ -100,11 +100,9 @@ public class BattleResultsFailController : Singleton<BattleResultsFailController
 	{
 		if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
 		{
-			Singleton<AnalyticsManager>.Instance.LogMultiplayerLost();
 			MultiplayerShowTween.Play();
 			return;
 		}
-		Singleton<AnalyticsManager>.Instance.LogQuestLost(Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.ID);
 		if (!Singleton<TutorialController>.Instance.IsBlockComplete("Revive") && !Singleton<TutorialController>.Instance.IsAnyTutorialActive())
 		{
 			Singleton<TutorialController>.Instance.StartTutorialBlock("Revive");
@@ -266,7 +264,6 @@ public class BattleResultsFailController : Singleton<BattleResultsFailController
 
 	private void ReviveExecute()
 	{
-		Singleton<AnalyticsManager>.Instance.LogQuestRevive(Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.ID);
 		Singleton<PlayerInfoScript>.Instance.Save();
 		Singleton<PlayerInfoScript>.Instance.StateData.NoReviveRandomDungeonRun = false;
 		Singleton<DWGame>.Instance.RevivePlayer();

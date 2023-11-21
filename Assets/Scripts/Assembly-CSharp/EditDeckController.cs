@@ -1000,7 +1000,6 @@ public class EditDeckController : Singleton<EditDeckController>
 			CardLayoutUnlockLeaderTween.Play();
 		}
 		Singleton<PlayerInfoScript>.Instance.Save();
-		Singleton<AnalyticsManager>.Instance.logHeroBought(mSelectedLeader.ID);
 		Singleton<BuyHeroPopupController>.Instance.Show(mSelectedLeader);
 		Singleton<LeaderDetailsController>.Instance.OnPurchaseComplete();
 	}

@@ -678,7 +678,6 @@ public class XpFusionController : Singleton<XpFusionController>
 			}
 			Singleton<PlayerInfoScript>.Instance.UpdateBadgeCount(BadgeEnum.Evo);
 			inventoryBar.UpdateInventoryCounter();
-			Singleton<AnalyticsManager>.Instance.logCreatureFuse(creature.Form.ID);
 		}
 	}
 
