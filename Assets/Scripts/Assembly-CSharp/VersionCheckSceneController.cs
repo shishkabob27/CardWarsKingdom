@@ -42,7 +42,7 @@ public class VersionCheckSceneController : MonoBehaviour
 	private void CheckClientVersion()
 	{
 		KFFNetwork.deserializeJSONCallback = DeserializeJSON;
-		string url = "http://127.0.0.1:5000/static/version.txt";
+		string url = SQSettings.SERVER_URL + "static/version.txt";
 		KFFNetwork.GetInstance().SendWWWRequestWithForm(null, url, checkClientVersionCallback, null, true);
 	}
 
