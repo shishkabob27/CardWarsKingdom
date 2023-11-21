@@ -90,13 +90,6 @@ public class KFFNetwork2 : MonoBehaviour
 		WWWInfo wWWInfo = null;
 		if (activeRequestCount < MAX_CONCURRENT_WWW_REQUEST_COUNT)
 		{
-			if (KFFAndroidPlugin.HttpRequest(url, AndroidHttpRequestCallback, postData))
-			{
-				wWWInfo = new WWWInfo();
-				wWWInfo.queued = false;
-				wWWInfo.active = true;
-				activeRequestCount++;
-			}
 		}
 		else
 		{
@@ -197,16 +190,7 @@ public class KFFNetwork2 : MonoBehaviour
 					string scriptNameAndParams = wWWInfo.scriptNameAndParams;
 					if (wWWInfo.isHttps)
 					{
-						if (KFFAndroidPlugin.HttpRequest(scriptNameAndParams, AndroidHttpRequestCallback))
-						{
-							wWWInfo.queued = false;
-							wWWInfo.active = true;
-							activeRequestCount++;
-						}
-						else
-						{
-							wwwList.RemoveAt(num2);
-						}
+						wwwList.RemoveAt(num2);
 					}
 					else
 					{

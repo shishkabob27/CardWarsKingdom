@@ -319,6 +319,5 @@ public class AndroidPermissions : MonoBehaviour
 
 	public void OnClickAppSetting()
 	{
-		KFFAndroidPlugin.OpenAppSettingDialog();
 	}
 }

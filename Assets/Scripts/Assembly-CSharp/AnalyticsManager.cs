@@ -340,8 +340,8 @@ public class AnalyticsManager : Singleton<AnalyticsManager>
 			num3 = Singleton<PlayerInfoScript>.Instance.SaveData.FreeHardCurrency;
 			num4 = Singleton<PlayerInfoScript>.Instance.SaveData.SoftCurrency;
 			num5 = Singleton<PlayerInfoScript>.Instance.SaveData.PvPCurrency;
-			string manifestVersionName = KFFAndroidPlugin.GetManifestVersionName();
-			string dataValue = KFFAndroidPlugin.GetManifestVersionCode().ToString();
+			string manifestVersionName = string.Empty;
+			string dataValue = "0";
 			string[] categories2 = new string[3] { "PRIVATE", "Installed", null };
 			int num6 = Convert.ToInt32(m_JailBroken);
 			LogEventValue(categories2, "Installed", Convert.ToString(num6), KFFCSUtils.GetInstalledDate());

@@ -157,8 +157,6 @@ public class SQSettings
 	{
 		TFUtils.DebugLog("Entering SQSettings Init()");
 		bundleIdentifier = Application.identifier;
-		bundleVersion = KFFAndroidPlugin.GetManifestVersionName();
-		bundleShortVersion = KFFAndroidPlugin.GetManifestVersionCode().ToString();
 		string empty = string.Empty;
 		string streamingAssetsFile = TFUtils.GetStreamingAssetsFile("server_settings.json");
 		empty = ((!streamingAssetsFile.Contains("://")) ? File.ReadAllText(streamingAssetsFile) : getJsonPath(streamingAssetsFile));

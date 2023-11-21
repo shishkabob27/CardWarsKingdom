@@ -106,49 +106,9 @@ public class KFFCSUtils : MonoBehaviour
 		return false;
 	}
 
-	public static string GetManifestKeyString(string Key)
-	{
-		RuntimePlatform platform = Application.platform;
-		if (platform == RuntimePlatform.Android)
-		{
-			return KFFAndroidPlugin.GetManifestKeyString(Key);
-		}
-		return string.Empty;
-	}
-
-	public static int GetManifestKeyInt(string Key)
-	{
-		RuntimePlatform platform = Application.platform;
-		if (platform == RuntimePlatform.Android)
-		{
-			return KFFAndroidPlugin.GetManifestKeyInt(Key);
-		}
-		return 0;
-	}
-
-	public static float GetManifestKeyFloat(string Key)
-	{
-		RuntimePlatform platform = Application.platform;
-		if (platform == RuntimePlatform.Android)
-		{
-			return KFFAndroidPlugin.GetManifestKeyFloat(Key);
-		}
-		return 0f;
-	}
-
-	public static bool GetManifestKeyBool(string Key)
-	{
-		RuntimePlatform platform = Application.platform;
-		if (platform == RuntimePlatform.Android)
-		{
-			return KFFAndroidPlugin.GetManifestKeyBool(Key);
-		}
-		return false;
-	}
-
 	public static int GetInstalledDate()
 	{
-		long installedDate = KFFAndroidPlugin.GetInstalledDate();
+		long installedDate = 0L;
 		return (int)installedDate;
 	}
 
