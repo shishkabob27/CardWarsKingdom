@@ -892,8 +892,12 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 					Singleton<DWGame>.Instance.SetGameState(GameState.EndGameWait);
 					yield return new WaitForSeconds(0.7f);
 					Singleton<DWGame>.Instance.SetGameState(GameState.P2Defeated);
-					Singleton<KFFUpsightVGController>.Instance.KPIPVPBattleCompleted(KFFUpsightVGController.PVPWinCondition.Victory, true);
-				}
+                    if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
+                    {
+                        Singleton<DWGame>.Instance.turnNumber = 0;
+                        Singleton<DWGame>.Instance.battleDuration = 0f;
+                    }
+                }
 			}
 		}
 		else if (!Singleton<DWGame>.Instance.InDeploymentPhase() && !Singleton<DWGame>.Instance.WaitingForCreatureDeployAfterRevive && Singleton<DWGame>.Instance.GetCreatureCount(PlayerType.User) <= 0)
@@ -904,8 +908,12 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 				Singleton<DWGame>.Instance.SetGameState(GameState.EndGameWait);
 				yield return new WaitForSeconds(0.7f);
 				Singleton<DWGame>.Instance.SetGameState(GameState.P1Defeated);
-				Singleton<KFFUpsightVGController>.Instance.KPIPVPBattleCompleted(KFFUpsightVGController.PVPWinCondition.Victory, false);
-			}
+                if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
+                {
+                    Singleton<DWGame>.Instance.turnNumber = 0;
+                    Singleton<DWGame>.Instance.battleDuration = 0f;
+                }
+            }
 		}
 		else if (currentState.IsP1Turn())
 		{

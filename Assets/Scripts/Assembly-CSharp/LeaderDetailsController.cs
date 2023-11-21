@@ -199,7 +199,6 @@ public class LeaderDetailsController : Singleton<LeaderDetailsController>
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary.Add("heroesID", newlyCreatedLeader.SelectedSkin.ID);
 		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 	}
 
 	public void PrevSkin()

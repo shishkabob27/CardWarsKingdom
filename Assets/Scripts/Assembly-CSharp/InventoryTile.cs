@@ -634,7 +634,6 @@ public class InventoryTile : UIStreamingGridListItem
 		string upsightEvent = "Economy.GemExit.IncreaseInventory";
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

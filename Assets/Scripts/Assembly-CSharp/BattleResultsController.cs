@@ -288,104 +288,7 @@ public class BattleResultsController : Singleton<BattleResultsController>
 				vector.y += ReceivedRewardsGrid.cellHeight;
 			}
 		}
-		SendKPITrack();
 		UpdateRewardValues();
-	}
-
-	private void SendKPITrack()
-	{
-		if (mAmountsToGive[0] >= mCurrentLevelData.mRemainingXPToLevelUp)
-		{
-			string value = (mCurrentLevelData.mCurrentLevel + 1).ToString();
-			string upsightEvent = "Player.RankUp";
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("newRank", value);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		}
-		if (Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper != null && !Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.Fake)
-		{
-			string upsightEvent2 = "Player.Help";
-			Dictionary<string, object> dictionary2 = new Dictionary<string, object>();
-			string helperID = Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.HelperID;
-			string value2 = Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.HelperCreature.Creature.ToString();
-			int num = 0;
-			num = ((Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.IsAlly != 1) ? MiscParams.HelpPointForExplorer : MiscParams.HelpPointForAlly);
-			dictionary2.Add("helper", helperID);
-			dictionary2.Add("creatureReceived", value2);
-			dictionary2.Add("wishboneReceived", num);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent2, dictionary2);
-		}
-		string iD = Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.ID;
-		if (mAmountsToGive[1] > 0)
-		{
-			string value3 = mAmountsToGive[1].ToString();
-			string upsightEvent3 = "Economy.CoinEnter.Quest";
-			Dictionary<string, object> dictionary3 = new Dictionary<string, object>();
-			dictionary3.Add("questID", iD);
-			dictionary3.Add("amount", value3);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent3, dictionary3);
-		}
-		if (mAmountsToGive[2] > 0)
-		{
-			string value4 = mAmountsToGive[2].ToString();
-			string upsightEvent4 = "Economy.WishboneEnter.Quest";
-			Dictionary<string, object> dictionary4 = new Dictionary<string, object>();
-			dictionary4.Add("questID", iD);
-			dictionary4.Add("amount", value4);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent4, dictionary4);
-		}
-		if (mAmountsToGive[3] > 0)
-		{
-			string value5 = mAmountsToGive[3].ToString();
-			string upsightEvent5 = "Economy.GemEnter.Quest";
-			Dictionary<string, object> dictionary5 = new Dictionary<string, object>();
-			dictionary5.Add("questID", iD);
-			dictionary5.Add("amount", value5);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent5, dictionary5);
-		}
-		int num2 = 0;
-		foreach (InventorySlotItem item in mQuestRewards.XPMatsLooted)
-		{
-			num2++;
-			string iD2 = item.XPMaterial.ID;
-			string upsightEvent6 = "Ingredients.Acquired";
-			Dictionary<string, object> dictionary6 = new Dictionary<string, object>();
-			dictionary6.Add("ingredientID", iD2);
-			dictionary6.Add("type", InventorySlotType.XPMaterial.ToString());
-			dictionary6.Add("amount", "1");
-			dictionary6.Add("source", "Quest");
-			dictionary6.Add("sourceID", iD);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent6, dictionary6);
-		}
-		foreach (InventorySlotItem item2 in mQuestRewards.EvoMatsLooted)
-		{
-			num2++;
-			string iD3 = item2.EvoMaterial.ID;
-			string upsightEvent7 = "Ingredients.Acquired";
-			Dictionary<string, object> dictionary7 = new Dictionary<string, object>();
-			dictionary7.Add("ingredientID", iD3);
-			dictionary7.Add("type", InventorySlotType.EvoMaterial.ToString());
-			dictionary7.Add("amount", "1");
-			dictionary7.Add("source", "Quest");
-			dictionary7.Add("sourceID", iD);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent7, dictionary7);
-		}
-		foreach (InventorySlotItem item3 in mQuestRewards.CreaturesLooted)
-		{
-			num2++;
-			string upsightEvent8 = "Creatures.CreatureAcquired";
-			string value6 = item3.Creature.ToString();
-			Dictionary<string, object> dictionary8 = new Dictionary<string, object>();
-			dictionary8.Add("creatureID", value6);
-			dictionary8.Add("acquisition", "Quest");
-			dictionary8.Add("id", iD);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent8, dictionary8);
-		}
-		Singleton<KFFUpsightVGController>.Instance.KPIBattleTrack(KFFUpsightVGController.BattleTrackProgress.QuestResult, KFFUpsightVGController.BattleTrackEvent.BattleWon);
-		if (Singleton<PlayerInfoScript>.Instance.SaveData.IsInventorySpaceFull())
-		{
-			Singleton<KFFUpsightVGController>.Instance.KPIInventoryTrack(KFFUpsightVGController.InventoryTrackEvent.Full, Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.SetLoadout.ID, num2.ToString());
-		}
 	}
 
 	private void RefreshStamina()
@@ -845,7 +748,6 @@ public class BattleResultsController : Singleton<BattleResultsController>
 	{
 		if (Singleton<PlayerInfoScript>.Instance.SaveData.IsInventorySpaceFull() && Singleton<PlayerInfoScript>.Instance.IsFeatureUnlocked("TBuilding_Sell"))
 		{
-			Singleton<SimplePopupController>.Instance.ShowPurchasePrompt(KFFLocalization.Get("!!INVENTORY_FULL_BUY").Replace("<val2>", MiscParams.InventorySpacePerPurchase.ToString()), KFFLocalization.Get("!!INVENTORY_FULL_NOBUY"), MiscParams.InventorySpacePurchaseCost, PurchaseSlotsAndReplay, BuyInventoryDenied);
 			return;
 		}
 		QuestData currentActiveQuest = Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest;
@@ -859,7 +761,6 @@ public class BattleResultsController : Singleton<BattleResultsController>
 			Singleton<SimplePopupController>.Instance.ShowPurchasePrompt(KFFLocalization.Get("!!NO_STAMINA_BUY"), KFFLocalization.Get("!!NO_STAMINA_NOBUY"), MiscParams.StaminaRefillCost, RefillStaminaAndReplay);
 			return;
 		}
-		Singleton<KFFUpsightVGController>.Instance.KPIBattleTrack(KFFUpsightVGController.BattleTrackProgress.QuestStart, KFFUpsightVGController.BattleTrackEvent.BattleRetry);
 		DetachedSingleton<StaminaManager>.Instance.ConsumeStamina(StaminaType.Quests, num);
 		Singleton<SLOTMusic>.Instance.StopMusic(0.5f);
 		Singleton<PlayerInfoScript>.Instance.LogTeamUsedAnalytics(false);
@@ -869,20 +770,9 @@ public class BattleResultsController : Singleton<BattleResultsController>
 		});
 	}
 
-	public void BuyInventoryDenied()
-	{
-		Singleton<KFFUpsightVGController>.Instance.KPIInventoryTrack(KFFUpsightVGController.InventoryTrackEvent.FullModal, Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.SetLoadout.ID, string.Empty);
-	}
-
 	private void PurchaseSlotsAndReplay()
 	{
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
-		string value = MiscParams.InventorySpacePurchaseCost.ToString();
-		string upsightEvent = "Economy.GemExit.IncreaseInventory";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		Singleton<KFFUpsightVGController>.Instance.KPIInventoryTrack(KFFUpsightVGController.InventoryTrackEvent.FullModal, Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.SetLoadout.ID, string.Empty, KFFUpsightVGController.InventoryModalAction.Purchased);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();
@@ -915,7 +805,6 @@ public class BattleResultsController : Singleton<BattleResultsController>
 		string upsightEvent = "Economy.GemExit.ReplenishHearts";
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

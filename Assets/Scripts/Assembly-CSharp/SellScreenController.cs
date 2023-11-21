@@ -291,7 +291,6 @@ public class SellScreenController : Singleton<SellScreenController>
 				dictionary.Clear();
 				dictionary.Add("creatureID", empty2);
 				dictionary.Add("amount", empty3);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(empty, dictionary);
 			}
 			else
 			{
@@ -314,7 +313,6 @@ public class SellScreenController : Singleton<SellScreenController>
 				dictionary.Add("ingredientID", text);
 				dictionary.Add("type", value5);
 				dictionary.Add("amount", empty3);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(empty, dictionary);
 			}
 			empty = "Goose.ItemSold";
 			dictionary.Clear();
@@ -324,7 +322,6 @@ public class SellScreenController : Singleton<SellScreenController>
 			dictionary.Add("oldHCBalance", value2);
 			dictionary.Add("oldSize", value3);
 			dictionary.Add("maxSize", value4);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(empty, dictionary);
 		}
 	}
 

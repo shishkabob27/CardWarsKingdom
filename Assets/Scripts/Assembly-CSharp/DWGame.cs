@@ -163,9 +163,12 @@ public class DWGame : Singleton<DWGame>
 
 	private void OnApplicationQuit()
 	{
-		Singleton<KFFUpsightVGController>.Instance.KPIPVPBattleCompleted(KFFUpsightVGController.PVPWinCondition.Victory, false);
-		Singleton<KFFUpsightVGController>.Instance.KPIBattleTrack(KFFUpsightVGController.BattleTrackProgress.QuestResult, KFFUpsightVGController.BattleTrackEvent.BattleSuspended);
-	}
+        if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
+        {
+			Instance.turnNumber = 0;
+			Instance.battleDuration = 0f;
+        }
+    }
 
 	public void Setup()
 	{
@@ -1033,17 +1036,12 @@ public class DWGame : Singleton<DWGame>
 				break;
 			case GameState.P1EndTurn:
 				turnStarted = false;
-				if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
-				{
-					KPITurnTrack();
-				}
 				break;
 			case GameState.P1Defeated:
 			case GameState.P2Defeated:
 				if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode && turnStarted)
 				{
 					turnStarted = false;
-					KPITurnTrack();
 					turnDuration = 0f;
 					turnActions.Clear();
 				}
@@ -1358,7 +1356,6 @@ public class DWGame : Singleton<DWGame>
 		}
 		if (!inIntroBattle)
 		{
-			KPIPVPMatchStart();
 			SetGameState(GameState.Intro);
 			StartCoroutine(Singleton<DWBattleLane>.Instance.ShowBoardAnim());
 		}
@@ -1367,57 +1364,6 @@ public class DWGame : Singleton<DWGame>
 			Singleton<DWBattleLane>.Instance.BoardHologram.SetActive(false);
 		}
 	}
-
-	private void KPIPVPMatchStart()
-	{
-		if (!Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
-		{
-			return;
-		}
-		string upsightEvent = "Multiplayer.PvPMatch.Start";
-		string value = UserLoadout.Leader.ToString();
-		string matchId = Singleton<PlayerInfoScript>.Instance.PvPData.MatchId;
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("leaderID", value);
-		dictionary.Add("matchID", matchId);
-		int num = 1;
-		foreach (InventorySlotItem item in UserLoadout.CreatureSet)
-		{
-			string empty = string.Empty;
-			if (item != null && item.Creature != null)
-			{
-				string key = "creature0" + num;
-				empty = item.Creature.ToString() + ", " + item.Creature.Level + ", " + item.Creature.StarRating;
-				dictionary.Add(key, empty);
-				num++;
-			}
-		}
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-	}
-
-	private void KPITurnTrack()
-	{
-		if (!Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
-		{
-			return;
-		}
-		string upsightEvent = "Multiplayer.PvPMatch.TurnCompleted";
-		string matchId = Singleton<PlayerInfoScript>.Instance.PvPData.MatchId;
-		string value = turnNumber.ToString();
-		string value2 = turnDuration.ToString();
-		string text = string.Empty;
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("turnNumber", value);
-		dictionary.Add("matchID", matchId);
-		dictionary.Add("turnDuration", value2);
-		dictionary.Add("actionTaken", text);
-		foreach (TurnActions turnAction in turnActions)
-		{
-			text = ((!(text == string.Empty)) ? (text + ", " + turnAction) : turnAction.ToString());
-		}
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-	}
-
 	public IEnumerator RestoreCreatureObjectsPool()
 	{
 		List<CreatureItem> toRepool = new List<CreatureItem>();

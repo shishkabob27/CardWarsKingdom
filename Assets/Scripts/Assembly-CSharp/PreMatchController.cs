@@ -374,7 +374,7 @@ public class PreMatchController : Singleton<PreMatchController>
 		}
 		if (Singleton<PlayerInfoScript>.Instance.SaveData.IsInventorySpaceFull() && Singleton<PlayerInfoScript>.Instance.IsFeatureUnlocked("TBuilding_Sell") && !mDeclineSlotPurchase)
 		{
-			Singleton<SimplePopupController>.Instance.ShowPurchasePrompt(KFFLocalization.Get("!!INVENTORY_FULL_BUY").Replace("<val2>", MiscParams.InventorySpacePerPurchase.ToString()), KFFLocalization.Get("!!INVENTORY_FULL_NOBUY"), MiscParams.InventorySpacePurchaseCost, PurchaseSlotsAndTryAgain, BuyInventoryDenied);
+			Singleton<SimplePopupController>.Instance.ShowPurchasePrompt(KFFLocalization.Get("!!INVENTORY_FULL_BUY").Replace("<val2>", MiscParams.InventorySpacePerPurchase.ToString()), KFFLocalization.Get("!!INVENTORY_FULL_NOBUY"), MiscParams.InventorySpacePurchaseCost, PurchaseSlotsAndTryAgain);
 			Singleton<SLOTAudioManager>.Instance.PlayErrorSound();
 			return;
 		}
@@ -403,7 +403,6 @@ public class PreMatchController : Singleton<PreMatchController>
 			return;
 		}
 		UICamera.LockInput();
-		Singleton<KFFUpsightVGController>.Instance.KPIBattleTrack(KFFUpsightVGController.BattleTrackProgress.QuestStart, KFFUpsightVGController.BattleTrackEvent.BattleStart);
 		if (flag)
 		{
 			ConsumeTicketTween.Play();
@@ -465,20 +464,9 @@ public class PreMatchController : Singleton<PreMatchController>
 		DetachedSingleton<SceneFlowManager>.Instance.LoadBattleScene();
 	}
 
-	public void BuyInventoryDenied()
-	{
-		Singleton<KFFUpsightVGController>.Instance.KPIInventoryTrack(KFFUpsightVGController.InventoryTrackEvent.FullModal, Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.SetLoadout.ID, string.Empty);
-	}
-
 	private void PurchaseSlotsAndTryAgain()
 	{
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
-		string value = MiscParams.InventorySpacePurchaseCost.ToString();
-		string upsightEvent = "Economy.GemExit.IncreaseInventory";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		Singleton<KFFUpsightVGController>.Instance.KPIInventoryTrack(KFFUpsightVGController.InventoryTrackEvent.FullModal, Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.SetLoadout.ID, string.Empty, KFFUpsightVGController.InventoryModalAction.Purchased);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();
@@ -517,7 +505,6 @@ public class PreMatchController : Singleton<PreMatchController>
 		string upsightEvent = "Economy.GemExit.ReplenishHearts";
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

@@ -6,7 +6,6 @@ public class UpsightRequester
 		if (!string.IsNullOrEmpty(requestId))
 		{
 			Singleton<KFFUpsightVGController>.Instance.PlacementStarted(requestId);
-			Upsight.recordMilestoneEvent(requestId);
 		}
 	}
 }

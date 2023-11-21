@@ -110,14 +110,12 @@ public class MissionGridEntry : UIStreamingGridListItem
 			value3 = "Gem";
 			dictionary.Add("amount", value2);
 		}
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		upsightEvent = ((mMission.Data.Type != MissionType.Global) ? "Misssion.Daily" : "Misssion.Global");
 		dictionary.Clear();
 		dictionary.Add("missionID", iD);
 		dictionary.Add("rewardQuantity", value2);
 		dictionary.Add("rewardType", value3);
 		dictionary.Add("status", "Collected");
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 	}
 
 	private void OnCollectTweenComplete()

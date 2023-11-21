@@ -82,7 +82,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 					Dictionary<string, object> dictionary = new Dictionary<string, object>();
 					dictionary.Add("mailID", Mail.ID);
 					dictionary.Add("amount", num);
-					Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 				}
 				if (Mail.PVPQuantity > 0)
 				{
@@ -94,7 +93,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 					Dictionary<string, object> dictionary2 = new Dictionary<string, object>();
 					dictionary2.Add("mailID", Mail.ID);
 					dictionary2.Add("amount", num);
-					Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent2, dictionary2);
 				}
 				if (Mail.HardQuantity > 0)
 				{
@@ -106,7 +104,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 					Dictionary<string, object> dictionary3 = new Dictionary<string, object>();
 					dictionary3.Add("mailID", Mail.ID);
 					dictionary3.Add("amount", num);
-					Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent3, dictionary3);
 				}
 				if (Mail.XPMaterialID != null && Mail.XPMaterialQuantity > 0)
 				{
@@ -126,7 +123,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 						dictionary4.Add("amount", num2);
 						dictionary4.Add("source", "Mail");
 						dictionary4.Add("sourceID", Mail.ID);
-						Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent4, dictionary4);
 					}
 					if (Mail.CreatureID != null)
 					{
@@ -141,7 +137,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 							dictionary5.Add("creatureID", value);
 							dictionary5.Add("acquisition", "Mail");
 							dictionary5.Add("id", Mail.ID);
-							Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent5, dictionary5);
 						}
 					}
 				}
@@ -164,7 +159,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 			Dictionary<string, object> dictionary6 = new Dictionary<string, object>();
 			dictionary6.Add("mailID", Mail.ID);
 			dictionary6.Add("amount", helpPointForExplorer.ToString());
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent6, dictionary6);
 		}
 	}
 

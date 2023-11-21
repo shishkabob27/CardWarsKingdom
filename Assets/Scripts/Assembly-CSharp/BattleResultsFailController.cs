@@ -130,7 +130,6 @@ public class BattleResultsFailController : Singleton<BattleResultsFailController
 
 	private void Populate()
 	{
-		Singleton<KFFUpsightVGController>.Instance.KPIBattleTrack(KFFUpsightVGController.BattleTrackProgress.QuestResult, KFFUpsightVGController.BattleTrackEvent.BattleLost);
 		QuestData currentActiveQuest = Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest;
 		RetryStaminaCost.text = currentActiveQuest.StaminaCost.ToString();
 		HardCurrencyCost.text = MiscParams.ReviveCost.ToString();
@@ -244,15 +243,6 @@ public class BattleResultsFailController : Singleton<BattleResultsFailController
 	private void Revive()
 	{
 		Unload();
-		if (!tutorialRevive)
-		{
-			string value = MiscParams.ReviveCost.ToString();
-			string upsightEvent = "Economy.GemExit.Revive";
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("cost", value);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		}
-		Singleton<KFFUpsightVGController>.Instance.KPIBattleTrack(KFFUpsightVGController.BattleTrackProgress.QuestResult, KFFUpsightVGController.BattleTrackEvent.BattleContinue);
 		HideTween.Play();
 		Singleton<BattleResultsController>.Instance.HideFailBannerTween.Play();
 		mWaitForUserAction = true;
@@ -290,7 +280,6 @@ public class BattleResultsFailController : Singleton<BattleResultsFailController
 			Singleton<SimplePopupController>.Instance.ShowPurchasePrompt(KFFLocalization.Get("!!NO_STAMINA_BUY"), KFFLocalization.Get("!!NO_STAMINA_NOBUY"), MiscParams.StaminaRefillCost, RefillStaminaAndReplay);
 			return;
 		}
-		Singleton<KFFUpsightVGController>.Instance.KPIBattleTrack(KFFUpsightVGController.BattleTrackProgress.QuestStart, KFFUpsightVGController.BattleTrackEvent.BattleRetry);
 		DetachedSingleton<StaminaManager>.Instance.ConsumeStamina(StaminaType.Quests, currentActiveQuest.StaminaCost);
 		DetachedSingleton<SceneFlowManager>.Instance.LoadBattleScene();
 	}

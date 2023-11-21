@@ -867,7 +867,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 		string upsightEvent = "Economy.GemExit.IncreaseInventory";
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();
@@ -1073,7 +1072,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 			upsightEvent = "Store.IAP." + mProductIdBeingPurchased.ProductIdentifier;
 			break;
 		}
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 	}
 
 	public void OnSkinClicked(StoreHeroPrefab skinTile)

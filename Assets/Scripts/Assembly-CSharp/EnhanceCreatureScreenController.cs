@@ -422,7 +422,6 @@ public class EnhanceCreatureScreenController : Singleton<EnhanceCreatureScreenCo
 		}
 		else
 		{
-			SendKPIData(costToEnhance.ToString());
 			StartCoroutine(EnhanceSequence());
 			inventoryBar.UpdateInventoryCounter();
 		}
@@ -431,29 +430,6 @@ public class EnhanceCreatureScreenController : Singleton<EnhanceCreatureScreenCo
 	private void OnClickConfirmBuyGold()
 	{
 		Singleton<PlayerInfoScript>.Instance.BuyGold(mBuyingGoldPacks);
-	}
-
-	private void SendKPIData(string amount)
-	{
-		string upsightEvent = "Economy.CoinExit.Enchance";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", amount);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		upsightEvent = "Creatures.Evolve";
-		string text = string.Empty;
-		InventoryTile[] array = mRecipeEvoMaterials;
-		foreach (InventoryTile inventoryTile in array)
-		{
-			if (inventoryTile != null)
-			{
-				text = ((!(text == string.Empty)) ? (text + ", " + inventoryTile.InventoryItem.EvoMaterial.ID) : inventoryTile.InventoryItem.EvoMaterial.ID);
-			}
-		}
-		dictionary.Clear();
-		dictionary.Add("creatureID", mEnhanceCreature.InventoryItem.Creature.ToString());
-		dictionary.Add("materialList", text);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		Singleton<KFFUpsightVGController>.Instance.KPILaboratoryTracking(KFFUpsightVGController.LaboratoryTrackEvent.Evolve, mEnhanceCreature.InventoryItem.Creature);
 	}
 
 	private IEnumerator EnhanceSequence()

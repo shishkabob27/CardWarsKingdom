@@ -430,10 +430,6 @@ public class PurchaseManager : Singleton<PurchaseManager>
 		float Price;
 		string CurrencyType;
 		GetPriceInfo(text, out Price, out CurrencyType);
-		if (text.Length != 0 && !jailBroken)
-		{
-			Upsight.recordGooglePlayPurchase(1, CurrencyType, Price, Price, text, 0, empty, empty3);
-		}
 		Singleton<PurchaseManager>.Instance.ConsumeProduct(text);
 		m_PurchaseCallback(ProductPurchaseResult.Success);
 		m_storeKit = null;

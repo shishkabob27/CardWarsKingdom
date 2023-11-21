@@ -530,19 +530,8 @@ public class GachaScreenController : Singleton<GachaScreenController>
 		}
 	}
 
-	public void BuyInventoryDenied()
-	{
-		Singleton<KFFUpsightVGController>.Instance.KPIInventoryTrack(KFFUpsightVGController.InventoryTrackEvent.FullModal, DisplayedSlot.ID, string.Empty);
-	}
-
 	private void ExpandInventory()
 	{
-		string value = MiscParams.InventorySpacePurchaseCost.ToString();
-		string upsightEvent = "Economy.GemExit.IncreaseInventory";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		Singleton<KFFUpsightVGController>.Instance.KPIInventoryTrack(KFFUpsightVGController.InventoryTrackEvent.FullModal, DisplayedSlot.ID, string.Empty, KFFUpsightVGController.InventoryModalAction.Purchased);
 		StartCoroutine(ExpandInventoryCo());
 	}
 
@@ -602,7 +591,7 @@ public class GachaScreenController : Singleton<GachaScreenController>
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
 		if (saveData.IsInventorySpaceFull())
 		{
-			Singleton<SimplePopupController>.Instance.ShowPurchasePrompt(KFFLocalization.Get("!!INVENTORY_FULL_BUY").Replace("<val2>", MiscParams.InventorySpacePerPurchase.ToString()), KFFLocalization.Get("!!INVENTORY_FULL_NOBUY"), MiscParams.InventorySpacePurchaseCost, ExpandInventory, BuyInventoryDenied);
+			Singleton<SimplePopupController>.Instance.ShowPurchasePrompt(KFFLocalization.Get("!!INVENTORY_FULL_BUY").Replace("<val2>", MiscParams.InventorySpacePerPurchase.ToString()), KFFLocalization.Get("!!INVENTORY_FULL_NOBUY"), MiscParams.InventorySpacePurchaseCost, ExpandInventory);
 			Singleton<SLOTAudioManager>.Instance.PlayErrorSound();
 			EnableSparkleFX(false);
 			yield break;
@@ -711,7 +700,6 @@ public class GachaScreenController : Singleton<GachaScreenController>
 		{
 			results.Add(SpinGacha(slot));
 		}
-		SendKPIData(results, priorBalance.ToString());
 		Singleton<PlayerInfoScript>.Instance.Save();
 		mInOpenSequence = true;
 		KeyDragObject.gameObject.SetActive(true);
@@ -775,69 +763,6 @@ public class GachaScreenController : Singleton<GachaScreenController>
 			Singleton<TutorialController>.Instance.AdvanceTutorialState();
 		}
 		mInOpenSequence = false;
-	}
-
-	private void SendKPIData(List<InventorySlotItem> rewards, string priorBalance)
-	{
-		string text = string.Empty;
-		string text2 = string.Empty;
-		for (int i = 0; i < rewards.Count; i++)
-		{
-			if (rewards[i].SlotType == InventorySlotType.Creature)
-			{
-				string text3 = rewards[i].Creature.ToString();
-				text += text3;
-				text2 = "Creatures.CreatureAcquired";
-				Dictionary<string, object> dictionary = new Dictionary<string, object>();
-				dictionary.Add("creatureID", text3);
-				dictionary.Add("acquisition", "Gacha");
-				dictionary.Add("id", DisplayedSlot.ID);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(text2, dictionary);
-			}
-			else if (rewards[i].SlotType == InventorySlotType.XPMaterial)
-			{
-				string iD = rewards[i].XPMaterial.ID;
-				text += iD;
-				text2 = "Ingredients.Acquired";
-				Dictionary<string, object> dictionary2 = new Dictionary<string, object>();
-				dictionary2.Add("ingredientID", iD);
-				dictionary2.Add("type", InventorySlotType.XPMaterial.ToString());
-				dictionary2.Add("amount", "1");
-				dictionary2.Add("source", "Gacha");
-				dictionary2.Add("sourceID", DisplayedSlot.ID);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(text2, dictionary2);
-			}
-			if (i < rewards.Count - 1)
-			{
-				text += ", ";
-			}
-		}
-		if (DisplayedSlot.Cost > 0)
-		{
-			int num = DisplayedSlot.Cost * currentPurchaseCount;
-			if (DisplayedSlot.CurrencyType == DropTypeEnum.HardCurrency)
-			{
-				text2 = "Economy.GemExit.Gatcha";
-			}
-			else if (DisplayedSlot.CurrencyType == DropTypeEnum.SocialCurrency)
-			{
-				text2 = "Economy.WishboneExit.Gatcha";
-			}
-			if (text2 != string.Empty)
-			{
-				Dictionary<string, object> dictionary3 = new Dictionary<string, object>();
-				dictionary3.Add("reward", text);
-				dictionary3.Add("count", currentPurchaseCount.ToString());
-				dictionary3.Add("chestType", DisplayedSlot.ID);
-				dictionary3.Add("priorBalance", priorBalance);
-				dictionary3.Add("cost", num.ToString());
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(text2, dictionary3);
-			}
-		}
-		if (Singleton<PlayerInfoScript>.Instance.SaveData.IsInventorySpaceFull())
-		{
-			Singleton<KFFUpsightVGController>.Instance.KPIInventoryTrack(KFFUpsightVGController.InventoryTrackEvent.Full, DisplayedSlot.ID, rewards.Count.ToString());
-		}
 	}
 
 	private IEnumerator MoveKeyToStartPos(GameObject key)

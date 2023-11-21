@@ -282,7 +282,6 @@ public class TutorialController : Singleton<TutorialController>
 	public void StartTutorialBlock(string blockId)
 	{
 		string upsightEvent = "Tutorial." + blockId + ".Started";
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent);
 		if (GetActiveState() == null)
 		{
 			TutorialDataManager.TutorialBlock block = TutorialDataManager.Instance.GetBlock(blockId);
@@ -324,7 +323,6 @@ public class TutorialController : Singleton<TutorialController>
 		if (state.ID != null)
 		{
 			string upsightEvent = "Tutorial." + Singleton<PlayerInfoScript>.Instance.StateData.ActiveTutorialState.Block + "." + state.ID + ".Started";
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent);
 		}
 		Singleton<SLOTAudioManager>.Instance.SetVOEventCooldown(VOEvent.Idle);
 		SetColliderRestrictions(state);
@@ -1097,7 +1095,6 @@ public class TutorialController : Singleton<TutorialController>
 			{
 				block.Completed = true;
 				string upsightEvent = "Tutorial." + block.ID + ".Finished";
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent);
 				if (block.ID == "Q1")
 				{
 					int selectedLoadout = Singleton<PlayerInfoScript>.Instance.SaveData.SelectedLoadout;
@@ -1105,7 +1102,6 @@ public class TutorialController : Singleton<TutorialController>
 					string upsightEvent2 = "Player.InitialDeckSelection";
 					Dictionary<string, object> dictionary = new Dictionary<string, object>();
 					dictionary.Add("deckName", teamName);
-					Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent2, dictionary);
 				}
 				Singleton<PlayerInfoScript>.Instance.Save();
 			}
@@ -1150,7 +1146,6 @@ public class TutorialController : Singleton<TutorialController>
 		if (activeState.VOEvent != null)
 		{
 			string upsightEvent = "Tutorial." + Singleton<PlayerInfoScript>.Instance.StateData.ActiveTutorialState.Block + "." + activeState.VOEvent + ".Finished";
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent);
 		}
 		foreach (string exitFunctionCall in activeState.ExitFunctionCalls)
 		{

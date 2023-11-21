@@ -635,7 +635,6 @@ public class XpFusionController : Singleton<XpFusionController>
 				}
 				Singleton<PlayerInfoScript>.Instance.SaveData.SoftCurrency = mCost;
 			}
-			SendKPIData();
 			StartCoroutine(FuseSequence());
 			CreatureItem creature = mPowerUpCreature.InventoryItem.Creature;
 			CreatureItem creatureItem = new CreatureItem(creature.Form);
@@ -686,48 +685,6 @@ public class XpFusionController : Singleton<XpFusionController>
 	private void OnClickConfirmBuyGold()
 	{
 		Singleton<PlayerInfoScript>.Instance.BuyGold(mBuyingGoldPacks);
-	}
-
-	private void SendKPIData()
-	{
-		string value = mCost.ToString();
-		string upsightEvent = "Economy.CoinExit.PowerUp";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		int xpToReachLevel = mPowerUpCreature.InventoryItem.Creature.XPTable.GetXpToReachLevel(mPowerUpCreature.InventoryItem.Creature.MaxLevel);
-		int num = (int)mPowerUpCreature.InventoryItem.Creature.Xp + mXpGranted;
-		string text = string.Empty;
-		string text2 = string.Empty;
-		string value2 = mXpGranted.ToString();
-		string value3 = mPowerUpCreature.InventoryItem.Creature.XPTable.GetCurrentLevel(num, mPowerUpCreature.InventoryItem.Creature.MaxLevel).ToString();
-		string value4 = "0";
-		if (num - xpToReachLevel > 0)
-		{
-			value4 = (num - xpToReachLevel).ToString();
-		}
-		List<InventoryTile> minimumFodderList = GetMinimumFodderList();
-		foreach (InventoryTile item in minimumFodderList)
-		{
-			if (item.InventoryItem.SlotType == InventorySlotType.Creature)
-			{
-				text = ((!(text == string.Empty)) ? (text + ", " + item.InventoryItem.Creature.ToString()) : item.InventoryItem.Creature.ToString());
-			}
-			else
-			{
-				text2 = ((!(text2 == string.Empty)) ? (text2 + ", " + item.InventoryItem.XPMaterial.ID) : item.InventoryItem.XPMaterial.ID);
-			}
-		}
-		upsightEvent = "Creatures.CreaturePowerUp";
-		dictionary.Clear();
-		dictionary.Add("creatureID", mPowerUpCreature.InventoryItem.Creature.ToString());
-		dictionary.Add("creatureMatList", text);
-		dictionary.Add("cakeMatList", text2);
-		dictionary.Add("resultLevel", value3);
-		dictionary.Add("resultXp", value2);
-		dictionary.Add("wastedXp", value4);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
-		Singleton<KFFUpsightVGController>.Instance.KPILaboratoryTracking(KFFUpsightVGController.LaboratoryTrackEvent.PowerUp, mPowerUpCreature.InventoryItem.Creature);
 	}
 
 	public bool IsCreatureSelectedForPowerUp(CreatureItem creature)

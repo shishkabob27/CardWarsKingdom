@@ -114,7 +114,6 @@ public class MissionListController : Singleton<MissionListController>
 				dictionary.Add("rewardQuantity", value);
 				dictionary.Add("rewardType", value2);
 				dictionary.Add("status", empty3);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(empty, dictionary);
 			}
 		}
 		foreach (Mission globalMission in DetachedSingleton<MissionManager>.Instance.GlobalMissions)
@@ -144,7 +143,6 @@ public class MissionListController : Singleton<MissionListController>
 				dictionary.Add("rewardQuantity", value);
 				dictionary.Add("rewardType", value2);
 				dictionary.Add("status", empty3);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(empty, dictionary);
 			}
 		}
 	}

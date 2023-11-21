@@ -223,7 +223,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 			Dictionary<string, object> dictionary = new Dictionary<string, object>();
 			dictionary.Add("searchDuration", value);
 			dictionary.Add("reason", reason);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		}
 	}
 
@@ -779,7 +778,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 			dictionary.Add("playerRank", value);
 			dictionary.Add("progression", playerRank);
 			dictionary.Add("searchDuration", value2);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		}
 	}
 
@@ -1371,8 +1369,12 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 
 	private void ConfirmOpponentLeft()
 	{
-		Singleton<KFFUpsightVGController>.Instance.KPIPVPBattleCompleted(KFFUpsightVGController.PVPWinCondition.Victory, true);
-		Singleton<DWGameMessageHandler>.Instance.RegisterPlayerWin();
+        if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
+        {
+            Singleton<DWGame>.Instance.turnNumber = 0;
+            Singleton<DWGame>.Instance.battleDuration = 0f;
+        }
+        Singleton<DWGameMessageHandler>.Instance.RegisterPlayerWin();
 		Singleton<SLOTMusic>.Instance.PlayVictoryMusic();
 		Singleton<DWGame>.Instance.SetGameState(GameState.P2Defeated);
 		LeaveGame();
@@ -1387,8 +1389,12 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 
 	private void ConfirmConnectionLost()
 	{
-		Singleton<KFFUpsightVGController>.Instance.KPIPVPBattleCompleted(KFFUpsightVGController.PVPWinCondition.Victory, false);
-		Singleton<DWGameMessageHandler>.Instance.RegisterPlayerLoss();
+        if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
+        {
+            Singleton<DWGame>.Instance.turnNumber = 0;
+            Singleton<DWGame>.Instance.battleDuration = 0f;
+        }
+        Singleton<DWGameMessageHandler>.Instance.RegisterPlayerLoss();
 		Singleton<SLOTMusic>.Instance.PlayLoserMusic();
 		Singleton<DWGame>.Instance.SetGameState(GameState.P1Defeated);
 		LeaveGame();

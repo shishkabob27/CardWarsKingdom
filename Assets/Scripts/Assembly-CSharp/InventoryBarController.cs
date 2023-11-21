@@ -168,7 +168,6 @@ public class InventoryBarController : MonoBehaviour
 		string upsightEvent = "Economy.GemExit.IncreaseInventory";
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();
@@ -185,7 +184,6 @@ public class InventoryBarController : MonoBehaviour
 		empty = MiscParams.InventorySpacePurchaseCost.ToString();
 		empty2 = "Economy.GemExit.IncreaseInventory";
 		dictionary.Add("cost", empty);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(empty2, dictionary);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

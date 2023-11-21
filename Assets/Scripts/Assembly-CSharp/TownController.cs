@@ -239,7 +239,6 @@ public class TownController : Singleton<TownController>
 		dictionary.Add("allyCount", allyCount);
 		dictionary.Add("anonCount", anomCount);
 		dictionary.Add("amount", amount);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 	}
 
 	private void ResetMyAllyHelpCountCallback(ResponseFlag flag)

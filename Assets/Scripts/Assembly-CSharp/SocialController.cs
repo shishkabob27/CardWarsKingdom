@@ -86,7 +86,6 @@ public class SocialController : Singleton<SocialController>
 	{
 		InviteRewardsButton.SetActive(MiscParams.ShowInviteButtons);
 		ButtonsGrid.Reposition();
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent("PostOffice.Open");
 		Singleton<MailController>.Instance.RetrieveMailsAndAllyInvites();
 		AllyBoxToggle.gameObject.SetActive(Singleton<PlayerInfoScript>.Instance.CanUseHelper());
 		Invoke("RefreshCurrentTab", 0.1f);
@@ -147,7 +146,6 @@ public class SocialController : Singleton<SocialController>
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary.Add("readCount", value);
 		dictionary.Add("unreadCount", value2);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 	}
 
 	private void OnUnloadDone()

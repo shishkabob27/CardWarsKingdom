@@ -201,7 +201,6 @@ public class PreMatchHelperSelectController : Singleton<PreMatchHelperSelectCont
 		dictionary.Add("isAlly", helper.IsAlly.ToString());
 		dictionary.Add("leader", iD2);
 		dictionary.Add("team", text2);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(text, dictionary);
 	}
 
 	public void OnClickSort()

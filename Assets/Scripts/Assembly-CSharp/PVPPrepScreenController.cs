@@ -247,7 +247,6 @@ public class PVPPrepScreenController : Singleton<PVPPrepScreenController>
 	public void OnClickPlay()
 	{
 		mSearching = false;
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent("Multiplayer.PvPSearch.Begin");
 		Loadout currentLoadout = Singleton<PlayerInfoScript>.Instance.GetCurrentLoadout();
 		if (!MiscParams.PvpEnable)
 		{
@@ -305,7 +304,6 @@ public class PVPPrepScreenController : Singleton<PVPPrepScreenController>
 	public void OnClickCancelConnect()
 	{
 		HideConnectingTween.Play();
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent("Multiplayer.PvPSearch.Cancel");
 		mWaitingForOpponentStartData = false;
 		mOpponentStartDataReceived = false;
 		mSearching = false;

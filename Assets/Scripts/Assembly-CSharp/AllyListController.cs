@@ -415,11 +415,6 @@ public class AllyListController : MonoBehaviour
 	private void OnClickConfirmAllySpace()
 	{
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
-		string value = MiscParams.AllyBoxPurchaseCost.ToString();
-		string upsightEvent = "Economy.GemExit.ExpandAllyList";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

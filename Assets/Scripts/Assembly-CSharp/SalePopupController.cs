@@ -231,7 +231,6 @@ public class SalePopupController : Singleton<SalePopupController>
 	{
 		string iD = mSale.ID;
 		string upsightEvent = "Store.Sales." + iD;
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent);
 		foreach (GeneralReward item in mSale.Items)
 		{
 			string value = item.Quantity.ToString();
@@ -241,7 +240,6 @@ public class SalePopupController : Singleton<SalePopupController>
 				Dictionary<string, object> dictionary = new Dictionary<string, object>();
 				dictionary.Add("salesID", iD);
 				dictionary.Add("amount", value);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 			}
 			else if (item.RewardType == GeneralReward.TypeEnum.SoftCurrency)
 			{
@@ -249,7 +247,6 @@ public class SalePopupController : Singleton<SalePopupController>
 				Dictionary<string, object> dictionary2 = new Dictionary<string, object>();
 				dictionary2.Add("salesID", iD);
 				dictionary2.Add("amount", value);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary2);
 			}
 			else if (item.RewardType == GeneralReward.TypeEnum.SocialCurrency)
 			{
@@ -257,7 +254,6 @@ public class SalePopupController : Singleton<SalePopupController>
 				Dictionary<string, object> dictionary3 = new Dictionary<string, object>();
 				dictionary3.Add("salesID", iD);
 				dictionary3.Add("amount", value);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary3);
 			}
 			else if (item.RewardType == GeneralReward.TypeEnum.XPMaterials)
 			{
@@ -269,7 +265,6 @@ public class SalePopupController : Singleton<SalePopupController>
 				dictionary4.Add("amount", value);
 				dictionary4.Add("source", "Sales");
 				dictionary4.Add("sourceID", iD);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary4);
 			}
 			else if (item.RewardType == GeneralReward.TypeEnum.Creatures)
 			{
@@ -279,7 +274,6 @@ public class SalePopupController : Singleton<SalePopupController>
 				dictionary5.Add("creatureID", value2);
 				dictionary5.Add("acquisition", "Sales");
 				dictionary5.Add("id", iD);
-				Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary5);
 			}
 		}
 	}

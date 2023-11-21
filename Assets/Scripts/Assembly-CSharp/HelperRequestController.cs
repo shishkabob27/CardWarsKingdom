@@ -208,7 +208,6 @@ public class HelperRequestController : Singleton<HelperRequestController>
 			dictionary.Add("helperID", value);
 			dictionary.Add("helperStars", value2);
 			dictionary.Add("helperLevel", value3);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		}
 	}
 
@@ -238,7 +237,6 @@ public class HelperRequestController : Singleton<HelperRequestController>
 			{
 				dictionary.Add("source", Singleton<PlayerInfoScript>.Instance.SaveData.HardCurrency.ToString());
 			}
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		}
 		friendInviteResult = InviteResults.Accepted;
 		inviteFull = InviteFull.Sender;
@@ -474,7 +472,6 @@ public class HelperRequestController : Singleton<HelperRequestController>
 		string upsightEvent = "Economy.GemExit.ExpandAllyList";
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary.Add("cost", value);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

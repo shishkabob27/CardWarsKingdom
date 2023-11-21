@@ -502,7 +502,6 @@ public class TownSettingsController : Singleton<TownSettingsController>
 	private void KPIOption(OptionTypeKPI option, string value)
 	{
 		string upsightEvent = "Option." + option.ToString() + "." + value;
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent);
 	}
 
 	public void UpdateLangListPosition()

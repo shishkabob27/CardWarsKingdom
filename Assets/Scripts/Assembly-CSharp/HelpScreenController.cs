@@ -25,14 +25,5 @@ public class HelpScreenController : Singleton<HelpScreenController>
 		HelpPopupTween.Play();
 		HelpTitle.text = entry.Title;
 		HelpBody.text = entry.Body;
-		HelpKPITrack(entry.Title);
-	}
-
-	private void HelpKPITrack(string topic)
-	{
-		string upsightEvent = "Help.HelpTopic";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("topic", topic);
-		Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 	}
 }

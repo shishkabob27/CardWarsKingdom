@@ -197,8 +197,12 @@ public class PauseController : Singleton<PauseController>
 				Singleton<SLOTMusic>.Instance.PlayLoserMusic();
 				Singleton<BattleHudController>.Instance.EnemyThinkingObject.SetActive(false);
 				UICamera.UnlockInput();
-				Singleton<KFFUpsightVGController>.Instance.KPIPVPBattleCompleted(KFFUpsightVGController.PVPWinCondition.Victory, false);
-				Singleton<DWGame>.Instance.SetGameState(GameState.P1Defeated);
+                if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
+                {
+                    Singleton<DWGame>.Instance.turnNumber = 0;
+                    Singleton<DWGame>.Instance.battleDuration = 0f;
+                }
+                Singleton<DWGame>.Instance.SetGameState(GameState.P1Defeated);
 			}
 			else
 			{
@@ -214,7 +218,6 @@ public class PauseController : Singleton<PauseController>
 		{
 			Singleton<SLOTMusic>.Instance.StopMusic(0.5f);
 			Singleton<AnalyticsManager>.Instance.LogQuestQuit(Singleton<PlayerInfoScript>.Instance.StateData.CurrentActiveQuest.ID);
-			Singleton<KFFUpsightVGController>.Instance.KPIBattleTrack(KFFUpsightVGController.BattleTrackProgress.QuestResult, KFFUpsightVGController.BattleTrackEvent.BattleQuit);
 			Singleton<ScreenFadeController>.Instance.ShowLoadScreen(delegate
 			{
 				StartCoroutine(ChangeScene());

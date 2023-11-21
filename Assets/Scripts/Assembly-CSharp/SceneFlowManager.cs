@@ -79,7 +79,6 @@ public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 			string upsightEvent = "Multiplayer.MatchSynchronization.Success";
 			Dictionary<string, object> dictionary = new Dictionary<string, object>();
 			dictionary.Add("duration", Singleton<PVPPrepScreenController>.Instance.syncTime);
-			Singleton<KFFUpsightVGController>.Instance.RecordCustomEvent(upsightEvent, dictionary);
 			Singleton<PVPPrepScreenController>.Instance.syncTime = 0f;
 			Singleton<PVPPrepScreenController>.Instance.matchFound = false;
 		}
