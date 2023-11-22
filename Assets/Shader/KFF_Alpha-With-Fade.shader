@@ -1,7 +1,8 @@
-Shader "KFF/Alpha With Fade 2"
+Shader "KFF/Alpha With Fade"
 {
 	Properties
 	{
+		_Color ("Color Tint", Color) = (1,1,1,1)
 		_MainTex ("Base (RGB) Trans (A)", 2D) = "black" {}
 	}
 	
@@ -29,7 +30,8 @@ Shader "KFF/Alpha With Fade 2"
 			
 			SetTexture [_MainTex]
 			{
-				Combine Texture * Primary
+					constantColor [_Color]
+					Combine texture * constant, texture * constant
 			}
 		}
 	}
