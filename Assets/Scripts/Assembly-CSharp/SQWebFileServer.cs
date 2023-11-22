@@ -252,7 +252,7 @@ public class SQWebFileServer : TFWebFileServer
 		SetDefaultHeaders(webHeaderCollection);
 		try
 		{
-			GetFile(friendsListUri, webHeaderCollection, GameCallbackWrapper(callback, webHeaderCollection, true, userData), userData);
+			GetFile(friendsListUri + "/" + PlayerInfoScript.Instance.GetPlayerCode(), webHeaderCollection, GameCallbackWrapper(callback, webHeaderCollection, true, userData), userData);
 		}
 		catch (Exception message)
 		{
