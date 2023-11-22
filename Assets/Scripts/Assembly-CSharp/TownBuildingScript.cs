@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
@@ -258,12 +259,17 @@ public class TownBuildingScript : MonoBehaviour
 	{
 		if (MainBuildingAnimation != null)
 		{
-			MainBuildingAnimation.Play("Building_Clicked");
+			List<AnimationState> states = new List<AnimationState>();
+			foreach (AnimationState state in MainBuildingAnimation)
+			{
+				states.Add(state);
+			}
+			MainBuildingAnimation.Play(states[0].name);
 			mCurrentAnim = MainBuildingAnimation;
 			mAnimStarted = true;
-			if (MainBuildingAnimation.GetClip("Idle") != null)
+			if (MainBuildingAnimation.GetClip(states[1].name) != null)
 			{
-				MainBuildingAnimation.PlayQueued("Idle");
+				MainBuildingAnimation.PlayQueued(states[1].name);
 			}
 		}
 		else if (MainBuildingAnimator != null)
