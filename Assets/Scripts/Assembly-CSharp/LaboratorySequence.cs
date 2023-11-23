@@ -239,7 +239,7 @@ public class LaboratorySequence : MonoBehaviour
 		Lightning3D.SetActive(true);
 		for (int i2 = 0; i2 < LightningBeams.Length; i2++)
 		{
-			LightningBeams[i2].gameObject.SetActive(false);
+			if (LightningBeams[i2] != null) LightningBeams[i2].gameObject.SetActive(false);
 		}
 		int lastStarIndex = 0;
 		StartCoroutine(ScrollLightningMats());
@@ -330,7 +330,7 @@ public class LaboratorySequence : MonoBehaviour
 			int ii4 = attachOrder[l];
 			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_TVOff");
 			ModuleOutroTweens[ii4].Play();
-			LightningBeams[ii4].gameObject.SetActive(false);
+			if (LightningBeams[ii4] != null) LightningBeams[ii4].gameObject.SetActive(false);
 			yield return new WaitForSeconds(0.1f);
 		}
 		if (StarHolderRoot != null)
@@ -415,7 +415,7 @@ public class LaboratorySequence : MonoBehaviour
 			for (int i = 0; i < LightningBeams.Length; i++)
 			{
 				amtScrolled2 = Time.time * scrollSpeed + 0.2f * (float)i;
-				LightningBeams[i].material.SetTextureOffset("_MainTex", new Vector2(amtScrolled2, 0f));
+				if (LightningBeams[i] != null) LightningBeams[i].material.SetTextureOffset("_MainTex", new Vector2(amtScrolled2, 0f));
 			}
 			yield return 0;
 		}
