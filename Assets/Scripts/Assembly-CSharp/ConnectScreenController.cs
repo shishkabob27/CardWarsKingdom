@@ -58,8 +58,6 @@ public class ConnectScreenController : MonoBehaviour
 			if (mloginController != null)
 			{
 				mloginController.OnGuestLogin -= GuestLoginSelected;
-				mloginController.OnFBLogin -= FaceBookLoginSelected;
-				Singleton<PlayerInfoScript>.Instance.OnFBLoginCancel -= FaceBookLoginCanceled;
 			}
 		}
 	}
@@ -103,8 +101,6 @@ public class ConnectScreenController : MonoBehaviour
 		if (loginController != null)
 		{
 			loginController.OnGuestLogin += GuestLoginSelected;
-			loginController.OnFBLogin += FaceBookLoginSelected;
-			Singleton<PlayerInfoScript>.Instance.OnFBLoginCancel += FaceBookLoginCanceled;
 			mLoginConfirmed = false;
 			loginController.ActivateLoginDialog();
 		}
@@ -128,26 +124,6 @@ public class ConnectScreenController : MonoBehaviour
 		{
 			ShowBusy.Play();
 		}
-	}
-
-	public void FaceBookLoginSelected()
-	{
-		Singleton<PlayerInfoScript>.Instance.FB_Connect();
-		mLoginConfirmed = true;
-		mUseFacebook = true;
-		if (ShowBusy != null)
-		{
-			ShowBusy.Play();
-		}
-	}
-
-	public void FaceBookLoginCanceled()
-	{
-		if (HideBusy != null)
-		{
-			HideBusy.Play();
-		}
-		mRealLoginStarted = false;
 	}
 
 	private void Start()

@@ -240,7 +240,7 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 
 	public bool IsFacebookLogin()
 	{
-		return (KFFSocialManager.Status_FB & KFFSocialManager.APIStatus.LOGGEDIN) == KFFSocialManager.APIStatus.LOGGEDIN;
+		return false;
 	}
 
 	public string GetPlayerCode()
@@ -316,27 +316,17 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 
 	private void OnEnable()
 	{
-		TFUtils.DebugLog("Facebook_d : OnEnable");
 		SessionManager instance = SessionManager.Instance;
 		instance.OnUserLoginFail += OnUserLoginFail;
-		KFFSocialManager.FB_LoginSuccessfulEvent += FB_LoginSuccessful;
-		KFFSocialManager.FB_LoginExistingEvent += FB_LoginSuccessful;
-		KFFSocialManager.FB_LoginUserCancelEvent += FB_LoginCancel;
-		KFFSocialManager.FB_LoginFailEvent += FB_LoginFail;
 	}
 
 	private void OnDisable()
 	{
-		TFUtils.DebugLog("Facebook_d : OnDisable");
 		SessionManager instance = SessionManager.Instance;
 		if (instance != null)
 		{
 			instance.OnUserLoginFail -= OnUserLoginFail;
 		}
-		KFFSocialManager.FB_LoginSuccessfulEvent -= FB_LoginSuccessful;
-		KFFSocialManager.FB_LoginExistingEvent -= FB_LoginSuccessful;
-		KFFSocialManager.FB_LoginUserCancelEvent -= FB_LoginCancel;
-		KFFSocialManager.FB_LoginFailEvent -= FB_LoginFail;
 	}
 
 	private void Awake()
@@ -512,88 +502,19 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 		ResetPlayerName();
 	}
 
-	private void FB_LoginSuccessful()
+	public void Login()
 	{
-		TFUtils.DebugLog("Facebook_d : FB_LoginSuccessful");
-		DoLogin(true);
-	}
-
-	private void FB_LoginExisting()
-	{
-		TFUtils.DebugLog("Facebook_d : FB_LoginExisting");
-		DoLogin(true);
-	}
-
-	private void FB_LoginFail(string err)
-	{
-		TFUtils.DebugLog("Facebook_d : FB_LoginFail");
-		OnUserLoginFail();
-	}
-
-	private void FB_LoginCancel()
-	{
-		TFUtils.DebugLog("Facebook_d : FB_LoginCancel");
-		if (this.OnFBLoginCancel != null)
-		{
-			this.OnFBLoginCancel();
-			return;
-		}
-		if (Singleton<KFFSocialManager>.Instance.FB_isPreviousLogin())
-		{
-			Login();
-			return;
-		}
-		Singleton<KFFSocialManager>.Instance.FB_ResetId();
 		DoLogin();
 	}
 
-	public void FB_Connect()
-	{
-		TFUtils.DebugLog("Facebook_d : FB_Connect");
-		Singleton<KFFSocialManager>.Instance.FB_SaveIdToLocalFile();
-		SessionManager.Instance.theSession.ReloadGame();
-	}
-
-	public void FB_Logout()
-	{
-		TFUtils.DebugLog("Facebook_d : FB_Logout");
-		Singleton<KFFSocialManager>.Instance.FB_Logout();
-		Singleton<KFFSocialManager>.Instance.FB_ResetId();
-		Logout(true);
-		SessionManager.Instance.theSession.ReloadGame();
-	}
-
-	public void Login(bool forceGuestLogin = false)
-	{
-		DebugCheckResetUser();
-		TFUtils.DebugLog("Facebook_d : PlayerInfo script: Login foceGuestLogin : " + forceGuestLogin);
-		if (!forceGuestLogin && Singleton<KFFSocialManager>.Instance.FB_LoadIdFromLocalFile() != null)
-		{
-			TFUtils.DebugLog("Facebook_d : file found");
-			Singleton<KFFSocialManager>.Instance.FB_Login();
-		}
-		else
-		{
-			TFUtils.DebugLog("Facebook_d : file NOT found");
-			DoLogin();
-		}
-	}
-
-	public void DoLogin(bool doFacebookLogin = false)
+	public void DoLogin()
 	{
 		if (!LoginAttempted)
 		{
 			LoginAttempted = true;
 			SessionManager instance = SessionManager.Instance;
 			instance.OnReadyCallback = crooz_LoginToCompassHelp;
-			if (!doFacebookLogin)
-			{
-				instance.Login(false, null, SaveData.PlayerName);
-			}
-			else
-			{
-				instance.Login(true, Singleton<KFFSocialManager>.Instance.FBUser.accessToken.TokenString, SaveData.PlayerName);
-			}
+			instance.Login(false, null, SaveData.PlayerName);
 		}
 	}
 
@@ -2422,10 +2343,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 			return false;
 		}
 		return SaveData.MyHelperCreatureID == creature.UniqueId;
-	}
-
-	public void DebugCheckResetUser()
-	{
 	}
 
 	public static string BuildTimerString(int seconds)

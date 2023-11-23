@@ -149,7 +149,6 @@ public class FriendList : MonoBehaviour
 		{
 			gameFriend.needInviteDisplay = true;
 		}
-		Singleton<KFFSocialManager>.Instance.FB_SendInvite();
 	}
 
 	public void InviteRewardTabClicked()
@@ -166,10 +165,6 @@ public class FriendList : MonoBehaviour
 			{
 				mSendInviteIDlist.Add(gameFriend.ID);
 			}
-		}
-		if (mSendInviteIDlist.Count != 0)
-		{
-			Singleton<KFFSocialManager>.Instance.FB_SendInvite(mSendInviteIDlist);
 		}
 	}
 
@@ -260,13 +255,6 @@ public class FriendList : MonoBehaviour
 			Singleton<SocialController>.Instance.IncrementFriendRequestsSent(mNewInviteIDList.Count);
 			SaveInvitedListLocal();
 		}
-	}
-
-	public void OnFacebookNotConnected()
-	{
-		PlayerInfoScript instance = Singleton<PlayerInfoScript>.Instance;
-		instance.Save();
-		instance.FB_Connect();
 	}
 
 	private void SaveInvitedListLocal()

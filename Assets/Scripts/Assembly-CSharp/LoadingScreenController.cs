@@ -53,9 +53,6 @@ public class LoadingScreenController : MonoBehaviour
 		while (!async.isDone)
 		{
 			progress2 = async.progress;
-			switch (mCurrentScene)
-			{
-			}
 			progressBar.fillAmount = progress2;
 			progressPercent.text = (int)(progress2 * 100f) + " %";
 			if (async.progress >= 0.9f)

@@ -1106,18 +1106,6 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 			if (jsonDict.TryGetValue("FBID", out value))
 			{
 				pvpData.OpponentFBID = Convert.ToString(value);
-				if (Singleton<PlayerInfoScript>.Instance.IsFacebookLogin())
-				{
-					flag2 = true;
-					flag = true;
-					string pictureURL = FBUtil.GetPictureURL(pvpData.OpponentFBID, 128, 128);
-					KFFSocialManager.LoadPictureCallback callback = delegate(Texture t)
-					{
-						pvpData.OpponentPortrait = (Texture2D)t;
-						Singleton<PVPPrepScreenController>.Instance.OnOpponentDataReceived();
-					};
-					Singleton<KFFSocialManager>.Instance.LoadPicture(pictureURL, callback);
-				}
 			}
 			if (!flag2)
 			{

@@ -48,7 +48,6 @@ public class OtherPlayerInfoController : Singleton<OtherPlayerInfoController>
 		if (portraitMode == PortraitMode.Facebook)
 		{
 			PlayerLeagueBadge.PopulateOtherPlayerData(mMetaData.Name, string.Empty, mMetaData.CurrentLeague, mMetaData.BestLeague, null);
-			StartCoroutine(DownloadFacebookPortrait(mMetaData.FacebookId));
 		}
 		else
 		{
@@ -83,28 +82,6 @@ public class OtherPlayerInfoController : Singleton<OtherPlayerInfoController>
 		}
 		ShowTween.Play();
 	}
-
-	private IEnumerator DownloadFacebookPortrait(string fbid)
-	{
-		string url = FBUtil.GetPictureURL(fbid, 128, 128);
-		bool waiting = true;
-		Texture2D loadedTexture = null;
-		KFFSocialManager.LoadPictureCallback loadTextureCallback = delegate(Texture t)
-		{
-			loadedTexture = (Texture2D)t;
-			waiting = false;
-		};
-		Singleton<KFFSocialManager>.Instance.LoadPicture(url, loadTextureCallback);
-		while (waiting)
-		{
-			yield return null;
-		}
-		if (fbid == mMetaData.FacebookId)
-		{
-			PlayerLeagueBadge.PopulateFacebookPortrait(loadedTexture);
-		}
-	}
-
 	private void ShowInviteButtonIfAppropriate()
 	{
 		ShowBasedOnCurrentAllyList();

@@ -133,7 +133,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 		{
 			SettlementsButton.SetActive(false);
 		}
-		FacebookButton.SetActive(Singleton<PlayerInfoScript>.Instance.IsPastAgeGate(MiscParams.fbAgeGate));
+		FacebookButton.SetActive(false);
 		if (ButtonsParent != null)
 		{
 			ButtonsParent.Reposition();
@@ -230,32 +230,6 @@ public class TownSettingsController : Singleton<TownSettingsController>
 	public void OnClickCustomize()
 	{
 		Singleton<PlayerCustomizationController>.Instance.ShowDefault();
-	}
-
-	public void OnClickFacebook()
-	{
-		PlayerInfoScript pInfo = Singleton<PlayerInfoScript>.Instance;
-		pInfo.Save();
-		if (!pInfo.IsFacebookLogin())
-		{
-			Singleton<SimplePopupController>.Instance.ShowPrompt(KFFLocalization.Get("!!FB_CONNECT_TITLE"), KFFLocalization.Get("!!FB_CONNECT_PROMPT"), delegate
-			{
-				pInfo.FB_Connect();
-				Singleton<ChatManager>.Instance.EndChat();
-			}, delegate
-			{
-			});
-		}
-		else
-		{
-			Singleton<SimplePopupController>.Instance.ShowPrompt(KFFLocalization.Get("!!FB_LOGOUT_TITLE"), KFFLocalization.Get("!!FB_LOGOUT_PROMPT"), delegate
-			{
-				pInfo.FB_Logout();
-				Singleton<ChatManager>.Instance.EndChat();
-			}, delegate
-			{
-			});
-		}
 	}
 
 	public void OnClickUnblockPlayers()

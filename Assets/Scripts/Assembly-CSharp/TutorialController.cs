@@ -1829,19 +1829,7 @@ public class TutorialController : Singleton<TutorialController>
 
 	private void FacebookLogin()
 	{
-		if (Singleton<PlayerInfoScript>.Instance.IsFacebookLogin() || !Singleton<PlayerInfoScript>.Instance.IsPastAgeGate(MiscParams.fbAgeGate))
-		{
-			AdvanceTutorialState();
-		}
-		else
-		{
-			Singleton<SimplePopupController>.Instance.ShowFacebookLoginPrompt(ConfirmFacebookLogin, DeclineFacebookLogin);
-		}
-	}
-
-	private void ConfirmFacebookLogin()
-	{
-		Singleton<PlayerInfoScript>.Instance.FB_Connect();
+		AdvanceTutorialState();
 	}
 
 	private void DeclineFacebookLogin()

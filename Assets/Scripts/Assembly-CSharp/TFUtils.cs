@@ -41,7 +41,7 @@ public class TFUtils
 		DeviceID = Guid.NewGuid().ToString().Replace("-", string.Empty);
 		DeviceName = SystemInfo.deviceName;
 		FacebookID = ((fbid != null) ? fbid : DeviceID);
-		DebugLog("This device is:" + DeviceID + " / FacebookID is:" + FacebookID);
+		DebugLog("This device is:" + DeviceID + " / Player ID is:" + FacebookID);
 		AmazonDevice = false;
 	}
 

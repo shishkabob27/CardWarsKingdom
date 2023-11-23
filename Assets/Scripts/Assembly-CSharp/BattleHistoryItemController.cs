@@ -115,7 +115,6 @@ public class BattleHistoryItemController : UIStreamingGridListItem
 		if (!string.IsNullOrEmpty(battleHistory.opponentFBId) && Singleton<PlayerInfoScript>.Instance.IsFacebookLogin())
 		{
 			OpponentBadge.PopulateOtherPlayerData(battleHistory.opponentName, string.Empty, battleHistory.currentLeague, battleHistory.bestLeague, null);
-			StartCoroutine(DownloadFacebookPortrait(battleHistory.opponentFBId));
 		}
 		else
 		{
@@ -140,27 +139,6 @@ public class BattleHistoryItemController : UIStreamingGridListItem
 		else
 		{
 			AddFriendButton.SetActive(true);
-		}
-	}
-
-	private IEnumerator DownloadFacebookPortrait(string fbid)
-	{
-		string url = FBUtil.GetPictureURL(fbid, 128, 128);
-		bool waiting = true;
-		Texture2D loadedTexture = null;
-		KFFSocialManager.LoadPictureCallback loadTextureCallback = delegate(Texture t)
-		{
-			loadedTexture = (Texture2D)t;
-			waiting = false;
-		};
-		Singleton<KFFSocialManager>.Instance.LoadPicture(url, loadTextureCallback);
-		while (waiting)
-		{
-			yield return null;
-		}
-		if (fbid == battleHistory.opponentFBId)
-		{
-			OpponentBadge.PopulateFacebookPortrait(loadedTexture);
 		}
 	}
 

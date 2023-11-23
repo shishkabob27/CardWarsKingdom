@@ -353,11 +353,6 @@ public class SocialController : Singleton<SocialController>
 		EMailer.PrefillAndShow(null, RedemptionCodeMessager.GenerateMessageSubject(), RedemptionCodeMessager.GenerateLongMessageBody());
 	}
 
-	public void OnClickSendFacebook()
-	{
-		FacebookPoster.PrefillAndShow(RedemptionCodeMessager.GenerateMessageSubject(), RedemptionCodeMessager.GenerateLongMessageSubject(), RedemptionCodeMessager.GenerateTweetMessage());
-	}
-
 	public void OnClickSendTweet()
 	{
 		Twitterer.Tweet(RedemptionCodeMessager.GenerateTweetMessage());
