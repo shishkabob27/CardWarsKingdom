@@ -345,7 +345,7 @@ public class UITexture : UIBasicSprite
 		}
 		if (mTrackReferenceCounts)
 		{
-			string resourceName = fileNameWithoutExtension;
+			string resourceName = SLOTResourceManager.GetResourceName(fileNameWithoutExtension);
 			ReferenceCounter value;
 			if (mTextureReferenceCounts.TryGetValue(resourceName, out value))
 			{
@@ -374,7 +374,7 @@ public class UITexture : UIBasicSprite
 
 	public static void AddTextureToCache(string newTexturePath)
 	{
-		string resourceName = Path.GetFileName(newTexturePath);
+		string resourceName = SLOTResourceManager.GetResourceName(Path.GetFileName(newTexturePath));
 		if (!mTextureReferenceCounts.ContainsKey(resourceName))
 		{
 			Texture texture = (Texture)Singleton<SLOTResourceManager>.Instance.LoadResource(newTexturePath);
@@ -411,7 +411,7 @@ public class UITexture : UIBasicSprite
 
 	public static void UnloadTextureFromCache(string texturePath)
 	{
-		string resourceName = Path.GetFileName(texturePath);
+		string resourceName = SLOTResourceManager.GetResourceName(Path.GetFileName(texturePath));
 		ReferenceCounter value;
 		if (mTextureReferenceCounts.TryGetValue(resourceName, out value))
 		{

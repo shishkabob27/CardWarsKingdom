@@ -171,6 +171,29 @@ public class SLOTGame : Singleton<SLOTGame>
 		}
 	}
 
+	public void CheckAssetDownloads(CheckAssetDownloadsCallback callback, ShowAssetDownloadProgressCallback callback2, AssetBundleLoadedCallback callback3)
+	{
+		if (assetBundleType == AssetBundleType.Disabled)
+		{
+			if (callback != null)
+			{
+				callback(true, null);
+			}
+			return;
+		}
+		saveMaxReqCount = KFFNetwork.GetMaxConcurrentWWWRequestCount();
+		KFFNetwork.SetMaxConcurrentWWWRequestCount(1);
+		checkassetdownloadscallback = callback;
+		showprogresscallback = callback2;
+		assetbundleloadedcallback = callback3;
+		string text = "http://floop-iap-lb.kffgames.com/AdventureTime/CardWars/IAPReceiptVerificationServer/check_asset_downloads.php?lowend=" + (IsLowEndDevice() ? 1 : 0);
+		text += "&subdirectory=data_1.01";
+		text += "&platform=";
+		text += "Android";
+		text += "&json=1";
+		KFFNetwork.GetInstance().SendWWWRequest(text, checkAssetDownloadsCallback, null);
+	}
+
 	private void checkAssetDownloadsCallback(KFFNetwork.WWWInfo wwwinfo, object resultObj, string err, object param)
 	{
 		KFFNetwork.WWWRequestResult wWWRequestResult = resultObj as KFFNetwork.WWWRequestResult;
@@ -315,6 +338,11 @@ public class SLOTGame : Singleton<SLOTGame>
 			KFFNetwork.GetInstance().CancelWWWRequest(item);
 		}
 		checkassetdownloadswwwinfolist.Clear();
+	}
+
+	public static bool IsLowEndDevice()
+	{
+		return KFFLODManager.IsLowEndDevice();
 	}
 
 	public static Vector3 GetScale(Transform t)

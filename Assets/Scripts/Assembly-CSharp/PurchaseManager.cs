@@ -235,7 +235,14 @@ public class PurchaseManager : Singleton<PurchaseManager>
 	{
 		UnityEngine.Object.DontDestroyOnLoad(this);
 		DetectAmazonDevice();
-		m_Listener = new GooglePurchaseListener();
+		if (IsAmazon)
+		{
+			m_Listener = new AmazonPurchaseListener();
+		}
+		else
+		{
+			m_Listener = new GooglePurchaseListener();
+		}
 	}
 
 	private void OnEnable()

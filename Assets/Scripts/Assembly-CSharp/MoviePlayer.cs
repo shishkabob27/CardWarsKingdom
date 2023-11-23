@@ -17,8 +17,23 @@ public class MoviePlayer : MonoBehaviour
 
 	private void Start()
 	{
-		Background.mainTexture = Resources.Load<Texture>(HiResBackground);
+		if (KFFLODManager.IsLowEndDevice())
+		{
+			Background.mainTexture = Resources.Load<Texture>(LowResBackground);
+		}
+		else
+		{
+			Background.mainTexture = Resources.Load<Texture>(HiResBackground);
+		}
 		string text = KFFLocalization.Get("!!LOADING_LOGO");
+		if (KFFLODManager.IsLowEndDevice())
+		{
+			int num = text.LastIndexOf("/");
+			if (num != -1)
+			{
+				text = text.Insert(num, "low_");
+			}
+		}
 		LoadingLogo.mainTexture = Resources.Load<Texture>(text);
 		StartCoroutine(VideoCo());
 	}

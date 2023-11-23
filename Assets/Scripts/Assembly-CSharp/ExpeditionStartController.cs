@@ -186,6 +186,7 @@ public class ExpeditionStartController : Singleton<ExpeditionStartController>
 		TimeUntilRefreshLabel.text = string.Empty;
 		mSelectedCreatures = new InventoryTile[CreatureSlots.Count];
 		mStartNeedleAngle = LootNeedle.localEulerAngles.z;
+		AdjustFrameBoarderOnLowRes();
 	}
 
 	private void Update()
@@ -269,6 +270,14 @@ public class ExpeditionStartController : Singleton<ExpeditionStartController>
 		}
 		RepopulateCostLabel.text = ExpeditionParams.RepopulateCost.ToString();
 		Singleton<TutorialController>.Instance.StartTutorialBlockIfNotComplete("ExpedTut");
+	}
+
+	public void AdjustFrameBoarderOnLowRes()
+	{
+		if (!(frame == null) && KFFLODManager.IsLowEndDevice())
+		{
+			frame.border = new Vector4(frame.border.x * 0.7f, frame.border.y * 0.7f, frame.border.z * 0.7f, frame.border.w * 0.7f);
+		}
 	}
 
 	public void PopulateLists()

@@ -6,7 +6,6 @@ using Allies;
 using Messages;
 using MiniJSON;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Session
 {
@@ -488,7 +487,7 @@ public class Session
 	public void ReloadGame()
 	{
 		needsReload = false;
-		SceneManager.LoadScene("AppReloadScene");
+		Application.LoadLevel("AppReloadScene");
 	}
 
 	public void LoadGameFromNetwork()

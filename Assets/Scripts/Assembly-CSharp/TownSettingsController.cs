@@ -272,6 +272,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 		Singleton<SLOTAudioManager>.Instance.SetSoundVolumeMasterAudio(1f);
 		SoundButtonOff.SetActive(true);
 		SoundButtonOn.SetActive(false);
+		KPIOption(OptionTypeKPI.SFX, "On");
 	}
 
 	public void ToggleSoundOff()
@@ -279,6 +280,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 		Singleton<SLOTAudioManager>.Instance.SetSoundVolumeMasterAudio(0f);
 		SoundButtonOff.SetActive(false);
 		SoundButtonOn.SetActive(true);
+		KPIOption(OptionTypeKPI.SFX, "Off");
 	}
 
 	public void ToggleMusicOn()
@@ -286,6 +288,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 		Singleton<SLOTAudioManager>.Instance.SetMusicVolumeMasterAudio(1f);
 		MusicButtonOff.SetActive(true);
 		MusicButtonOn.SetActive(false);
+		KPIOption(OptionTypeKPI.Music, "On");
 	}
 
 	public void ToggleMusicOff()
@@ -293,6 +296,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 		Singleton<SLOTAudioManager>.Instance.SetMusicVolumeMasterAudio(0f);
 		MusicButtonOff.SetActive(false);
 		MusicButtonOn.SetActive(true);
+		KPIOption(OptionTypeKPI.Music, "Off");
 	}
 
 	public void ToggleTiltCamOn()
@@ -300,6 +304,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 		Singleton<MouseOrbitCamera>.Instance.EnableTiltCam(true);
 		TiltCamButtonOn.SetActive(false);
 		TiltCamButtonOff.SetActive(true);
+		KPIOption(OptionTypeKPI.CameraTilt, "On");
 		PlayerPrefs.SetInt("EnableTiltCam", 1);
 	}
 
@@ -308,6 +313,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 		Singleton<MouseOrbitCamera>.Instance.EnableTiltCam(false);
 		TiltCamButtonOff.SetActive(false);
 		TiltCamButtonOn.SetActive(true);
+		KPIOption(OptionTypeKPI.CameraTilt, "Off");
 		PlayerPrefs.SetInt("EnableTiltCam", 0);
 	}
 
@@ -426,6 +432,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 
 	public void showVersionNumber()
 	{
+		int num = ((!KFFLODManager.IsLowEndDevice()) ? 1 : 0);
 		if (versionLbl != null)
 		{
 			versionLbl.text = SQSettings.SERVER_PREFIX + " v." + Application.version;
@@ -444,6 +451,7 @@ public class TownSettingsController : Singleton<TownSettingsController>
 				Singleton<PlayerInfoScript>.Instance.SaveData.selectedLang = languageCode;
 				PlayerPrefs.SetString("M2H_lastLanguage", languageCode.ToString());
 				Language.SwitchLanguage(languageCode);
+				KPIOption(OptionTypeKPI.Language, languageCode.ToString());
 				langList.Close();
 				SessionManager.Instance.theSession.ReloadGame();
 			}
@@ -463,6 +471,11 @@ public class TownSettingsController : Singleton<TownSettingsController>
 			}
 		}
 		return 0;
+	}
+
+	private void KPIOption(OptionTypeKPI option, string value)
+	{
+		string upsightEvent = "Option." + option.ToString() + "." + value;
 	}
 
 	public void UpdateLangListPosition()

@@ -1119,6 +1119,10 @@ public class DWGame : Singleton<DWGame>
 
 	public void EndTurn(PlayerType player, bool reviving = false)
 	{
+		if (KFFLODManager.IsLowEndDevice())
+		{
+			Resources.UnloadUnusedAssets();
+		}
 		MasterBoardState.EndTurn(player, reviving);
 	}
 

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DestroyAndReload : MonoBehaviour
 {
@@ -41,6 +40,6 @@ public class DestroyAndReload : MonoBehaviour
 			}
 		}
 		yield return null;
-		SceneManager.LoadScene(0);
+		Application.LoadLevel(0);
 	}
 }

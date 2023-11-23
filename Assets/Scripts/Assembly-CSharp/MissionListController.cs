@@ -72,9 +72,78 @@ public class MissionListController : Singleton<MissionListController>
 		if (mShowing)
 		{
 			DetachedSingleton<MissionManager>.Instance.SortMissions();
+			KPIMissionTrack();
 			mMissionGridDataSource.Init(MissionGrid, MissionGridPrefab, DetachedSingleton<MissionManager>.Instance.DailyMissions);
 			mGlobalMissionGridDataSource.Init(GlobalMissionGrid, MissionGridPrefab, DetachedSingleton<MissionManager>.Instance.GlobalMissions);
 			NoMissionsLabel.SetActive(DetachedSingleton<MissionManager>.Instance.DailyMissions.Count == 0);
+		}
+	}
+
+	private void KPIMissionTrack()
+	{
+		string empty = string.Empty;
+		string empty2 = string.Empty;
+		string value = string.Empty;
+		string value2 = string.Empty;
+		string empty3 = string.Empty;
+		Dictionary<string, object> dictionary = new Dictionary<string, object>();
+		foreach (Mission dailyMission in DetachedSingleton<MissionManager>.Instance.DailyMissions)
+		{
+			if (!dailyMission.Claimed)
+			{
+				empty = "Misssion.Daily";
+				empty2 = dailyMission.Data.ID;
+				if (dailyMission.Data.HardCurrency > 0)
+				{
+					value = dailyMission.Data.HardCurrency.ToString();
+					value2 = "Gem";
+				}
+				else if (dailyMission.Data.SocialCurrency > 0)
+				{
+					value = dailyMission.Data.SocialCurrency.ToString();
+					value2 = "Wishbone";
+				}
+				else if (dailyMission.Data.SoftCurrency > 0)
+				{
+					value = dailyMission.Data.SoftCurrency.ToString();
+					value2 = "Coin";
+				}
+				empty3 = ((!dailyMission.Completed) ? "Open" : "Completed");
+				dictionary.Clear();
+				dictionary.Add("missionID", empty2);
+				dictionary.Add("rewardQuantity", value);
+				dictionary.Add("rewardType", value2);
+				dictionary.Add("status", empty3);
+			}
+		}
+		foreach (Mission globalMission in DetachedSingleton<MissionManager>.Instance.GlobalMissions)
+		{
+			if (!globalMission.Claimed)
+			{
+				empty = "Misssion.Global";
+				empty2 = globalMission.Data.ID;
+				if (globalMission.Data.HardCurrency > 0)
+				{
+					value = globalMission.Data.HardCurrency.ToString();
+					value2 = "Gem";
+				}
+				else if (globalMission.Data.SocialCurrency > 0)
+				{
+					value = globalMission.Data.SocialCurrency.ToString();
+					value2 = "Wishbone";
+				}
+				else if (globalMission.Data.SoftCurrency > 0)
+				{
+					value = globalMission.Data.SoftCurrency.ToString();
+					value2 = "Coin";
+				}
+				empty3 = ((!globalMission.Completed) ? "Open" : "Completed");
+				dictionary.Clear();
+				dictionary.Add("missionID", empty2);
+				dictionary.Add("rewardQuantity", value);
+				dictionary.Add("rewardType", value2);
+				dictionary.Add("status", empty3);
+			}
 		}
 	}
 

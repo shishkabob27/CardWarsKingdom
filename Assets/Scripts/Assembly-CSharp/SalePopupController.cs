@@ -222,8 +222,60 @@ public class SalePopupController : Singleton<SalePopupController>
 	private void ExecOnPurchaseComplete()
 	{
 		Singleton<PlayerInfoScript>.Instance.OnSpecialSalePurchased(mSale);
+		SendSalesTrack();
 		StoreScreenController.GrantSaleProduct(mSale, mSaleProductData, true);
 		HideTween.Play();
+	}
+
+	private void SendSalesTrack()
+	{
+		string iD = mSale.ID;
+		string upsightEvent = "Store.Sales." + iD;
+		foreach (GeneralReward item in mSale.Items)
+		{
+			string value = item.Quantity.ToString();
+			if (item.RewardType == GeneralReward.TypeEnum.HardCurrency)
+			{
+				upsightEvent = "Economy.GemEnter.Sales";
+				Dictionary<string, object> dictionary = new Dictionary<string, object>();
+				dictionary.Add("salesID", iD);
+				dictionary.Add("amount", value);
+			}
+			else if (item.RewardType == GeneralReward.TypeEnum.SoftCurrency)
+			{
+				upsightEvent = "Economy.CoinEnter.Sales";
+				Dictionary<string, object> dictionary2 = new Dictionary<string, object>();
+				dictionary2.Add("salesID", iD);
+				dictionary2.Add("amount", value);
+			}
+			else if (item.RewardType == GeneralReward.TypeEnum.SocialCurrency)
+			{
+				upsightEvent = "Economy.WishboneEnter.Sales";
+				Dictionary<string, object> dictionary3 = new Dictionary<string, object>();
+				dictionary3.Add("salesID", iD);
+				dictionary3.Add("amount", value);
+			}
+			else if (item.RewardType == GeneralReward.TypeEnum.XPMaterials)
+			{
+				string iD2 = item.XPMaterial.ID;
+				upsightEvent = "Ingredients.Acquired";
+				Dictionary<string, object> dictionary4 = new Dictionary<string, object>();
+				dictionary4.Add("ingredientID", iD2);
+				dictionary4.Add("type", InventorySlotType.XPMaterial.ToString());
+				dictionary4.Add("amount", value);
+				dictionary4.Add("source", "Sales");
+				dictionary4.Add("sourceID", iD);
+			}
+			else if (item.RewardType == GeneralReward.TypeEnum.Creatures)
+			{
+				upsightEvent = "Creatures.CreatureAcquired";
+				string value2 = item.Creature.ToString();
+				Dictionary<string, object> dictionary5 = new Dictionary<string, object>();
+				dictionary5.Add("creatureID", value2);
+				dictionary5.Add("acquisition", "Sales");
+				dictionary5.Add("id", iD);
+			}
+		}
 	}
 
 	public void OnClickClose()

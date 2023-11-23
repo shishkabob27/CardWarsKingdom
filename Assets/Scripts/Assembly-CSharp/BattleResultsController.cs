@@ -799,6 +799,10 @@ public class BattleResultsController : Singleton<BattleResultsController>
 
 	private void RefillStaminaAndReplay()
 	{
+		string value = MiscParams.StaminaRefillCost.ToString();
+		string upsightEvent = "Economy.GemExit.ReplenishHearts";
+		Dictionary<string, object> dictionary = new Dictionary<string, object>();
+		dictionary.Add("cost", value);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

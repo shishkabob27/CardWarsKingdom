@@ -67,6 +67,7 @@ public class MissionGridEntry : UIStreamingGridListItem
 	{
 		if (mMission.Completed && !mMission.Claimed)
 		{
+			SendKPIData();
 			if (mMission.Data.Type == MissionType.Global)
 			{
 				GlobalCollectTween.PlayWithCallback(OnCollectTweenComplete);
@@ -76,6 +77,45 @@ public class MissionGridEntry : UIStreamingGridListItem
 				CollectTween.PlayWithCallback(OnCollectTweenComplete);
 			}
 		}
+	}
+
+	private void SendKPIData()
+	{
+		string upsightEvent = string.Empty;
+		string iD = mMission.Data.ID;
+		string value = mMission.Data.Type.ToString();
+		string value2 = string.Empty;
+		string value3 = string.Empty;
+		Dictionary<string, object> dictionary = new Dictionary<string, object>();
+		dictionary.Add("missionID", iD);
+		dictionary.Add("type", value);
+		if (mMission.Data.SoftCurrency > 0)
+		{
+			upsightEvent = "Economy.CoinEnter.Mission";
+			value2 = mMission.Data.SoftCurrency.ToString();
+			value3 = "Coin";
+			dictionary.Add("amount", value2);
+		}
+		else if (mMission.Data.SocialCurrency > 0)
+		{
+			upsightEvent = "Economy.WishboneEnter.Mission";
+			value3 = "Wishbone";
+			value2 = mMission.Data.SocialCurrency.ToString();
+			dictionary.Add("amount", value2);
+		}
+		else if (mMission.Data.HardCurrency > 0)
+		{
+			upsightEvent = "Economy.GemEnter.Mission";
+			value2 = mMission.Data.HardCurrency.ToString();
+			value3 = "Gem";
+			dictionary.Add("amount", value2);
+		}
+		upsightEvent = ((mMission.Data.Type != MissionType.Global) ? "Misssion.Daily" : "Misssion.Global");
+		dictionary.Clear();
+		dictionary.Add("missionID", iD);
+		dictionary.Add("rewardQuantity", value2);
+		dictionary.Add("rewardType", value3);
+		dictionary.Add("status", "Collected");
 	}
 
 	private void OnCollectTweenComplete()

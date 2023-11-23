@@ -192,6 +192,10 @@ public class UIInput : MonoBehaviour
 				Init();
 			}
 			mDrawStart = 0;
+			if (Application.platform == RuntimePlatform.BlackBerryPlayer)
+			{
+				value = value.Replace("\\b", "\b");
+			}
 			value = Validate(value);
 			if (isSelected && mKeyboard != null && mCached != value)
 			{
@@ -491,7 +495,7 @@ public class UIInput : MonoBehaviour
 			mSelectionEnd = ((!string.IsNullOrEmpty(mValue)) ? mValue.Length : 0);
 			mDrawStart = 0;
 			label.color = activeTextColor;
-			if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
+			if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.BlackBerryPlayer || Application.platform == RuntimePlatform.MetroPlayerARM || Application.platform == RuntimePlatform.MetroPlayerX64 || Application.platform == RuntimePlatform.MetroPlayerX86)
 			{
 				TouchScreenKeyboardType touchScreenKeyboardType;
 				string text;

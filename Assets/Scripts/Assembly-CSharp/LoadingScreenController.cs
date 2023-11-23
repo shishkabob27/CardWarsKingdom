@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LoadingScreenController : MonoBehaviour
 {
@@ -48,7 +47,7 @@ public class LoadingScreenController : MonoBehaviour
 		}
 		LoadLoadingScreenLogo(LoadingLogo);
 		SceneFlowManager.Scene mCurrentScene = DetachedSingleton<SceneFlowManager>.Instance.GetCurrentScene();
-		AsyncOperation async = SceneManager.LoadSceneAsync(DetachedSingleton<SceneFlowManager>.Instance.GetNameFromScene(mCurrentScene));
+		AsyncOperation async = Application.LoadLevelAdditiveAsync(DetachedSingleton<SceneFlowManager>.Instance.GetNameFromScene(mCurrentScene));
 		float progress2 = 0f;
 		while (!async.isDone)
 		{
