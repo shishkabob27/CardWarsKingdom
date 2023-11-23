@@ -1093,15 +1093,6 @@ public class TutorialController : Singleton<TutorialController>
 			if (!backwards && stateData.ActiveTutorialState.EndState)
 			{
 				block.Completed = true;
-				string upsightEvent = "Tutorial." + block.ID + ".Finished";
-				if (block.ID == "Q1")
-				{
-					int selectedLoadout = Singleton<PlayerInfoScript>.Instance.SaveData.SelectedLoadout;
-					string teamName = Singleton<PlayerInfoScript>.Instance.GetTeamName(selectedLoadout);
-					string upsightEvent2 = "Player.InitialDeckSelection";
-					Dictionary<string, object> dictionary = new Dictionary<string, object>();
-					dictionary.Add("deckName", teamName);
-				}
 				Singleton<PlayerInfoScript>.Instance.Save();
 			}
 			int num = ((!backwards) ? 1 : (-1));

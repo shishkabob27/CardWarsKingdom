@@ -78,14 +78,6 @@ public class ShaderIndependentGlow : MonoBehaviour
 		}
 	}
 
-	private void Awake()
-	{
-		if (KFFLODManager.IsLowEndDevice())
-		{
-			base.enabled = false;
-		}
-	}
-
 	private void Blur(RenderTexture source, RenderTexture destination)
 	{
 		float num = 1f / (1f * (float)(1 << blurDownsample));

@@ -128,7 +128,7 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 	private void Start()
 	{
 		GetBaseURLs();
-		resourcePathPrefix = ((!KFFLODManager.IsLowEndDevice()) ? resourcePathPrefix_hires : resourcePathPrefix_lores);
+		resourcePathPrefix = resourcePathPrefix_hires;
 	}
 
 	private void GetBaseURLs()
@@ -138,31 +138,6 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 		empty = ((!streamingAssetsFile.Contains("://")) ? File.ReadAllText(streamingAssetsFile) : SQSettings.getJsonPath(streamingAssetsFile));
 		Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(empty);
 		assetBundleBaseURL = (string)dictionary["asset_bundle_url"];
-	}
-
-	public static string GetResourceName(string name)
-	{
-		return GetResourceName(name, KFFLODManager.IsLowEndDevice());
-	}
-
-	public static string GetResourceName(string name, bool lowRes)
-	{
-		if (lowRes)
-		{
-			if (name.Contains("low_"))
-			{
-				return name;
-			}
-			int num = name.LastIndexOf("/");
-			if (num >= 0)
-			{
-				string text = name.Substring(0, num);
-				string text2 = name.Substring(num + 1);
-				return text + "/low_" + text2;
-			}
-			return "low_" + name;
-		}
-		return name;
 	}
 
 	public bool IsHiLoRezResource(string path)
@@ -184,20 +159,7 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 			{
 				return null;
 			}
-			if (IsHiLoRezResource(path))
-			{
-				text = GetResourceName(text);
-			}
 			UnityEngine.Object @object = ((t == null) ? mResourcesBundle.LoadAsset(text) : mResourcesBundle.LoadAsset(text, t));
-			if (@object != null)
-			{
-				return @object;
-			}
-		}
-		if (KFFLODManager.IsLowEndDevice() && IsHiLoRezResource(path))
-		{
-			string resourceName = GetResourceName(path);
-			UnityEngine.Object @object = ((t == null) ? Resources.Load(resourceName) : Resources.Load(resourceName, t));
 			if (@object != null)
 			{
 				return @object;
@@ -244,10 +206,6 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 			if (IsUsingAssetBundles())
 			{
 				queuedLoad.AssetBundle = queuedLoad.AssetBundle.ToLower();
-				if (KFFLODManager.IsLowEndDevice() && IsHiRezLowRezBundle(queuedLoad.AssetBundle))
-				{
-					queuedLoad.AssetBundle = "low_" + queuedLoad.AssetBundle;
-				}
 				AssetBundle assetBundle;
 				if (queuedLoad.PreloadOnly)
 				{
@@ -257,7 +215,7 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 				{
 					if (queuedLoad.UseHighResLowRes)
 					{
-						queuedLoad.AssetPath = FixPath(GetResourceName(queuedLoad.AssetPath));
+						queuedLoad.AssetPath = FixPath(queuedLoad.AssetPath);
 					}
 					else
 					{
@@ -343,15 +301,7 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 			else
 			{
 				string aPath = queuedLoad.AssetPath;
-				if (queuedLoad.UseHighResLowRes)
-				{
-					aPath = GetResourceName(queuedLoad.AssetPath);
-				}
 				ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
-				if (resourceRequest == null && KFFLODManager.IsLowEndDevice())
-				{
-					resourceRequest = Resources.LoadAsync(queuedLoad.AssetPath);
-				}
 				UnityEngine.Object result = null;
 				if (resourceRequest != null)
 				{
@@ -726,10 +676,6 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 		for (int i = 0; i < bundlesToLoad.Count; i++)
 		{
 			string bundleName = bundlesToLoad[i];
-			if (KFFLODManager.IsLowEndDevice() && IsHiRezLowRezBundle(bundlesToLoad[i]))
-			{
-				bundleName = "low_" + bundleName;
-			}
 			if (Singleton<KFFAssetBundleManager>.Instance.GetAssetBundleByName(bundleName) != null)
 			{
 				OnResourceLoadDone();

@@ -274,7 +274,7 @@ public class AndroidPermissions : MonoBehaviour
 
 	private void LoadNextScene()
 	{
-		if (KFFLODManager.IsLowEndDevice() || !MoviePlayer.NeedToPlayMovies)
+		if (!MoviePlayer.NeedToPlayMovies)
 		{
 			DetachedSingleton<SceneFlowManager>.Instance.LoadVersionCheckSceneDirect();
 		}

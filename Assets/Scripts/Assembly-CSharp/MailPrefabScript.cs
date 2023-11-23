@@ -78,10 +78,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 					num = Mail.SoftQuantity;
 					rewardedCurrencyTotal = instance.SaveData.SoftCurrency;
 					rewardedCurrencySprite = "Icon_Currency_Soft";
-					string upsightEvent = "Economy.CoinEnter.MailGift";
-					Dictionary<string, object> dictionary = new Dictionary<string, object>();
-					dictionary.Add("mailID", Mail.ID);
-					dictionary.Add("amount", num);
 				}
 				if (Mail.PVPQuantity > 0)
 				{
@@ -89,10 +85,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 					num = Mail.PVPQuantity;
 					rewardedCurrencyTotal = instance.SaveData.PvPCurrency;
 					rewardedCurrencySprite = "Icon_Currency_PVPCurrency";
-					string upsightEvent2 = "Economy.WishboneEnter.MailGift";
-					Dictionary<string, object> dictionary2 = new Dictionary<string, object>();
-					dictionary2.Add("mailID", Mail.ID);
-					dictionary2.Add("amount", num);
 				}
 				if (Mail.HardQuantity > 0)
 				{
@@ -100,10 +92,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 					num = Mail.HardQuantity;
 					rewardedCurrencyTotal = instance.SaveData.HardCurrency;
 					rewardedCurrencySprite = "Icon_Currency_Hard";
-					string upsightEvent3 = "Economy.GemEnter.MailGift";
-					Dictionary<string, object> dictionary3 = new Dictionary<string, object>();
-					dictionary3.Add("mailID", Mail.ID);
-					dictionary3.Add("amount", num);
 				}
 				if (Mail.XPMaterialID != null && Mail.XPMaterialQuantity > 0)
 				{
@@ -116,13 +104,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 						}
 						num2 = Mail.XPMaterialQuantity;
 						string iD = data.ID;
-						string upsightEvent4 = "Ingredients.Acquired";
-						Dictionary<string, object> dictionary4 = new Dictionary<string, object>();
-						dictionary4.Add("ingredientID", iD);
-						dictionary4.Add("type", InventorySlotType.XPMaterial.ToString());
-						dictionary4.Add("amount", num2);
-						dictionary4.Add("source", "Mail");
-						dictionary4.Add("sourceID", Mail.ID);
 					}
 					if (Mail.CreatureID != null)
 					{
@@ -131,12 +112,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 						{
 							CreatureItem creatureItem = new CreatureItem(data2);
 							rewardedItem = Singleton<PlayerInfoScript>.Instance.SaveData.AddCreature(creatureItem);
-							string upsightEvent5 = "Creatures.CreatureAcquired";
-							string value = creatureItem.ToString();
-							Dictionary<string, object> dictionary5 = new Dictionary<string, object>();
-							dictionary5.Add("creatureID", value);
-							dictionary5.Add("acquisition", "Mail");
-							dictionary5.Add("id", Mail.ID);
 						}
 					}
 				}
@@ -155,10 +130,6 @@ public class MailPrefabScript : UIStreamingGridListItem
 			string body = KFFLocalization.Get("!!HELPER_REQUESTMESSAGE");
 			Singleton<HelperRequestController>.Instance.CurrentHelper = Mail.Inviter;
 			Singleton<HelperRequestController>.Instance.ShowAllyInviteAcceptConfirm(title, body, Singleton<HelperRequestController>.Instance.SendAllyInviteAccept, Singleton<HelperRequestController>.Instance.SendAllyInviteReject);
-			string upsightEvent6 = "Economy.WishboneEnter.MailGift";
-			Dictionary<string, object> dictionary6 = new Dictionary<string, object>();
-			dictionary6.Add("mailID", Mail.ID);
-			dictionary6.Add("amount", helpPointForExplorer.ToString());
 		}
 	}
 

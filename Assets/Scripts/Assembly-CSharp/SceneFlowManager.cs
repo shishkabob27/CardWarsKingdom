@@ -29,8 +29,6 @@ public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 
 	private string[] mSceneMap = new string[7];
 
-	private string[] mLowResSceneMap = new string[7];
-
 	private Scene mPreviousScene = Scene.None;
 
 	private Scene mCurrentScene = Scene.None;
@@ -46,13 +44,6 @@ public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 		mSceneMap[4] = "ConnectScene";
 		mSceneMap[5] = "FrontEndScene";
 		mSceneMap[6] = "BattleScene";
-		mLowResSceneMap[0] = "low_LoadingScreen";
-		mLowResSceneMap[1] = string.Empty;
-		mLowResSceneMap[2] = "low_VersionCheckScene";
-		mLowResSceneMap[3] = "low_AssetBundleDownloadScene";
-		mLowResSceneMap[4] = "low_ConnectScene";
-		mLowResSceneMap[5] = "low_FrontEndScene";
-		mLowResSceneMap[6] = "low_BattleScene";
 		mCurrentScene = GetSceneFromName(SceneManager.GetActiveScene().name);
 	}
 
@@ -76,9 +67,6 @@ public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 	{
 		if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
 		{
-			string upsightEvent = "Multiplayer.MatchSynchronization.Success";
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("duration", Singleton<PVPPrepScreenController>.Instance.syncTime);
 			Singleton<PVPPrepScreenController>.Instance.syncTime = 0f;
 			Singleton<PVPPrepScreenController>.Instance.matchFound = false;
 		}
@@ -150,10 +138,6 @@ public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 			return null;
 		}
 		string result = mSceneMap[(int)scene];
-		if (KFFLODManager.IsLowEndDevice() && !string.IsNullOrEmpty(mLowResSceneMap[(int)scene]))
-		{
-			result = mLowResSceneMap[(int)scene];
-		}
 		return result;
 	}
 

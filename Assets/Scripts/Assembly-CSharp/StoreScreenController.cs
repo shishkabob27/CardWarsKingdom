@@ -615,7 +615,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 		switch (result)
 		{
 		case PurchaseManager.ProductPurchaseResult.Success:
-			SendKPITrack(StoreKPITracking.BuyProduct);
 			GrantProduct(mProductIdBeingPurchased.ProductIdentifier);
 			break;
 		case PurchaseManager.ProductPurchaseResult.Failed:
@@ -816,7 +815,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();
-		SendKPITrack(StoreKPITracking.ReplenishStamina);
 		Singleton<PlayerInfoScript>.Instance.SaveData.ConsumeHardCurrency2(MiscParams.StaminaRefillCost, "stamina refill", UserActionCallback);
 		mNextFunction = StaminaRefillExecute;
 		isProcessingPurchase = false;
@@ -861,10 +859,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	private void OnClickConfirmPurchaseSlots()
 	{
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
-		string value = MiscParams.InventorySpacePurchaseCost.ToString();
-		string upsightEvent = "Economy.GemExit.IncreaseInventory";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", value);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();
@@ -880,7 +874,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	private void ConfirmExpandInventory()
 	{
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
-		SendKPITrack(StoreKPITracking.IncreaseInventory);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();
@@ -917,7 +910,6 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	private void ConfirmExpandAllyList()
 	{
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
-		SendKPITrack(StoreKPITracking.ExpandAllyList);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();
@@ -1027,49 +1019,12 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	private void LeaderPurchaseExecute()
 	{
 		Singleton<PlayerInfoScript>.Instance.SaveData.Leaders.Add(new LeaderItem(mHighlightedLeader.ID));
-		SendKPITrack(StoreKPITracking.BuyHeroes);
 		Singleton<PlayerInfoScript>.Instance.Save();
 		PopulateHeroList();
 		PopulateLeader(mHighlightedLeader);
 		mSkinGridDataSource.RepopulateObjects();
 		PopulateSkin(mHighlightedLeader);
 		Singleton<BuyHeroPopupController>.Instance.Show(mHighlightedLeader);
-	}
-
-	private void SendKPITrack(StoreKPITracking trackType)
-	{
-		string empty = string.Empty;
-		string upsightEvent = string.Empty;
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		switch (trackType)
-		{
-		case StoreKPITracking.BuyHeroes:
-			empty = mHighlightedLeader.BuyCost.ToString();
-			upsightEvent = "Economy.GemExit.Heroes";
-			dictionary.Add("heroesID", mHighlightedLeader.ID);
-			dictionary.Add("cost", empty);
-			break;
-		case StoreKPITracking.ReplenishStamina:
-			empty = MiscParams.StaminaRefillCost.ToString();
-			upsightEvent = "Economy.GemExit.ReplenishHearts";
-			dictionary.Add("cost", empty);
-			break;
-		case StoreKPITracking.IncreaseInventory:
-			empty = MiscParams.InventorySpacePurchaseCost.ToString();
-			upsightEvent = "Economy.GemExit.IncreaseInventory";
-			dictionary.Add("cost", empty);
-			break;
-		case StoreKPITracking.ExpandAllyList:
-			empty = MiscParams.AllyBoxPurchaseCost.ToString();
-			upsightEvent = "Economy.GemExit.ExpandAllyList";
-			dictionary.Add("cost", empty);
-			break;
-		case StoreKPITracking.BuyProduct:
-			dictionary.Clear();
-			dictionary = null;
-			upsightEvent = "Store.IAP." + mProductIdBeingPurchased.ProductIdentifier;
-			break;
-		}
 	}
 
 	public void OnSkinClicked(StoreHeroPrefab skinTile)

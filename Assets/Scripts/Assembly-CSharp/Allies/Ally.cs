@@ -459,7 +459,6 @@ namespace Allies
 		{
 			List<AllyData> list = new List<AllyData>();
 			List<string> list2 = new List<string>();
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
 			List<object> list3 = (List<object>)Json.Deserialize(json_data);
 			if (list3 != null)
 			{
