@@ -198,7 +198,7 @@ namespace Allies
 			if (AllyDenycallback != null)
 			{
 				ResponseFlag flag = ResponseFlag.Error;
-				if (response.StatusCode == HttpStatusCode.OK && response.Data.IndexOf("success") != -1 && response.Data.IndexOf("True") != -1)
+				if (response.StatusCode == HttpStatusCode.OK && response.GetAsJSONDict()["success"].ToString() == "True")
 				{
 					flag = ResponseFlag.Success;
 				}
@@ -218,7 +218,7 @@ namespace Allies
 			if (DeleteAllycallback != null)
 			{
 				ResponseFlag flag = ResponseFlag.Error;
-				if (response.StatusCode == HttpStatusCode.OK && response.Data.IndexOf("success") != -1 && response.Data.IndexOf("True") != -1)
+				if (response.StatusCode == HttpStatusCode.OK && response.GetAsJSONDict()["success"].ToString() == "True")
 				{
 					flag = ResponseFlag.Success;
 				}

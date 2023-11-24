@@ -237,7 +237,7 @@ public class SQWebFileServer : TFWebFileServer
 		SetDefaultHeaders(webHeaderCollection);
 		try
 		{
-			GetFile(friendsAllRequestsRcvdUri, webHeaderCollection, GameCallbackWrapper(callback, webHeaderCollection, true, userData), userData);
+			GetFile(friendsAllRequestsRcvdUri + "/" + PlayerInfoScript.Instance.GetPlayerCode(), webHeaderCollection, GameCallbackWrapper(callback, webHeaderCollection, true, userData), userData);
 		}
 		catch (Exception message)
 		{
@@ -277,7 +277,7 @@ public class SQWebFileServer : TFWebFileServer
 
 	private void FriendOp(string uri, FileCallbackHandler callback, string id, object userData = null)
 	{
-		string text = string.Format("{0}/{1}", uri, id);
+		string text = string.Format("{0}/{1}/{2}", uri, PlayerInfoScript.Instance.GetPlayerCode(), id);
 		Debug.Log("Friend opearation: " + text);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);

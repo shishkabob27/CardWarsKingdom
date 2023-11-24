@@ -422,7 +422,8 @@ public class SQServer
 	public void Friend_request_with_myinfo(string playerId, TFServer.JsonResponseHandler callback)
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary["user"] = playerId;
+		dictionary["player_id"] = PlayerInfoScript.Instance.GetPlayerCode();
+		dictionary["invite_id"] = playerId;
 		dictionary["signature"] = SignDictionary(dictionary, nonce, "xc0u18^g0!ac3k%0+2vgglmnr1)x^!o(n6@$m3t^(7l!(#kv!-");
 		tfServer.PostToJSON(SQSettings.SERVER_URL + "persist/friends_request_withmyinfoDW/", dictionary, callback);
 	}
@@ -435,7 +436,8 @@ public class SQServer
 	public void Friend_confirm_with_myinfo(string playerId, TFServer.JsonResponseHandler callback)
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary["user"] = playerId;
+		dictionary["player_id"] = PlayerInfoScript.Instance.GetPlayerCode();
+		dictionary["invite_id"] = playerId;
 		dictionary["signature"] = SignDictionary(dictionary, nonce, "xc0u18^g0!ac3k%0+2vgglmnr1)x^!o(n6@$m3t^(7l!(#kv!-");
 		tfServer.PostToJSON(SQSettings.SERVER_URL + "persist/friends_confirm_request_withmyinfoDW/", dictionary, callback);
 	}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Allies;
 using UnityEngine;
 
@@ -312,12 +313,12 @@ public class AllyListController : MonoBehaviour
 			Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, KFFLocalization.Get("!!INVALID_INVITE_ID"));
 			return;
 		}
-		if (internalID == Singleton<PlayerInfoScript>.Instance.GetPlayerCode())
+		if (mInvitingID == Singleton<PlayerInfoScript>.Instance.GetPlayerCode())
 		{
 			Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, KFFLocalization.Get("!!CANT_INVITE_SELF"));
 			return;
 		}
-		if (mHelperItemList.Find((HelperItem m) => m.HelperID == internalID) != null)
+		if (mHelperItemList.Find((HelperItem m) => m.HelperID == mInvitingID) != null)
 		{
 			Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, KFFLocalization.Get("!!PLAYER_ALREADY_ALLY").Replace("<val1>", mInvitingID));
 			return;
@@ -331,39 +332,9 @@ public class AllyListController : MonoBehaviour
 
 	private bool IsValidPlayerID(string text)
 	{
-		if (text.Length == 0)
-		{
-			return false;
-		}
-		bool flag = false;
-		for (int i = 0; i < text.Length; i++)
-		{
-			switch (text[i])
-			{
-			case '-':
-				if (flag)
-				{
-					return false;
-				}
-				flag = true;
-				break;
-			default:
-				return false;
-			case '0':
-			case '1':
-			case '2':
-			case '3':
-			case '4':
-			case '5':
-			case '6':
-			case '7':
-			case '8':
-			case '9':
-				break;
-			}
-		}
-		return flag;
-	}
+		Regex regex = new Regex("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}");
+		return regex.IsMatch(text);
+    }
 
 	public void OnAllIDInputCancel()
 	{
