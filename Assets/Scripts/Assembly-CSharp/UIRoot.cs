@@ -128,7 +128,11 @@ public class UIRoot : MonoBehaviour
 
 	private void Update()
 	{
-		if (!(mTrans != null))
+#if UNITY_EDITOR
+        if (!Application.isPlaying && gameObject.layer != 0)
+            UnityEditor.EditorPrefs.SetInt("NGUI Layer", gameObject.layer);
+#endif
+        if (!(mTrans != null))
 		{
 			return;
 		}

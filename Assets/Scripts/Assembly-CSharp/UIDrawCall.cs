@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 [AddComponentMenu("NGUI/Internal/Draw Call")]
 public class UIDrawCall : MonoBehaviour
 {
@@ -146,8 +147,11 @@ public class UIDrawCall : MonoBehaviour
 				if (mDynamicMat != null)
 				{
 					mDynamicMat.renderQueue = value;
-				}
-			}
+#if UNITY_EDITOR
+                    if (mRenderer != null) mRenderer.enabled = isActive;
+#endif
+                }
+            }
 		}
 	}
 
@@ -174,7 +178,36 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	public Transform cachedTransform
+#if UNITY_EDITOR
+
+    /// <summary>
+    /// Whether the draw call is currently active.
+    /// </summary>
+
+    public bool isActive
+    {
+        get
+        {
+            return mActive;
+        }
+        set
+        {
+            if (mActive != value)
+            {
+                mActive = value;
+
+                if (mRenderer != null)
+                {
+                    mRenderer.enabled = value;
+                    NGUITools.SetDirty(gameObject);
+                }
+            }
+        }
+    }
+    bool mActive = true;
+#endif
+
+    public Transform cachedTransform
 	{
 		get
 		{
@@ -344,7 +377,10 @@ public class UIDrawCall : MonoBehaviour
 		}
 		else if (mRenderer.sharedMaterial != mDynamicMat)
 		{
-			mRenderer.sharedMaterials = new Material[1] { mDynamicMat };
+#if UNITY_EDITOR
+            Debug.LogError("Hmm... This point got hit!");
+#endif
+            mRenderer.sharedMaterials = new Material[1] { mDynamicMat };
 		}
 	}
 
@@ -443,8 +479,11 @@ public class UIDrawCall : MonoBehaviour
 			if (mRenderer == null)
 			{
 				mRenderer = base.gameObject.AddComponent<MeshRenderer>();
-			}
-			UpdateMaterials();
+#if UNITY_EDITOR
+                mRenderer.enabled = isActive;
+#endif
+            }
+            UpdateMaterials();
 		}
 		else if (mFilter.mesh != null)
 		{
@@ -593,10 +632,18 @@ public class UIDrawCall : MonoBehaviour
 
 	public static UIDrawCall Create(UIPanel panel, Material mat, Texture tex, Shader shader)
 	{
+#if UNITY_EDITOR
+        string name = null;
+        if (tex != null) name = tex.name;
+        else if (shader != null) name = shader.name;
+        else if (mat != null) name = mat.name;
+        return Create(name, panel, mat, tex, shader);
+#else
 		return Create(null, panel, mat, tex, shader);
-	}
+#endif
+    }
 
-	private static UIDrawCall Create(string name, UIPanel pan, Material mat, Texture tex, Shader shader)
+    private static UIDrawCall Create(string name, UIPanel pan, Material mat, Texture tex, Shader shader)
 	{
 		UIDrawCall uIDrawCall = Create(name);
 		uIDrawCall.gameObject.layer = pan.cachedGameObject.layer;
@@ -611,7 +658,10 @@ public class UIDrawCall : MonoBehaviour
 
 	private static UIDrawCall Create(string name)
 	{
-		if (mInactiveList.size > 0)
+#if SHOW_HIDDEN_OBJECTS && UNITY_EDITOR
+		name = (name != null) ? "_UIDrawCall [" + name + "]" : "DrawCall";
+#endif
+        if (mInactiveList.size > 0)
 		{
 			UIDrawCall uIDrawCall = mInactiveList.Pop();
 			mActiveList.Add(uIDrawCall);
@@ -622,10 +672,22 @@ public class UIDrawCall : MonoBehaviour
 			NGUITools.SetActive(uIDrawCall.gameObject, true);
 			return uIDrawCall;
 		}
-		GameObject gameObject = new GameObject(name);
-		UnityEngine.Object.DontDestroyOnLoad(gameObject);
+
+#if UNITY_EDITOR
+        // If we're in the editor, create the game object with hide flags set right away
+        GameObject go = UnityEditor.EditorUtility.CreateGameObjectWithHideFlags(name,
+	#if SHOW_HIDDEN_OBJECTS
+			HideFlags.DontSave | HideFlags.NotEditable, typeof(UIDrawCall));
+	#else
+            HideFlags.HideAndDontSave, typeof(UIDrawCall));
+	#endif
+        UIDrawCall uIDrawCall2 = go.GetComponent<UIDrawCall>();
+#else
+        GameObject gameObject = new GameObject(name);
+		DontDestroyOnLoad(gameObject);
 		UIDrawCall uIDrawCall2 = gameObject.AddComponent<UIDrawCall>();
-		mActiveList.Add(uIDrawCall2);
+#endif
+        mActiveList.Add(uIDrawCall2);
 		return uIDrawCall2;
 	}
 

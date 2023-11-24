@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/NGUI Panel")]
 public class UIPanel : UIRect
 {

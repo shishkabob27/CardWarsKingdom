@@ -1023,7 +1023,82 @@ public class UIWidget : UIRect
 		RemoveFromPanel();
 	}
 
-	public bool UpdateVisibility(bool visibleByAlpha, bool visibleByPanel)
+#if UNITY_EDITOR
+    static int mHandles = -1;
+
+    /// <summary>
+    /// Whether widgets will show handles with the Move Tool, or just the View Tool.
+    /// </summary>
+
+    static public bool showHandlesWithMoveTool
+    {
+        get
+        {
+            if (mHandles == -1)
+            {
+                mHandles = UnityEditor.EditorPrefs.GetInt("NGUI Handles", 1);
+            }
+            return (mHandles == 1);
+        }
+        set
+        {
+            int val = value ? 1 : 0;
+
+            if (mHandles != val)
+            {
+                mHandles = val;
+                UnityEditor.EditorPrefs.SetInt("NGUI Handles", mHandles);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Whether the widget should have some form of handles shown.
+    /// </summary>
+
+    static public bool showHandles
+    {
+        get
+        {
+            if (showHandlesWithMoveTool)
+            {
+                return UnityEditor.Tools.current == UnityEditor.Tool.Move;
+            }
+            return UnityEditor.Tools.current == UnityEditor.Tool.View;
+        }
+    }
+
+    /// <summary>
+    /// Draw some selectable gizmos.
+    /// </summary>
+
+    void OnDrawGizmos()
+    {
+        if (isVisible && NGUITools.GetActive(this))
+        {
+            if (UnityEditor.Selection.activeGameObject == gameObject && showHandles) return;
+
+            Color outline = new Color(1f, 1f, 1f, 0.2f);
+
+            float adjustment = (root != null) ? 0.05f : 0.001f;
+            Vector2 offset = pivotOffset;
+            Vector3 center = new Vector3(mWidth * (0.5f - offset.x), mHeight * (0.5f - offset.y), -mDepth * adjustment);
+            Vector3 size = new Vector3(mWidth, mHeight, 1f);
+
+            // Draw the gizmo
+            Gizmos.matrix = cachedTransform.localToWorldMatrix;
+            Gizmos.color = (UnityEditor.Selection.activeGameObject == cachedTransform) ? Color.white : outline;
+            Gizmos.DrawWireCube(center, size);
+
+            // Make the widget selectable
+            size.z = 0.01f;
+            Gizmos.color = Color.clear;
+            Gizmos.DrawCube(center, size);
+        }
+    }
+#endif // UNITY_EDITOR
+
+    public bool UpdateVisibility(bool visibleByAlpha, bool visibleByPanel)
 	{
 		if (mIsVisibleByAlpha != visibleByAlpha || mIsVisibleByPanel != visibleByPanel)
 		{
