@@ -100,6 +100,7 @@ public class VersionCheckSceneController : MonoBehaviour
 				if (text3 == null)
 				{
 					text3 = TFUtils.TryLoadString(dictionary, "version");
+					text4 = TFUtils.TryLoadString(dictionary, "pc_url");
 				}
 				if (text3 != null)
 				{
