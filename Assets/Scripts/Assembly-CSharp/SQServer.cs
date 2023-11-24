@@ -483,6 +483,7 @@ public class SQServer
 	public void User_action(int pd, int fr, int cu, int dp, int df, int dc, string us, int hd, int misc, string evt, string cc, TFServer.JsonResponseHandler callback)
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
+		dictionary["player_id"] = PlayerInfoScript.Instance.GetPlayerCode();
 		dictionary["pd"] = pd.ToString();
 		dictionary["fr"] = fr.ToString();
 		dictionary["cu"] = cu.ToString();
