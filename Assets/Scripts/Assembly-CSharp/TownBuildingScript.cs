@@ -211,9 +211,14 @@ public class TownBuildingScript : MonoBehaviour
 			{
 				MainBuildingAnimation.Stop();
 			}
-			else if (MainBuildingAnimation.clip != null && MainBuildingAnimation.clip.name == "Idle")
+			else
 			{
-				MainBuildingAnimation.Play();
+				List<AnimationState> states = new List<AnimationState>();
+				foreach (AnimationState state in MainBuildingAnimation)
+				{
+					states.Add(state);
+				}
+				MainBuildingAnimation.Play(states[1].name);
 			}
 		}
 		else if (MainBuildingAnimator != null)
