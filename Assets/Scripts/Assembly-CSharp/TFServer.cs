@@ -257,18 +257,8 @@ public class TFServer
 			using (StreamReader streamReader = new StreamReader(responseStream, Encoding.UTF8))
 			{
 				string text = streamReader.ReadToEnd();
-				if (!string.IsNullOrEmpty(text))
-				{
-					TFUtils.DebugLog("Writing out error response: " + text);
-					File.WriteAllText(string.Format("{0}{1}.html", LOG_LOCATION, ++errorCount), text);
-				}
 			}
 			responseStream.Dispose();
-		}
-		else if (status.HasValue)
-		{
-			TFUtils.DebugLog("Writing out status response: " + status.ToString());
-			File.WriteAllText(string.Format("{0}{1}.html", LOG_LOCATION, ++errorCount), status.ToString());
 		}
 	}
 }
