@@ -3104,8 +3104,7 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 
 	public bool IsPastAgeGate(int ageGateInt)
 	{
-		DateTime dateTime = new DateTime(1950, 1, 1).AddSeconds(SaveData.DateOfBirth).AddYears(ageGateInt);
-		return TFUtils.ServerTime >= dateTime;
+		return true;
 	}
 
 	public void CalculateGoldPacksNeeded(int cost, out int packs, out int totalGold, out int totalGemCost)
