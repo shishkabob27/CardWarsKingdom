@@ -41,7 +41,7 @@ public class TFUtils
 		DeviceID = Guid.NewGuid().ToString().Replace("-", string.Empty);
 		DeviceName = SystemInfo.deviceName;
 		FacebookID = ((fbid != null) ? fbid : DeviceID);
-		DebugLog("This device is:" + DeviceID + " / Player ID is:" + FacebookID);
+        UnityEngine.Debug.Log("This device is:" + DeviceID + " / Player ID is:" + FacebookID);
 		AmazonDevice = false;
 	}
 
@@ -53,7 +53,7 @@ public class TFUtils
 		if (num > 10.0)
 		{
 			serverTimeDiff = timeSpan;
-			DebugLog("Server time difference = " + timeSpan.TotalSeconds);
+            UnityEngine.Debug.Log("Server time difference = " + timeSpan.TotalSeconds);
 		}
 	}
 
@@ -715,21 +715,6 @@ public class TFUtils
 			return "null\n";
 		}
 		return v.ToString();
-	}
-
-	public static void DebugLog(object message)
-	{
-		UnityEngine.Debug.Log(message);
-	}
-
-	public static void ErrorLog(object message)
-	{
-		UnityEngine.Debug.LogError(message);
-	}
-
-	public static void WarningLog(object message)
-	{
-		UnityEngine.Debug.LogWarning(message);
 	}
 
 	[Conditional("DEBUG")]

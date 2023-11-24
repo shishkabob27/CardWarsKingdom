@@ -35,7 +35,7 @@ public class SQUtils
 		}
 		catch (Exception ex)
 		{
-			TFUtils.DebugLog(ex.ToString());
+			Debug.Log(ex.ToString());
 		}
 		Dictionary<string, object>[] array = JsonReader.Deserialize<Dictionary<string, object>[]>(value);
 		jsonCache.Add(foldername + fname, array);
@@ -58,7 +58,7 @@ public class SQUtils
 		try
 		{
 			string playerDataPath = instance.GetPlayerDataPath(fname);
-			TFUtils.DebugLog("SQUtils:ReadUserData filePath - " + playerDataPath);
+			Debug.Log("SQUtils:ReadUserData filePath - " + playerDataPath);
 			string empty = string.Empty;
 			empty = File.ReadAllText(playerDataPath);
 			return JsonReader.Deserialize<Dictionary<string, object>>(empty);

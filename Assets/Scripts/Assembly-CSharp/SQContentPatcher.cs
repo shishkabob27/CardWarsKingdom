@@ -84,7 +84,7 @@ public class SQContentPatcher : EventDispatcher<string>
 
 	public void ValidateAndFixDownloadedManifests()
 	{
-		TFUtils.DebugLog("Validating manifest...");
+		Debug.Log("Validating manifest...");
 		bool flag = false;
 		try
 		{
@@ -92,11 +92,11 @@ public class SQContentPatcher : EventDispatcher<string>
 		}
 		catch (Exception ex)
 		{
-			TFUtils.DebugLog("Patch validation exception: " + ex.ToString());
+			Debug.Log("Patch validation exception: " + ex.ToString());
 		}
 		if (!flag)
 		{
-			TFUtils.DebugLog("Bad downloaded manifest files detected. Removing bad files...");
+			Debug.Log("Bad downloaded manifest files detected. Removing bad files...");
 			string path = persistentAssetsPath + Path.DirectorySeparatorChar + "manifest.json";
 			if (File.Exists(path))
 			{
@@ -115,7 +115,7 @@ public class SQContentPatcher : EventDispatcher<string>
 		}
 		else
 		{
-			TFUtils.DebugLog("Validation successful.");
+			Debug.Log("Validation successful.");
 		}
 	}
 
@@ -125,7 +125,7 @@ public class SQContentPatcher : EventDispatcher<string>
 		string filename = TFUtils.GetStreamingAssetsPath() + Path.DirectorySeparatorChar + "manifest.json";
 		Manifest manifest = null;
 		Manifest manifest2 = null;
-		TFUtils.DebugLog("Reading bundled manifest");
+		Debug.Log("Reading bundled manifest");
 		try
 		{
 			string jsonLocalContent = TFUtils.GetJsonLocalContent(filename);
@@ -136,26 +136,26 @@ public class SQContentPatcher : EventDispatcher<string>
 		{
 			manifest = ReadManifest(null);
 		}
-		TFUtils.DebugLog("Looking for downloaded manifest at " + text);
+		Debug.Log("Looking for downloaded manifest at " + text);
 		if (File.Exists(text))
 		{
-			TFUtils.DebugLog("Reading downloaded manifest");
+			Debug.Log("Reading downloaded manifest");
 			string json = File.ReadAllText(text);
 			Dictionary<string, object> dict2 = (Dictionary<string, object>)Json.Deserialize(json);
 			manifest2 = ReadManifest(dict2);
 		}
 		else
 		{
-			TFUtils.DebugLog("No downloaded manifest");
+			Debug.Log("No downloaded manifest");
 		}
 		bool flag = true;
 		if (manifest2 != null)
 		{
-			TFUtils.DebugLog(string.Format("Bundled content is running {0}, Downloaded content is running {1}", manifest.Version, manifest2.Version));
+			Debug.Log(string.Format("Bundled content is running {0}, Downloaded content is running {1}", manifest.Version, manifest2.Version));
 			flag = manifest.Version >= manifest2.Version;
 			if (flag)
 			{
-				TFUtils.DebugLog("Bundled version is the same or greater than the downloaded version. Ignoring outdated downloaded content.");
+				Debug.Log("Bundled version is the same or greater than the downloaded version. Ignoring outdated downloaded content.");
 			}
 		}
 		string path;
@@ -163,7 +163,7 @@ public class SQContentPatcher : EventDispatcher<string>
 		{
 			if (Directory.Exists(TFUtils.GetPersistentAssetsPath()))
 			{
-				TFUtils.DebugLog("Erasing outdated downloaded content.");
+				Debug.Log("Erasing outdated downloaded content.");
 				Directory.Delete(TFUtils.GetPersistentAssetsPath(), true);
 			}
 			_localManifest = manifest;
@@ -273,7 +273,7 @@ public class SQContentPatcher : EventDispatcher<string>
 	{
 		CurrentManifestVersion = _remoteManifest.Version;
 		ManifestEntry manifestEntry = null;
-		TFUtils.DebugLog(string.Format("Processing manifests remote version {0} local version {1} ", _remoteManifest.Version, _localManifest.Version));
+		Debug.Log(string.Format("Processing manifests remote version {0} local version {1} ", _remoteManifest.Version, _localManifest.Version));
 		if (_remoteManifest.Version > _localManifest.Version)
 		{
 			if (Directory.Exists(persistentAssetsPath))
@@ -288,7 +288,7 @@ public class SQContentPatcher : EventDispatcher<string>
 						CreateDirectory(fileInfo2.FullName);
 					}
 					File.Copy(fileInfo.FullName, fileInfo2.FullName, true);
-					TFUtils.DebugLog(string.Format("Copying {0} to {1}", fileInfo.FullName, fileInfo2.FullName));
+					Debug.Log(string.Format("Copying {0} to {1}", fileInfo.FullName, fileInfo2.FullName));
 				}
 			}
 			lock (this)
@@ -300,14 +300,14 @@ public class SQContentPatcher : EventDispatcher<string>
 						manifestEntry = _localManifest.Contents[value.Name];
 						if (!manifestEntry.Digest.Equals(value.Digest))
 						{
-							TFUtils.DebugLog("Remote manifest contains new digest for " + value);
+							Debug.Log("Remote manifest contains new digest for " + value);
 							string key = SQSettings.CDN_URL + value.Digest;
 							_remainingContent[key] = value;
 						}
 					}
 					else
 					{
-						TFUtils.DebugLog("Remote manifest contains entries that the local manifest does not have " + value.ToString());
+						Debug.Log("Remote manifest contains entries that the local manifest does not have " + value.ToString());
 						string key2 = SQSettings.CDN_URL + value.Digest;
 						_remainingContent[key2] = value;
 					}
@@ -324,7 +324,7 @@ public class SQContentPatcher : EventDispatcher<string>
 				return;
 			}
 		}
-		TFUtils.DebugLog("Remote manifest and local manifest both running content version " + _localManifest.Version);
+		Debug.Log("Remote manifest and local manifest both running content version " + _localManifest.Version);
 		FireEvent("patchingNotNecessary");
 		PatchingDone();
 	}
@@ -352,7 +352,7 @@ public class SQContentPatcher : EventDispatcher<string>
 	{
 		using (TFWebClient tFWebClient = new TFWebClient(null))
 		{
-			TFUtils.DebugLog("fetching content from " + url + ", ETag:" + currentETag);
+			Debug.Log("fetching content from " + url + ", ETag:" + currentETag);
 			if (currentETag != null)
 			{
 				tFWebClient.Headers.Add(HttpRequestHeader.IfNoneMatch, currentETag);
@@ -381,7 +381,7 @@ public class SQContentPatcher : EventDispatcher<string>
 	{
 		if (!IsExpectedStatus(e))
 		{
-			TFUtils.DebugLog("Error downloading file during content patching. Continuing without version patching");
+			Debug.Log("Error downloading file during content patching. Continuing without version patching");
 		}
 	}
 
@@ -389,11 +389,11 @@ public class SQContentPatcher : EventDispatcher<string>
 	{
 		if (!IsExpectedStatus(e))
 		{
-			TFUtils.DebugLog(e);
+			Debug.Log(e);
 		}
 		else
 		{
-			TFUtils.DebugLog("Expected status on web error. Skip Patching.");
+			Debug.Log("Expected status on web error. Skip Patching.");
 			CurrentManifestVersion = _localManifest.Version;
 			FireEvent("patchingNotNecessary");
 		}
@@ -411,7 +411,7 @@ public class SQContentPatcher : EventDispatcher<string>
 		string text = dataPath + Path.DirectorySeparatorChar + path;
 		CreateDirectory(text);
 		File.WriteAllText(text, contents);
-		TFUtils.DebugLog("Saved patch file" + text);
+		Debug.Log("Saved patch file" + text);
 	}
 
 	public static string decodeZippedData(byte[] input)
@@ -420,7 +420,7 @@ public class SQContentPatcher : EventDispatcher<string>
 		string text = null;
 		if (input == null || input.Length < 3)
 		{
-			TFUtils.DebugLog("Empty or small data to decode");
+			Debug.Log("Empty or small data to decode");
 			return "{}";
 		}
 		array = ((input[0] != 72 || input[1] != 52 || input[2] != 115) ? input : Convert.FromBase64String(Encoding.UTF8.GetString(input)));
@@ -430,7 +430,7 @@ public class SQContentPatcher : EventDispatcher<string>
 		}
 		catch (ZlibException ex)
 		{
-			TFUtils.DebugLog(ex.ToString());
+			Debug.Log(ex.ToString());
 			return Encoding.UTF8.GetString(array);
 		}
 	}
@@ -445,11 +445,11 @@ public class SQContentPatcher : EventDispatcher<string>
 				{
 					TFWebClient tFWebClient = (TFWebClient)sender;
 					string text = e.UserState.ToString();
-					TFUtils.DebugLog(text + " has finished downloading");
+					Debug.Log(text + " has finished downloading");
 					if (_inProgressContent.ContainsKey(text))
 					{
 						ManifestEntry manifestEntry = _inProgressContent[text];
-						TFUtils.DebugLog("Saving " + text + " to " + dataPath + manifestEntry.Name);
+						Debug.Log("Saving " + text + " to " + dataPath + manifestEntry.Name);
 						string contents = decodeZippedData(e.Result);
 						SaveContentFile(manifestEntry.Name, contents);
 						_inProgressContent.Remove(text);
@@ -457,7 +457,7 @@ public class SQContentPatcher : EventDispatcher<string>
 					}
 					else
 					{
-						TFUtils.DebugLog(string.Concat("Entry ", tFWebClient.QueryString, " does not exist in the in progress content"));
+						Debug.Log(string.Concat("Entry ", tFWebClient.QueryString, " does not exist in the in progress content"));
 					}
 					if (_remainingContent.Keys.Count == 0 && _inProgressContent.Count == 0)
 					{
@@ -465,7 +465,7 @@ public class SQContentPatcher : EventDispatcher<string>
 					}
 					else
 					{
-						TFUtils.DebugLog(string.Format("{0} pieces of patched content left with {1} in progress", _remainingContent.Count, _inProgressContent.Count));
+						Debug.Log(string.Format("{0} pieces of patched content left with {1} in progress", _remainingContent.Count, _inProgressContent.Count));
 					}
 					return;
 				}
@@ -474,7 +474,7 @@ public class SQContentPatcher : EventDispatcher<string>
 		}
 		catch (Exception ex)
 		{
-			TFUtils.ErrorLog(ex);
+            Debug.LogError(ex);
 			OnError(ex);
 		}
 	}
@@ -517,12 +517,12 @@ public class SQContentPatcher : EventDispatcher<string>
 				if (File.Exists(text3))
 				{
 					text = text3;
-					TFUtils.DebugLog("Latest asset for " + value.Name + " is at " + text);
+					Debug.Log("Latest asset for " + value.Name + " is at " + text);
 					text2 = File.ReadAllText(text);
 				}
 				else
 				{
-					TFUtils.DebugLog("Latest asset for " + value.Name + " is at in bundled resources");
+					Debug.Log("Latest asset for " + value.Name + " is at in bundled resources");
 					TextAsset textAsset = (TextAsset)Singleton<SLOTResourceManager>.Instance.LoadResource(value.Name.Substring(0, value.Name.Length - 4), typeof(TextAsset));
 					text2 = textAsset.text;
 				}
@@ -530,16 +530,16 @@ public class SQContentPatcher : EventDispatcher<string>
 			else
 			{
 				text = TFUtils.GetStreamingAssetsFile(value.Name);
-				TFUtils.DebugLog("Latest asset for " + value.Name + " is at " + text);
+				Debug.Log("Latest asset for " + value.Name + " is at " + text);
 				text2 = File.ReadAllText(text);
 			}
 			string text4 = CalculateMD5Hash(text2);
 			if (!value.Digest.Equals(text4))
 			{
-				TFUtils.ErrorLog(string.Concat("After done with patching, assets do not match digest ", value, " current digest is ", text4));
+                Debug.LogError(string.Concat("After done with patching, assets do not match digest ", value, " current digest is ", text4));
 			}
 		}
-		TFUtils.DebugLog("Asset contents have been verified.");
+		Debug.Log("Asset contents have been verified.");
 	}
 
 	public string CalculateMD5Hash(string input)

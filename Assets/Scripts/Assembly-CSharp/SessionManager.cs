@@ -366,7 +366,7 @@ public class SessionManager : Singleton<SessionManager>
 	{
 		if (session != null)
 		{
-			TFUtils.WarningLog("User Login failed due network error");
+            Debug.LogWarning("User Login failed due network error");
 		}
 	}
 
@@ -664,12 +664,12 @@ public class SessionManager : Singleton<SessionManager>
 	public void OnApplicationPauseFromFocus(bool paused)
 	{
 		bool inPurchaseProcess = Singleton<PurchaseManager>.Instance.InPurchaseProcess;
-		TFUtils.DebugLog("Application pausing : " + paused + ", " + inPurchaseProcess);
+		Debug.Log("Application pausing : " + paused + ", " + inPurchaseProcess);
 		if (!(Instance != this))
 		{
 			if (!paused && session != null && !inPurchaseProcess)
 			{
-				TFUtils.DebugLog("H: Calling GetServerTime");
+				Debug.Log("H: Calling GetServerTime");
 				session.GetServerTime();
 			}
 			if (!paused && IsReady() && !inPurchaseProcess)

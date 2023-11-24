@@ -49,13 +49,13 @@ public class TFServer
 		TFWebClient tFWebClient = RegisterCallback(callback);
 		if (shortCircuitRequests)
 		{
-			TFUtils.DebugLog("shortcircuiting a post to " + url);
+			Debug.Log("shortcircuiting a post to " + url);
 			GetCallback(tFWebClient)(NETWORK_ERROR_JSON, HttpStatusCode.ServiceUnavailable);
 			tFWebClient.Dispose();
 			return;
 		}
-		TFUtils.DebugLog("posting data to " + url);
-		TFUtils.DebugLog("post data: " + text);
+		Debug.Log("posting data to " + url);
+		Debug.Log("post data: " + text);
 		tFWebClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
 		string text2 = SessionManager.Instance.theSession.WebFileServer.ReadETag();
 		if (!ignoreEtag && text2 != null)
@@ -72,14 +72,14 @@ public class TFServer
 		TFWebClient tFWebClient = RegisterCallback(callback);
 		if (shortCircuitRequests)
 		{
-			TFUtils.DebugLog("shortcircuiting a post to " + url);
+			Debug.Log("shortcircuiting a post to " + url);
 			GetCallback(tFWebClient)("Network error", HttpStatusCode.ServiceUnavailable);
 			tFWebClient.Dispose();
 		}
 		else
 		{
-			TFUtils.DebugLog("posting data to " + url);
-			TFUtils.DebugLog("post data: " + text);
+			Debug.Log("posting data to " + url);
+			Debug.Log("post data: " + text);
 			tFWebClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
 			tFWebClient.UploadStringCompleted += OnUploadComplete;
 			tFWebClient.UploadStringAsync(new Uri(url), text);
@@ -91,13 +91,13 @@ public class TFServer
 		TFWebClient tFWebClient = RegisterCallback(callback);
 		if (shortCircuitRequests)
 		{
-			TFUtils.DebugLog("Shortcircuiting a request to " + url);
+			Debug.Log("Shortcircuiting a request to " + url);
 			GetCallback(tFWebClient)(NETWORK_ERROR_JSON, HttpStatusCode.ServiceUnavailable);
 			tFWebClient.Dispose();
 		}
 		else
 		{
-			TFUtils.DebugLog("making request to " + url);
+			Debug.Log("making request to " + url);
 			tFWebClient.DownloadStringCompleted += OnDownloadComplete;
 			tFWebClient.DownloadStringAsync(new Uri(url));
 		}
@@ -162,13 +162,13 @@ public class TFServer
 
 	private void OnDownloadComplete(object sender, DownloadStringCompletedEventArgs e)
 	{
-		TFUtils.DebugLog("in onDownloadComplete...");
+		Debug.Log("in onDownloadComplete...");
 		JsonStringHandler jsonStringHandler = OnRequestComplete(sender, e);
 		if (jsonStringHandler == null)
 		{
 			return;
 		}
-		TFUtils.DebugLog("web result: " + e.Result);
+		Debug.Log("web result: " + e.Result);
 		string result = e.Result;
 		if (e.Error == null)
 		{
@@ -188,7 +188,7 @@ public class TFServer
 
 	private void OnUploadComplete(object sender, UploadStringCompletedEventArgs e)
 	{
-		TFUtils.DebugLog("in onUploadComplete...");
+		Debug.Log("in onUploadComplete...");
 		JsonStringHandler jsonStringHandler = OnRequestComplete(sender, e);
 		if (jsonStringHandler == null)
 		{
@@ -212,7 +212,7 @@ public class TFServer
 
 	private JsonStringHandler OnRequestComplete(object sender, AsyncCompletedEventArgs e)
 	{
-		TFUtils.DebugLog("in onRequestCompete..." + e.Error);
+		Debug.Log("in onRequestCompete..." + e.Error);
 		JsonStringHandler callback = GetCallback(sender);
 		TFUtils.Assert(null != e, "No event args happened.");
 		if (e.Error != null && callback != null)

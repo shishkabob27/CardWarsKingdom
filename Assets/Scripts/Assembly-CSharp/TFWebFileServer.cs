@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Ionic.Zlib;
 using JsonFx.Json;
+using UnityEngine;
 
 public class TFWebFileServer
 {
@@ -36,7 +37,7 @@ public class TFWebFileServer
 
 	public void GetFile(string uri, WebHeaderCollection headers, FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Getting file " + uri);
+		Debug.Log("Getting file " + uri);
 		using (TFWebClient tFWebClient = new TFWebClient(cookies))
 		{
 			tFWebClient.NetworkError += OnNetworkError;
@@ -44,7 +45,7 @@ public class TFWebFileServer
 			tFWebClient.Headers = headers;
 			foreach (string header in tFWebClient.Headers)
 			{
-				TFUtils.DebugLog("Outbound:" + header + "-->" + tFWebClient.Headers[header]);
+				Debug.Log("Outbound:" + header + "-->" + tFWebClient.Headers[header]);
 			}
 			try
 			{
@@ -56,7 +57,7 @@ public class TFWebFileServer
 			}
 			catch (Exception message)
 			{
-				TFUtils.DebugLog(message);
+				Debug.Log(message);
 			}
 		}
 	}
@@ -86,7 +87,7 @@ public class TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
@@ -130,7 +131,7 @@ public class TFWebFileServer
 			tFWebClient.Headers = headers;
 			foreach (string header in tFWebClient.Headers)
 			{
-				TFUtils.DebugLog("Outbound:" + header + "-->" + tFWebClient.Headers[header]);
+				Debug.Log("Outbound:" + header + "-->" + tFWebClient.Headers[header]);
 			}
 			bytes.CopyTo(array, 0);
 			bytes2.CopyTo(array, bytes.Length);
@@ -168,7 +169,7 @@ public class TFWebFileServer
 		}
 		catch (ZlibException)
 		{
-			TFUtils.DebugLog("Error uncompressing data. Returning result directly.");
+			Debug.Log("Error uncompressing data. Returning result directly.");
 			return Encoding.UTF8.GetString(array);
 		}
 	}
@@ -218,7 +219,7 @@ public class TFWebFileServer
 				bool flag3 = false;
 				foreach (string header in tFWebFileResponse.headers)
 				{
-					TFUtils.DebugLog(header + "-->" + tFWebFileResponse.headers[header]);
+					Debug.Log(header + "-->" + tFWebFileResponse.headers[header]);
 					if (!(header == "Age"))
 					{
 						continue;
@@ -279,7 +280,7 @@ public class TFWebFileServer
 			else if (e.Error.GetType().Name == "WebException")
 			{
 				WebException ex2 = (WebException)e.Error;
-				TFUtils.DebugLog(ex2);
+				Debug.LogError(ex2);
 				HttpWebResponse httpWebResponse = (HttpWebResponse)ex2.Response;
 				if (httpWebResponse != null)
 				{
@@ -293,8 +294,8 @@ public class TFWebFileServer
 			}
 			else
 			{
-				TFUtils.DebugLog("Server returned error");
-				TFUtils.DebugLog(e.Error);
+				Debug.Log("Server returned error");
+				Debug.Log(e.Error);
 				tFWebFileResponse.NetworkDown = true;
 				tFWebFileResponse.StatusCode = HttpStatusCode.ServiceUnavailable;
 			}
@@ -304,20 +305,20 @@ public class TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void DeleteFile(string uri, WebHeaderCollection headers, FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Deleting file " + uri);
+		Debug.Log("Deleting file " + uri);
 		HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(new Uri(uri));
 		httpWebRequest.Method = "DELETE";
 		httpWebRequest.CookieContainer = cookies;
 		httpWebRequest.Headers = headers;
 		foreach (string header in httpWebRequest.Headers)
 		{
-			TFUtils.DebugLog("Outbound:" + header + "-->" + httpWebRequest.Headers[header]);
+			Debug.Log("Outbound:" + header + "-->" + httpWebRequest.Headers[header]);
 		}
 		try
 		{
@@ -325,12 +326,12 @@ public class TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	private void OnNetworkError(object sender, WebException e)
 	{
-		TFUtils.DebugLog("Got webException !!!!" + e);
+		Debug.Log("Got webException !!!!" + e);
 	}
 }

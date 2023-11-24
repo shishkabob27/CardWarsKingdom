@@ -305,11 +305,11 @@ public class Game
 	{
 		if (gameData == null)
 		{
-			TFUtils.DebugLog("Null gameData, not saving");
+			Debug.Log("Null gameData, not saving");
 			return;
 		}
 		_finishedAccess = false;
-		TFUtils.DebugLog("Saving gamedata to server");
+		Debug.Log("Saving gamedata to server");
 		TFWebFileServer.FileCallbackHandler callback2 = saveCBHandler;
 		if (callback != null)
 		{
@@ -328,18 +328,18 @@ public class Game
 		{
 			if (response.StatusCode == HttpStatusCode.PreconditionFailed)
 			{
-				TFUtils.DebugLog("Reloading game from server " + response.StatusCode);
+				Debug.Log("Reloading game from server " + response.StatusCode);
 				needsReloadErrorDialog = true;
 			}
 			else
 			{
-				TFUtils.DebugLog("Network down. continuing offline play without saving to server.");
+				Debug.Log("Network down. continuing offline play without saving to server.");
 				needsNetworkDownErrorDialog = true;
 			}
 		}
 		else
 		{
-			TFUtils.DebugLog("Game saved to server " + response.StatusCode);
+			Debug.Log("Game saved to server " + response.StatusCode);
 			if (response.StatusCode == HttpStatusCode.OK)
 			{
 				needsReloadErrorDialog = false;
@@ -357,7 +357,7 @@ public class Game
 	{
 		if (gameFile != null)
 		{
-			TFUtils.DebugLog("Game.SaveLocally: " + json_gamestate);
+			Debug.Log("Game.SaveLocally: " + json_gamestate);
 			GameCrypto.EncryptAndSave(gameFile, json_gamestate);
 		}
 	}
@@ -365,7 +365,7 @@ public class Game
 	public string LoadLocally()
 	{
 		string text = gameFile;
-		TFUtils.DebugLog("Gamefile location: " + text);
+		Debug.Log("Gamefile location: " + text);
 		string contents = TFUtils.ReadFile(text);
 		return GameCrypto.Decrypt(contents);
 	}
@@ -380,13 +380,13 @@ public class Game
 		string text = p.CacheDir();
 		if (Directory.Exists(text))
 		{
-			TFUtils.DebugLog("Removing directory: " + text);
+			Debug.Log("Removing directory: " + text);
 			Directory.Delete(text, true);
-			TFUtils.DebugLog("Removing file: " + p.LastPlayedFile());
+			Debug.Log("Removing file: " + p.LastPlayedFile());
 			File.Delete(p.LastPlayedFile());
 			if (Directory.Exists(Player.LOCAL_TEXTURE_CACHE_DIRECTORY))
 			{
-				TFUtils.DebugLog("Removing directory: " + Player.LOCAL_TEXTURE_CACHE_DIRECTORY);
+				Debug.Log("Removing directory: " + Player.LOCAL_TEXTURE_CACHE_DIRECTORY);
 				Directory.Delete(Player.LOCAL_TEXTURE_CACHE_DIRECTORY, true);
 			}
 		}

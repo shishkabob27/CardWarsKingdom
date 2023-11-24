@@ -32,7 +32,7 @@ public class Player
 
 	public Player(string playerId, bool isNew)
 	{
-		TFUtils.DebugLog("new player: " + playerId + " isNew: " + isNew);
+		Debug.Log("new player: " + playerId + " isNew: " + isNew);
 		this.playerId = playerId;
 		this.isNew = isNew;
 		if (isNew)
@@ -65,7 +65,7 @@ public class Player
 
 	public static Player LoadFromFilesystem()
 	{
-		TFUtils.DebugLog("H: LoadFromFilesystem() Lastplayer exists? : " + File.Exists(LAST_PLAYED_FILE));
+		Debug.Log("H: LoadFromFilesystem() Lastplayer exists? : " + File.Exists(LAST_PLAYED_FILE));
 		if (File.Exists(LAST_PLAYED_FILE))
 		{
 			string text = TFUtils.ReadFile(LAST_PLAYED_FILE).Trim();
@@ -81,7 +81,7 @@ public class Player
 
 	public static void ResetPlayerFiles()
 	{
-		TFUtils.DebugLog("H: ResetPlayerFiles() Lastplayer exists? : " + File.Exists(LAST_PLAYED_FILE));
+		Debug.Log("H: ResetPlayerFiles() Lastplayer exists? : " + File.Exists(LAST_PLAYED_FILE));
 		if (File.Exists(LAST_PLAYED_FILE))
 		{
 			string text = TFUtils.ReadFile(LAST_PLAYED_FILE).Trim();

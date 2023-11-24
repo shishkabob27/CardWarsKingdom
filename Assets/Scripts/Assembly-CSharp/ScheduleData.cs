@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using UnityEngine;
 
 public class ScheduleData : ILoadableData
 {
@@ -76,12 +77,12 @@ public class ScheduleData : ILoadableData
 		{
 			if (!flag2 || !flag)
 			{
-				TFUtils.WarningLog("Half complete schedule data. Ignoring: " + _Category + "(" + _ID + ") - " + text + " -> " + text2);
+				Debug.LogWarning("Half complete schedule data. Ignoring: " + _Category + "(" + _ID + ") - " + text + " -> " + text2);
 			}
 		}
 		else if (!AddPeriod(text, text2))
 		{
-			TFUtils.WarningLog("Invalid schedule data. Ignoring: " + _Category + "(" + _ID + ") - " + text + " -> " + text2);
+            Debug.LogWarning("Invalid schedule data. Ignoring: " + _Category + "(" + _ID + ") - " + text + " -> " + text2);
 		}
 	}
 

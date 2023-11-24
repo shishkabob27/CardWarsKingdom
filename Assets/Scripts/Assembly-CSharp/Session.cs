@@ -52,7 +52,7 @@ public class Session
 
 		public void OnEnter(Session session, bool doFacebookAuth, string fbAccessToken)
 		{
-			TFUtils.DebugLog("Starting to User login");
+			Debug.Log("Starting to User login");
 			_finishedLogin = false;
 			_isFacebookAuth = doFacebookAuth;
 			Player.LoadFromNetwork("userLogin", session, doFacebookAuth, fbAccessToken);
@@ -70,7 +70,7 @@ public class Session
 			}
 			if (session.PlayerIsLoggedIn())
 			{
-				TFUtils.DebugLog("User logged In");
+				Debug.Log("User logged In");
 				_finishedLogin = true;
 				return;
 			}
@@ -93,7 +93,7 @@ public class Session
 				}
 				else
 				{
-					TFUtils.ErrorLog("User Login failed due network error");
+					Debug.LogError("User Login failed due network error");
 				}
 			}
 			else
@@ -271,7 +271,7 @@ public class Session
 	public Session(int currentVersion, string fbid, bool doFacebookLogin, string fbAccessToken)
 	{
 		TFUtils.Init(fbid);
-		TFUtils.DebugLog("Trying to create the session...");
+		Debug.Log("Trying to create the session...");
 		authorizing = new Authorizing();
 		CookieContainer cookies = new CookieContainer();
 		server = new SQServer(cookies);
@@ -298,7 +298,7 @@ public class Session
 		case "loadGame":
 			if (tFWebFileResponse.StatusCode == HttpStatusCode.OK)
 			{
-				TFUtils.DebugLog("Server returned success (gamedata). Loading from network response");
+				Debug.Log("Server returned success (gamedata). Loading from network response");
 				Dictionary<string, object> asJSONDict = tFWebFileResponse.GetAsJSONDict();
 				if (asJSONDict != null && asJSONDict.ContainsKey("PlayerName"))
 				{
@@ -319,11 +319,11 @@ public class Session
 				}
 				else
 				{
-					TFUtils.DebugLog("Server returned invalid gamedata: " + tFWebFileResponse.Data);
+					Debug.Log("Server returned invalid gamedata: " + tFWebFileResponse.Data);
 				}
 				break;
 			}
-			TFUtils.DebugLog(string.Concat("Server returned status ", tFWebFileResponse.StatusCode, ". Loading from local data"));
+			Debug.Log(string.Concat("Server returned status ", tFWebFileResponse.StatusCode, ". Loading from local data"));
 			SessionManager.loginCompletedWithoutError = tFWebFileResponse.StatusCode == HttpStatusCode.NotFound || tFWebFileResponse.StatusCode == HttpStatusCode.NotModified;
 			if (game.GameExists(player))
 			{
@@ -351,44 +351,44 @@ public class Session
 						text2 = text2.Remove(num2, count);
 						text2 = text2.Insert(num2, "1");
 						game.SaveLocally(text2);
-						TFUtils.DebugLog("Normal response, but it's a suspicious data - Reset HardCurrencies.");
+						Debug.Log("Normal response, but it's a suspicious data - Reset HardCurrencies.");
 					}
 					catch
 					{
 						game.SaveLocally(tFWebFileResponse.Data);
 					}
 				}
-				TFUtils.DebugLog("Creating game from local file");
+				Debug.Log("Creating game from local file");
 			}
 			else if (tFWebFileResponse.StatusCode == HttpStatusCode.NotFound)
 			{
-				TFUtils.DebugLog("Initializing new game");
+				Debug.Log("Initializing new game");
 				WebFileServer.DeleteETagFile();
 			}
 			else if (tFWebFileResponse.StatusCode == HttpStatusCode.NotModified)
 			{
-				TFUtils.DebugLog(string.Concat("What is going on? This is not an expected outcome: response status ", tFWebFileResponse.StatusCode, " Network down: ", tFWebFileResponse.NetworkDown));
+				Debug.Log(string.Concat("What is going on? This is not an expected outcome: response status ", tFWebFileResponse.StatusCode, " Network down: ", tFWebFileResponse.NetworkDown));
 				WebFileServer.DeleteETagFile();
 			}
 			else
 			{
-				TFUtils.DebugLog(string.Concat("What is going on? This is not an expected outcome: response status ", tFWebFileResponse.StatusCode, " Network down: ", tFWebFileResponse.NetworkDown));
+				Debug.Log(string.Concat("What is going on? This is not an expected outcome: response status ", tFWebFileResponse.StatusCode, " Network down: ", tFWebFileResponse.NetworkDown));
 			}
 			break;
 		case "deleteGame":
 			if (tFWebFileResponse.StatusCode == HttpStatusCode.OK)
 			{
-				TFUtils.DebugLog("Server returned success (delete game).");
+				Debug.Log("Server returned success (delete game).");
 			}
 			else
 			{
-				TFUtils.DebugLog(string.Concat("Server returned status ", tFWebFileResponse.StatusCode, ". Nothing we can do...."));
+				Debug.Log(string.Concat("Server returned status ", tFWebFileResponse.StatusCode, ". Nothing we can do...."));
 			}
 			break;
 		case "getMessagesList":
 			if (tFWebFileResponse.StatusCode == HttpStatusCode.OK)
 			{
-				TFUtils.DebugLog("Server returned success (my messages). Loading from network response");
+				Debug.Log("Server returned success (my messages). Loading from network response");
 				if (game != null)
 				{
 					game.MyMessagesList = ProcessMessageListData(tFWebFileResponse.Data);
@@ -426,10 +426,10 @@ public class Session
 		case "removeFriend":
 			if (tFWebFileResponse.StatusCode == HttpStatusCode.OK)
 			{
-				TFUtils.DebugLog("Server returned success (" + key + "). Loading from network response");
+				Debug.Log("Server returned success (" + key + "). Loading from network response");
 				if (game != null)
 				{
-					TFUtils.DebugLog("Return = " + tFWebFileResponse.Data);
+					Debug.Log("Return = " + tFWebFileResponse.Data);
 					switch (key)
 					{
 					case "getUserInfo":
@@ -453,7 +453,7 @@ public class Session
 			}
 			else
 			{
-				TFUtils.DebugLog(string.Concat("Server returned status ", tFWebFileResponse.StatusCode, ". Nothing we can do...."));
+				Debug.Log(string.Concat("Server returned status ", tFWebFileResponse.StatusCode, ". Nothing we can do...."));
 				game.MyUserInfo = "{\"error\":\"no data\"}";
 			}
 			switch (key)
@@ -606,7 +606,7 @@ public class Session
 
 	public void onExternalMessage(string msg)
 	{
-		TFUtils.DebugLog("decoding message: " + msg);
+		Debug.Log("decoding message: " + msg);
 		Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(msg);
 		string text = dictionary["requestId"] as string;
 		if (externalRequests.ContainsKey(text))
@@ -619,12 +619,12 @@ public class Session
 			}
 			else
 			{
-				TFUtils.ErrorLog("Callback result is not a Dictionary<string, object>");
+				Debug.LogError("Callback result is not a Dictionary<string, object>");
 			}
 		}
 		else
 		{
-			TFUtils.DebugLog("No handler found for id: " + text);
+			Debug.Log("No handler found for id: " + text);
 		}
 	}
 
@@ -638,7 +638,7 @@ public class Session
 		if (androidActivity == null)
 		{
 			int num = AndroidJNI.AttachCurrentThread();
-			TFUtils.DebugLog("attach result: " + num);
+			Debug.Log("attach result: " + num);
 			AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 			androidActivity = androidJavaClass.GetStatic<AndroidJavaObject>("currentActivity");
 		}
@@ -739,7 +739,7 @@ public class Session
 		{
 			if (asyncRequests.ContainsKey(key))
 			{
-				TFUtils.DebugLog("Warning: got second async response for " + key + "; Existing value was: " + asyncRequests[key]);
+				Debug.Log("Warning: got second async response for " + key + "; Existing value was: " + asyncRequests[key]);
 			}
 			asyncRequests[key] = val;
 		}
@@ -861,7 +861,7 @@ public class Session
 		{
 			return contentPatcher != null;
 		}
-		TFUtils.DebugLog("UpdatePatching - contentPatcher is null");
+		Debug.Log("UpdatePatching - contentPatcher is null");
 		contentPatcher = new SQContentPatcher();
 		SQContentPatcher sQContentPatcher = contentPatcher;
 		sQContentPatcher.AddListener(OnPatchingEvent);
@@ -893,7 +893,7 @@ public class Session
 
 	public void StartPatch()
 	{
-		TFUtils.DebugLog("Starting to Patch content");
+		Debug.Log("Starting to Patch content");
 		_finishedPatching = false;
 		UpdatePatching();
 	}

@@ -104,7 +104,7 @@ public class LoadingManager : Singleton<LoadingManager>
 		{
 			if (ldr != null)
 			{
-				TFUtils.DebugLog("LoadingManager -- Loading " + ldr.ToString());
+				Debug.Log("LoadingManager -- Loading " + ldr.ToString());
 				yield return StartCoroutine(ldr.Load());
 			}
 		}

@@ -118,7 +118,7 @@ public class AmazonPurchaseListener : IPurchaseListener
 
 	public void PurchaseProduct(string a_ProductID, PurchaseManager.ProductPurchaseCallback a_Callback)
 	{
-		TFUtils.DebugLog("Calling Amazon PurchaseListener.PurchaseProduct for product: " + a_ProductID);
+		Debug.Log("Calling Amazon PurchaseListener.PurchaseProduct for product: " + a_ProductID);
 		productPurchaseCallback = a_Callback;
 		IAmazonIapV2 instance = AmazonIapV2Impl.Instance;
 		SkuInput skuInput = new SkuInput();

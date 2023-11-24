@@ -87,7 +87,7 @@ public class SQWebFileServer : TFWebFileServer
 
 	public void GetGameData(FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Getting game data from " + playerGameUri);
+		Debug.Log("Getting game data from " + playerGameUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		string text = ReadETag();
@@ -101,13 +101,13 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void DeleteGameData(FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Deleting game data from " + playerGameUri);
+		Debug.Log("Deleting game data from " + playerGameUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -116,13 +116,13 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void AssignFacebookIDToUser(FileCallbackHandler callback, string facebookID, object userData = null)
 	{
-		TFUtils.DebugLog("Assigning facebook ID to user from " + playerGameUri);
+		Debug.Log("Assigning facebook ID to user from " + playerGameUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -133,13 +133,13 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void GetServerVersion(FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Getting Info from " + serverVersionUri);
+		Debug.Log("Getting Info from " + serverVersionUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -148,13 +148,13 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void GetUserInfo(FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Getting User Info from " + friendsUserInfoUri);
+		Debug.Log("Getting User Info from " + friendsUserInfoUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -163,14 +163,14 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void SendMessage(FileCallbackHandler callback, string to_id, string subject, string message, object userData = null)
 	{
 		string text = string.Format("{0}/{1}?subject={2}&message={3}", messageSendUri, to_id, Uri.EscapeUriString(subject), Uri.EscapeUriString(message));
-		TFUtils.DebugLog("Sending Message to " + text);
+		Debug.Log("Sending Message to " + text);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -179,14 +179,14 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message2)
 		{
-			TFUtils.DebugLog(message2);
+			Debug.Log(message2);
 		}
 	}
 
 	public void DeleteMessage(FileCallbackHandler callback, string msg_id, object userData = null)
 	{
 		string text = string.Format("{0}/{1}", messageDeleteUri, msg_id);
-		TFUtils.DebugLog("Deleting Message ID " + text);
+		Debug.Log("Deleting Message ID " + text);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -195,14 +195,14 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void GetMessage(FileCallbackHandler callback, string id, object userData = null)
 	{
 		string text = string.Format("{0}/{1}", messageUri, id);
-		TFUtils.DebugLog("Getting Message from " + text);
+		Debug.Log("Getting Message from " + text);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -211,13 +211,13 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void GetMessageList(FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Getting Messages List from " + messagesListUri);
+		Debug.Log("Getting Messages List from " + messagesListUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -226,13 +226,13 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void GetFriendRequests(FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Getting Friends Requests from " + friendsAllRequestsRcvdUri);
+		Debug.Log("Getting Friends Requests from " + friendsAllRequestsRcvdUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -241,13 +241,13 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void GetFriends(FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Getting Friends List from " + friendsListUri);
+		Debug.Log("Getting Friends List from " + friendsListUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -256,13 +256,13 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	public void GetExplorers(FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Getting Explorers List from " + friendsGetExplorersUri);
+		Debug.Log("Getting Explorers List from " + friendsGetExplorersUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -271,14 +271,14 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
 	private void FriendOp(string uri, FileCallbackHandler callback, string id, object userData = null)
 	{
 		string text = string.Format("{0}/{1}", uri, id);
-		TFUtils.DebugLog("Friend opearation: " + text);
+		Debug.Log("Friend opearation: " + text);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		try
@@ -287,7 +287,7 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
@@ -317,7 +317,7 @@ public class SQWebFileServer : TFWebFileServer
 
 	public void SaveGameData(string gameData, FileCallbackHandler callback, object userData = null)
 	{
-		TFUtils.DebugLog("Saving game data from " + playerGameUri);
+		Debug.Log("Saving game data from " + playerGameUri);
 		WebHeaderCollection webHeaderCollection = new WebHeaderCollection();
 		SetDefaultHeaders(webHeaderCollection);
 		webHeaderCollection.Add(HttpRequestHeader.ContentType, "application/octet-stream");
@@ -333,7 +333,7 @@ public class SQWebFileServer : TFWebFileServer
 		}
 		catch (Exception message)
 		{
-			TFUtils.DebugLog(message);
+			Debug.Log(message);
 		}
 	}
 
@@ -342,7 +342,7 @@ public class SQWebFileServer : TFWebFileServer
 		return delegate(TFWebFileResponse response)
 		{
 			LastSuccessfulSave = DateTime.Now;
-			TFUtils.DebugLog(string.Concat("Server returned with ", response.StatusCode, " save at :", LastSuccessfulSave));
+			Debug.Log(string.Concat("Server returned with ", response.StatusCode, " save at :", LastSuccessfulSave));
 			if (retry && SetAuthHeader(response, headers, "PUT"))
 			{
 				try
@@ -352,7 +352,7 @@ public class SQWebFileServer : TFWebFileServer
 				}
 				catch (Exception message)
 				{
-					TFUtils.DebugLog(message);
+					Debug.Log(message);
 					return;
 				}
 			}
@@ -381,7 +381,7 @@ public class SQWebFileServer : TFWebFileServer
 				}
 				catch (Exception message)
 				{
-					TFUtils.DebugLog(message);
+					Debug.Log(message);
 					return;
 				}
 			}
@@ -410,7 +410,7 @@ public class SQWebFileServer : TFWebFileServer
 				}
 				catch (Exception message)
 				{
-					TFUtils.DebugLog(message);
+					Debug.Log(message);
 					return;
 				}
 			}
@@ -422,7 +422,7 @@ public class SQWebFileServer : TFWebFileServer
 	{
 		return delegate(TFWebFileResponse response)
 		{
-			TFUtils.DebugLog(string.Concat("Server returned with ", response.StatusCode, " for delete"));
+			Debug.Log(string.Concat("Server returned with ", response.StatusCode, " for delete"));
 			if (retry && SetAuthHeader(response, headers, "DELETE"))
 			{
 				try
@@ -432,7 +432,7 @@ public class SQWebFileServer : TFWebFileServer
 				}
 				catch (Exception message)
 				{
-					TFUtils.DebugLog(message);
+					Debug.Log(message);
 					return;
 				}
 			}

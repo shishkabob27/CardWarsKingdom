@@ -155,7 +155,7 @@ public class SQSettings
 
 	public static void Init()
 	{
-		TFUtils.DebugLog("Entering SQSettings Init()");
+		Debug.Log("Entering SQSettings Init()");
 		bundleIdentifier = Application.identifier;
 		string empty = string.Empty;
 		string streamingAssetsFile = TFUtils.GetStreamingAssetsFile("server_settings.json");

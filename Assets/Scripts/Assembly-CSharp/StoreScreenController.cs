@@ -477,11 +477,11 @@ public class StoreScreenController : Singleton<StoreScreenController>
 
 	private void ProductDataCallback(bool a_Success, List<PurchaseManager.ProductData> a_ProductList, string error)
 	{
-		TFUtils.DebugLog(string.Format("StoreScreenController::ProductDataCallback, success={0} error={1}", a_Success, error));
+		Debug.Log(string.Format("StoreScreenController::ProductDataCallback, success={0} error={1}", a_Success, error));
 		/*
 		if (a_Success && a_ProductList != null && a_ProductList.Count > 0)
 		{
-			TFUtils.DebugLog(string.Format("StoreScreenController::ProductDataCallback, num products={0}", a_ProductList.Count));
+			Debug.Log(string.Format("StoreScreenController::ProductDataCallback, num products={0}", a_ProductList.Count));
 			mFetchedList = new List<FoundProductData>();
 			mHiddenFetchedList = new List<FoundProductData>();
 			a_ProductList.Sort((PurchaseManager.ProductData a, PurchaseManager.ProductData b) => GetCurrency(a.Price) - GetCurrency(b.Price));

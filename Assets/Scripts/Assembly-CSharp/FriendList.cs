@@ -200,7 +200,7 @@ public class FriendList : MonoBehaviour
 		mSendInviteIDlist.Clear();
 		List<object> list = Singleton<KFFSocialManager>.Instance.FB_GetInvitableFriendList();
 		List<object> list2 = Singleton<KFFSocialManager>.Instance.FB_GetInvitedFriendList();
-		TFUtils.DebugLog("H: FBInvitable/Invited Friends : " + list.Count + "/" + list2.Count);
+		Debug.Log("H: FBInvitable/Invited Friends : " + list.Count + "/" + list2.Count);
 		foreach (Dictionary<string, object> item in list)
 		{
 			GameFriend gameFriend = CreateGameFriend(item);
@@ -213,7 +213,7 @@ public class FriendList : MonoBehaviour
 			gameFriend2.owned = true;
 			GameFriendList.Add(gameFriend2);
 			mSendInviteIDlist.Add(gameFriend2.ID);
-			TFUtils.DebugLog("H: Not Invitable : " + gameFriend2.FirstName + gameFriend2.LastName);
+			Debug.Log("H: Not Invitable : " + gameFriend2.FirstName + gameFriend2.LastName);
 		}
 		GameFriendList = GameFriendList.OrderBy((GameFriend x) => x.LastName).ToList();
 		PopulateGrid();

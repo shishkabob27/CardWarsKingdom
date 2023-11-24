@@ -461,7 +461,7 @@ public class PurchaseManager : Singleton<PurchaseManager>
 
 	public void RestorePurchases(RestorePurchasesCallback callback = null)
 	{
-		TFUtils.DebugLog("calling KFF.RestorePurchases");
+		Debug.Log("calling KFF.RestorePurchases");
 		StartCoroutine(CoroutineRestorePurchase(callback));
 	}
 

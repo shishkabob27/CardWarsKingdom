@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using UnityEngine;
 
 public class TFWebClient : WebClient
 {
@@ -57,7 +58,7 @@ public class TFWebClient : WebClient
 		}
 		catch (WebException ex)
 		{
-			TFUtils.WarningLog(string.Concat(request.RequestUri, ", Exception status: ", Enum.GetName(typeof(WebExceptionStatus), ex.Status)));
+			Debug.LogWarning(string.Concat(request.RequestUri, ", Exception status: ", Enum.GetName(typeof(WebExceptionStatus), ex.Status)));
 			this.NetworkError(this, ex);
 			throw ex;
 		}
