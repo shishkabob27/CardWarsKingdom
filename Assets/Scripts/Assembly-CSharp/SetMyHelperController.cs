@@ -78,7 +78,7 @@ public class SetMyHelperController : Singleton<SetMyHelperController>
 
 	public IEnumerator LoadModelCo()
 	{
-		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mHelperCreatureData.Creature.Form, delegate(Object objData, Texture2D texture)
+		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mHelperCreatureData.Creature.Form, delegate(GameObject objData, Texture2D texture)
 		{
 			mCreatureModelInstance = CreatureSpawnPoint.InstantiateAsChild((GameObject)objData);
 			mHelperCreatureData.Creature.Form.SwapCreatureTexture(mCreatureModelInstance, texture, true);

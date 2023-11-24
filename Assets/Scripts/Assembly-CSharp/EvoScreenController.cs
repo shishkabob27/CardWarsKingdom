@@ -1221,7 +1221,7 @@ public class EvoScreenController : Singleton<EvoScreenController>
 		{
 			Transform spawnPoint = CreatureSpawnPoints[i];
 			GameObject creatureObj = null;
-			yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(creatures[i], delegate(UnityEngine.Object objData, Texture2D texture)
+			yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(creatures[i], delegate(GameObject objData, Texture2D texture)
 			{
 				creatureObj = spawnPoint.InstantiateAsChild((GameObject)objData);
 				creatures2[i].SwapCreatureTexture(creatureObj, texture);
@@ -1291,7 +1291,7 @@ public class EvoScreenController : Singleton<EvoScreenController>
 		Transform spawnPoint = CreatureSpawnPoints[1];
 		GameObject creatureObj = null;
 		CreatureData creatureData2 = default(CreatureData);
-		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(creatureData, delegate(UnityEngine.Object objData, Texture2D texture)
+		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(creatureData, delegate(GameObject objData, Texture2D texture)
 		{
 			spawnPoint.transform.localRotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
 			spawnPoint.transform.localPosition = new Vector3(0f, -84f, 0f);

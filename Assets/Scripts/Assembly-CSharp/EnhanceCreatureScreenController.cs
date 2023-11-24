@@ -592,7 +592,7 @@ public class EnhanceCreatureScreenController : Singleton<EnhanceCreatureScreenCo
 	public IEnumerator LoadModelForPrepPowerUpCo()
 	{
 		UnloadModel();
-		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mEnhanceCreature.InventoryItem.Creature.Form, delegate(Object objData, Texture2D texture)
+		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mEnhanceCreature.InventoryItem.Creature.Form, delegate(GameObject objData, Texture2D texture)
 		{
 			CreatureSpawnPoint.transform.localRotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
 			mCreatureModelInstance = CreatureSpawnPoint.InstantiateAsChild((GameObject)objData);

@@ -768,7 +768,7 @@ public class XpFusionController : Singleton<XpFusionController>
 	public IEnumerator LoadModelForPrepPowerUpCo()
 	{
 		UnloadModel();
-		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mPowerUpCreature.InventoryItem.Creature.Form, delegate(UnityEngine.Object objData, Texture2D texture)
+		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mPowerUpCreature.InventoryItem.Creature.Form, delegate(UnityEngine.GameObject objData, Texture2D texture)
 		{
 			CreatureSpawnPoint.transform.localRotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
             GameObject resource = Resources.Load("Creatures/" + mPowerUpCreature.InventoryItem.Creature.Form.Prefab + "/" + mPowerUpCreature.InventoryItem.Creature.Form.Prefab, typeof(GameObject)) as GameObject;

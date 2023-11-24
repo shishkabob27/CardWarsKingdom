@@ -241,7 +241,7 @@ public class GachaOpenSequencer : Singleton<GachaOpenSequencer>
 	private IEnumerator LoadModelCo()
 	{
 		UnloadModel();
-		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mCreature.Creature.Form, delegate(UnityEngine.Object objData, Texture2D texture)
+		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mCreature.Creature.Form, delegate(UnityEngine.GameObject objData, Texture2D texture)
 		{
 			GameObject resource = Resources.Load("Creatures/" + mCreature.Creature.Form.Prefab + "/" + mCreature.Creature.Form.Prefab, typeof(GameObject)) as GameObject;
 			Texture2D texture2D = Resources.Load("Creatures/" + mCreature.Creature.Form.Prefab + "/Textures/" + mCreature.Creature.Form.Faction + "/" + mCreature.Creature.Form.PrefabTexture, typeof(Texture2D)) as Texture2D;

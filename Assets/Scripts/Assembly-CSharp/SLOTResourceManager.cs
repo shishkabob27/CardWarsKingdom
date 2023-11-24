@@ -454,10 +454,10 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 		}
 	}
 
-	public IEnumerator LoadCreatureResources(CreatureData creature, Action<UnityEngine.Object, Texture2D> callback, bool lockInput = true)
+	public IEnumerator LoadCreatureResources(CreatureData creature, Action<UnityEngine.GameObject, Texture2D> callback, bool lockInput = true)
 	{
 		CheckResourceLoadStart(2);
-		UnityEngine.Object objData = null;
+		GameObject objData = null;
 		Texture2D texture = null;
 		string rootFolder = "Creatures/" + creature.Prefab + "/";
 		if (lockInput)
@@ -465,22 +465,22 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 			UICamera.LockInput();
 		}
 		bool done2 = false;
-		QueueResourceLoad(rootFolder + creature.Prefab, creature.Prefab, delegate(UnityEngine.Object loadedResouce)
-		{
-			objData = loadedResouce;
-			done2 = true;
-		}, false, false, true, !lockInput);
+		//QueueResourceLoad(rootFolder + creature.Prefab, creature.Prefab, delegate(UnityEngine.Object loadedResouce)
+		//{
+            objData = Resources.Load(rootFolder + creature.Prefab, typeof(GameObject)) as GameObject;
+            done2 = true;
+		//}, false, false, true, !lockInput);
 		while (!done2)
 		{
 			yield return null;
 		}
 		OnResourceLoadDone();
 		done2 = false;
-		QueueResourceLoad(string.Concat(rootFolder, "Textures/", creature.Faction, "/", creature.PrefabTexture), creature.Prefab, delegate(UnityEngine.Object loadedResouce)
-		{
-			texture = loadedResouce as Texture2D;
+		//QueueResourceLoad(string.Concat(rootFolder, "Textures/", creature.Faction, "/", creature.PrefabTexture), creature.Prefab, delegate(UnityEngine.Object loadedResouce)
+		//{
+			texture = Resources.Load(rootFolder + "Textures/" + creature.Faction + "/" + creature.PrefabTexture, typeof(Texture2D)) as Texture2D;
 			done2 = true;
-		}, false, false, false, !lockInput);
+		//}, false, false, false, !lockInput);
 		while (!done2)
 		{
 			yield return null;
@@ -493,17 +493,18 @@ public class SLOTResourceManager : Singleton<SLOTResourceManager>
 		callback(objData, texture);
 	}
 
-	public IEnumerator LoadLeaderResources(LeaderData leader, Action<UnityEngine.Object> callback)
+	public IEnumerator LoadLeaderResources(LeaderData leader, Action<UnityEngine.GameObject> callback)
 	{
 		CheckResourceLoadStart();
-		UnityEngine.Object objData = null;
+		GameObject objData = null;
 		UICamera.LockInput();
 		bool done = false;
-		QueueResourceLoad("Characters/" + leader.Prefab + "/" + leader.Prefab, leader.Prefab, delegate(UnityEngine.Object loadedResouce)
-		{
-			objData = loadedResouce;
+		//QueueResourceLoad("Characters/" + leader.Prefab + "/" + leader.Prefab, leader.Prefab, delegate(UnityEngine.Object loadedResouce)
+		//{
+			var resource = Resources.LoadAsync("Characters/" + leader.Prefab + "/" + leader.Prefab, typeof(GameObject));
+		objData = resource.asset as GameObject;
 			done = true;
-		});
+		//});
 		while (!done)
 		{
 			yield return null;

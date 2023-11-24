@@ -1225,7 +1225,7 @@ public class DWGame : Singleton<DWGame>
 			LeaderData CurrentCharacter = GetCharacter(i);
 			GameObject NewCharacter = null;
 			Transform tr = ((i != 0) ? Singleton<DWBattleLane>.Instance.P2CharacterPos : Singleton<DWBattleLane>.Instance.P1CharacterPos);
-			yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadLeaderResources(CurrentCharacter, delegate(Object loadedObjData)
+			yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadLeaderResources(CurrentCharacter, delegate(GameObject loadedObjData)
 			{
 				//NewCharacter = SLOTGame.InstantiateFX(loadedObjData, tr.position, tr.rotation) as GameObject;
 				GameObject resource = Resources.Load("Characters/" + CurrentCharacter.Prefab + "/" + CurrentCharacter.Prefab, typeof(GameObject)) as GameObject;
@@ -1412,7 +1412,7 @@ public class DWGame : Singleton<DWGame>
 		}
 		Object objData = null;
 		Texture2D tex = null;
-		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(creature.Form, delegate(Object loadedObjData, Texture2D loadedTexture)
+		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(creature.Form, delegate(GameObject loadedObjData, Texture2D loadedTexture)
 		{
 			objData = loadedObjData;
 			tex = loadedTexture;

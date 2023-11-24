@@ -259,7 +259,7 @@ public class CreatureDetailsController : Singleton<CreatureDetailsController>
 	private IEnumerator LoadModelCo()
 	{
 		UnloadModel();
-		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mCreature.Creature.Form, delegate(Object objData, Texture2D texture)
+		yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadCreatureResources(mCreature.Creature.Form, delegate(GameObject objData, Texture2D texture)
 		{
 			mLoadedModelInstance = MainModelParent.InstantiateAsChild((GameObject)objData);
 			mLoadedModelInstance.ChangeLayerToParent();

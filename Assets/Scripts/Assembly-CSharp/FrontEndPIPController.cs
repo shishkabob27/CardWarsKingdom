@@ -43,16 +43,17 @@ public class FrontEndPIPController : Singleton<FrontEndPIPController>
 				PIPs[i].ShowPortrait(false);
 				continue;
 			}
-			yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadLeaderResources(leaders[i], delegate(Object loadedObjData)
+			yield return StartCoroutine(Singleton<SLOTResourceManager>.Instance.LoadLeaderResources(leaders[i], delegate(GameObject loadedObjData)
 			{
 				mLeaderModelInstances[i] = CharacterSpawnPoints[i].InstantiateAsChild(loadedObjData as GameObject);
 				mLeaderModelInstances[i].ChangeLayer(CharacterSpawnPoints[i].gameObject.layer);
 				BattleCharacterAnimState component = mLeaderModelInstances[i].GetComponent<BattleCharacterAnimState>();
+				UnityEngine.Debug.Log(component.gameObject);
 				component.player = i;
-				component.Init(leaders2[i]);
-				PIPs[i].Init(i, leaders2[i], CharacterSpawnPoints[i].gameObject, iconPortraits2[i]);
+				component.Init(leaders[i]);
+				PIPs[i].Init(i, leaders[i], CharacterSpawnPoints[i].gameObject, iconPortraits[i]);
 				PIPs[i].ShowPortrait(true);
-				Leaders[i] = leaders2[i];
+				//Leaders[i] = leaders2[i];
 			}));
 		}
 	}
