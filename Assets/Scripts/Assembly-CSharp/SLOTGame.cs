@@ -72,7 +72,6 @@ public class SLOTGame : Singleton<SLOTGame>
 
 	private void Start()
 	{
-		Application.RegisterLogCallback(OnLog);
 		KFFNetwork.deserializeJSONCallback = DeserializeJSON;
 		UnityEngine.Object[] array = UnityEngine.Object.FindObjectsOfType(typeof(SLOTGame));
 		UnityEngine.Object[] array2 = array;

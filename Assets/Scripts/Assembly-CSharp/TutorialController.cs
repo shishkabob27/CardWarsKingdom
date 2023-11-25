@@ -281,7 +281,6 @@ public class TutorialController : Singleton<TutorialController>
 
 	public void StartTutorialBlock(string blockId)
 	{
-		string upsightEvent = "Tutorial." + blockId + ".Started";
 		if (GetActiveState() == null)
 		{
 			TutorialDataManager.TutorialBlock block = TutorialDataManager.Instance.GetBlock(blockId);
@@ -319,10 +318,6 @@ public class TutorialController : Singleton<TutorialController>
 		if (state == null)
 		{
 			return;
-		}
-		if (state.ID != null)
-		{
-			string upsightEvent = "Tutorial." + Singleton<PlayerInfoScript>.Instance.StateData.ActiveTutorialState.Block + "." + state.ID + ".Started";
 		}
 		Singleton<SLOTAudioManager>.Instance.SetVOEventCooldown(VOEvent.Idle);
 		SetColliderRestrictions(state);
@@ -1093,15 +1088,6 @@ public class TutorialController : Singleton<TutorialController>
 			if (!backwards && stateData.ActiveTutorialState.EndState)
 			{
 				block.Completed = true;
-				string upsightEvent = "Tutorial." + block.ID + ".Finished";
-				if (block.ID == "Q1")
-				{
-					int selectedLoadout = Singleton<PlayerInfoScript>.Instance.SaveData.SelectedLoadout;
-					string teamName = Singleton<PlayerInfoScript>.Instance.GetTeamName(selectedLoadout);
-					string upsightEvent2 = "Player.InitialDeckSelection";
-					Dictionary<string, object> dictionary = new Dictionary<string, object>();
-					dictionary.Add("deckName", teamName);
-				}
 				Singleton<PlayerInfoScript>.Instance.Save();
 			}
 			int num = ((!backwards) ? 1 : (-1));
@@ -1142,10 +1128,6 @@ public class TutorialController : Singleton<TutorialController>
 		}
 		mDisplayedState = null;
 		activeState.Passed = true;
-		if (activeState.VOEvent != null)
-		{
-			string upsightEvent = "Tutorial." + Singleton<PlayerInfoScript>.Instance.StateData.ActiveTutorialState.Block + "." + activeState.VOEvent + ".Finished";
-		}
 		foreach (string exitFunctionCall in activeState.ExitFunctionCalls)
 		{
 			SendMessage(exitFunctionCall);

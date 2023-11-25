@@ -286,7 +286,7 @@ public class TownBuildingScript : MonoBehaviour
 		if (componentInChildren != null)
 		{
 			componentInChildren.ResetToBeginning();
-			componentInChildren.Play();
+			componentInChildren.PlayForward();
 		}
 		if (!(mesh == null) && mesh.materials.Length == 2)
 		{

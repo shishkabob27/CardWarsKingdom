@@ -310,14 +310,6 @@ public class PurchaseManager : Singleton<PurchaseManager>
 		{
 			m_PurchaseCallback = a_Callback;
 			m_Listener.PurchaseProduct(a_productID, InternalPurchaseCallback);
-			string eventName = "Purchase";
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("id", a_productID);
-			dictionary.Add("name", m_RequestedProduct.Title);
-			dictionary.Add("currency", m_RequestedProduct.CurrencyCode);
-			dictionary.Add("sum", 1);
-			Dictionary<string, object> value = dictionary;
-			string eventData = JsonWriter.Serialize(value);
 		}
 	}
 

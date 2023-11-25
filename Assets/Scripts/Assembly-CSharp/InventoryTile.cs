@@ -630,10 +630,6 @@ public class InventoryTile : UIStreamingGridListItem
 	private void OnClickConfirmPurchaseSlots()
 	{
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
-		string value = MiscParams.InventorySpacePurchaseCost.ToString();
-		string upsightEvent = "Economy.GemExit.IncreaseInventory";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", value);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

@@ -1498,7 +1498,7 @@ public class EvoScreenController : Singleton<EvoScreenController>
 			ts.duration = 0.2f;
 			ts.from = Vector3.one * 0.4f;
 			ts.to = Vector3.one * 0.8f;
-			ts.Play();
+			ts.PlayForward();
 			TweenPosition tp = go.AddComponent<TweenPosition>();
 			tp.duration = 0.3f;
 			tp.delay = 0.3f;
@@ -1513,9 +1513,9 @@ public class EvoScreenController : Singleton<EvoScreenController>
 				shards.RemoveAt(0);
 				creatureTweenScale2.enabled = true;
 				creatureTweenScale2.ResetToBeginning();
-				creatureTweenScale2.Play();
+				creatureTweenScale2.PlayForward();
 			}));
-			tp.Play();
+			tp.PlayForward();
 			yield return new WaitForSeconds(0.15f);
 		}
 	}

@@ -22,22 +22,13 @@ public class SQAuth
 
 	public static bool g_reassignID;
 
-	private bool ALLOW_DEBUG = true;
-
 	public bool loggedIn;
 
 	private string currentNonce;
 
-	private RuntimePlatform platform;
-
 	public static KFFSendWWWRequestWithFormCallback KFFSendWWWRequestWithFormFunction;
 
 	public static LoadPlayerNameCallback LoadPlayerNameFunction;
-
-	public SQAuth(RuntimePlatform platform)
-	{
-		this.platform = platform;
-	}
 
 	public void AuthUser(Session session, TFServer.JsonResponseHandler callback, bool doFacebookAuth, string fbAccessToken)
 	{

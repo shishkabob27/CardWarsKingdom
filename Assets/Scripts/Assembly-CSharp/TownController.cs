@@ -221,7 +221,6 @@ public class TownController : Singleton<TownController>
 			Singleton<PlayerInfoScript>.Instance.SaveData.PvPCurrency += num3;
 			int pvPCurrency = Singleton<PlayerInfoScript>.Instance.SaveData.PvPCurrency;
 			Singleton<PlayerInfoScript>.Instance.Save();
-			SendWishboneKPIData(mAllyHelpCount.ToString(), mStrangerHelpCount.ToString(), num3.ToString());
 			string body = string.Format(KFFLocalization.Get("!!HELPER_REWARD_WHEN_GAMESTART"), num.ToString(), num2.ToString(), num3.ToString(), text, pvPCurrency.ToString());
 			Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, body, OnCloseHelperRewardPopup);
 			Ally.UpdateMyAllyInfo(SessionManager.Instance.theSession, true, true, ResetMyAllyHelpCountCallback);
@@ -230,15 +229,6 @@ public class TownController : Singleton<TownController>
 		{
 			AdvanceIntroState();
 		}
-	}
-
-	private void SendWishboneKPIData(string allyCount, string anomCount, string amount)
-	{
-		string upsightEvent = "Economy.WishboneEnter.Helper";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("allyCount", allyCount);
-		dictionary.Add("anonCount", anomCount);
-		dictionary.Add("amount", amount);
 	}
 
 	private void ResetMyAllyHelpCountCallback(ResponseFlag flag)

@@ -808,7 +808,7 @@ public class UICamera : MonoBehaviour
 	{
 		mWidth = Screen.width;
 		mHeight = Screen.height;
-		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.WP8Player || Application.platform == RuntimePlatform.BlackBerryPlayer)
+		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
 		{
 			useMouse = false;
 			useTouch = true;
@@ -817,13 +817,6 @@ public class UICamera : MonoBehaviour
 				useKeyboard = false;
 				useController = false;
 			}
-		}
-		else if (Application.platform == RuntimePlatform.PS3 || Application.platform == RuntimePlatform.XBOX360)
-		{
-			useMouse = false;
-			useTouch = false;
-			useKeyboard = false;
-			useController = true;
 		}
 		mMouse[0].pos.x = Input.mousePosition.x;
 		mMouse[0].pos.y = Input.mousePosition.y;

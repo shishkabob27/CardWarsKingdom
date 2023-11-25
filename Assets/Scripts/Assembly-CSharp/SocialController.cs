@@ -127,7 +127,6 @@ public class SocialController : Singleton<SocialController>
 	public void OnCloseClicked()
 	{
 		Singleton<MouseOrbitCamera>.Instance.CheckTiltCamSettingBeforeTutorial();
-		KPIPostOffice();
 		Singleton<SetMyHelperController>.Instance.HideCreatureList();
 		if (Singleton<SetMyHelperController>.Instance.SetHelper)
 		{
@@ -136,16 +135,6 @@ public class SocialController : Singleton<SocialController>
 			RewardManager.UpdatePvPInfo();
 		}
 		Unload(OnUnloadDone);
-	}
-
-	private void KPIPostOffice()
-	{
-		string upsightEvent = "PostOffice.Exit";
-		string value = Singleton<MailController>.Instance.GetReadMailCount().ToString();
-		string value2 = Singleton<MailController>.Instance.GetUnreadMailCount().ToString();
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("readCount", value);
-		dictionary.Add("unreadCount", value2);
 	}
 
 	private void OnUnloadDone()

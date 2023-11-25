@@ -124,28 +124,28 @@ public class AnimatedBannerScript : MonoBehaviour
 				tw.from = new Vector3(tw.from.x + x, tw.from.y, tw.from.z);
 				tw.to = new Vector3(tw.to.x + x, tw.to.y, tw.to.z);
 				tw.ResetToBeginning();
-				tw.Play();
+				tw.PlayForward();
 			}
 			TweenScale[] tweens = obj.GetComponents<TweenScale>();
 			TweenScale[] array2 = tweens;
 			foreach (TweenScale tw2 in array2)
 			{
 				tw2.ResetToBeginning();
-				tw2.Play();
+				tw2.PlayForward();
 			}
 			TweenAlpha[] tweens3 = obj.GetComponents<TweenAlpha>();
 			TweenAlpha[] array3 = tweens3;
 			foreach (TweenAlpha tw3 in array3)
 			{
 				tw3.ResetToBeginning();
-				tw3.Play();
+				tw3.PlayForward();
 			}
 			TweenRotation[] tweens4 = obj.GetComponents<TweenRotation>();
 			TweenRotation[] array4 = tweens4;
 			foreach (TweenRotation tw4 in array4)
 			{
 				tw4.ResetToBeginning();
-				tw4.Play();
+				tw4.PlayForward();
 			}
 			StartCoroutine(PlayTextEffect(obj));
 			float rndF = UnityEngine.Random.Range(interval - IntervalDelayRandom, interval + IntervalDelayRandom);

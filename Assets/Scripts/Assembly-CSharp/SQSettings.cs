@@ -7,10 +7,6 @@ using UnityEngine;
 
 public class SQSettings
 {
-	private static string cdnUrl;
-
-	private static string manifestUrl;
-
 	private static string serverUrl;
 
 	private static string photonChatAppID;
@@ -21,13 +17,9 @@ public class SQSettings
 
 	private static int patchingFileLimit;
 
-	private static bool debugDisplayControllers;
-
 	private static string bundleIdentifier;
 
 	private static string bundleVersion;
-
-	private static string bundleShortVersion;
 
 	public static string CDN_URL
 	{
@@ -114,34 +106,9 @@ public class SQSettings
 		}
 	}
 
-	public static string BundleShortVersion
-	{
-		get
-		{
-			return bundleShortVersion;
-		}
-	}
-
-	public static bool DebugDisplayControllers
-	{
-		get
-		{
-			return debugDisplayControllers;
-		}
-	}
-
 	private SQSettings()
 	{
 	}
-
-	[DllImport("__Internal")]
-	public static extern string getBundleIdentifier();
-
-	[DllImport("__Internal")]
-	public static extern string getCFBundleVersion();
-
-	[DllImport("__Internal")]
-	public static extern string getCFBundleShortVersion();
 
 	public static string getJsonPath(string filePath)
 	{
@@ -168,11 +135,6 @@ public class SQSettings
 		empty = ((!streamingAssetsFile.Contains("://")) ? File.ReadAllText(streamingAssetsFile) : getJsonPath(streamingAssetsFile));
 		dictionary = (Dictionary<string, object>)Json.Deserialize(empty);
 		saveInterval = TFUtils.LoadInt(dictionary, "save_interval");
-		object value;
-		if (dictionary.TryGetValue("debugDisplayControllers", out value))
-		{
-			debugDisplayControllers = (bool)value;
-		}
 		int? num = TFUtils.TryLoadInt(dictionary, "patching_file_limit");
 		if (num.HasValue)
 		{

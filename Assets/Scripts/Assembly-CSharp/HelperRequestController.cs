@@ -185,7 +185,6 @@ public class HelperRequestController : Singleton<HelperRequestController>
 	public void OnClickYes()
 	{
 		HideTween.Play();
-		KPISendInvite();
 		PopupButtonCallback popupButtonCallback = mYesCallback;
 		mYesCallback = null;
 		if (popupButtonCallback != null)
@@ -194,49 +193,11 @@ public class HelperRequestController : Singleton<HelperRequestController>
 		}
 	}
 
-	private void KPISendInvite()
-	{
-		if (Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper != null)
-		{
-			string upsightEvent = "Invites.Sent";
-			string helperID = Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.HelperID;
-			string value = Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.HelperCreature.Creature.ToString();
-			string value2 = Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.HelperCreature.Creature.StarRating.ToString();
-			string value3 = Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.HelperCreature.Creature.Level.ToString();
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("targetID", helperID);
-			dictionary.Add("helperID", value);
-			dictionary.Add("helperStars", value2);
-			dictionary.Add("helperLevel", value3);
-		}
-	}
-
 	private void KPIInviteResult()
 	{
-		string upsightEvent = "Invites." + friendInviteResult;
 		if (friendInviteResult == InviteResults.Accepted || friendInviteResult == InviteResults.AcceptedExpand)
 		{
 			myAlliesCount++;
-		}
-		if (Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper != null)
-		{
-			string helperID = Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.HelperID;
-			string value = Singleton<PlayerInfoScript>.Instance.StateData.SelectedHelper.HelperRank.ToString();
-			string value2 = myAlliesCount.ToString();
-			string value3 = Singleton<PlayerInfoScript>.Instance.SaveData.AllyBoxSpace.ToString();
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("playerID", helperID);
-			dictionary.Add("playerLevel", value);
-			dictionary.Add("allyCount", value2);
-			dictionary.Add("maxAllySize", value3);
-			if (friendInviteResult == InviteResults.AcceptedExpand)
-			{
-				dictionary.Add("balance", Singleton<PlayerInfoScript>.Instance.SaveData.HardCurrency.ToString());
-			}
-			else if (friendInviteResult == InviteResults.DeclinedFull)
-			{
-				dictionary.Add("source", Singleton<PlayerInfoScript>.Instance.SaveData.HardCurrency.ToString());
-			}
 		}
 		friendInviteResult = InviteResults.Accepted;
 		inviteFull = InviteFull.Sender;
@@ -468,10 +429,6 @@ public class HelperRequestController : Singleton<HelperRequestController>
 	private void OnConfirmAllySpace()
 	{
 		PlayerSaveData saveData = Singleton<PlayerInfoScript>.Instance.SaveData;
-		string value = MiscParams.AllyBoxPurchaseCost.ToString();
-		string upsightEvent = "Economy.GemExit.ExpandAllyList";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("cost", value);
 		mWaitForUserAction = true;
 		mUserActionProceed = NextAction.WAITING;
 		Singleton<BusyIconPanelController>.Instance.Show();

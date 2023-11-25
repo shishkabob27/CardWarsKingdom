@@ -6,6 +6,7 @@ using Allies;
 using Messages;
 using MiniJSON;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Session
 {
@@ -276,7 +277,7 @@ public class Session
 		CookieContainer cookies = new CookieContainer();
 		server = new SQServer(cookies);
 		webFileServer = new SQWebFileServer(cookies);
-		auth = new SQAuth(Application.platform);
+		auth = new SQAuth();
 		this.currentVersion = currentVersion;
 		OnInit();
 		authorizing.OnEnter(this, doFacebookLogin, fbAccessToken);
@@ -487,7 +488,7 @@ public class Session
 	public void ReloadGame()
 	{
 		needsReload = false;
-		Application.LoadLevel("AppReloadScene");
+		SceneManager.LoadScene("AppReloadScene");
 	}
 
 	public void LoadGameFromNetwork()

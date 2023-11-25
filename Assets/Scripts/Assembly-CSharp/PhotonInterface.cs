@@ -182,7 +182,7 @@ public class PhotonInterface : LoadBalancingClient
 				else if (Opponent != null)
 				{
 					RoomName = CurrentRoom.Name;
-					pvpEventCallback(TBPvPManager.tbPvPEventCode.JoinedToExist, Opponent.Name);
+					pvpEventCallback(TBPvPManager.tbPvPEventCode.JoinedToExist, Opponent.NickName);
 				}
 				else
 				{
@@ -241,7 +241,7 @@ public class PhotonInterface : LoadBalancingClient
 				SavePlayersInProps();
 				if (pvpEventCallback != null)
 				{
-					pvpEventCallback(TBPvPManager.tbPvPEventCode.NewPlayerJoined, Opponent.Name);
+					pvpEventCallback(TBPvPManager.tbPvPEventCode.NewPlayerJoined, Opponent.NickName);
 				}
 			}
 			return;
@@ -362,7 +362,7 @@ public class PhotonInterface : LoadBalancingClient
 		}
 		else
 		{
-			hashtable["Names"] = string.Format("{0};{1}", base.LocalPlayer.Name, Opponent.Name);
+			hashtable["Names"] = string.Format("{0};{1}", base.LocalPlayer.NickName, Opponent.NickName);
 			OpSetCustomPropertiesOfRoom(hashtable);
 		}
 	}
@@ -419,7 +419,7 @@ public class PhotonInterface : LoadBalancingClient
 
 	public void CreateTurnbasedRoom()
 	{
-		RoomName = string.Format("{0}-{1}", base.PlayerName, UnityEngine.Random.Range(0, 1000).ToString("D4"));
+		RoomName = string.Format("{0}-{1}", base.NickName, UnityEngine.Random.Range(0, 1000).ToString("D4"));
 		ExitGames.Client.Photon.Hashtable hashtable = new ExitGames.Client.Photon.Hashtable();
 		if (Singleton<TBPvPManager>.Instance.FriendMatch)
 		{

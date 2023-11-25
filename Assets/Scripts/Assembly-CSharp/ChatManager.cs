@@ -47,10 +47,6 @@ public class ChatManager : Singleton<ChatManager>, IChatClientListener
 
 	public delegate void ChatEvent(chatEventCode e, object obj);
 
-	public string DebugChatId;
-
-	public string ReleaseChatId;
-
 	public string[] ChannelsToJoinOnConnect;
 
 	public int HistoryLengthToFetch;
@@ -66,8 +62,6 @@ public class ChatManager : Singleton<ChatManager>, IChatClientListener
 	private string hval = "269E84524AF54D1EA625AA8C803D740F";
 
 	private string myidhash = string.Empty;
-
-	private string ChatAppId;
 
 	public List<HelperItem> UserNameIdListOriginal;
 
@@ -171,7 +165,6 @@ public class ChatManager : Singleton<ChatManager>, IChatClientListener
 
 	public void Start()
 	{
-		ChatAppId = ReleaseChatId;
 		chatClient = new ChatClient(this);
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 		Application.runInBackground = true;

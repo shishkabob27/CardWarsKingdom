@@ -603,7 +603,7 @@ public class DWBattleLaneObject : MonoBehaviour
 			TweenAlpha tw = tx.gameObject.AddComponent<TweenAlpha>();
 			tw.to = 0f;
 			tw.duration = 2f;
-			tw.Play();
+			tw.PlayForward();
 		}
 		yield return new WaitForSeconds(2f);
 		UnityEngine.Object.Destroy(obj);

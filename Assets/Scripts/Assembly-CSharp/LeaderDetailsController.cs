@@ -185,39 +185,9 @@ public class LeaderDetailsController : Singleton<LeaderDetailsController>
 	public void OnPurchaseComplete()
 	{
 		LeaderItem leaderItem = Singleton<PlayerInfoScript>.Instance.GetLeaderItem(mLeaderItem.Form);
-		SendKPITrack(leaderItem);
 		Unload();
 		mLeaderItem = leaderItem;
 		PopulateCurrentLeader();
 		RefreshCurrency();
-	}
-
-	private void SendKPITrack(LeaderItem newlyCreatedLeader)
-	{
-		string value = newlyCreatedLeader.SelectedSkin.BuyCost.ToString();
-		string upsightEvent = "Economy.GemExit.Heroes";
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("heroesID", newlyCreatedLeader.SelectedSkin.ID);
-		dictionary.Add("cost", value);
-	}
-
-	public void PrevSkin()
-	{
-	}
-
-	public void NextSkin()
-	{
-	}
-
-	private void SetSkin(LeaderData skin)
-	{
-	}
-
-	public void OnClickBuySkin()
-	{
-	}
-
-	private void ConfirmBuySkin()
-	{
 	}
 }

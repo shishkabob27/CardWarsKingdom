@@ -212,17 +212,11 @@ public class MultiplayerMessageHandler : Singleton<MultiplayerMessageHandler>
 	{
 		if (!DetachedSingleton<SceneFlowManager>.Instance.InBattleScene() && Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
 		{
-			string upsightEvent = "Multiplayer.MatchSynchronization.Failure";
-			string value = "0";
 			if (Singleton<PVPPrepScreenController>.Instance.matchFound)
 			{
-				value = Singleton<PVPPrepScreenController>.Instance.syncTime.ToString();
 				Singleton<PVPPrepScreenController>.Instance.syncTime = 0f;
 				Singleton<PVPPrepScreenController>.Instance.matchFound = false;
 			}
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("searchDuration", value);
-			dictionary.Add("reason", reason);
 		}
 	}
 

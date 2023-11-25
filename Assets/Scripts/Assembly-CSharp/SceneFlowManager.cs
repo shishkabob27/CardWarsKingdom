@@ -76,9 +76,6 @@ public class SceneFlowManager : DetachedSingleton<SceneFlowManager>
 	{
 		if (Singleton<PlayerInfoScript>.Instance.StateData.MultiplayerMode)
 		{
-			string upsightEvent = "Multiplayer.MatchSynchronization.Success";
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			dictionary.Add("duration", Singleton<PVPPrepScreenController>.Instance.syncTime);
 			Singleton<PVPPrepScreenController>.Instance.syncTime = 0f;
 			Singleton<PVPPrepScreenController>.Instance.matchFound = false;
 		}

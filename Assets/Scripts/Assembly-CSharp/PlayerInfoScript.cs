@@ -67,8 +67,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 
 	private readonly TimeSpan SAVE_TIMEOUT_TIME = new TimeSpan(0, 1, 0);
 
-	private bool _APPLE_DEMO;
-
 	public PlayerSaveData SaveData;
 
 	public GameStateData StateData;
@@ -123,14 +121,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 
 	private static string SecondsString = null;
 
-	public bool APPLE_DEMO
-	{
-		get
-		{
-			return _APPLE_DEMO;
-		}
-	}
-
 	public bool ServerSyncDone
 	{
 		get
@@ -180,22 +170,6 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 		get
 		{
 			return "498";
-		}
-	}
-
-	public string crooz_termsID
-	{
-		get
-		{
-			return "16300";
-		}
-	}
-
-	public string crooz_privacyID
-	{
-		get
-		{
-			return "16302";
 		}
 	}
 
