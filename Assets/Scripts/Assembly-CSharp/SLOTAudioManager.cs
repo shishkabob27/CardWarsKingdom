@@ -291,7 +291,6 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 			Debug.LogError("SLOTAudioManager: " + clipName + " not found.");
 			return;
 		}
-		Debug.Log(soundResource.name);
 		PlayGUISound(soundResource);
 	}
 
