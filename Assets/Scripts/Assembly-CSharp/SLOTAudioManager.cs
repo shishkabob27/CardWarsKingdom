@@ -499,6 +499,7 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 	public void SetMusicVolumeMasterAudio(float volume)
 	{
 		musicVolume = volume;
+		Singleton<SLOTMusic>.Instance.musicAudioSources[0].volume = volume;
 		MasterAudio.SetBusVolumeByName("Music", musicVolume);
 		prevMusicVolume = musicVolume;
 		Serialize();
