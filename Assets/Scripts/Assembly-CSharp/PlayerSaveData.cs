@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using CodeStage.AntiCheat.ObscuredTypes;
 using MiniJSON;
+using UnityEngine;
 
 [Serializable]
 public class PlayerSaveData
@@ -1361,30 +1362,20 @@ public class PlayerSaveData
 					if (dictionary.Count > 0 && dictionary.ContainsKey("fields"))
 					{
 						Dictionary<string, object> dictionary2 = (Dictionary<string, object>)dictionary["fields"];
-						string key = "5424493204pemhi3148ifmanseu4iksdf4_4" + SessionManager.Instance.PlayerID + "0";
-						string hashSTRING2 = GetHashSTRING(SessionManager.Instance.PlayerID, key);
-						string text2 = Convert.ToString(dictionary2["handle"]);
-						if (!Singleton<PurchaseManager>.Instance.IsAmazon && hashSTRING2.ToLower() != text2.ToLower())
+						if (dictionary2.Count > 0 && dictionary2.ContainsKey("level1"))
 						{
-							actionResult.success = false;
+							int num2 = Convert.ToInt32(dictionary2["level1"]);
+							_PaidHardCurrency = num2;
 						}
-						else
+						if (dictionary2.Count > 0 && dictionary2.ContainsKey("level2"))
 						{
-							if (dictionary2.Count > 0 && dictionary2.ContainsKey("level1"))
-							{
-								int num2 = Convert.ToInt32(dictionary2["level1"]);
-								_PaidHardCurrency = num2;
-							}
-							if (dictionary2.Count > 0 && dictionary2.ContainsKey("level2"))
-							{
-								int num3 = Convert.ToInt32(dictionary2["level2"]);
-								_FreeHardCurrency = num3;
-							}
-							if (dictionary2.Count > 0 && dictionary2.ContainsKey("level3"))
-							{
-								int num4 = Convert.ToInt32(dictionary2["level3"]);
-								CustomizationCurrency = num4;
-							}
+							int num3 = Convert.ToInt32(dictionary2["level2"]);
+							_FreeHardCurrency = num3;
+						}
+						if (dictionary2.Count > 0 && dictionary2.ContainsKey("level3"))
+						{
+							int num4 = Convert.ToInt32(dictionary2["level3"]);
+							CustomizationCurrency = num4;
 						}
 					}
 				}
@@ -1397,12 +1388,7 @@ public class PlayerSaveData
 				callback(actionResult);
 			}
 		};
-		int misc = 0;
-		if (Singleton<PurchaseManager>.Instance.IsAmazon)
-		{
-			misc = 31415;
-		}
-		theSession.Server.User_action(_PaidHardCurrency, _FreeHardCurrency, CustomizationCurrency, paid, free, 0, hashSTRING, handle, misc, eventName, Singleton<TBPvPManager>.Instance.CountryCode, callback2);
+		theSession.Server.User_action(_PaidHardCurrency, _FreeHardCurrency, CustomizationCurrency, paid, free, 0, hashSTRING, handle, 0, eventName, Singleton<TBPvPManager>.Instance.CountryCode, callback2);
 	}
 
 	public void ConsumeHardCurrency2(int amount, string eventName, ActionCallback callback)
@@ -1422,30 +1408,20 @@ public class PlayerSaveData
 					if (dictionary.Count > 0 && dictionary.ContainsKey("fields"))
 					{
 						Dictionary<string, object> dictionary2 = (Dictionary<string, object>)dictionary["fields"];
-						string key = "5424493204pemhi3148ifmanseu4iksdf4_4" + SessionManager.Instance.PlayerID + "0";
-						string hashSTRING2 = GetHashSTRING(SessionManager.Instance.PlayerID, key);
-						string text2 = Convert.ToString(dictionary2["handle"]);
-						if (hashSTRING2.ToLower() != text2.ToLower())
+						if (dictionary2.Count > 0 && dictionary2.ContainsKey("level1"))
 						{
-							actionResult.success = false;
+							int num3 = Convert.ToInt32(dictionary2["level1"]);
+							_PaidHardCurrency = num3;
 						}
-						else
+						if (dictionary2.Count > 0 && dictionary2.ContainsKey("level2"))
 						{
-							if (dictionary2.Count > 0 && dictionary2.ContainsKey("level1"))
-							{
-								int num3 = Convert.ToInt32(dictionary2["level1"]);
-								_PaidHardCurrency = num3;
-							}
-							if (dictionary2.Count > 0 && dictionary2.ContainsKey("level2"))
-							{
-								int num4 = Convert.ToInt32(dictionary2["level2"]);
-								_FreeHardCurrency = num4;
-							}
-							if (dictionary2.Count > 0 && dictionary2.ContainsKey("level3"))
-							{
-								int num5 = Convert.ToInt32(dictionary2["level3"]);
-								CustomizationCurrency = num5;
-							}
+							int num4 = Convert.ToInt32(dictionary2["level2"]);
+							_FreeHardCurrency = num4;
+						}
+						if (dictionary2.Count > 0 && dictionary2.ContainsKey("level3"))
+						{
+							int num5 = Convert.ToInt32(dictionary2["level3"]);
+							CustomizationCurrency = num5;
 						}
 					}
 				}
