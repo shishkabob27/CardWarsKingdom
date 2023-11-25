@@ -73,7 +73,6 @@ public class SLOTGame : Singleton<SLOTGame>
 	private void Start()
 	{
 		Application.RegisterLogCallback(OnLog);
-		Application.targetFrameRate = 60;
 		KFFNetwork.deserializeJSONCallback = DeserializeJSON;
 		UnityEngine.Object[] array = UnityEngine.Object.FindObjectsOfType(typeof(SLOTGame));
 		UnityEngine.Object[] array2 = array;
