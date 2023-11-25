@@ -935,7 +935,7 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 			Transform transform = base.transform.InstantiateAsChild(value).transform;
 			transform.position = position;
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Action_TriggerEnchant");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Action_TriggerEnchant");
 		string str = message.Creature.Data.PassiveNameString();
 		Vector3 position2 = ((!(attachToLane != null)) ? position : attachToLane.CreatureObject.transform.position);
 		ShowEffectLabelPopup(position2, attachToLane, str, PassiveTextColor, Color.black, 25);
@@ -1333,11 +1333,11 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 				iTween.MoveTo(attackerObj, iTween.Hash("position", targetPos, "time", creatureData.AttackMovementTime, "easetype", creatureData.AttackMovementStyle));
 				if (creatureData.LungeSound != string.Empty)
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound(creatureData.LungeSound);
+					Singleton<SLOTAudioManager>.Instance.PlaySound("creature/" + creatureData.LungeSound);
 				}
 				else
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Attack_Lunge");
+					Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Attack_Lunge");
 				}
 				yield return new WaitForSeconds(creatureData.AttackMovementTime);
 			}
@@ -1489,7 +1489,7 @@ public class DWGameMessageHandler : Singleton<DWGameMessageHandler>
 			}
 			else if (hit.Miss)
 			{
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Attack_Miss");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Attack_Miss");
 				DWBattleLaneObject laneObj = Singleton<DWBattleLane>.Instance.GetLaneObject(target.Creature);
 				ShowEffectLabelPopup(laneObj.CreatureObject.transform.position, laneObj, KFFLocalization.Get("!!MISS"), Color.white, Color.black);
 			}

@@ -425,14 +425,14 @@ public class ChatWindowController : MonoBehaviour
 		{
 			if (mExpanded)
 			{
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_ChatHide");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_ChatHide");
 				CollapseTween.Play();
 				ExpandedBackgroundCollider.SetActive(false);
 			}
 			else
 			{
 				ExpandedBackgroundCollider.SetActive(true);
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_ChatShow");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_ChatShow");
 				ExpandTween.Play();
 				Singleton<TownNotificationController>.Instance.HidePopup();
 			}

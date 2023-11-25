@@ -440,13 +440,13 @@ public class BattleResultsController : Singleton<BattleResultsController>
 		{
 			if (!mCoinLoopSoundStarted)
 			{
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_CoinLoop2");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_CoinLoop2");
 				mCoinLoopSoundStarted = true;
 			}
 		}
 		else if (mCoinLoopSoundStarted)
 		{
-			Singleton<SLOTAudioManager>.Instance.StopSound("SFX_CoinLoop2");
+			Singleton<SLOTAudioManager>.Instance.StopSound("battle/SFX_CoinLoop2");
 			mCoinLoopSoundStarted = false;
 		}
 	}
@@ -457,13 +457,13 @@ public class BattleResultsController : Singleton<BattleResultsController>
 		{
 			if (!mExpLoopSoundStarted)
 			{
-				Singleton<SLOTAudioManager>.Instance.PlaySound("UI_ExpLoop");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_ExpLoop");
 				mExpLoopSoundStarted = true;
 			}
 		}
 		else if (mExpLoopSoundStarted)
 		{
-			Singleton<SLOTAudioManager>.Instance.StopSound("UI_ExpLoop");
+			Singleton<SLOTAudioManager>.Instance.StopSound("ui/UI_ExpLoop");
 			mExpLoopSoundStarted = false;
 		}
 	}
@@ -516,7 +516,7 @@ public class BattleResultsController : Singleton<BattleResultsController>
 		{
 			ShowCreaturesLostTween.PlayWithCallback(OnCreatureLostFinished);
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_PostMatchText");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_PostMatchText");
 		int deadCreatureCount = Singleton<DWGame>.Instance.CurrentBoardState.GetPlayerState(PlayerType.User).GetDeadCreatureCount();
 		if (deadCreatureCount == 1)
 		{

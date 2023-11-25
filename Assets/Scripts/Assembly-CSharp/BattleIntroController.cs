@@ -201,7 +201,7 @@ public class BattleIntroController : Singleton<BattleIntroController>
 	private IEnumerator TriggerWinnerCamera(PlayerType player)
 	{
 		yield return new WaitForSeconds(0.3f);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("UI_PlayerWin");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_PlayerWin");
 		LeaderItem winner = Singleton<DWGame>.Instance.GetLeader(player);
 		GameObject BattleCam = Singleton<DWGameCamera>.Instance.MainCam.gameObject;
 		Singleton<DWGameCamera>.Instance.MainCamLookAt.mFollowFlag = false;

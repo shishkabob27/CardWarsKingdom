@@ -142,7 +142,7 @@ public class SalePopupController : Singleton<SalePopupController>
 		{
 			Singleton<BusyIconPanelController>.Instance.Hide();
 			ShowTween.Play();
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_SalePopupShow");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_SalePopupShow");
 			BackgroundTexture.UnloadTexture();
 			BackgroundTexture.mainTexture = loadedResouce as Texture;
 			Singleton<PlayerInfoScript>.Instance.OnSaleShown(mSale);
@@ -344,8 +344,8 @@ public class SalePopupController : Singleton<SalePopupController>
 		{
 			entry.gameObject.SetActive(true);
 			entry.GrantTween.Play();
-			Singleton<SLOTAudioManager>.Instance.StopSound("SFX_SalePopupItem");
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_SalePopupItem");
+			Singleton<SLOTAudioManager>.Instance.StopSound("ui/SFX_SalePopupItem");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_SalePopupItem");
 			yield return new WaitForSeconds(GrantRewardDelay);
 		}
 		UICamera.UnlockInput();

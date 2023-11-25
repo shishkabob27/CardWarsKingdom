@@ -161,7 +161,7 @@ public class AnimatedBannerScript : MonoBehaviour
 	private IEnumerator PlayTextEffect(GameObject obj)
 	{
 		yield return new WaitForSeconds(TextSoundDelay);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaBannerText");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaBannerText");
 		GameObject fxObj = obj.InstantiateAsChild(ParticleOnLetter);
 		fxObj.ChangeLayer(obj.layer);
 	}

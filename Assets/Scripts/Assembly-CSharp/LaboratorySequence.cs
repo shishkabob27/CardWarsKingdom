@@ -117,7 +117,7 @@ public class LaboratorySequence : MonoBehaviour
 		MainObject.SetActive(true);
 		ResetTweens();
 		Singleton<SLOTMusic>.Instance.LowerMusicVolume(true);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_Slides");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_EnhanceSeq_Slides");
 		if (fodderTiles.Count == 0)
 		{
 			attachOrder = new int[5] { 0, 1, 2, 3, 4 };
@@ -188,7 +188,7 @@ public class LaboratorySequence : MonoBehaviour
 				StarTransToPoint[num4].transform.localPosition = StarHolderRoots[num4].transform.localPosition;
 			}
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_TurnOn");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_EnhanceSeq_TurnOn");
 		StartCoroutine(ModuleSequenceCo());
 	}
 
@@ -199,7 +199,7 @@ public class LaboratorySequence : MonoBehaviour
 		for (int i5 = 0; i5 < attachOrder.Length; i5++)
 		{
 			int ii = attachOrder[i5];
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_Popup");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_EnhanceSeq_Popup");
 			ModuleIntroTweens[ii].Play();
 			yield return new WaitForSeconds(0.15f);
 		}
@@ -220,7 +220,7 @@ public class LaboratorySequence : MonoBehaviour
 		{
 			GuagesIntroTweens[i3].Play();
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_Charge");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_EnhanceSeq_Charge");
 		yield return new WaitForSeconds(0.2f);
 		GlowIntroTween.Play();
 		yield return new WaitForSeconds(0.2f);
@@ -246,7 +246,7 @@ public class LaboratorySequence : MonoBehaviour
 		for (int n = 0; n < attachOrder.Length; n++)
 		{
 			int ii2 = attachOrder[n];
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_TVOn");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_EnhanceSeq_TVOn");
 			ModuleTurnOnTweens[ii2].Play();
 			if (StarHolderRoot != null)
 			{
@@ -317,7 +317,7 @@ public class LaboratorySequence : MonoBehaviour
 		for (int m = 0; m < attachOrder.Length; m++)
 		{
 			int ii3 = attachOrder[m];
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_Siren");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_EnhanceSeq_Siren");
 			if (ModuleFlashTweens[ii3] != null)
 			{
 				ModuleFlashTweens[ii3].Play();
@@ -328,7 +328,7 @@ public class LaboratorySequence : MonoBehaviour
 		for (int l = 0; l < attachOrder.Length; l++)
 		{
 			int ii4 = attachOrder[l];
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_TVOff");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_EnhanceSeq_TVOff");
 			ModuleOutroTweens[ii4].Play();
 			if (LightningBeams[ii4] != null) LightningBeams[ii4].gameObject.SetActive(false);
 			yield return new WaitForSeconds(0.1f);
@@ -359,7 +359,7 @@ public class LaboratorySequence : MonoBehaviour
 			LaboratorySequence.onSequencePop();
 		}
 		LaboratorySequence.onSequencePop = null;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_EnhanceSeq_Finish");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_EnhanceSeq_Finish");
 		yield return new WaitForSeconds(0.75f);
 		GlowFlashTween.Play();
 		TitleTween.Play();

@@ -147,7 +147,7 @@ public class DWBattleLaneObject : MonoBehaviour
 					if (Singleton<DWGame>.Instance.IsCreatureTargetRestricted(mSelectedCardTarget))
 					{
 						Singleton<BattleHudController>.Instance.ShowErrorReason(KFFLocalization.Get("!!MUST_TARGET_BRAVERY"));
-						Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Announcer_TryAgain");
+						Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Announcer_TryAgain");
 					}
 					else
 					{
@@ -172,12 +172,12 @@ public class DWBattleLaneObject : MonoBehaviour
 						if (Singleton<DWGame>.Instance.IsCreatureTargetRestricted(mPrevHoveredLane.Creature))
 						{
 							Singleton<BattleHudController>.Instance.ShowErrorReason(KFFLocalization.Get("!!MUST_TARGET_BRAVERY"));
-							Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Announcer_TryAgain");
+							Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Announcer_TryAgain");
 						}
 						else if (Singleton<DWGame>.Instance.GetActionPoints(PlayerType.User) < Creature.AttackCost && !Singleton<TutorialController>.Instance.IgnoreEnergyCosts())
 						{
 							Singleton<BattleHudController>.Instance.ShowErrorReason(KFFLocalization.Get("!!NOT_ENOUGH_ENERGY"));
-							Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Announcer_OutofEnergy");
+							Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Announcer_OutofEnergy");
 						}
 						else
 						{
@@ -198,7 +198,7 @@ public class DWBattleLaneObject : MonoBehaviour
 					if (Singleton<DWGame>.Instance.GetActionPoints(PlayerType.User) < Creature.AttackCost && !Singleton<TutorialController>.Instance.IgnoreEnergyCosts())
 					{
 						Singleton<BattleHudController>.Instance.ShowErrorReason(KFFLocalization.Get("!!NOT_ENOUGH_ENERGY"));
-						Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Announcer_OutofEnergy");
+						Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Announcer_OutofEnergy");
 						NGUITools.Destroy(mDraggingToDrawCard.gameObject);
 					}
 					else

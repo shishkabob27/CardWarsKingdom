@@ -33,7 +33,7 @@ public class BuyStaminaPopupController : Singleton<BuyStaminaPopupController>
 	public void OnShowTweenDone()
 	{
 		StartCoroutine(TickUpValues());
-		Singleton<SLOTAudioManager>.Instance.PlaySound("UI_BuyStamina");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_BuyStamina");
 	}
 
 	private IEnumerator TickUpValues()

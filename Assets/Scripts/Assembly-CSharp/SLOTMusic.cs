@@ -50,12 +50,19 @@ public class SLOTMusic : Singleton<SLOTMusic>
 	{
 		if (clipName != string.Empty)
 		{
-			MasterAudio.PlaySound(clipName);
-			while (MasterAudio.LoadingAudioBundle)
+			var audioresource = Resources.Load(FrontEndMusicName, typeof(AudioClip)) as AudioClip;
+			if (audioresource == null)
 			{
-				yield return null;
-			}
+                Debug.LogError("SLOTMusic: " + clipName + " not found.");
+            }
+			musicAudioSources[0].clip = audioresource;
+			musicAudioSources[0].Play();
+			//while (MasterAudio.LoadingAudioBundle)
+			//{
+			//	yield return null;
+			//}
 			CURRENT_MUSIC = clipName;
+			yield break;
 		}
 	}
 
@@ -70,13 +77,15 @@ public class SLOTMusic : Singleton<SLOTMusic>
 
 	private IEnumerator StopMusicCo(string music, float fadeTime)
 	{
-		if (fadeTime > 0f)
-		{
-			MasterAudio.FadeOutAllOfSound(music, fadeTime);
-			yield return new WaitForSeconds(fadeTime);
-		}
-		MasterAudio.StopAllOfSound(music);
-	}
+        //if (fadeTime > 0f)
+        //{
+        //	MasterAudio.FadeOutAllOfSound(music, fadeTime);
+        //	yield return new WaitForSeconds(fadeTime);
+        //}
+        musicAudioSources[0].Stop();
+		yield return new WaitForSeconds(fadeTime);
+
+    }
 
 	public bool FindAudioSource(AudioSource source)
 	{

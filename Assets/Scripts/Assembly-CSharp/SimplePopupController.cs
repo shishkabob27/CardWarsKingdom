@@ -123,7 +123,7 @@ public class SimplePopupController : Singleton<SimplePopupController>
 
 	private void PlayErrorSound()
 	{
-		Singleton<SLOTAudioManager>.Instance.PlaySound("UI_ErrorSound");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_ErrorSound");
 	}
 
 	public void ShowMessage(string title, string body, PopupButtonCallback callback, PopupPriority priority = PopupPriority.Normal)

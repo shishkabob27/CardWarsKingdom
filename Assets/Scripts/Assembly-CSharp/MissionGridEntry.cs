@@ -121,6 +121,6 @@ public class MissionGridEntry : UIStreamingGridListItem
 	private void OnCollectTweenComplete()
 	{
 		Singleton<TownHudController>.Instance.ClaimCompletedMission(mMission);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_MissionComplete");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_MissionComplete");
 	}
 }

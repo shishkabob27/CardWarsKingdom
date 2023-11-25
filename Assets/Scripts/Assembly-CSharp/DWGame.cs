@@ -483,7 +483,7 @@ public class DWGame : Singleton<DWGame>
 			AudioSource sound = fxObj.GetComponent<AudioSource>();
 			if (sound != null && sound.clip != null)
 			{
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Rez_In");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Rez_In");
 			}
 		}
 		if ((bool)laneObj.ShadowBlob)
@@ -514,7 +514,7 @@ public class DWGame : Singleton<DWGame>
 		}
 		if (creatureState.Data.Form.IntroSound != null)
 		{
-			Singleton<SLOTAudioManager>.Instance.PlaySound(creatureState.Data.Form.IntroSound);
+			Singleton<SLOTAudioManager>.Instance.PlaySound("creature/" + creatureState.Data.Form.IntroSound);
 		}
 		yield return new WaitForSeconds(1f);
 		CardProgress.Instance.State = CardState.Idle;

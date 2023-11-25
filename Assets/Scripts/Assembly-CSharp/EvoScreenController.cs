@@ -1508,7 +1508,7 @@ public class EvoScreenController : Singleton<EvoScreenController>
 			tp.AddOnFinished(new EventDelegate(delegate
 			{
 				PassiveShardDestinationNode.InstantiateAsChild(VFX_Shard_Burst_PassiveUp_Prefab);
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Shards");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_Shards");
 				UnityEngine.Object.Destroy(shards[0]);
 				shards.RemoveAt(0);
 				creatureTweenScale2.enabled = true;
@@ -1613,7 +1613,7 @@ public class EvoScreenController : Singleton<EvoScreenController>
 			}
 			ShardHideResultCounterTween.Play();
 			ShardSequenceStartTween.Play();
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_AuraLoop");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_AuraLoop");
 			yield return new WaitForSeconds(0.2f);
 			int numRewards = creatureData.TurnsIntoMaterialCount;
 			GameObject rewardObj = ShardResultNode.transform.GetChild(0).gameObject;
@@ -1626,7 +1626,7 @@ public class EvoScreenController : Singleton<EvoScreenController>
 				tile.ChangeLayerToParent();
 				ShardPopRewardTween[i].Play();
 				GameObject thisFX = tile.InstantiateAsChild(VFX_Shard_Burst_Prefab);
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Shards");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_Shards");
 				yield return new WaitForSeconds(0.2f);
 			}
 			yield return new WaitForSeconds(0.5f);

@@ -332,7 +332,7 @@ public class SellScreenController : Singleton<SellScreenController>
 		int softCurrency = saveData.SoftCurrency;
 		int hardCurrency = saveData.HardCurrency;
 		saveData.SoftCurrency += mSoftSellPrice;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_SellItems");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_SellItems");
 		Singleton<PlayerInfoScript>.Instance.AddHardCurrency2(0, mHardSellPrice, "selling creatures", -1, string.Empty);
 		List<InventorySlotItem> list = new List<InventorySlotItem>();
 		int num = 0;

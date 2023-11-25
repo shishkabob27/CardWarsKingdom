@@ -29,7 +29,7 @@ public class BounceOnTap : MonoBehaviour
 		}
 		if (mCreature != null && mCreature.ZoomSound != null)
 		{
-			Singleton<SLOTAudioManager>.Instance.PlaySound(mCreature.ZoomSound);
+			Singleton<SLOTAudioManager>.Instance.PlaySound("creature/" + mCreature.ZoomSound);
 		}
 		Transform tweenObject = Singleton<PrefabReferences>.Instance.BounceTween.transform;
 		bool done = false;

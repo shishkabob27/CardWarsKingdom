@@ -108,7 +108,7 @@ public class PauseController : Singleton<PauseController>
 		if (!mPaused && !mPauseShowing)
 		{
 			mPauseShowing = true;
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_PauseShow");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_PauseShow");
 			ShowPauseTween.Play();
 		}
 	}
@@ -150,7 +150,7 @@ public class PauseController : Singleton<PauseController>
 		if (mPaused)
 		{
 			UICamera.AlwaysAllowedColliders.RemoveAll((GameObject m) => m == ResumeButton || m == QuitButton || m == PauseBackCollider);
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_PauseHide");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_PauseHide");
 			HidePauseTween.Play();
 			mPaused = false;
 			mPauseShowing = false;

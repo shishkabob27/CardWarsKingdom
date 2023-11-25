@@ -140,7 +140,7 @@ public class CreatureDetailsController : Singleton<CreatureDetailsController>
 		mEnableCardEditing = enableCardEditing;
 		if (creature.Creature.Form.ZoomSound != null)
 		{
-			Singleton<SLOTAudioManager>.Instance.PlaySound(creature.Creature.Form.ZoomSound);
+			Singleton<SLOTAudioManager>.Instance.PlaySound("creature/" + creature.Creature.Form.ZoomSound);
 		}
 		PopulateCurrentCreature();
 	}

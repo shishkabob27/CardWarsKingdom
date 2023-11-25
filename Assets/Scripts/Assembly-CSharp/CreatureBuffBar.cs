@@ -66,7 +66,15 @@ public class CreatureBuffBar : MonoBehaviour
 		GameMessage ms2 = default(GameMessage);
 		if (ms.Action == GameEvent.GAIN_BUFF || ms.Action == GameEvent.GAIN_DEBUFF || ms.Action == GameEvent.TICK_STATUS)
 		{
-			StatusIconItem existingIcon = mPersistentFXIcons.Find((StatusIconItem m) => m.Status == ms2.Status);
+			StatusIconItem existingIcon = null;
+            try
+			{
+                existingIcon = mPersistentFXIcons.Find((StatusIconItem m) => m.Status == ms2.Status);
+            }
+			catch
+			{
+
+			}
 			if (existingIcon == null)
 			{
 				if (ms.Action == GameEvent.TICK_STATUS)

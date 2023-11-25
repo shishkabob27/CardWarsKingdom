@@ -123,7 +123,7 @@ public class CalendarGiftController : Singleton<CalendarGiftController>
 			yield return null;
 		}
 		yield return new WaitForSeconds(1f);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Calendar_Show");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_Calendar_Show");
 		if (grantingGiftIndex == gifts.Count - 1)
 		{
 			MonthRewardClaim.Play();

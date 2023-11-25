@@ -450,7 +450,7 @@ public class PreMatchController : Singleton<PreMatchController>
 
 	private IEnumerator PlayStartAnimInPrep()
 	{
-		Singleton<SLOTAudioManager>.Instance.PlaySound("UI_VS_Screen_Start");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_VS_Screen_Start");
 		Singleton<FrontEndPIPController>.Instance.PlayBattleStartAnim();
 		yield return new WaitForSeconds(2.5f);
 		Singleton<ScreenFadeController>.Instance.ShowLoadScreen(LoadBattleScene);

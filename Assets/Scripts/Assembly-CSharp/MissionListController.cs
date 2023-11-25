@@ -190,7 +190,7 @@ public class MissionListController : Singleton<MissionListController>
 		{
 			mSwappingPanel = true;
 			StartCoroutine(BringGlobalToFront());
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_DailyMissionsFlip");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_DailyMissionsFlip");
 		}
 	}
 
@@ -213,7 +213,7 @@ public class MissionListController : Singleton<MissionListController>
 		{
 			mSwappingPanel = true;
 			StartCoroutine(BringDailyToFront());
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_DailyMissionsFlip");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_DailyMissionsFlip");
 		}
 	}
 

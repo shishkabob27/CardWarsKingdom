@@ -275,16 +275,24 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 		return audiosource;
 	}
 
+	public void PlayRandomSound(string audioClipName, int clips)
+	{
+        var random = UnityEngine.Random.Range(1, clips + 1);
+		PlaySound(audioClipName + random.ToString());
+    }
+
 	public void PlaySound(string audioClipName)
 	{
-		if (useMasterAudio)
+        var clipName = audioClipName;
+		if (!audioClipName.StartsWith("bgm/")) clipName = "audio/" + clipName;
+        var soundResource = Resources.Load(clipName, typeof(AudioClip)) as AudioClip;
+		if (soundResource == null)
 		{
-			if (audioClipName.StartsWith("low_"))
-			{
-				audioClipName = audioClipName.Substring("low_".Length);
-			}
-			MasterAudio.PlaySound(audioClipName);
+			Debug.LogError("SLOTAudioManager: " + clipName + " not found.");
+			return;
 		}
+		Debug.Log(soundResource.name);
+		PlayGUISound(soundResource);
 	}
 
 	public void StopSound(string audioClipName)
@@ -560,7 +568,7 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 
 	public void PlayErrorSound()
 	{
-		PlaySound("UI_ErrorSound");
+		PlaySound("ui/UI_ErrorSound");
 	}
 
 	public void TriggerVOEvent(LeaderData leader, VOEvent voEvent, CreatureFaction faction = CreatureFaction.Count)

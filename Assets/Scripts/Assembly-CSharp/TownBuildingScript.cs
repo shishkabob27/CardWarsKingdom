@@ -281,7 +281,7 @@ public class TownBuildingScript : MonoBehaviour
 		{
 			MainBuildingAnimator.Play("Tap");
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_BuildZoomIn");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("ui/SFX_BuildZoomIn", 7);
 		TweenScale componentInChildren = base.transform.GetComponentInChildren<TweenScale>();
 		if (componentInChildren != null)
 		{

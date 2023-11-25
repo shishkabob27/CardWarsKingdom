@@ -148,7 +148,7 @@ public class QuestSelectLeague : UIStreamingGridListItem
 	public void DelayedShowUnlockedElements()
 	{
 		UnlockTween.Play();
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_LockRattle");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_LockShake");
 		Invoke("ShowHideWhenLockedElements", DelayToShowUnlockedElements);
 	}
 

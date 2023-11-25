@@ -239,8 +239,8 @@ public class GachaScreenController : Singleton<GachaScreenController>
 			DailyChestID = string.Empty;
 			PopulateData();
 			PlayGachaTweenIn();
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Gacha_Enter2");
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaAmbience");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_Gacha_Enter2");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaAmbience");
 			EnableSparkleFX(true);
 		}
 	}
@@ -710,7 +710,7 @@ public class GachaScreenController : Singleton<GachaScreenController>
 		StartCoroutine(MoveKeyToStartPos(keyScript.gameObject));
 		yield return new WaitForSeconds(0.25f);
 		ShowDragKeyTween.Play();
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaKey");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaKey");
 		ArrowLoopTween.Play();
 		UICamera.UnlockInput();
 		while (!((KeyDragObject.transform.position - KeyEndPosition.position).sqrMagnitude < KeyLockDragDistance * KeyLockDragDistance))
@@ -726,7 +726,7 @@ public class GachaScreenController : Singleton<GachaScreenController>
 			}
 			yield return null;
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaKeyUnlock");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaKeyUnlock");
 		HideDragKeyTween.Play();
 		keyScript.DragFX.SetActive(false);
 		yield return StartCoroutine(Singleton<TownController>.Instance.PlayGachaGateOpenAnim(keyScript.gameObject));
@@ -753,7 +753,7 @@ public class GachaScreenController : Singleton<GachaScreenController>
 			}
 		}
 		PlayGachaTweenIn();
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Gacha_Enter2");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_Gacha_Enter2");
 		PopulateData();
 		if (Singleton<TutorialController>.Instance.IsBlockActive("UseGacha"))
 		{
@@ -929,7 +929,7 @@ public class GachaScreenController : Singleton<GachaScreenController>
 	public void OnClickNextSlot()
 	{
 		OnClickChangeSlot(1);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Gacha_Arrow");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_Gacha_Arrow");
 	}
 
 	private void OnClickChangeSlot(int direction)
@@ -1132,7 +1132,7 @@ public class GachaScreenController : Singleton<GachaScreenController>
 				RotatingStatsTypes[i].TweenInRarityStars(0f);
 				if (mCurrentRotatingCreature.Creature.Form.BattleZoomSound != null)
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound(mCurrentRotatingCreature.Creature.Form.BattleZoomSound);
+					Singleton<SLOTAudioManager>.Instance.PlaySound("creature/" + mCurrentRotatingCreature.Creature.Form.BattleZoomSound);
 				}
 			}
 			else

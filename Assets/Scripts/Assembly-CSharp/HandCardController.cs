@@ -922,7 +922,7 @@ public class HandCardController : Singleton<HandCardController>
 
 	public CardPrefabScript CreateDragDrawCard()
 	{
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Choose");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("card/SFX_Card_Choose1");
 		CardPrefabScript component = HandCardsSpawnParent.InstantiateAsChild(Singleton<PrefabReferences>.Instance.Card).GetComponent<CardPrefabScript>();
 		component.gameObject.ChangeLayer(base.gameObject.layer);
 		component.DragDrawCard = true;

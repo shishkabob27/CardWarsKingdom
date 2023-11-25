@@ -441,7 +441,7 @@ public class PvpBattleResultsController : Singleton<PvpBattleResultsController>
 		if (mRankXPToGive > 0)
 		{
 			yield return new WaitForSeconds(0.3f);
-			Singleton<SLOTAudioManager>.Instance.PlaySound("UI_ExpLoop");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_ExpLoop");
 			while (mRankXPToGive > 0)
 			{
 				int thisFrame = (int)(Time.deltaTime * xpPerSecond);
@@ -458,7 +458,7 @@ public class PvpBattleResultsController : Singleton<PvpBattleResultsController>
 				SetXpData(Singleton<PlayerInfoScript>.Instance.RankXpLevelDataAt(mCurrentRankXP));
 				yield return null;
 			}
-			Singleton<SLOTAudioManager>.Instance.StopSound("UI_ExpLoop");
+			Singleton<SLOTAudioManager>.Instance.StopSound("ui/UI_ExpLoop");
 		}
 		yield return new WaitForSeconds(0.4f);
 	}

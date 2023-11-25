@@ -187,7 +187,7 @@ public class TownNotificationController : Singleton<TownNotificationController>
 			return;
 		}
 		ShowPopup.Play();
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_NotificationShow");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_NotificationShow");
 		NotificationType notificationType = list[Random.Range(0, list.Count)];
 		mNotificationTimers[(int)notificationType] = NotificationTypeCooldown;
 		switch (notificationType)

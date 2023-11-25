@@ -282,7 +282,7 @@ public class FuseStatsPanelController : Singleton<FuseStatsPanelController>
 	{
 		mStopAnimate = true;
 		mShowingLevelUp = true;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("UI_LevelUp_Panel");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_LevelUp_Panel");
 		yield return new WaitForSeconds(0.5f);
 		mShowingLevelUp = false;
 		mStopAnimate = false;
@@ -299,12 +299,12 @@ public class FuseStatsPanelController : Singleton<FuseStatsPanelController>
 	{
 		if (enabled && !mExpLoopSoundStarted)
 		{
-			Singleton<SLOTAudioManager>.Instance.PlaySound("UI_ExpLoop");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_ExpLoop");
 			mExpLoopSoundStarted = true;
 		}
 		else if (!enabled && mExpLoopSoundStarted)
 		{
-			Singleton<SLOTAudioManager>.Instance.StopSound("UI_ExpLoop");
+			Singleton<SLOTAudioManager>.Instance.StopSound("ui/UI_ExpLoop");
 			mExpLoopSoundStarted = false;
 		}
 	}

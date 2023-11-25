@@ -93,7 +93,7 @@ public class GachaMultiResultController : Singleton<GachaMultiResultController>
 		foreach (InventoryTile egg2 in mLoot)
 		{
 			bool firstTimeCollected = egg2.InventoryItem.FirstTimeCollected;
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaFlyToCam");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaFlyToCam");
 			float xPos2 = egg2.transform.localPosition.x * 2f;
 			float yPos2 = egg2.transform.localPosition.y * 2f;
 			float travelDist = Mathf.Abs(xPos2) + Mathf.Abs(yPos2);

@@ -452,7 +452,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 		Singleton<HandCardController>.Instance.OnCardDragStart();
 		AdjustDepth(10);
 		CardCollider.enabled = false;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Choose");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Choose_", 5);
 		Singleton<HandCardController>.Instance.ShowDiscardTween.Play();
 		if (mCard != null)
 		{
@@ -551,7 +551,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 					}
 					case PlayerState.CanPlayResult.NotEnoughAP:
 						Singleton<BattleHudController>.Instance.ShowErrorReason(KFFLocalization.Get("!!NOT_ENOUGH_ENERGY"));
-						Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Announcer_OutofEnergy");
+						Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Announcer_OutofEnergy");
 						break;
 					case PlayerState.CanPlayResult.NoTarget:
 						Singleton<BattleHudController>.Instance.ShowErrorReason(KFFLocalization.Get("!!NO_CARD_TARGET"));
@@ -591,7 +591,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 				}
 				case PlayerState.CanPlayResult.NotEnoughAP:
 					Singleton<BattleHudController>.Instance.ShowErrorReason(KFFLocalization.Get("!!NOT_ENOUGH_ENERGY"));
-					Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Announcer_OutofEnergy");
+					Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Announcer_OutofEnergy");
 					break;
 				}
 			}
@@ -830,7 +830,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 				}
 			}
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Whoosh");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Whoosh_", 6);
 	}
 
 	public void Unzoom()
@@ -1270,7 +1270,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 			{
 				base.transform.localPosition = sourceCreature.transform.localPosition;
 				skipZoom = true;
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Flip");
+				Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Flip_", 5);
 			}
 			else
 			{
@@ -1282,7 +1282,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 					mBaseDepth = 10 + depth;
 					AdjustDepth(mBaseDepth);
 				}
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Flip");
+				Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Flip_", 5);
 			}
 		}
 		else
@@ -1290,7 +1290,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 			Vector3 portraitPos = ((Mode != 0) ? Singleton<BattleHudController>.Instance.HeroPortraits[1].transform.position : Singleton<BattleHudController>.Instance.HeroPortraits[0].transform.position);
 			Vector3 screenPos = Singleton<DWGameCamera>.Instance.BattleUICam.WorldToScreenPoint(portraitPos);
 			base.transform.localPosition = ScreenPosToCardPos(screenPos);
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Flip");
+			Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Flip_", 5);
 		}
 		if (Mode == CardMode.Hand)
 		{
@@ -1392,7 +1392,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 			base.transform.localRotation = mTargetRotation;
 			mCurrentScale = mTargetScale;
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Flip");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Flip_", 5);
 		yield return new WaitForSeconds(0.7f);
 		mTargetAlpha = 0f;
 		mSnapSpeed = 7f;
@@ -1431,14 +1431,14 @@ public class CardPrefabScript : UIStreamingGridListItem
 			mTargetScale = mHandScale;
 		}
 		SetCardState(HandCardState.InHand);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Flip");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Flip_", 5);
 		yield return null;
 	}
 
 	public IEnumerator Discard()
 	{
 		SetCardState(HandCardState.Discarding);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Whoosh");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Whoosh_", 6);
 		yield return new WaitForSeconds(0.5f);
 		if (Mode == CardMode.Hand)
 		{
@@ -1457,7 +1457,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 		SetCardState(HandCardState.ManualDiscarding);
 		Singleton<DWGame>.Instance.CurrentBoardState.GetPlayerState(PlayerType.User).ManualDiscard(Card);
 		Singleton<HandCardController>.Instance.RemoveHandCard(this);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Whoosh");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Whoosh_", 6);
 		yield return new WaitForSeconds(0.5f);
 		NGUITools.Destroy(base.gameObject);
 	}
@@ -1468,7 +1468,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 		SetCardState(HandCardState.Playing);
 		PlayCardFadeFX();
 		Singleton<HandCardController>.Instance.RemoveHandCard(this);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Play");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Play_", 5);
 		yield return new WaitForSeconds(0.25f);
 		UICamera.UnlockInput();
 		NGUITools.Destroy(base.gameObject);
@@ -1494,7 +1494,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 		mCurrentScale = new Vector3(0.15f, 0.15f, 1f);
 		if (!Singleton<DWGame>.Instance.IsTutorialSetup)
 		{
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Flip");
+			Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Flip_", 5);
 		}
 		if (Singleton<TutorialController>.Instance.IsStateActive("IN_AITurn2a"))
 		{
@@ -1515,7 +1515,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 			mTargetRotation = Quaternion.Euler(90f - Singleton<DWGameCamera>.Instance.MainCam.transform.rotation.eulerAngles.x, 0f, 0f);
 			mTargetScale = new Vector3(0.65f, 0.65f, 1f);
 			mSnapSpeed = 10f;
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Whoosh");
+			Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Whoosh_", 6);
 			if (!Singleton<DWGame>.Instance.IsTutorialSetup)
 			{
 				yield return new WaitForSeconds(0.5f);
@@ -1551,7 +1551,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 		Singleton<HandCardController>.Instance.RemoveHandCard(this);
 		if (!Singleton<DWGame>.Instance.IsTutorialSetup)
 		{
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Flip");
+			Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Flip_", 5);
 		}
 		if (worldPos.x == float.MinValue)
 		{
@@ -1564,7 +1564,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 			mTargetRotation = Quaternion.Euler(90f - Singleton<DWGameCamera>.Instance.MainCam.transform.rotation.eulerAngles.x, 0f, 0f);
 			mTargetScale = new Vector3(0.65f, 0.65f, 1f);
 			mSnapSpeed = 10f;
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Whoosh");
+			Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Whoosh_", 6);
 			if (!Singleton<DWGame>.Instance.IsTutorialSetup)
 			{
 				yield return new WaitForSeconds(0.5f);
@@ -1598,7 +1598,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 		mCurrentScale = new Vector3(0f, 0f, 1f);
 		base.transform.localScale = mCurrentScale;
 		mSnapSpeed = 15f;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Whoosh");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Whoosh_", 6);
 	}
 
 	public IEnumerator PlayLogZoomCloseAnim()
@@ -1624,7 +1624,7 @@ public class CardPrefabScript : UIStreamingGridListItem
 		mHandScale = new Vector3(0.7f, 0.7f, 1f);
 		mTargetScale = mHandScale;
 		mSnapSpeed = 10f;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Card_Whoosh");
+		Singleton<SLOTAudioManager>.Instance.PlayRandomSound("card/SFX_Card_Whoosh_", 6);
 	}
 
 	public void UndoTargetSelection()

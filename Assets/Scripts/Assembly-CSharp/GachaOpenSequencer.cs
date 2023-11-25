@@ -124,9 +124,9 @@ public class GachaOpenSequencer : Singleton<GachaOpenSequencer>
 			}
 			isSoftLocked = UICamera.IsInputLocked();
 		}
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Gacha_ChestShow");
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_LootChestBounce");
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_LootChestStarLoop");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_Gacha_ChestShow");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_LootChestBounce");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_LootChestStarLoop");
 		mClicked = false;
 		while (!mClicked)
 		{
@@ -137,9 +137,9 @@ public class GachaOpenSequencer : Singleton<GachaOpenSequencer>
 			onOpened();
 		}
 		chest.Animator.Play("Tap");
-		Singleton<SLOTAudioManager>.Instance.StopSound("SFX_LootChestBounce");
-		Singleton<SLOTAudioManager>.Instance.StopSound("SFX_LootChestStarLoop");
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Gacha_ChestOpen");
+		Singleton<SLOTAudioManager>.Instance.StopSound("gacha/SFX_LootChestBounce");
+		Singleton<SLOTAudioManager>.Instance.StopSound("gacha/SFX_LootChestStarLoop");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_Gacha_ChestOpen");
 		if (tipsPanel != null)
 		{
 			tipsPanel.SetActive(false);
@@ -152,7 +152,7 @@ public class GachaOpenSequencer : Singleton<GachaOpenSequencer>
 			chest.EnableCardVFXObj(true);
 		}
 		yield return new WaitForSeconds(0.5f);
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_LootChestShimmer");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_LootChestShimmer");
 		if (Singleton<TutorialController>.Instance.IsBlockActive("Q2"))
 		{
 			Singleton<TutorialController>.Instance.AdvanceTutorialState();
@@ -204,8 +204,8 @@ public class GachaOpenSequencer : Singleton<GachaOpenSequencer>
 		chest.EnableCardVFXObj(false);
 		chest.EnableChestVFXObj(false);
 		chest.Animator.Play("Outro");
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Gacha_ChestClose");
-		Singleton<SLOTAudioManager>.Instance.StopSound("SFX_LootChestShimmer");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_Gacha_ChestClose");
+		Singleton<SLOTAudioManager>.Instance.StopSound("gacha/SFX_LootChestShimmer");
 		ChestNode.gameObject.SetActive(false);
 		if (isCreature)
 		{

@@ -60,7 +60,7 @@ public class CreatureStatsPanel : MonoBehaviour
 	{
 		Unload();
 		mShowMaxLevel = maxLevel;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaBanner");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_GachaBanner");
 		if (MaxLevelToggle != null)
 		{
 			SetLabelText(MaxOrCurrentLabel, KFFLocalization.Get((!mShowMaxLevel) ? "!!CURRENT_STATS" : "!!MAX_STATS"));

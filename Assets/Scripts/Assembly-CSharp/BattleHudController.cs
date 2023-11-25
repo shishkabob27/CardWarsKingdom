@@ -766,7 +766,7 @@ public class BattleHudController : Singleton<BattleHudController>
 
 	public void PlayWhiteScreenFlashTween()
 	{
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_CreatureDeath");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_CreatureDeath");
 	}
 
 	public Transform GetNextLootContainer()

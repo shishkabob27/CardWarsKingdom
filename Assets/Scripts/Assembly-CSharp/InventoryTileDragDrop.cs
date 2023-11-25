@@ -14,7 +14,7 @@ public class InventoryTileDragDrop : UIDragDropItem
 		if (mTileScript.IsDraggable())
 		{
 			base.OnDragStart();
-			Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_CreatureCardPickup");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_CreatureCardPickup");
 		}
 	}
 
@@ -39,7 +39,7 @@ public class InventoryTileDragDrop : UIDragDropItem
 	{
 		mCollider.enabled = true;
 		mTouchID = int.MinValue;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_CreatureCardDrop");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_CreatureCardDrop");
 		bool flag = true;
 		if (surface != null && TutorialController.IsValidDragTarget(surface))
 		{
@@ -69,7 +69,7 @@ public class InventoryTileDragDrop : UIDragDropItem
 		if (flag)
 		{
 			NGUITools.Destroy(base.gameObject);
-			Singleton<SLOTAudioManager>.Instance.PlaySound("UI_Gem_Remove");
+			Singleton<SLOTAudioManager>.Instance.PlaySound("ui/UI_Gem_Remove");
 		}
 		else
 		{

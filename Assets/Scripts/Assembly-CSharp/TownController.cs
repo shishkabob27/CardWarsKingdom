@@ -679,7 +679,7 @@ public class TownController : Singleton<TownController>
 		Animator animator = keyObject.GetComponentInChildren<Animator>();
 		animator.Play("Turn");
 		GachaAnimator.Play("DoorUnlock");
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaKeyUnlock");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaKeyUnlock");
 		yield return new WaitForSeconds(GachaGateWaitTime);
 	}
 
@@ -693,34 +693,34 @@ public class TownController : Singleton<TownController>
 			chest.transform.localScale = Vector3.one;
 			if (items.Count == 1)
 			{
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaSplashx1");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaSplashx1");
 				if (item.Rarity == 1)
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaChest_Rarity1x1");
+					Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaChest_Rarity1x1");
 				}
 				if (item.Rarity == 2)
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaChest_Rarity2x1");
+					Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaChest_Rarity2x1");
 				}
 				if (item.Rarity == 3)
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaChest_Rarity5x1");
+					Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaChest_Rarity5x1");
 				}
 			}
 			else
 			{
-				Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaSplash");
+				Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaSplash");
 				if (item.Rarity == 1)
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaChest_Rarity1");
+					Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaChest_Rarity1");
 				}
 				if (item.Rarity == 2)
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaChest_Rarity2");
+					Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaChest_Rarity2");
 				}
 				if (item.Rarity == 3)
 				{
-					Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_GachaChest_Rarity5");
+					Singleton<SLOTAudioManager>.Instance.PlaySound("gacha/SFX_GachaChest_Rarity5");
 				}
 			}
 			UnityEngine.Object.Destroy(chest, GachaChestFinishTime);

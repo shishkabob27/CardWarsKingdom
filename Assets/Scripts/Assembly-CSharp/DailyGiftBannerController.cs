@@ -58,7 +58,7 @@ public class DailyGiftBannerController : Singleton<DailyGiftBannerController>
 	public void ShowBannerNow()
 	{
 		mShowing = true;
-		Singleton<SLOTAudioManager>.Instance.PlaySound("SFX_Calendar_ChestOpen");
+		Singleton<SLOTAudioManager>.Instance.PlaySound("ui/SFX_Calendar_ChestOpen");
 		if (ShowBanner != null)
 		{
 			ShowBanner.Play();
