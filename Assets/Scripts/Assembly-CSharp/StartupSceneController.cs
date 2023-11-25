@@ -15,7 +15,6 @@ public class StartupSceneController : MonoBehaviour
 
 	private void Start()
 	{
-		QualitySettings.antiAliasing = 0;
 		StartCoroutine(DelayedAndroidPermissionRequest());
 	}
 

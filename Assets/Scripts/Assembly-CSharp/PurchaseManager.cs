@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using com.amazon.device.iap.cpt;
 using JsonFx.Json;
 using Prime31;
 using UnityEngine;
@@ -53,11 +52,6 @@ public class PurchaseManager : Singleton<PurchaseManager>
 
 		public override string ToString()
 		{
-			if (Singleton<PurchaseManager>.Instance.IsAmazon)
-			{
-				PurchaseResponse purchaseResponse = (PurchaseResponse)NativeTransaction;
-				return string.Format("<AmazonReceipt> ID: {0}, type: {1}, transactionIdentifier: {2}", purchaseResponse.PurchaseReceipt.Sku, purchaseResponse.PurchaseReceipt.ProductType, purchaseResponse.PurchaseReceipt.ReceiptId);
-			}
 			GooglePurchase googlePurchase = (GooglePurchase)NativeTransaction;
 			return string.Format("<GooglePurchase> ID: {0}, type: {1}, transactionIdentifier: {2}", googlePurchase.productId, googlePurchase.type, googlePurchase.orderId);
 		}
@@ -235,14 +229,7 @@ public class PurchaseManager : Singleton<PurchaseManager>
 	{
 		UnityEngine.Object.DontDestroyOnLoad(this);
 		DetectAmazonDevice();
-		if (IsAmazon)
-		{
-			m_Listener = new AmazonPurchaseListener();
-		}
-		else
-		{
-			m_Listener = new GooglePurchaseListener();
-		}
+		m_Listener = new GooglePurchaseListener();
 	}
 
 	private void OnEnable()
@@ -348,32 +335,16 @@ public class PurchaseManager : Singleton<PurchaseManager>
 			string empty = string.Empty;
 			string empty2 = string.Empty;
 			string empty3 = string.Empty;
-			if (IsAmazon)
+			GooglePurchase googlePurchase = (GooglePurchase)transaction.NativeTransaction;
+			empty = googlePurchase.originalJson;
+			empty2 = googlePurchase.productId;
+			empty3 = googlePurchase.signature;
+			if (empty == m_oldReceipt)
 			{
-				PurchaseResponse purchaseResponse = (PurchaseResponse)transaction.NativeTransaction;
-				empty = purchaseResponse.PurchaseReceipt.ToJson();
-				empty2 = purchaseResponse.PurchaseReceipt.Sku;
-				empty3 = purchaseResponse.PurchaseReceipt.ReceiptId;
-				if (empty == m_oldReceipt)
-				{
-					m_PurchaseCallback(ProductPurchaseResult.Cancelled);
-					break;
-				}
-				m_oldReceipt = purchaseResponse.PurchaseReceipt.ToJson();
+				m_PurchaseCallback(ProductPurchaseResult.Cancelled);
+				break;
 			}
-			else
-			{
-				GooglePurchase googlePurchase = (GooglePurchase)transaction.NativeTransaction;
-				empty = googlePurchase.originalJson;
-				empty2 = googlePurchase.productId;
-				empty3 = googlePurchase.signature;
-				if (empty == m_oldReceipt)
-				{
-					m_PurchaseCallback(ProductPurchaseResult.Cancelled);
-					break;
-				}
-				m_oldReceipt = googlePurchase.originalJson;
-			}
+			m_oldReceipt = googlePurchase.originalJson;
 			Session theSession = SessionManager.Instance.theSession;
 			m_ReceiptVerificationEnd = false;
 			m_VerifyPurchaseHandle = Singleton<PurchaseManager>.Instance.VerifyReceiptGameServer(theSession, transaction, empty, empty2, empty3, m_partial, VerifyCallbackSet);
@@ -410,22 +381,11 @@ public class PurchaseManager : Singleton<PurchaseManager>
 		string empty2 = string.Empty;
 		string empty3 = string.Empty;
 		string text;
-		if (IsAmazon)
-		{
-			PurchaseResponse purchaseResponse = (PurchaseResponse)m_storeKit.NativeTransaction;
-			text = purchaseResponse.PurchaseReceipt.Sku;
-			empty = purchaseResponse.PurchaseReceipt.ToJson();
-			empty2 = purchaseResponse.PurchaseReceipt.Sku;
-			empty3 = purchaseResponse.PurchaseReceipt.ReceiptId;
-		}
-		else
-		{
-			GooglePurchase googlePurchase = (GooglePurchase)m_storeKit.NativeTransaction;
-			text = googlePurchase.productId;
-			empty = googlePurchase.originalJson;
-			empty2 = googlePurchase.productId;
-			empty3 = googlePurchase.signature;
-		}
+		GooglePurchase googlePurchase = (GooglePurchase)m_storeKit.NativeTransaction;
+		text = googlePurchase.productId;
+		empty = googlePurchase.originalJson;
+		empty2 = googlePurchase.productId;
+		empty3 = googlePurchase.signature;
 		float Price;
 		string CurrencyType;
 		GetPriceInfo(text, out Price, out CurrencyType);

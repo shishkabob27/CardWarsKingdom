@@ -105,15 +105,4 @@ public class KFFCSUtils : MonoBehaviour
 	{
 		return false;
 	}
-
-	public static int GetInstalledDate()
-	{
-		long installedDate = 0L;
-		return (int)installedDate;
-	}
-
-	public static bool isJB()
-	{
-		return false;
-	}
 }

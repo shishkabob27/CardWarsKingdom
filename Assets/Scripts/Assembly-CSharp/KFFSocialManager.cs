@@ -132,7 +132,6 @@ public class KFFSocialManager : Singleton<KFFSocialManager>
 	private void Start()
 	{
 		FB_Start();
-		Listener = new KFFGooglePlusListener();
 		if (Listener != null)
 		{
 			Listener.OnEnable();

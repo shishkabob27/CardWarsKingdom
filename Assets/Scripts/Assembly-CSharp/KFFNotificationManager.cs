@@ -114,60 +114,14 @@ public class KFFNotificationManager : Singleton<KFFNotificationManager>
 
 	public void scheduleLocalNotification(int secondsFromNow, string text, string action, string notId = "")
 	{
-		if (!Singleton<PlayerInfoScript>.Instance.SaveData.NotificationEnabled || secondsFromNow <= 0)
-		{
-			return;
-		}
-		AndroidNotificationConfiguration androidNotificationConfiguration = new AndroidNotificationConfiguration(secondsFromNow, KFFLocalization.Get("!!CREDITS_TITLE"), text, string.Empty);
-		androidNotificationConfiguration.smallIcon = "android_small";
-		androidNotificationConfiguration.largeIcon = "android_large";
-		int num = EtceteraAndroid.scheduleNotification(androidNotificationConfiguration);
-		if (notId != string.Empty)
-		{
-			PlayerPrefs.SetString(notId, num.ToString());
-			return;
-		}
-		if (androidNotID == string.Empty)
-		{
-			androidNotID = num.ToString();
-		}
-		else
-		{
-			androidNotID = androidNotID + "," + num;
-		}
-		PlayerPrefs.SetString("NotificationIDs", androidNotID);
 	}
 
 	public void cancelLocalNotification(string notId)
 	{
-		int result;
-		if (PlayerPrefs.HasKey(notId) && int.TryParse(PlayerPrefs.GetString(notId), out result))
-		{
-			EtceteraAndroid.cancelNotification(result);
-		}
 	}
 
 	private void cancelAllLocalNotifications()
 	{
-		if (PlayerPrefs.HasKey("NotificationIDs"))
-		{
-			androidNotID = PlayerPrefs.GetString("NotificationIDs");
-		}
-		if (androidNotID == string.Empty)
-		{
-			return;
-		}
-		string[] array = androidNotID.Split(new string[1] { "," }, StringSplitOptions.None);
-		for (int i = 0; i < array.Length; i++)
-		{
-			int result;
-			if (int.TryParse(array[i], out result))
-			{
-				EtceteraAndroid.cancelNotification(result);
-			}
-		}
-		PlayerPrefs.SetString("NotificationIDs", string.Empty);
-		androidNotID = string.Empty;
 	}
 
 	private void CancelSpecialNotification(string notId)
