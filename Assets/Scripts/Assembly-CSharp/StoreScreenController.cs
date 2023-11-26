@@ -542,7 +542,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	private void RetryConnection()
 	{
 		Singleton<BusyIconPanelController>.Instance.Show();
-		Singleton<PurchaseManager>.Instance.GetProductData(ProductDataCallback);
+		PopulateDummyData();
 	}
 
 	private void CancelConnection()
