@@ -789,7 +789,6 @@ namespace DarkTonic.MasterAudio
 				_instance = (MasterAudio)UnityEngine.Object.FindObjectOfType(typeof(MasterAudio));
 				if (!(_instance == null) || Application.isPlaying)
 				{
-					_instance = new MasterAudio();
 				}
 				return _instance;
 			}
@@ -4267,16 +4266,10 @@ namespace DarkTonic.MasterAudio
 
 		public static void LogWarning(string msg)
 		{
-			if (!Instance.disableLogging && !msg.Contains("low_"))
-			{
-			}
 		}
 
 		public static void LogError(string msg)
 		{
-			if (!Instance.disableLogging)
-			{
-			}
 		}
 
 		public static void LogNoPlaylist(string playlistControllerName, string methodName)
