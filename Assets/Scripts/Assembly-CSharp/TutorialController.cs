@@ -132,12 +132,14 @@ public class TutorialController : Singleton<TutorialController>
 	public void LoadInitialTutorialQuest()
 	{
 		StartTutorialBlock("IntroBattle");
+		/*
 		GameObject.Find("SFX_Board_Treefort").GetComponent<AudioSource>().mute = true;
 		GameObject.Find("SFX_Card_Flip_1").GetComponent<AudioSource>().mute = true;
 		GameObject.Find("SFX_Card_Flip_2").GetComponent<AudioSource>().mute = true;
 		GameObject.Find("SFX_Card_Flip_3").GetComponent<AudioSource>().mute = true;
 		GameObject.Find("SFX_Card_Flip_4").GetComponent<AudioSource>().mute = true;
 		GameObject.Find("SFX_Card_Flip_5").GetComponent<AudioSource>().mute = true;
+		*/
 		GameStateData stateData = Singleton<PlayerInfoScript>.Instance.StateData;
 		stateData.CurrentActiveQuest = QuestDataManager.Instance.GetData("Tutorial1");
 		stateData.CurrentLoadout = new Loadout();
@@ -308,12 +310,14 @@ public class TutorialController : Singleton<TutorialController>
 	private void EnterTutorialState(TutorialState state)
 	{
 		Singleton<PlayerInfoScript>.Instance.StateData.ActiveTutorialState = state;
+		/*
 		GameObject.Find("SFX_Board_Treefort").GetComponent<AudioSource>().mute = false;
 		GameObject.Find("SFX_Card_Flip_1").GetComponent<AudioSource>().mute = false;
 		GameObject.Find("SFX_Card_Flip_2").GetComponent<AudioSource>().mute = false;
 		GameObject.Find("SFX_Card_Flip_3").GetComponent<AudioSource>().mute = false;
 		GameObject.Find("SFX_Card_Flip_4").GetComponent<AudioSource>().mute = false;
 		GameObject.Find("SFX_Card_Flip_5").GetComponent<AudioSource>().mute = false;
+		*/
 		mDisplayedState = null;
 		if (state == null)
 		{

@@ -483,7 +483,6 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 	public void SetMusicVolumeMasterAudio()
 	{
 		musicVolume = 1f - musicVolume;
-		MasterAudio.SetBusVolumeByName("Music", musicVolume);
 		prevMusicVolume = musicVolume;
 		Serialize();
 	}
@@ -491,7 +490,6 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 	public void SetSoundVolumeMasterAudio()
 	{
 		soundVolume = 1f - soundVolume;
-		MasterAudio.SetBusVolumeByName("Sound", soundVolume);
 		prevSoundVolume = soundVolume;
 		Serialize();
 	}
@@ -500,7 +498,6 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 	{
 		musicVolume = volume;
 		Singleton<SLOTMusic>.Instance.musicAudioSources[0].volume = volume;
-		MasterAudio.SetBusVolumeByName("Music", musicVolume);
 		prevMusicVolume = musicVolume;
 		Serialize();
 	}
@@ -508,7 +505,6 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 	public void SetSoundVolumeMasterAudio(float volume)
 	{
 		soundVolume = volume;
-		MasterAudio.SetBusVolumeByName("Sound", soundVolume);
 		prevSoundVolume = soundVolume;
 		Serialize();
 	}
