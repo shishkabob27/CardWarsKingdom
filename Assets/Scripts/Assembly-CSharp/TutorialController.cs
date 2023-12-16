@@ -1663,7 +1663,7 @@ public class TutorialController : Singleton<TutorialController>
 		}
 		if (mDisplayedState.VOEvent != null)
 		{
-			Singleton<SLOTAudioManager>.Instance.PlaySound(mDisplayedState.VOEvent);
+			Singleton<SLOTAudioManager>.Instance.PlaySound("vo/tutorial/" + mDisplayedState.VOEvent, false);
 		}
 		if (mDisplayedState.DragDirection() != 0)
 		{

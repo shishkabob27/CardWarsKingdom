@@ -275,16 +275,16 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 		return audiosource;
 	}
 
-	public void PlayRandomSound(string audioClipName, int clips)
+	public void PlayRandomSound(string audioClipName, int clips, bool useaudiofolder = true)
 	{
         var random = UnityEngine.Random.Range(1, clips + 1);
-		PlaySound(audioClipName + random.ToString());
+		PlaySound(audioClipName + random.ToString(), useaudiofolder);
     }
 
-	public void PlaySound(string audioClipName)
+	public void PlaySound(string audioClipName, bool useaudiofolder = true)
 	{
         var clipName = audioClipName;
-		if (!audioClipName.StartsWith("bgm/")) clipName = "audio/" + clipName;
+		if (useaudiofolder) clipName = "audio/" + clipName;
         var soundResource = Resources.Load(clipName, typeof(AudioClip)) as AudioClip;
 		if (soundResource == null)
 		{
