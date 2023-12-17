@@ -9,12 +9,6 @@ public class SLOTMusic : Singleton<SLOTMusic>
 
 	public float volume = 1f;
 
-	public string FrontEndMusicName;
-
-	public string VictoryMusicName;
-
-	public string LoserMusicName;
-
 	public static string CURRENT_MUSIC = string.Empty;
 
 	private float mPrevMusicVolume;
@@ -22,13 +16,13 @@ public class SLOTMusic : Singleton<SLOTMusic>
 	public void PlayVictoryMusic()
 	{
 		StopMusic(0f);
-		StartCoroutine(StartMusic(VictoryMusicName));
+		StartCoroutine(StartMusic("Battle_Victory"));
 	}
 
 	public void PlayLoserMusic()
 	{
 		StopMusic(0f);
-		StartCoroutine(StartMusic(LoserMusicName));
+		StartCoroutine(StartMusic("Battle_Loss"));
 	}
 
 	public IEnumerator PlayBattleMusic()
@@ -43,14 +37,14 @@ public class SLOTMusic : Singleton<SLOTMusic>
 
 	public IEnumerator PlayFrontEndMusic()
 	{
-		yield return StartCoroutine(StartMusic(FrontEndMusicName));
+		yield return StartCoroutine(StartMusic("Main_Menu"));
 	}
 
 	private IEnumerator StartMusic(string clipName)
 	{
 		if (clipName != string.Empty)
 		{
-			var audioresource = Resources.Load(FrontEndMusicName, typeof(AudioClip)) as AudioClip;
+			var audioresource = Resources.Load("bgm/"+clipName, typeof(AudioClip)) as AudioClip;
 			if (audioresource == null)
 			{
                 Debug.LogError("SLOTMusic: " + clipName + " not found.");
