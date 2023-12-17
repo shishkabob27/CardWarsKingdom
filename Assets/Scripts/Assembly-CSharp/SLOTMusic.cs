@@ -105,6 +105,6 @@ public class SLOTMusic : Singleton<SLOTMusic>
 		{
 			num = mPrevMusicVolume;
 		}
-		MasterAudio.FadeBusToVolume("Music", num, time);
+		//MasterAudio.FadeBusToVolume("Music", num, time);
 	}
 }
