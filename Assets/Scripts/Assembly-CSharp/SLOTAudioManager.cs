@@ -296,6 +296,7 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 
 	public void StopSound(string audioClipName)
 	{
+		gui_audiosource.Stop();
 		if (!useMasterAudio)
 		{
 			return;
