@@ -2165,7 +2165,15 @@ public class PlayerInfoScript : Singleton<PlayerInfoScript>
 		}
 		if (flag)
 		{
-			Singleton<PlayerInfoScript>.Instance.Deserialize(json);
+			//if the game fails to deserialize than just make a new save
+			try
+			{
+				Singleton<PlayerInfoScript>.Instance.Deserialize(json);
+			}
+			catch
+			{
+				Singleton<PlayerInfoScript>.Instance.InitNewSaveFile();
+			}
 		}
 		else
 		{
