@@ -123,7 +123,7 @@ public class TBPvPManager : Singleton<TBPvPManager>
 		Application.runInBackground = true;
 		GameClientInstance = new PhotonInterface();
 		GameClientInstance.photonManager = this;
-		GameClientInstance.AppId = SQSettings.PHOTON_PUN_APP_ID;
+		GameClientInstance.AppId = "1593e8a1-ad28-4500-a6f3-e0fed7d9c0a6";
 	}
 
 	public void Start()
