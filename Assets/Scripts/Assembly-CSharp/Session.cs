@@ -157,8 +157,6 @@ public class Session
 
 	public string manifestVersion = "0";
 
-	private AndroidJavaObject androidActivity;
-
 	private Player player;
 
 	private SQServer server;
@@ -634,17 +632,6 @@ public class Session
 		externalRequests[requestId] = callback;
 	}
 
-	public AndroidJavaObject getAndroidActivity()
-	{
-		if (androidActivity == null)
-		{
-			int num = AndroidJNI.AttachCurrentThread();
-			Debug.Log("attach result: " + num);
-			AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-			androidActivity = androidJavaClass.GetStatic<AndroidJavaObject>("currentActivity");
-		}
-		return androidActivity;
-	}
 
 	private List<string> ProcessMessageListData(string data)
 	{
