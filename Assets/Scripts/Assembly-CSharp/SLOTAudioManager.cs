@@ -576,53 +576,87 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
         }
 		string text = "vo/" + leader.VO + "/VO_" + leader.VO + "_" + voEvent + "_";
 
-		if(voEvent == VOEvent.P1Intro){
-			switch(leader.VO){
+		if (voEvent == VOEvent.P1Intro)
+		{
+			switch (leader.VO)
+			{
 				case "IceKing":
 				case "Lemongrab":
 				case "LumpySpacePrincess":
 				case "Marceline":
 				case "GrandPrixe":
 				case "FlamePrincess":
-                    PlayRandomSound(text, 5, false);
+					PlayRandomSound(text, 5, false);
 					break;
 				case "Jake":
 				case "PrincessBubblegum":
-                    PlayRandomSound(text, 8, false);
-                    break;
+					PlayRandomSound(text, 8, false);
+					break;
 				case "Finn":
 					PlayRandomSound(text, 6, false);
 					break;
 				case "BMO":
 					PlayRandomSound(text, 4, false);
 					break;
-            }
+			}
 		}
-		else if (voEvent == VOEvent.P2Intro){
-            switch (leader.VO)
-            {
-                case "IceKing":
-                case "Finn":
-                case "LumpySpacePrincess":
-                case "Marceline":
-                case "Lemongrab":
-                    PlayRandomSound(text, 5, false);
-                    break;
-                case "Jake":
-                case "PrincessBubblegum":
-                    PlayRandomSound(text, 8, false);
-                    break;
-                case "BMO":
-                    PlayRandomSound(text, 4, false);
-                    break;
+		else if (voEvent == VOEvent.P2Intro)
+		{
+			switch (leader.VO)
+			{
+				case "IceKing":
+				case "Finn":
+				case "LumpySpacePrincess":
+				case "Marceline":
+				case "Lemongrab":
+					PlayRandomSound(text, 5, false);
+					break;
+				case "Jake":
+				case "PrincessBubblegum":
+					PlayRandomSound(text, 8, false);
+					break;
+				case "BMO":
+					PlayRandomSound(text, 4, false);
+					break;
 				case "FlamePrincess":
-                    PlayRandomSound(text, 7, false);
+					PlayRandomSound(text, 7, false);
 					break;
 				case "GrandPrixe":
-                    PlayRandomSound(text, 1, false);
+					PlayRandomSound(text, 1, false);
 					break;
+			}
+		}
+		else if (voEvent == VOEvent.GameStart)
+		{
+			switch (leader.VO)
+			{
+				case "Finn":
+				case "PrincessBubblegum":
+					PlayRandomSound(text, 11, false);
+					break;
+				case "FlamePrincess":
+				case "Jake":
+                    PlayRandomSound(text, 9, false);
+                    break;
+				case "GrandPrixe":
+				case "Marceline":
+                    PlayRandomSound(text, 5, false);
+                    break;
+				case "IceKing":
+                    PlayRandomSound(text, 7, false);
+                    break;
+				case "Lemongrab":
+                    PlayRandomSound(text, 4, false);
+					break;
+                case "LumpySpacePrincess":
+                    PlayRandomSound(text, 10, false);
+					break;
+                case "BMO":
+                    PlayRandomSound(text, 1, false);
+                    break;
+
             }
-        }
+		}
 		mCurrentVoEventCooldowns[(int)voEvent] = mVoEventCooldowns[(int)voEvent];
 	}
 
