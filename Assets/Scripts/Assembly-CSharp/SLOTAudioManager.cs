@@ -250,7 +250,6 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 			audiosource.clip = audioclip;
 			audiosource.Play();
 		}
-		Debug.LogError("Playing " + audioType.ToString() + ": " + audioclip.name);
 		return audiosource;
 	}
 
