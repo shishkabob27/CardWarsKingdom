@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using DW_Leaderboards;
 using ExitGames.Client.Photon;
 using ExitGames.Client.Photon.LoadBalancing;
@@ -423,12 +424,7 @@ public class PhotonInterface : LoadBalancingClient
 		ExitGames.Client.Photon.Hashtable hashtable = new ExitGames.Client.Photon.Hashtable();
 		if (Singleton<TBPvPManager>.Instance.FriendMatch)
 		{
-			int num = myFilterName.IndexOf('_');
-			string value = myFilterName.Substring(0, num);
-			string value2 = myFilterName.Substring(num + 1);
-			int num2 = Convert.ToInt32(value) * 10;
-			int num3 = Convert.ToInt32(value2);
-			hashtable.Add("C0", num2 + num3);
+			hashtable.Add("C0", ConvertStringToHexValues(myFilterName));
 			LobbyName = "myFriend";
 		}
 		else if (myFilterC0 != 0)
@@ -450,12 +446,7 @@ public class PhotonInterface : LoadBalancingClient
 	public void OpCreateRoom(string playerId)
 	{
 		ExitGames.Client.Photon.Hashtable hashtable = new ExitGames.Client.Photon.Hashtable();
-		int num = playerId.IndexOf('_');
-		string value = playerId.Substring(0, num);
-		string value2 = playerId.Substring(num + 1);
-		int num2 = Convert.ToInt32(value) * 10;
-		int num3 = Convert.ToInt32(value2);
-		hashtable.Add("C0", num2 + num3);
+		hashtable.Add("C0", ConvertStringToHexValues(playerId));
 		hashtable.Add("HC", photonManager.CountryCode);
 		RoomOptions roomOptions = new RoomOptions();
 		roomOptions.MaxPlayers = 2;
@@ -512,12 +503,7 @@ public class PhotonInterface : LoadBalancingClient
 		byte expectedMaxPlayers = 2;
 		if (Singleton<TBPvPManager>.Instance.FriendMatch)
 		{
-			int num4 = myFilterName.IndexOf('_');
-			string value = myFilterName.Substring(0, num4);
-			string value2 = myFilterName.Substring(num4 + 1);
-			int num5 = Convert.ToInt32(value) * 10;
-			int num6 = Convert.ToInt32(value2);
-			text = string.Format("C0 = {0}", num5 + num6);
+			text = string.Format("C0 = {0}", ConvertStringToHexValues(myFilterName));
 			LobbyName = "myFriend";
 			expectedMaxPlayers = 0;
 		}
@@ -537,12 +523,7 @@ public class PhotonInterface : LoadBalancingClient
 		string text = null;
 		AutoCreateRoom = false;
 		myFilterName = targetname;
-		int num = targetname.IndexOf('_');
-		string value = targetname.Substring(0, num);
-		string value2 = targetname.Substring(num + 1);
-		int num2 = Convert.ToInt32(value) * 10;
-		int num3 = Convert.ToInt32(value2);
-		text = string.Format("C0 = {0}", num2 + num3);
+		text = string.Format("C0 = {0}", ConvertStringToHexValues(targetname));
 		byte expectedMaxPlayers = 0;
 		TypedLobby lobby = new TypedLobby("myFriend", LobbyType.SqlLobby);
 		OpJoinRandomRoom(expectedCustomRoomProperties, expectedMaxPlayers, MatchmakingMode.RandomMatching, lobby, text);
@@ -550,7 +531,45 @@ public class PhotonInterface : LoadBalancingClient
 		return true;
 	}
 
-	public string OperationResponseCode(byte code)
+	public static int ConvertStringToHexValues(string input)
+	{
+		int result = 0;
+
+		input = input.Replace("-", string.Empty);
+
+		foreach (char c in input)
+		{
+			try
+			{
+				int value = CharToHexValue(c);
+				result += value;
+			}
+			catch (ArgumentException)
+			{
+				
+			}
+		}
+
+		return result;
+	}
+
+	public static int CharToHexValue(char c)
+	{
+		if (char.IsDigit(c))
+		{
+			return int.Parse(c.ToString());
+		}
+		else if (c >= 'a' && c <= 'f')
+		{
+			return c - 'a' + 10000;
+		}
+		else
+		{
+			throw new ArgumentException("Invalid character: " + c);
+		}
+	}
+
+    public string OperationResponseCode(byte code)
 	{
 		switch (code)
 		{
