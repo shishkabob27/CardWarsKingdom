@@ -186,7 +186,7 @@ public class TBPvPManager : Singleton<TBPvPManager>
 		gameClientInstance.OnStateChangeAction = (Action<ClientState>)Delegate.Combine(gameClientInstance.OnStateChangeAction, new Action<ClientState>(OnStateChanged));
 		GameClientInstance.ConnectToRegionMaster("US");
 		GameClientInstance.pvpEventCallback = callback;
-		Screen.sleepTimeout = -1;
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 
 	public string GetCompatibilityVersion(bool ranked)
@@ -222,7 +222,7 @@ public class TBPvPManager : Singleton<TBPvPManager>
 		GameClientInstance.Disconnect();
 		PhotonInterface gameClientInstance = GameClientInstance;
 		gameClientInstance.OnStateChangeAction = (Action<ClientState>)Delegate.Remove(gameClientInstance.OnStateChangeAction, new Action<ClientState>(OnStateChanged));
-		Screen.sleepTimeout = -2;
+		Screen.sleepTimeout = SleepTimeout.SystemSetting;
 	}
 
 	public void OnApplicationQuit()
