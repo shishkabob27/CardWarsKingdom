@@ -212,76 +212,55 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 		return PlaySound(obj, audioclip, oneshot, createnewaudiosource, false);
 	}
 
-	public AudioSource PlaySound(GameObject obj, AudioClip audioclip, bool oneshot, bool createnewaudiosource, bool NoStacking)
+	public AudioSource PlaySound(GameObject obj, AudioClip audioclip, bool oneshot, bool createnewaudiosource, bool NoStacking, AudioType audioType = AudioType.SFX)
 	{
 		AudioSource audioSource = obj.GetComponent(typeof(AudioSource)) as AudioSource;
 		if (audioSource == null || createnewaudiosource)
 		{
 			audioSource = obj.AddComponent(typeof(AudioSource)) as AudioSource;
 		}
-		return PlaySound(audioSource, audioclip, oneshot, NoStacking);
+		return PlaySound(audioSource, audioclip, oneshot, NoStacking, audioType);
 	}
 
-	public AudioSource PlaySound(AudioSource audiosource, AudioClip audioclip, bool oneshot, bool NoStacking)
+	public AudioSource PlaySound(AudioSource audiosource, AudioClip audioclip, bool oneshot, bool NoStacking, AudioType audioType = AudioType.SFX)
 	{
-		return PlaySound(audiosource, audioclip, oneshot, NoStacking, AudioType.SFX);
-	}
-
-	public AudioSource PlaySound(AudioSource audiosource, AudioClip audioclip, bool oneshot, bool NoStacking, AudioType audioType)
-	{
-		if (useMasterAudio)
+		if (audiosource == null)
 		{
-			if (audioclip != null)
-			{
-				if (oneshot)
-				{
-					MasterAudio.PlaySoundAndForget(audioclip.name);
-				}
-				else
-				{
-					MasterAudio.PlaySound(audioclip.name);
-				}
-			}
+			return null;
 		}
-		else
+		switch (audioType)
 		{
-			if (audiosource == null)
-			{
-				return null;
-			}
-			switch (audioType)
-			{
-			case AudioType.SFX:
-				audiosource.volume = soundVolume;
-				break;
-			case AudioType.VO:
-				audiosource.volume = voVolume;
-				break;
-			case AudioType.Music:
-				audiosource.volume = musicVolume;
-				break;
-			}
-			audiosource.enabled = true;
-			if (oneshot)
-			{
-				audiosource.PlayOneShot(audioclip);
-			}
-			else if (!NoStacking || !audiosource.isPlaying)
-			{
-				audiosource.clip = audioclip;
-				audiosource.Play();
-			}
+		case AudioType.SFX:
+			audiosource.volume = soundVolume * .5f;
+			break;
+		case AudioType.VO:
+			audiosource.volume = voVolume;
+			break;
+		case AudioType.Music:
+			audiosource.volume = musicVolume * .5f;
+			break;
 		}
+		audiosource.enabled = true;
+		if (oneshot)
+		{
+			audiosource.PlayOneShot(audioclip);
+		}
+		else if (!NoStacking || !audiosource.isPlaying)
+		{
+			audiosource.clip = audioclip;
+			audiosource.Play();
+		}
+		Debug.LogError("Playing " + audioType.ToString() + ": " + audioclip.name);
 		return audiosource;
 	}
 
-	public void PlayRandomSound(string audioClipName, int clips, bool useaudiofolder = true)
+	public void PlayRandomSound(string audioClipName, int clips, bool useaudiofolder = true, AudioType audioType = AudioType.SFX)
 	{
         var random = UnityEngine.Random.Range(1, clips + 1);
-		PlaySound(audioClipName + random.ToString(), useaudiofolder);
+		PlaySound(audioClipName + random.ToString(), useaudiofolder, audioType);
     }
 
-	public void PlaySound(string audioClipName, bool useaudiofolder = true)
+	public void PlaySound(string audioClipName, bool useaudiofolder = true, AudioType audioType = AudioType.SFX)
 	{
         var clipName = audioClipName;
 		if (useaudiofolder) clipName = "audio/" + clipName;
@@ -291,7 +270,7 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 			Debug.LogError("SLOTAudioManager: " + clipName + " not found.");
 			return;
 		}
-		PlayGUISound(soundResource);
+		PlayGUISound(soundResource, true, audioType);
 	}
 
 	public void StopSound(string audioClipName)
@@ -312,14 +291,6 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 			{
 				source.Source.Stop();
 			}
-		}
-	}
-
-	public void PlayRandomSound(GameObject obj, AudioClip[] clips)
-	{
-		if (clips != null && clips.Length > 0)
-		{
-			PlaySound(obj, clips[UnityEngine.Random.Range(0, clips.Length)], true, false, false);
 		}
 	}
 
@@ -364,14 +335,14 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 		return PlayGUISound(audioclip, true);
 	}
 
-	public AudioSource PlayGUISound(AudioClip audioclip, bool oneshot)
+	public AudioSource PlayGUISound(AudioClip audioclip, bool oneshot, AudioType audioType = AudioType.SFX)
 	{
 		CreateListener();
 		if ((bool)gui_audiosource)
 		{
-			return PlaySound(gui_audiosource, audioclip, oneshot, true);
+			return PlaySound(gui_audiosource, audioclip, oneshot, true, audioType);
 		}
-		gui_audiosource = PlaySound(base.gameObject, audioclip, oneshot, true, false);
+		gui_audiosource = PlaySound(base.gameObject, audioclip, oneshot, true, false, audioType);
 		return gui_audiosource;
 	}
 
@@ -586,17 +557,17 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 				case "Marceline":
 				case "GrandPrixe":
 				case "FlamePrincess":
-					PlayRandomSound(text, 5, false);
+					PlayRandomSound(text, 5, false, AudioType.VO);
 					break;
 				case "Jake":
 				case "PrincessBubblegum":
-					PlayRandomSound(text, 8, false);
+					PlayRandomSound(text, 8, false, AudioType.VO);
 					break;
 				case "Finn":
-					PlayRandomSound(text, 6, false);
+					PlayRandomSound(text, 6, false, AudioType.VO);
 					break;
 				case "BMO":
-					PlayRandomSound(text, 4, false);
+					PlayRandomSound(text, 4, false, AudioType.VO);
 					break;
 			}
 		}
@@ -609,20 +580,20 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 				case "LumpySpacePrincess":
 				case "Marceline":
 				case "Lemongrab":
-					PlayRandomSound(text, 5, false);
+					PlayRandomSound(text, 5, false, AudioType.VO);
 					break;
 				case "Jake":
 				case "PrincessBubblegum":
-					PlayRandomSound(text, 8, false);
+					PlayRandomSound(text, 8, false, AudioType.VO);
 					break;
 				case "BMO":
-					PlayRandomSound(text, 4, false);
+					PlayRandomSound(text, 4, false, AudioType.VO);
 					break;
 				case "FlamePrincess":
-					PlayRandomSound(text, 7, false);
+					PlayRandomSound(text, 7, false, AudioType.VO);
 					break;
 				case "GrandPrixe":
-					PlayRandomSound(text, 1, false);
+					PlayRandomSound(text, 1, false, AudioType.VO);
 					break;
 			}
 		}
@@ -632,27 +603,27 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 			{
 				case "Finn":
 				case "PrincessBubblegum":
-					PlayRandomSound(text, 11, false);
+					PlayRandomSound(text, 11, false, AudioType.VO);
 					break;
 				case "FlamePrincess":
 				case "Jake":
-                    PlayRandomSound(text, 9, false);
+                    PlayRandomSound(text, 9, false, AudioType.VO);
                     break;
 				case "GrandPrixe":
 				case "Marceline":
-                    PlayRandomSound(text, 5, false);
+                    PlayRandomSound(text, 5, false, AudioType.VO);
                     break;
 				case "IceKing":
-                    PlayRandomSound(text, 7, false);
+                    PlayRandomSound(text, 7, false, AudioType.VO);
                     break;
 				case "Lemongrab":
-                    PlayRandomSound(text, 4, false);
+                    PlayRandomSound(text, 4, false, AudioType.VO);
 					break;
                 case "LumpySpacePrincess":
-                    PlayRandomSound(text, 10, false);
+                    PlayRandomSound(text, 10, false, AudioType.VO);
 					break;
                 case "BMO":
-                    PlayRandomSound(text, 1, false);
+                    PlayRandomSound(text, 1, false, AudioType.VO);
                     break;
 
             }
