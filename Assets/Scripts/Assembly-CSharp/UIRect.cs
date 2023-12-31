@@ -1,105 +1,123 @@
-using System;
+//----------------------------------------------
+//            NGUI: Next-Gen UI kit
+// Copyright © 2011-2014 Tasharen Entertainment
+//----------------------------------------------
+
 using UnityEngine;
+
+/// <summary>
+/// Abstract UI rectangle containing functionality common to both panels and widgets.
+/// A UI rectangle contains 4 anchor points (one for each side), and it ensures that they are updated in the proper order.
+/// </summary>
 
 public abstract class UIRect : MonoBehaviour
 {
-	[Serializable]
-	public class AnchorPoint
-	{
-		public Transform target;
+    [System.Serializable]
+    public class AnchorPoint
+    {
+        public Transform target;
+        public Camera targetcamera;
+        public float relative = 0f;
+        public int absolute = 0;
 
-		public float relative;
+        [System.NonSerialized]
+        public UIRect rect;
 
-		public int absolute;
+        [System.NonSerialized]
+        public Camera targetCam;
 
-		[NonSerialized]
-		public UIRect rect;
+        public AnchorPoint() { }
+        public AnchorPoint(float relative) { this.relative = relative; }
 
-		[NonSerialized]
-		public Camera targetCam;
+        /// <summary>
+        /// Convenience function that sets the anchor's values.
+        /// </summary>
 
-		public AnchorPoint()
+        public void Set(float relative, float absolute)
+        {
+            this.relative = relative;
+            this.absolute = Mathf.FloorToInt(absolute + 0.5f);
+        }
+
+        /// <summary>
+        /// Convenience function that sets the anchor's values.
+        /// </summary>
+
+        public void Set(Transform target, float relative, float absolute)
+        {
+            this.target = target;
+            this.relative = relative;
+            this.absolute = Mathf.FloorToInt(absolute + 0.5f);
+        }
+
+        /// <summary>
+        /// Set the anchor's value to the nearest of the 3 possible choices of (left, center, right) or (bottom, center, top).
+        /// </summary>
+
+        public void SetToNearest(float abs0, float abs1, float abs2) { SetToNearest(0f, 0.5f, 1f, abs0, abs1, abs2); }
+
+        /// <summary>
+        /// Set the anchor's value given the 3 possible anchor combinations. Chooses the one with the smallest absolute offset.
+        /// </summary>
+
+        public void SetToNearest(float rel0, float rel1, float rel2, float abs0, float abs1, float abs2)
+        {
+            float a0 = Mathf.Abs(abs0);
+            float a1 = Mathf.Abs(abs1);
+            float a2 = Mathf.Abs(abs2);
+
+            if (a0 < a1 && a0 < a2) Set(rel0, abs0);
+            else if (a1 < a0 && a1 < a2) Set(rel1, abs1);
+            else Set(rel2, abs2);
+        }
+
+        /// <summary>
+        /// Set the anchor's absolute coordinate relative to the specified parent, keeping the relative setting intact.
+        /// </summary>
+
+        public void SetHorizontal(Transform parent, float localPos)
+        {
+            if (rect)
+            {
+                Vector3[] sides = rect.GetSides(parent);
+                float targetPos = Mathf.Lerp(sides[0].x, sides[2].x, relative);
+                absolute = Mathf.FloorToInt(localPos - targetPos + 0.5f);
+            }
+            else
+            {
+                Vector3 targetPos = target.position;
+                if (parent != null) targetPos = parent.InverseTransformPoint(targetPos);
+                absolute = Mathf.FloorToInt(localPos - targetPos.x + 0.5f);
+            }
+        }
+
+        /// <summary>
+        /// Set the anchor's absolute coordinate relative to the specified parent, keeping the relative setting intact.
+        /// </summary>
+
+        public void SetVertical(Transform parent, float localPos)
+        {
+            if (rect)
+            {
+                Vector3[] sides = rect.GetSides(parent);
+                float targetPos = Mathf.Lerp(sides[3].y, sides[1].y, relative);
+                absolute = Mathf.FloorToInt(localPos - targetPos + 0.5f);
+            }
+            else
+            {
+                Vector3 targetPos = target.position;
+                if (parent != null) targetPos = parent.InverseTransformPoint(targetPos);
+                absolute = Mathf.FloorToInt(localPos - targetPos.y + 0.5f);
+            }
+        }
+
+        /// <summary>
+        /// Convenience function that returns the sides the anchored point is anchored to.
+        /// </summary>
+
+        public Vector3[] GetSides(Transform relativeTo)
 		{
-		}
-
-		public AnchorPoint(float relative)
-		{
-			this.relative = relative;
-		}
-
-		public void Set(float relative, float absolute)
-		{
-			this.relative = relative;
-			this.absolute = Mathf.FloorToInt(absolute + 0.5f);
-		}
-
-		public void Set(Transform target, float relative, float absolute)
-		{
-			this.target = target;
-			this.relative = relative;
-			this.absolute = Mathf.FloorToInt(absolute + 0.5f);
-		}
-
-		public void SetToNearest(float abs0, float abs1, float abs2)
-		{
-			SetToNearest(0f, 0.5f, 1f, abs0, abs1, abs2);
-		}
-
-		public void SetToNearest(float rel0, float rel1, float rel2, float abs0, float abs1, float abs2)
-		{
-			float num = Mathf.Abs(abs0);
-			float num2 = Mathf.Abs(abs1);
-			float num3 = Mathf.Abs(abs2);
-			if (num < num2 && num < num3)
-			{
-				Set(rel0, abs0);
-			}
-			else if (num2 < num && num2 < num3)
-			{
-				Set(rel1, abs1);
-			}
-			else
-			{
-				Set(rel2, abs2);
-			}
-		}
-
-		public void SetHorizontal(Transform parent, float localPos)
-		{
-			if ((bool)rect)
-			{
-				Vector3[] sides = rect.GetSides(parent);
-				float num = Mathf.Lerp(sides[0].x, sides[2].x, relative);
-				absolute = Mathf.FloorToInt(localPos - num + 0.5f);
-				return;
-			}
-			Vector3 position = target.position;
-			if (parent != null)
-			{
-				position = parent.InverseTransformPoint(position);
-			}
-			absolute = Mathf.FloorToInt(localPos - position.x + 0.5f);
-		}
-
-		public void SetVertical(Transform parent, float localPos)
-		{
-			if ((bool)rect)
-			{
-				Vector3[] sides = rect.GetSides(parent);
-				float num = Mathf.Lerp(sides[3].y, sides[1].y, relative);
-				absolute = Mathf.FloorToInt(localPos - num + 0.5f);
-				return;
-			}
-			Vector3 position = target.position;
-			if (parent != null)
-			{
-				position = parent.InverseTransformPoint(position);
-			}
-			absolute = Mathf.FloorToInt(localPos - position.y + 0.5f);
-		}
-
-		public Vector3[] GetSides(Transform relativeTo)
-		{
+            
 			if (target != null)
 			{
 				if (rect != null)
@@ -108,431 +126,551 @@ public abstract class UIRect : MonoBehaviour
 				}
 				if (target.GetComponent<Camera>() != null)
 				{
-					return target.GetComponent<Camera>().GetSides(relativeTo);
+                    return target.GetComponent<Camera>().GetSides(relativeTo);
 				}
 			}
 			return null;
 		}
-	}
+    }
 
-	public enum AnchorUpdate
-	{
-		OnEnable,
-		OnUpdate
-	}
+    /// <summary>
+    /// Left side anchor.
+    /// </summary>
 
-	public AnchorPoint leftAnchor = new AnchorPoint();
+    public AnchorPoint leftAnchor = new AnchorPoint();
 
-	public AnchorPoint rightAnchor = new AnchorPoint(1f);
+    /// <summary>
+    /// Right side anchor.
+    /// </summary>
 
-	public AnchorPoint bottomAnchor = new AnchorPoint();
+    public AnchorPoint rightAnchor = new AnchorPoint(1f);
 
-	public AnchorPoint topAnchor = new AnchorPoint(1f);
+    /// <summary>
+    /// Bottom side anchor.
+    /// </summary>
 
-	public AnchorUpdate updateAnchors = AnchorUpdate.OnUpdate;
+    public AnchorPoint bottomAnchor = new AnchorPoint();
 
-	protected GameObject mGo;
+    /// <summary>
+    /// Top side anchor.
+    /// </summary>
 
-	protected Transform mTrans;
+    public AnchorPoint topAnchor = new AnchorPoint(1f);
 
-	protected BetterList<UIRect> mChildren = new BetterList<UIRect>();
+    public enum AnchorUpdate
+    {
+        OnEnable,
+        OnUpdate,
+        OnStart,
+    }
 
-	protected bool mChanged = true;
+    /// <summary>
+    /// Whether anchors will be recalculated on every update.
+    /// </summary>
 
-	protected bool mStarted;
+    public AnchorUpdate updateAnchors = AnchorUpdate.OnUpdate;
 
-	protected bool mParentFound;
+    protected GameObject mGo;
+    protected Transform mTrans;
+    protected BetterList<UIRect> mChildren = new BetterList<UIRect>();
+    protected bool mChanged = true;
+    protected bool mStarted = false;
+    protected bool mParentFound = false;
 
-	protected bool mUpdateAnchors;
+    [System.NonSerialized] bool mUpdateAnchors = true;
+    [System.NonSerialized] int mUpdateFrame = -1;
+    [System.NonSerialized] bool mAnchorsCached = false;
 
-	[NonSerialized]
-	public float finalAlpha = 1f;
+    /// <summary>
+    /// Final calculated alpha.
+    /// </summary>
 
-	private UIRoot mRoot;
+    [System.NonSerialized]
+    public float finalAlpha = 1f;
 
-	private UIRect mParent;
+    UIRoot mRoot;
+    UIRect mParent;
+    bool mRootSet = false;
+    protected Camera mCam;
 
-	private Camera mMyCam;
+    /// <summary>
+    /// Game object gets cached for speed. Can't simply return 'mGo' set in Awake because this function may be called on a prefab.
+    /// </summary>
 
-	private int mUpdateFrame = -1;
+    public GameObject cachedGameObject { get { if (mGo == null) mGo = gameObject; return mGo; } }
 
-	private bool mAnchorsCached;
+    /// <summary>
+    /// Transform gets cached for speed. Can't simply return 'mTrans' set in Awake because this function may be called on a prefab.
+    /// </summary>
 
-	private bool mRootSet;
+    public Transform cachedTransform { get { if (mTrans == null) mTrans = transform; return mTrans; } }
 
-	protected static Vector3[] mSides = new Vector3[4];
+    /// <summary>
+    /// Camera used by anchors.
+    /// </summary>
 
-	public GameObject cachedGameObject
-	{
-		get
-		{
-			if (mGo == null)
-			{
-				mGo = base.gameObject;
-			}
-			return mGo;
-		}
-	}
+    public Camera anchorCamera { get { if (!mAnchorsCached) ResetAnchors(); return mCam; } }
 
-	public Transform cachedTransform
-	{
-		get
-		{
-			if (mTrans == null)
-			{
-				mTrans = base.transform;
-			}
-			return mTrans;
-		}
-	}
+    /// <summary>
+    /// Whether the rectangle is currently anchored fully on all sides.
+    /// </summary>
 
-	public Camera anchorCamera
-	{
-		get
-		{
-			if (!mAnchorsCached)
-			{
-				ResetAnchors();
-			}
-			return mMyCam;
-		}
-	}
+    public bool isFullyAnchored { get { return leftAnchor.target && rightAnchor.target && topAnchor.target && bottomAnchor.target; } }
 
-	public bool isFullyAnchored
-	{
-		get
-		{
-			return (bool)leftAnchor.target && (bool)rightAnchor.target && (bool)topAnchor.target && (bool)bottomAnchor.target;
-		}
-	}
+    /// <summary>
+    /// Whether the rectangle is anchored horizontally.
+    /// </summary>
 
-	public virtual bool isAnchoredHorizontally
-	{
-		get
-		{
-			return (bool)leftAnchor.target || (bool)rightAnchor.target;
-		}
-	}
+    public virtual bool isAnchoredHorizontally { get { return leftAnchor.target || rightAnchor.target; } }
 
-	public virtual bool isAnchoredVertically
-	{
-		get
-		{
-			return (bool)bottomAnchor.target || (bool)topAnchor.target;
-		}
-	}
+    /// <summary>
+    /// Whether the rectangle is anchored vertically.
+    /// </summary>
 
-	public virtual bool canBeAnchored
-	{
-		get
-		{
-			return true;
-		}
-	}
+    public virtual bool isAnchoredVertically { get { return bottomAnchor.target || topAnchor.target; } }
 
-	public UIRect parent
-	{
-		get
-		{
-			if (!mParentFound)
-			{
-				mParentFound = true;
-				mParent = NGUITools.FindInParents<UIRect>(cachedTransform.parent);
-			}
-			return mParent;
-		}
-	}
+    /// <summary>
+    /// Whether the rectangle can be anchored.
+    /// </summary>
 
-	public UIRoot root
-	{
-		get
-		{
-			if (parent != null)
-			{
-				return mParent.root;
-			}
-			if (!mRootSet)
-			{
-				mRootSet = true;
-				mRoot = NGUITools.FindInParents<UIRoot>(cachedTransform);
-			}
-			return mRoot;
-		}
-	}
+    public virtual bool canBeAnchored { get { return true; } }
 
-	public bool isAnchored
-	{
-		get
-		{
-			return ((bool)leftAnchor.target || (bool)rightAnchor.target || (bool)topAnchor.target || (bool)bottomAnchor.target) && canBeAnchored;
-		}
-	}
+    /// <summary>
+    /// Get the rectangle's parent, if any.
+    /// </summary>
 
-	public abstract float alpha { get; set; }
+    public UIRect parent
+    {
+        get
+        {
+            if (!mParentFound)
+            {
+                mParentFound = true;
+                mParent = NGUITools.FindInParents<UIRect>(cachedTransform.parent);
+            }
+            return mParent;
+        }
+    }
 
-	public abstract Vector3[] localCorners { get; }
+    /// <summary>
+    /// Get the root object, if any.
+    /// </summary>
 
-	public abstract Vector3[] worldCorners { get; }
+    public UIRoot root
+    {
+        get
+        {
+            if (parent != null) return mParent.root;
 
-	public abstract float CalculateFinalAlpha(int frameID);
+            if (!mRootSet)
+            {
+                mRootSet = true;
+                mRoot = NGUITools.FindInParents<UIRoot>(cachedTransform);
+            }
+            return mRoot;
+        }
+    }
 
-	public virtual void Invalidate(bool includeChildren)
-	{
-		mChanged = true;
-		if (includeChildren)
-		{
-			for (int i = 0; i < mChildren.size; i++)
-			{
-				mChildren.buffer[i].Invalidate(true);
-			}
-		}
-	}
+    /// <summary>
+    /// Returns 'true' if the widget is currently anchored on any side.
+    /// </summary>
 
-	public virtual Vector3[] GetSides(Transform relativeTo)
-	{
-		if (anchorCamera != null)
-		{
-			return mMyCam.GetSides(relativeTo);
-		}
-		Vector3 position = cachedTransform.position;
-		for (int i = 0; i < 4; i++)
-		{
-			mSides[i] = position;
-		}
-		if (relativeTo != null)
-		{
-			for (int j = 0; j < 4; j++)
-			{
-				mSides[j] = relativeTo.InverseTransformPoint(mSides[j]);
-			}
-		}
-		return mSides;
-	}
+    public bool isAnchored
+    {
+        get
+        {
+            return (leftAnchor.target || rightAnchor.target || topAnchor.target || bottomAnchor.target) && canBeAnchored;
+        }
+    }
 
-	protected Vector3 GetLocalPos(AnchorPoint ac, Transform trans)
-	{
-		if (anchorCamera == null || ac.targetCam == null)
-		{
-			return cachedTransform.localPosition;
-		}
-		Vector3 vector = mMyCam.ViewportToWorldPoint(ac.targetCam.WorldToViewportPoint(ac.target.position));
-		if (trans != null)
-		{
-			vector = trans.InverseTransformPoint(vector);
-		}
-		vector.x = Mathf.Floor(vector.x + 0.5f);
-		vector.y = Mathf.Floor(vector.y + 0.5f);
-		return vector;
-	}
+    /// <summary>
+    /// Local alpha, not relative to anything.
+    /// </summary>
 
-	protected virtual void OnEnable()
-	{
-		mAnchorsCached = false;
-		mUpdateFrame = -1;
-		if (updateAnchors == AnchorUpdate.OnEnable)
-		{
-			mUpdateAnchors = true;
-		}
-		if (mStarted)
-		{
-			OnInit();
-		}
-		mUpdateFrame = -1;
-	}
+    public abstract float alpha { get; set; }
 
-	protected virtual void OnInit()
-	{
-		mChanged = true;
-		mRootSet = false;
-		mParentFound = false;
-		if (parent != null)
-		{
-			mParent.mChildren.Add(this);
-		}
-	}
+    /// <summary>
+    /// Get the final cumulative alpha.
+    /// </summary>
 
-	protected virtual void OnDisable()
-	{
-		if ((bool)mParent)
-		{
-			mParent.mChildren.Remove(this);
-		}
-		mParent = null;
-		mRoot = null;
-		mRootSet = false;
-		mParentFound = false;
-	}
+    public abstract float CalculateFinalAlpha(int frameID);
 
-	protected void Start()
-	{
-		mStarted = true;
-		OnInit();
-		OnStart();
-	}
+    /// <summary>
+    /// Local-space corners of the UI rectangle. The order is bottom-left, top-left, top-right, bottom-right.
+    /// </summary>
 
-	public void Update()
-	{
-		if (!mAnchorsCached)
-		{
-			ResetAnchors();
-		}
-		int frameCount = Time.frameCount;
-		if (mUpdateFrame == frameCount)
-		{
-			return;
-		}
-		if (updateAnchors == AnchorUpdate.OnUpdate || mUpdateAnchors)
-		{
-			mUpdateFrame = frameCount;
-			mUpdateAnchors = false;
-			bool flag = false;
-			if ((bool)leftAnchor.target)
-			{
-				flag = true;
-				if (leftAnchor.rect != null && leftAnchor.rect.mUpdateFrame != frameCount)
-				{
-					leftAnchor.rect.Update();
-				}
-			}
-			if ((bool)bottomAnchor.target)
-			{
-				flag = true;
-				if (bottomAnchor.rect != null && bottomAnchor.rect.mUpdateFrame != frameCount)
-				{
-					bottomAnchor.rect.Update();
-				}
-			}
-			if ((bool)rightAnchor.target)
-			{
-				flag = true;
-				if (rightAnchor.rect != null && rightAnchor.rect.mUpdateFrame != frameCount)
-				{
-					rightAnchor.rect.Update();
-				}
-			}
-			if ((bool)topAnchor.target)
-			{
-				flag = true;
-				if (topAnchor.rect != null && topAnchor.rect.mUpdateFrame != frameCount)
-				{
-					topAnchor.rect.Update();
-				}
-			}
-			if (flag)
-			{
-				OnAnchor();
-			}
-		}
-		OnUpdate();
-	}
+    public abstract Vector3[] localCorners { get; }
 
-	public void UpdateAnchors()
-	{
-		if (isAnchored)
-		{
-			OnAnchor();
-		}
-	}
+    /// <summary>
+    /// World-space corners of the UI rectangle. The order is bottom-left, top-left, top-right, bottom-right.
+    /// </summary>
 
-	protected abstract void OnAnchor();
+    public abstract Vector3[] worldCorners { get; }
 
-	public void SetAnchor(Transform t)
-	{
-		leftAnchor.target = t;
-		rightAnchor.target = t;
-		topAnchor.target = t;
-		bottomAnchor.target = t;
-		ResetAnchors();
-		UpdateAnchors();
-	}
+    /// <summary>
+    /// Helper function that returns the distance to the camera's directional vector hitting the panel's plane.
+    /// </summary>
 
-	public void SetAnchor(GameObject go)
-	{
-		Transform target = ((!(go != null)) ? null : go.transform);
-		leftAnchor.target = target;
-		rightAnchor.target = target;
-		topAnchor.target = target;
-		bottomAnchor.target = target;
-		ResetAnchors();
-		UpdateAnchors();
-	}
+    protected float cameraRayDistance
+    {
+        get
+        {
+            if (anchorCamera == null) return 0f;
 
-	public void SetAnchor(GameObject go, int left, int bottom, int right, int top)
-	{
-		Transform target = ((!(go != null)) ? null : go.transform);
-		leftAnchor.target = target;
-		rightAnchor.target = target;
-		topAnchor.target = target;
-		bottomAnchor.target = target;
-		leftAnchor.relative = 0f;
-		rightAnchor.relative = 1f;
-		bottomAnchor.relative = 0f;
-		topAnchor.relative = 1f;
-		leftAnchor.absolute = left;
-		rightAnchor.absolute = right;
-		bottomAnchor.absolute = bottom;
-		topAnchor.absolute = top;
-		ResetAnchors();
-		UpdateAnchors();
-	}
+            if (!mCam.orthographic)
+            {
+                Transform t = cachedTransform;
+                Transform ct = mCam.transform;
+                Plane p = new Plane(t.rotation * Vector3.back, t.position);
+                Ray ray = new Ray(ct.position, ct.rotation * Vector3.forward);
+                float dist;
+                if (p.Raycast(ray, out dist)) return dist;
+            }
+            return Mathf.Lerp(mCam.nearClipPlane, mCam.farClipPlane, 0.5f);
+        }
+    }
 
-	public void ResetAnchors()
-	{
-		mAnchorsCached = true;
-		leftAnchor.rect = ((!leftAnchor.target) ? null : leftAnchor.target.GetComponent<UIRect>());
-		bottomAnchor.rect = ((!bottomAnchor.target) ? null : bottomAnchor.target.GetComponent<UIRect>());
-		rightAnchor.rect = ((!rightAnchor.target) ? null : rightAnchor.target.GetComponent<UIRect>());
-		topAnchor.rect = ((!topAnchor.target) ? null : topAnchor.target.GetComponent<UIRect>());
-		mMyCam = NGUITools.FindCameraForLayer(cachedGameObject.layer);
-		FindCameraFor(leftAnchor);
-		FindCameraFor(bottomAnchor);
-		FindCameraFor(rightAnchor);
-		FindCameraFor(topAnchor);
-		mUpdateAnchors = true;
-	}
+    /// <summary>
+    /// Sets the local 'changed' flag, indicating that some parent value(s) are now be different, such as alpha for example.
+    /// </summary>
 
-	public void ResetAndUpdateAnchors()
-	{
-		ResetAnchors();
-		UpdateAnchors();
-	}
+    public virtual void Invalidate(bool includeChildren)
+    {
+        mChanged = true;
+        if (includeChildren)
+            for (int i = 0; i < mChildren.size; ++i)
+                mChildren.buffer[i].Invalidate(true);
+    }
 
-	public abstract void SetRect(float x, float y, float width, float height);
+    // Temporary variable to avoid GC allocation
+    static protected Vector3[] mSides = new Vector3[4];
 
-	private void FindCameraFor(AnchorPoint ap)
-	{
-		if (ap.target == null || ap.rect != null)
-		{
-			ap.targetCam = null;
-		}
-		else
-		{
-			ap.targetCam = NGUITools.FindCameraForLayer(ap.target.gameObject.layer);
-		}
-	}
+    /// <summary>
+    /// Get the sides of the rectangle relative to the specified transform.
+    /// The order is left, top, right, bottom.
+    /// </summary>
 
-	public virtual void ParentHasChanged()
-	{
-		mParentFound = false;
-		UIRect uIRect = NGUITools.FindInParents<UIRect>(cachedTransform.parent);
-		if (mParent != uIRect)
-		{
-			if ((bool)mParent)
-			{
-				mParent.mChildren.Remove(this);
-			}
-			mParent = uIRect;
-			if ((bool)mParent)
-			{
-				mParent.mChildren.Add(this);
-			}
-			mRootSet = false;
-		}
-	}
+    public virtual Vector3[] GetSides(Transform relativeTo)
+    {
+        if (anchorCamera != null) return mCam.GetSides(cameraRayDistance, relativeTo);
 
-	protected abstract void OnStart();
+        Vector3 pos = cachedTransform.position;
+        for (int i = 0; i < 4; ++i)
+            mSides[i] = pos;
 
-	protected virtual void OnUpdate()
-	{
-	}
+        if (relativeTo != null)
+        {
+            for (int i = 0; i < 4; ++i)
+                mSides[i] = relativeTo.InverseTransformPoint(mSides[i]);
+        }
+        return mSides;
+    }
+
+    /// <summary>
+    /// Helper function that gets the specified anchor's position relative to the chosen transform.
+    /// </summary>
+
+    protected Vector3 GetLocalPos(AnchorPoint ac, Transform trans)
+    {
+        if (anchorCamera == null || ac.targetCam == null)
+            return cachedTransform.localPosition;
+
+        Vector3 pos = mCam.ViewportToWorldPoint(ac.targetCam.WorldToViewportPoint(ac.target.position));
+        if (trans != null) pos = trans.InverseTransformPoint(pos);
+        pos.x = Mathf.Floor(pos.x + 0.5f);
+        pos.y = Mathf.Floor(pos.y + 0.5f);
+        return pos;
+    }
+
+    /// <summary>
+    /// Automatically find the parent rectangle.
+    /// </summary>
+
+    protected virtual void OnEnable()
+    {
+        mUpdateFrame = -1;
+
+        if (updateAnchors == AnchorUpdate.OnEnable)
+        {
+            mAnchorsCached = false;
+            mUpdateAnchors = true;
+        }
+        if (mStarted) OnInit();
+        mUpdateFrame = -1;
+#if UNITY_EDITOR
+        OnValidate();
+#endif
+    }
+
+    /// <summary>
+    /// Automatically find the parent rectangle.
+    /// </summary>
+
+    protected virtual void OnInit()
+    {
+        mChanged = true;
+        mRootSet = false;
+        mParentFound = false;
+        if (parent != null) mParent.mChildren.Add(this);
+    }
+
+    /// <summary>
+    /// Clear the parent rectangle reference.
+    /// </summary>
+
+    protected virtual void OnDisable()
+    {
+        if (mParent) mParent.mChildren.Remove(this);
+        mParent = null;
+        mRoot = null;
+        mRootSet = false;
+        mParentFound = false;
+    }
+
+    /// <summary>
+    /// Set anchor rect references on start.
+    /// </summary>
+
+    protected void Start()
+    {
+        mStarted = true;
+        OnInit();
+        OnStart();
+    }
+
+    /// <summary>
+    /// Rectangles need to update in a specific order -- parents before children.
+    /// When deriving from this class, override its OnUpdate() function instead.
+    /// </summary>
+
+    public void Update()
+    {
+        if (!mAnchorsCached) ResetAnchors();
+
+        int frame = Time.frameCount;
+
+#if UNITY_EDITOR
+        if (mUpdateFrame != frame || !Application.isPlaying)
+#else
+		if (mUpdateFrame != frame)
+#endif
+        {
+#if UNITY_EDITOR
+            if (updateAnchors == AnchorUpdate.OnUpdate || mUpdateAnchors || !Application.isPlaying)
+#else
+			if (updateAnchors == AnchorUpdate.OnUpdate || mUpdateAnchors)
+#endif
+            {
+                mUpdateFrame = frame;
+                mUpdateAnchors = false;
+
+                bool anchored = false;
+
+                if (leftAnchor.target)
+                {
+                    anchored = true;
+                    if (leftAnchor.rect != null && leftAnchor.rect.mUpdateFrame != frame)
+                        leftAnchor.rect.Update();
+                }
+
+                if (bottomAnchor.target)
+                {
+                    anchored = true;
+                    if (bottomAnchor.rect != null && bottomAnchor.rect.mUpdateFrame != frame)
+                        bottomAnchor.rect.Update();
+                }
+
+                if (rightAnchor.target)
+                {
+                    anchored = true;
+                    if (rightAnchor.rect != null && rightAnchor.rect.mUpdateFrame != frame)
+                        rightAnchor.rect.Update();
+                }
+
+                if (topAnchor.target)
+                {
+                    anchored = true;
+                    if (topAnchor.rect != null && topAnchor.rect.mUpdateFrame != frame)
+                        topAnchor.rect.Update();
+                }
+
+                // Update the dimensions using anchors
+                if (anchored) OnAnchor();
+            }
+
+            // Continue with the update
+            OnUpdate();
+        }
+    }
+
+    /// <summary>
+    /// Manually update anchored sides.
+    /// </summary>
+
+    public void UpdateAnchors() { if (isAnchored && updateAnchors != AnchorUpdate.OnStart) OnAnchor(); }
+
+    /// <summary>
+    /// Update the dimensions of the rectangle using anchor points.
+    /// </summary>
+
+    protected abstract void OnAnchor();
+
+    /// <summary>
+    /// Anchor this rectangle to the specified transform.
+    /// Note that this function will not keep the rectangle's current dimensions, but will instead assume the target's dimensions.
+    /// </summary>
+
+    public void SetAnchor(Transform t)
+    {
+        leftAnchor.target = t;
+        rightAnchor.target = t;
+        topAnchor.target = t;
+        bottomAnchor.target = t;
+
+        ResetAnchors();
+        UpdateAnchors();
+    }
+
+    /// <summary>
+    /// Anchor this rectangle to the specified transform.
+    /// Note that this function will not keep the rectangle's current dimensions, but will instead assume the target's dimensions.
+    /// </summary>
+
+    public void SetAnchor(GameObject go)
+    {
+        Transform t = (go != null) ? go.transform : null;
+
+        leftAnchor.target = t;
+        rightAnchor.target = t;
+        topAnchor.target = t;
+        bottomAnchor.target = t;
+
+        ResetAnchors();
+        UpdateAnchors();
+    }
+
+    /// <summary>
+    /// Anchor this rectangle to the specified transform.
+    /// </summary>
+
+    public void SetAnchor(GameObject go, int left, int bottom, int right, int top)
+    {
+        Transform t = (go != null) ? go.transform : null;
+
+        leftAnchor.target = t;
+        rightAnchor.target = t;
+        topAnchor.target = t;
+        bottomAnchor.target = t;
+
+        leftAnchor.relative = 0f;
+        rightAnchor.relative = 1f;
+        bottomAnchor.relative = 0f;
+        topAnchor.relative = 1f;
+
+        leftAnchor.absolute = left;
+        rightAnchor.absolute = right;
+        bottomAnchor.absolute = bottom;
+        topAnchor.absolute = top;
+
+        ResetAnchors();
+        UpdateAnchors();
+    }
+
+    /// <summary>
+    /// Ensure that all rect references are set correctly on the anchors.
+    /// </summary>
+
+    public void ResetAnchors()
+    {
+        mAnchorsCached = true;
+
+        leftAnchor.rect = (leftAnchor.target) ? leftAnchor.target.GetComponent<UIRect>() : null;
+        bottomAnchor.rect = (bottomAnchor.target) ? bottomAnchor.target.GetComponent<UIRect>() : null;
+        rightAnchor.rect = (rightAnchor.target) ? rightAnchor.target.GetComponent<UIRect>() : null;
+        topAnchor.rect = (topAnchor.target) ? topAnchor.target.GetComponent<UIRect>() : null;
+
+        mCam = NGUITools.FindCameraForLayer(cachedGameObject.layer);
+
+        FindCameraFor(leftAnchor);
+        FindCameraFor(bottomAnchor);
+        FindCameraFor(rightAnchor);
+        FindCameraFor(topAnchor);
+
+        mUpdateAnchors = true;
+    }
+
+    /// <summary>
+    /// Convenience method that resets and updates the anchors, all at once.
+    /// </summary>
+
+    public void ResetAndUpdateAnchors() { ResetAnchors(); UpdateAnchors(); }
+
+    /// <summary>
+    /// Set the rectangle manually.
+    /// </summary>
+
+    public abstract void SetRect(float x, float y, float width, float height);
+
+    /// <summary>
+    /// Helper function -- attempt to find the camera responsible for the specified anchor.
+    /// </summary>
+
+    void FindCameraFor(AnchorPoint ap)
+    {
+        // If we don't have a target or have a rectangle to work with, camera isn't needed
+        if (ap.target == null || ap.rect != null)
+        {
+            ap.targetCam = null;
+        }
+        else
+        {
+            // Find the camera responsible for the target object
+            ap.targetCam = NGUITools.FindCameraForLayer(ap.target.gameObject.layer);
+        }
+    }
+
+    /// <summary>
+    /// Call this function when the rectangle's parent has changed.
+    /// </summary>
+
+    public virtual void ParentHasChanged()
+    {
+        mParentFound = false;
+        UIRect pt = NGUITools.FindInParents<UIRect>(cachedTransform.parent);
+
+        if (mParent != pt)
+        {
+            if (mParent) mParent.mChildren.Remove(this);
+            mParent = pt;
+            if (mParent) mParent.mChildren.Add(this);
+            mRootSet = false;
+        }
+    }
+
+    /// <summary>
+    /// Abstract start functionality, ensured to happen after the anchor rect references have been set.
+    /// </summary>
+
+    protected abstract void OnStart();
+
+    /// <summary>
+    /// Abstract update functionality, ensured to happen after the targeting anchors have been updated.
+    /// </summary>
+
+    protected virtual void OnUpdate() { }
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// This callback is sent inside the editor notifying us that some property has changed.
+    /// </summary>
+
+    protected virtual void OnValidate()
+    {
+        if (NGUITools.GetActive(this))
+        {
+            if (!Application.isPlaying) ResetAnchors();
+            Invalidate(true);
+        }
+    }
+#endif
 }

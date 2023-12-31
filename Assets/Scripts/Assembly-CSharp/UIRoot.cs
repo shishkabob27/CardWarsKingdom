@@ -1,180 +1,317 @@
-using System.Collections.Generic;
-using UnityEngine;
+//----------------------------------------------
+//            NGUI: Next-Gen UI kit
+// Copyright © 2011-2014 Tasharen Entertainment
+//----------------------------------------------
 
-[AddComponentMenu("NGUI/UI/Root")]
+using UnityEngine;
+using System.Collections.Generic;
+
+/// <summary>
+/// This is a script used to keep the game object scaled to 2/(Screen.height).
+/// If you use it, be sure to NOT use UIOrthoCamera at the same time.
+/// </summary>
+
 [ExecuteInEditMode]
+[AddComponentMenu("NGUI/UI/Root")]
 public class UIRoot : MonoBehaviour
 {
-	public enum Scaling
-	{
-		PixelPerfect,
-		FixedSize,
-		FixedSizeOnMobiles
-	}
+    /// <summary>
+    /// List of all UIRoots present in the scene.
+    /// </summary>
 
-	public static List<UIRoot> list = new List<UIRoot>();
+    static public List<UIRoot> list = new List<UIRoot>();
 
-	public Scaling scalingStyle;
+    public enum Scaling
+    {
+        Flexible,
+        Constrained,
+        ConstrainedOnMobiles,
+    }
 
-	public int manualHeight = 720;
+    public enum Constraint
+    {
+        Fit,
+        Fill,
+        FitWidth,
+        FitHeight,
+    }
 
-	public int minimumHeight = 320;
+    /// <summary>
+    /// Type of scaling used by the UIRoot.
+    /// </summary>
 
-	public int maximumHeight = 1536;
+    public Scaling scalingStyle = Scaling.Flexible;
 
-	public bool adjustByDPI;
+    /// <summary>
+    /// When the UI scaling is constrained, this controls the type of constraint that further fine-tunes how it's scaled.
+    /// </summary>
 
-	public bool shrinkPortraitUI;
+    public Constraint constraint
+    {
+        get
+        {
+            if (fitWidth)
+            {
+                if (fitHeight) return Constraint.Fit;
+                return Constraint.FitWidth;
+            }
+            else if (fitHeight) return Constraint.FitHeight;
+            return Constraint.Fill;
+        }
+    }
 
-	private Transform mTrans;
+    /// <summary>
+    /// Width of the screen, used when the scaling style is set to Flexible.
+    /// </summary>
 
-	public int activeHeight
-	{
-		get
-		{
-			if (scalingStyle == Scaling.FixedSize)
-			{
-				return manualHeight;
-			}
-			if (scalingStyle == Scaling.FixedSizeOnMobiles)
-			{
-				return manualHeight;
-			}
-			Vector2 screenSize = NGUITools.screenSize;
-			float num = screenSize.x / screenSize.y;
-			if (screenSize.y < (float)minimumHeight)
-			{
-				screenSize.y = minimumHeight;
-				screenSize.x = screenSize.y * num;
-			}
-			else if (screenSize.y > (float)maximumHeight)
-			{
-				screenSize.y = maximumHeight;
-				screenSize.x = screenSize.y * num;
-			}
-			int num2 = Mathf.RoundToInt((!shrinkPortraitUI || !(screenSize.y > screenSize.x)) ? screenSize.y : (screenSize.y / num));
-			return (!adjustByDPI) ? num2 : NGUIMath.AdjustByDPI(num2);
-		}
-	}
+    public int manualWidth = 1280;
 
-	public float pixelSizeAdjustment
-	{
-		get
-		{
-			return GetPixelSizeAdjustment(Mathf.RoundToInt(NGUITools.screenSize.y));
-		}
-	}
+    /// <summary>
+    /// Height of the screen when the scaling style is set to FixedSize or Flexible.
+    /// </summary>
 
-	public static float GetPixelSizeAdjustment(GameObject go)
-	{
-		UIRoot uIRoot = NGUITools.FindInParents<UIRoot>(go);
-		return (!(uIRoot != null)) ? 1f : uIRoot.pixelSizeAdjustment;
-	}
+    public int manualHeight = 720;
 
-	public float GetPixelSizeAdjustment(int height)
-	{
-		height = Mathf.Max(2, height);
-		if (scalingStyle == Scaling.FixedSize)
-		{
-			return (float)manualHeight / (float)height;
-		}
-		if (scalingStyle == Scaling.FixedSizeOnMobiles)
-		{
-			return (float)manualHeight / (float)height;
-		}
-		if (height < minimumHeight)
-		{
-			return (float)minimumHeight / (float)height;
-		}
-		if (height > maximumHeight)
-		{
-			return (float)maximumHeight / (float)height;
-		}
-		return 1f;
-	}
+    /// <summary>
+    /// If the screen height goes below this value, it will be as if the scaling style
+    /// is set to FixedSize with manualHeight of this value.
+    /// </summary>
 
-	protected virtual void Awake()
-	{
-		mTrans = base.transform;
-	}
+    public int minimumHeight = 320;
 
-	protected virtual void OnEnable()
-	{
-		list.Add(this);
-	}
+    /// <summary>
+    /// If the screen height goes above this value, it will be as if the scaling style
+    /// is set to Fixed Height with manualHeight of this value.
+    /// </summary>
 
-	protected virtual void OnDisable()
-	{
-		list.Remove(this);
-	}
+    public int maximumHeight = 1536;
 
-	protected virtual void Start()
-	{
-		UIOrthoCamera componentInChildren = GetComponentInChildren<UIOrthoCamera>();
-		if (componentInChildren != null)
-		{
-			Camera component = componentInChildren.gameObject.GetComponent<Camera>();
-			componentInChildren.enabled = false;
-			if (component != null)
-			{
-				component.orthographicSize = 1f;
-			}
-		}
-		else
-		{
-			Update();
-		}
-	}
+    /// <summary>
+    /// When Constraint is on, controls whether the content must be restricted horizontally to be at least 'manualWidth' wide.
+    /// </summary>
 
-	private void Update()
-	{
+    public bool fitWidth = false;
+
+    /// <summary>
+    /// When Constraint is on, controls whether the content must be restricted vertically to be at least 'Manual Height' tall.
+    /// </summary>
+
+    public bool fitHeight = true;
+
+    /// <summary>
+    /// Whether the final value will be adjusted by the device's DPI setting.
+    /// Used when the Scaling is set to Pixel-Perfect.
+    /// </summary>
+
+    public bool adjustByDPI = false;
+
+    /// <summary>
+    /// If set and the game is in portrait mode, the UI will shrink based on the screen's width instead of height.
+    /// Used when the Scaling is set to Pixel-Perfect.
+    /// </summary>
+
+    public bool shrinkPortraitUI = false;
+
+    /// <summary>
+    /// Active scaling type, based on platform.
+    /// </summary>
+
+    public Scaling activeScaling
+    {
+        get
+        {
+            Scaling scaling = scalingStyle;
+
+            if (scaling == Scaling.ConstrainedOnMobiles)
+#if UNITY_EDITOR || UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_BLACKBERRY
+                return Scaling.Constrained;
+#else
+				return Scaling.Flexible;
+#endif
+            return scaling;
+        }
+    }
+
+    /// <summary>
+    /// UI Root's active height, based on the size of the screen.
+    /// </summary>
+
+    public int activeHeight
+    {
+        get
+        {
+            Scaling scaling = activeScaling;
+
+            if (scaling == Scaling.Flexible)
+            {
+                Vector2 screen = NGUITools.screenSize;
+                float aspect = screen.x / screen.y;
+
+                if (screen.y < minimumHeight)
+                {
+                    screen.y = minimumHeight;
+                    screen.x = screen.y * aspect;
+                }
+                else if (screen.y > maximumHeight)
+                {
+                    screen.y = maximumHeight;
+                    screen.x = screen.y * aspect;
+                }
+
+                // Portrait mode uses the maximum of width or height to shrink the UI
+                int height = Mathf.RoundToInt((shrinkPortraitUI && screen.y > screen.x) ? screen.y / aspect : screen.y);
+
+                // Adjust the final value by the DPI setting
+                return adjustByDPI ? NGUIMath.AdjustByDPI(height) : height;
+            }
+            else
+            {
+                Constraint cons = constraint;
+                if (cons == Constraint.FitHeight)
+                    return manualHeight;
+
+                Vector2 screen = NGUITools.screenSize;
+                float aspect = screen.x / screen.y;
+                float initialAspect = (float)manualWidth / manualHeight;
+
+                switch (cons)
+                {
+                    case Constraint.FitWidth:
+                        {
+                            return Mathf.RoundToInt(manualWidth / aspect);
+                        }
+                    case Constraint.Fit:
+                        {
+                            return (initialAspect > aspect) ?
+                                Mathf.RoundToInt(manualWidth / aspect) :
+                                manualHeight;
+                        }
+                    case Constraint.Fill:
+                        {
+                            return (initialAspect < aspect) ?
+                                Mathf.RoundToInt(manualWidth / aspect) :
+                                manualHeight;
+                        }
+                }
+                return manualHeight;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Pixel size adjustment. Most of the time it's at 1, unless the scaling style is set to FixedSize.
+    /// </summary>
+
+    public float pixelSizeAdjustment { get { return GetPixelSizeAdjustment(Mathf.RoundToInt(NGUITools.screenSize.y)); } }
+
+    /// <summary>
+    /// Helper function that figures out the pixel size adjustment for the specified game object.
+    /// </summary>
+
+    static public float GetPixelSizeAdjustment(GameObject go)
+    {
+        UIRoot root = NGUITools.FindInParents<UIRoot>(go);
+        return (root != null) ? root.pixelSizeAdjustment : 1f;
+    }
+
+    /// <summary>
+    /// Calculate the pixel size adjustment at the specified screen height value.
+    /// </summary>
+
+    public float GetPixelSizeAdjustment(int height)
+    {
+        height = Mathf.Max(2, height);
+
+        if (activeScaling == Scaling.Constrained)
+            return (float)activeHeight / height;
+
+        if (height < minimumHeight) return (float)minimumHeight / height;
+        if (height > maximumHeight) return (float)maximumHeight / height;
+        return 1f;
+    }
+
+    Transform mTrans;
+
+    protected virtual void Awake() { mTrans = transform; }
+    protected virtual void OnEnable() { list.Add(this); }
+    protected virtual void OnDisable() { list.Remove(this); }
+
+    protected virtual void Start()
+    {
+        UIOrthoCamera oc = GetComponentInChildren<UIOrthoCamera>();
+
+        if (oc != null)
+        {
+            Debug.LogWarning("UIRoot should not be active at the same time as UIOrthoCamera. Disabling UIOrthoCamera.", oc);
+            Camera cam = oc.gameObject.GetComponent<Camera>();
+            oc.enabled = false;
+            if (cam != null) cam.orthographicSize = 1f;
+        }
+        else Update();
+    }
+
+    void Update()
+    {
 #if UNITY_EDITOR
         if (!Application.isPlaying && gameObject.layer != 0)
             UnityEditor.EditorPrefs.SetInt("NGUI Layer", gameObject.layer);
 #endif
-        if (!(mTrans != null))
-		{
-			return;
-		}
-		float num = activeHeight;
-		if (num > 0f)
-		{
-			float num2 = 2f / num;
-			Vector3 localScale = mTrans.localScale;
-			if (!(Mathf.Abs(localScale.x - num2) <= float.Epsilon) || !(Mathf.Abs(localScale.y - num2) <= float.Epsilon) || !(Mathf.Abs(localScale.z - num2) <= float.Epsilon))
-			{
-				mTrans.localScale = new Vector3(num2, num2, num2);
-			}
-		}
-	}
+        if (mTrans != null)
+        {
+            float calcActiveHeight = activeHeight;
 
-	public static void Broadcast(string funcName)
-	{
-		int i = 0;
-		for (int count = list.Count; i < count; i++)
-		{
-			UIRoot uIRoot = list[i];
-			if (uIRoot != null)
-			{
-				uIRoot.BroadcastMessage(funcName, SendMessageOptions.DontRequireReceiver);
-			}
-		}
-	}
+            if (calcActiveHeight > 0f)
+            {
+                float size = 2f / calcActiveHeight;
 
-	public static void Broadcast(string funcName, object param)
-	{
-		if (param == null)
-		{
-			return;
-		}
-		int i = 0;
-		for (int count = list.Count; i < count; i++)
-		{
-			UIRoot uIRoot = list[i];
-			if (uIRoot != null)
-			{
-				uIRoot.BroadcastMessage(funcName, param, SendMessageOptions.DontRequireReceiver);
-			}
-		}
-	}
+                Vector3 ls = mTrans.localScale;
+
+                if (!(Mathf.Abs(ls.x - size) <= float.Epsilon) ||
+                    !(Mathf.Abs(ls.y - size) <= float.Epsilon) ||
+                    !(Mathf.Abs(ls.z - size) <= float.Epsilon))
+                {
+                    mTrans.localScale = new Vector3(size, size, size);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Broadcast the specified message to the entire UI.
+    /// </summary>
+
+    static public void Broadcast(string funcName)
+    {
+#if UNITY_EDITOR
+        if (Application.isPlaying)
+#endif
+        {
+            for (int i = 0, imax = list.Count; i < imax; ++i)
+            {
+                UIRoot root = list[i];
+                if (root != null) root.BroadcastMessage(funcName, SendMessageOptions.DontRequireReceiver);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Broadcast the specified message to the entire UI.
+    /// </summary>
+
+    static public void Broadcast(string funcName, object param)
+    {
+        if (param == null)
+        {
+            // More on this: http://answers.unity3d.com/questions/55194/suggested-workaround-for-sendmessage-bug.html
+            Debug.LogError("SendMessage is bugged when you try to pass 'null' in the parameter field. It behaves as if no parameter was specified.");
+        }
+        else
+        {
+            for (int i = 0, imax = list.Count; i < imax; ++i)
+            {
+                UIRoot root = list[i];
+                if (root != null) root.BroadcastMessage(funcName, param, SendMessageOptions.DontRequireReceiver);
+            }
+        }
+    }
 }
