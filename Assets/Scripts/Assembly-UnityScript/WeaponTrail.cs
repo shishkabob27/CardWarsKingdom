@@ -1,8 +1,6 @@
-// WeaponTrail
 using System;
-using Boo.Lang.Runtime;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityScript.Lang;
 
 [Serializable]
 public class WeaponTrail : MonoBehaviour
@@ -41,7 +39,7 @@ public class WeaponTrail : MonoBehaviour
 
 	public int lastMaxTrailNodes;
 
-	private UnityScript.Lang.Array trailNodes;
+    private List<TrailNodeInfo> trailNodes = new List<TrailNodeInfo>();
 
 	public WeaponTrail()
 	{
@@ -50,7 +48,6 @@ public class WeaponTrail : MonoBehaviour
 		maxTrailNodes = 100;
 		trail_enabled = true;
 		lastMaxTrailNodes = -1;
-		trailNodes = new UnityScript.Lang.Array();
 	}
 
 	public void DestroyMesh()
@@ -62,152 +59,149 @@ public class WeaponTrail : MonoBehaviour
 		}
 	}
 
-	public void LateUpdate()
-	{
-		if (!trail_enabled || material == null)
-		{
-			return;
-		}
-		TrailNodeInfo trailNodeInfo = null;
-		float num = default(float);
-		while (trailNodes.length > 0)
-		{
-			object obj = trailNodes[0];
-			if (!(obj is TrailNodeInfo))
-			{
-				obj = RuntimeServices.Coerce(obj, typeof(TrailNodeInfo));
-			}
-			trailNodeInfo = (TrailNodeInfo)obj;
-			num = Time.time - trailNodeInfo.beginTime;
-			if (!(num <= time))
-			{
-				trailNodes.Shift();
-				continue;
-			}
-			break;
-		}
-		Vector3 position = transform.position;
-		Vector3 vector = transform.TransformPoint(endpointOffset);
-		bool flag = true;
-		if (trailNodes.length > 0)
-		{
-			flag = false;
-			object obj2 = trailNodes[trailNodes.length - 1];
-			if (!(obj2 is TrailNodeInfo))
-			{
-				obj2 = RuntimeServices.Coerce(obj2, typeof(TrailNodeInfo));
-			}
-			trailNodeInfo = (TrailNodeInfo)obj2;
-			if ((trailNodeInfo.pt - position).sqrMagnitude >= minVertexDistance * minVertexDistance || !((trailNodeInfo.endpt - vector).sqrMagnitude < minVertexDistance * minVertexDistance))
-			{
-				flag = true;
-			}
-		}
-		if (flag)
-		{
-			trailNodeInfo = new TrailNodeInfo();
-			trailNodeInfo.pt = position;
-			trailNodeInfo.endpt = vector;
-			trailNodeInfo.beginTime = Time.time;
-			trailNodes.Add(trailNodeInfo);
-		}
-		while (trailNodes.length > maxTrailNodes)
-		{
-			trailNodes.Shift();
-		}
-		if (trailNodes.length >= 2)
-		{
-			UpdateTrailMesh();
-			Graphics.DrawMesh(mesh, Matrix4x4.identity, material, trail_layer);
-		}
-	}
+    private void LateUpdate()
+    {
+        if (!trail_enabled || material == null)
+            return;
 
-	public void UpdateTrailMesh()
-	{
-		if ((bool)mesh)
-		{
-			mesh.Clear();
-		}
-		int length = trailNodes.length;
-		if (length < 2)
-		{
-			return;
-		}
-		if (!mesh)
-		{
-			mesh = new Mesh();
-		}
-		vertices = new Vector3[length * 2];
-		triangles = new int[(length - 1) * 6];
-		uv = new Vector2[length * 2];
-		normals = new Vector3[length * 2];
-		vertexcolors = new Color[length * 2];
-		float num = 1f / (float)(length - 1);
-		float num2 = 0f;
-		TrailNodeInfo trailNodeInfo = null;
-		int num3 = default(int);
-		Color color = default(Color);
-		for (num3 = 0; num3 < length - 1; num3++)
-		{
-			float num4 = 1f - (float)num3 * 1f / (float)(length - 1);
-			object obj = trailNodes[length - num3 - 1];
-			if (!(obj is TrailNodeInfo))
-			{
-				obj = RuntimeServices.Coerce(obj, typeof(TrailNodeInfo));
-			}
-			trailNodeInfo = (TrailNodeInfo)obj;
-			if (endWidthScale == 1f || num4 == 1f)
-			{
-				vertices[num3 * 2 + 0] = trailNodeInfo.pt;
-				vertices[num3 * 2 + 1] = trailNodeInfo.endpt;
-			}
-			else
-			{
-				Vector3 vector = trailNodeInfo.endpt - trailNodeInfo.pt;
-				Vector3 vector2 = vector * 0.5f;
-				Vector3 vector3 = trailNodeInfo.pt + vector2;
-				vertices[num3 * 2 + 0] = vector3 - vector2 * num4;
-				vertices[num3 * 2 + 1] = vector3 + vector2 * num4;
-			}
-			triangles[num3 * 6 + 0] = num3 * 2 + 0;
-			triangles[num3 * 6 + 1] = num3 * 2 + 1;
-			triangles[num3 * 6 + 2] = num3 * 2 + 2;
-			triangles[num3 * 6 + 3] = num3 * 2 + 1;
-			triangles[num3 * 6 + 4] = num3 * 2 + 3;
-			triangles[num3 * 6 + 5] = num3 * 2 + 2;
-			uv[num3 * 2 + 0] = new Vector2(0f, num2);
-			uv[num3 * 2 + 1] = new Vector2(1f, num2);
-			normals[num3 * 2 + 0] = new Vector3(0f, 0f, -1f);
-			normals[num3 * 2 + 1] = new Vector3(0f, 0f, -1f);
-			color = new Color(color2.r + (color1.r - color2.r) * num4, color2.g + (color1.g - color2.g) * num4, color2.b + (color1.b - color2.b) * num4, color2.a + (color1.a - color2.a) * num4);
-			vertexcolors[num3 * 2 + 0] = new Color(color.r, color.g, color.b, color.a);
-			vertexcolors[num3 * 2 + 1] = new Color(color.r, color.g, color.b, color.a);
-			num2 += num;
-		}
-		object obj2 = trailNodes[0];
-		if (!(obj2 is TrailNodeInfo))
-		{
-			obj2 = RuntimeServices.Coerce(obj2, typeof(TrailNodeInfo));
-		}
-		trailNodeInfo = (TrailNodeInfo)obj2;
-		vertices[num3 * 2 + 0] = trailNodeInfo.pt;
-		vertices[num3 * 2 + 1] = trailNodeInfo.endpt;
-		uv[num3 * 2 + 0] = new Vector2(0f, num2);
-		uv[num3 * 2 + 1] = new Vector2(1f, num2);
-		normals[num3 * 2 + 0] = new Vector3(0f, 0f, -1f);
-		normals[num3 * 2 + 1] = new Vector3(0f, 0f, -1f);
-		vertexcolors[num3 * 2 + 0] = new Color(color.r, color.g, color.b, 0f);
-		vertexcolors[num3 * 2 + 1] = new Color(color.r, color.g, color.b, 0f);
-		mesh.vertices = vertices;
-		mesh.uv = uv;
-		mesh.normals = normals;
-		mesh.triangles = triangles;
-		mesh.colors = vertexcolors;
-		mesh.RecalculateBounds();
-		mesh.RecalculateNormals();
-	}
+        TrailNodeInfo trailNodeInfo = null;
+        float num = 0f;
 
-	public void Reset()
+        while (trailNodes.Count > 0)
+        {
+            trailNodeInfo = trailNodes[0];
+            num = Time.time - trailNodeInfo.beginTime;
+
+            if (!(num <= time))
+            {
+                trailNodes.RemoveAt(0);
+                continue;
+            }
+            break;
+        }
+
+        Vector3 position = transform.position;
+        Vector3 vector = transform.TransformPoint(endpointOffset);
+        bool flag = true;
+
+        if (trailNodes.Count > 0)
+        {
+            flag = false;
+            trailNodeInfo = trailNodes[trailNodes.Count - 1];
+
+            if ((trailNodeInfo.pt - position).sqrMagnitude >= minVertexDistance * minVertexDistance || !((trailNodeInfo.endpt - vector).sqrMagnitude < minVertexDistance * minVertexDistance))
+            {
+                flag = true;
+            }
+        }
+
+        if (flag)
+        {
+            trailNodeInfo = new TrailNodeInfo
+            {
+                pt = position,
+                endpt = vector,
+                beginTime = Time.time
+            };
+            trailNodes.Add(trailNodeInfo);
+        }
+
+        while (trailNodes.Count > maxTrailNodes)
+        {
+            trailNodes.RemoveAt(0);
+        }
+
+        if (trailNodes.Count >= 2)
+        {
+            UpdateTrailMesh();
+            Graphics.DrawMesh(mesh, Matrix4x4.identity, material, trail_layer);
+        }
+    }
+
+    private void UpdateTrailMesh()
+    {
+        if (mesh != null)
+        {
+            mesh.Clear();
+        }
+
+        int length = trailNodes.Count;
+
+        if (length < 2)
+        {
+            return;
+        }
+
+        if (mesh == null)
+        {
+            mesh = new Mesh();
+        }
+
+        vertices = new Vector3[length * 2];
+        triangles = new int[(length - 1) * 6];
+        uv = new Vector2[length * 2];
+        normals = new Vector3[length * 2];
+        vertexcolors = new Color[length * 2];
+
+        float interval = 1f / (float)(length - 1);
+        float uvOffset = 0f;
+
+        for (int i = 0; i < length - 1; i++)
+        {
+            float lerpValue = 1f - (float)i * interval;
+            TrailNodeInfo currentNodeInfo = trailNodes[length - i - 1];
+
+            Vector3 midPoint = Vector3.Lerp(currentNodeInfo.pt, currentNodeInfo.endpt, 0.5f);
+            Vector3 scaledVector = (currentNodeInfo.endpt - currentNodeInfo.pt) * 0.5f;
+
+            vertices[i * 2] = midPoint - scaledVector * lerpValue;
+            vertices[i * 2 + 1] = midPoint + scaledVector * lerpValue;
+
+            triangles[i * 6] = i * 2;
+            triangles[i * 6 + 1] = i * 2 + 1;
+            triangles[i * 6 + 2] = i * 2 + 2;
+            triangles[i * 6 + 3] = i * 2 + 1;
+            triangles[i * 6 + 4] = i * 2 + 3;
+            triangles[i * 6 + 5] = i * 2 + 2;
+
+            uv[i * 2] = new Vector2(0f, uvOffset);
+            uv[i * 2 + 1] = new Vector2(1f, uvOffset);
+
+            normals[i * 2] = new Vector3(0f, 0f, -1f);
+            normals[i * 2 + 1] = new Vector3(0f, 0f, -1f);
+
+            Color interpolatedColor = Color.Lerp(color2, color1, lerpValue);
+            vertexcolors[i * 2] = interpolatedColor;
+            vertexcolors[i * 2 + 1] = interpolatedColor;
+
+            uvOffset += interval;
+        }
+
+        TrailNodeInfo firstNodeInfo = trailNodes[0];
+        vertices[(length - 1) * 2] = firstNodeInfo.pt;
+        vertices[(length - 1) * 2 + 1] = firstNodeInfo.endpt;
+
+        uv[(length - 1) * 2] = new Vector2(0f, uvOffset);
+        uv[(length - 1) * 2 + 1] = new Vector2(1f, uvOffset);
+
+        normals[(length - 1) * 2] = new Vector3(0f, 0f, -1f);
+        normals[(length - 1) * 2 + 1] = new Vector3(0f, 0f, -1f);
+
+        Color lastNodeColor = new Color(color2.r, color2.g, color2.b, 0f);
+        vertexcolors[(length - 1) * 2] = lastNodeColor;
+        vertexcolors[(length - 1) * 2 + 1] = lastNodeColor;
+
+        mesh.vertices = vertices;
+        mesh.uv = uv;
+        mesh.normals = normals;
+        mesh.triangles = triangles;
+        mesh.colors = vertexcolors;
+
+        mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
+    }
+
+    public void Reset()
 	{
 		ClearTrailNodes();
 	}

@@ -577,7 +577,7 @@ namespace CodeStage.AntiCheat.Detectors
 							wfCamera.depth = 0f;
 							wfCamera.renderingPath = RenderingPath.Forward;
 							wfCamera.useOcclusionCulling = false;
-							wfCamera.hdr = false;
+							wfCamera.allowHDR = false;
 							wfCamera.targetTexture = renderTexture;
 							wfCamera.enabled = false;
 						}
