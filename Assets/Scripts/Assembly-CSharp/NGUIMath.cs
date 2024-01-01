@@ -713,9 +713,6 @@ public static class NGUIMath
 			num3++;
 			rect.topAnchor.absolute += num2;
 		}
-#if UNITY_EDITOR
-		NGUITools.SetDirty(rect);
-#endif
 		if (num3 != 0)
 		{
 			rect.UpdateAnchors();

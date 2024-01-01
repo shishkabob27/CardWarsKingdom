@@ -19,7 +19,7 @@ public class UIRootEditor : Editor
 
 		UIRoot.Scaling scaling = (UIRoot.Scaling)sp.intValue;
 
-		if (scaling == UIRoot.Scaling.Flexible)
+		if (scaling == UIRoot.Scaling.PixelPerfect)
 		{
 			NGUIEditorTools.DrawProperty("Minimum Height", serializedObject, "minimumHeight");
 			NGUIEditorTools.DrawProperty("Maximum Height", serializedObject, "maximumHeight");

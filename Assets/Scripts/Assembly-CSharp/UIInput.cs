@@ -1,7 +1,3 @@
-#if !UNITY_EDITOR && (UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_BLACKBERRY || UNITY_WINRT)
-#define MOBILE
-#endif
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -269,67 +265,61 @@ public class UIInput : MonoBehaviour
 	{
 		get
 		{
-#if MOBILE
-			if (mKeyboard != null && !inputShouldBeHidden) return value.Length;
-#endif
-            return isSelected ? mSelectionEnd : value.Length;
-        }
-        set
-        {
-            if (isSelected)
-            {
-#if MOBILE
-				if (mKeyboard != null && !inputShouldBeHidden) return;
-#endif
-                mSelectionEnd = value;
-                UpdateLabel();
-            }
-        }
-    }
+			if (mKeyboard != null && !inputShouldBeHidden)
+			{
+				return value.Length;
+			}
+			return (!isSelected) ? value.Length : mSelectionEnd;
+		}
+		set
+		{
+			if (isSelected && (mKeyboard == null || inputShouldBeHidden))
+			{
+				mSelectionEnd = value;
+				UpdateLabel();
+			}
+		}
+	}
 
 	public int selectionStart
 	{
 		get
 		{
-#if MOBILE
-			if (mKeyboard != null && !inputShouldBeHidden) return 0;
-#endif
-            return isSelected ? mSelectionStart : value.Length;
-        }
-        set
-        {
-            if (isSelected)
-            {
-#if MOBILE
-				if (mKeyboard != null && !inputShouldBeHidden) return;
-#endif
-                mSelectionStart = value;
-                UpdateLabel();
-            }
-        }
-    }
+			if (mKeyboard != null && !inputShouldBeHidden)
+			{
+				return 0;
+			}
+			return (!isSelected) ? value.Length : mSelectionStart;
+		}
+		set
+		{
+			if (isSelected && (mKeyboard == null || inputShouldBeHidden))
+			{
+				mSelectionStart = value;
+				UpdateLabel();
+			}
+		}
+	}
 
 	public int selectionEnd
 	{
 		get
 		{
-#if MOBILE
-			if (mKeyboard != null && !inputShouldBeHidden) return value.Length;
-#endif
-            return isSelected ? mSelectionEnd : value.Length;
-        }
-        set
-        {
-            if (isSelected)
-            {
-#if MOBILE
-				if (mKeyboard != null && !inputShouldBeHidden) return;
-#endif
-                mSelectionEnd = value;
-                UpdateLabel();
-            }
-        }
-    }
+			if (mKeyboard != null && !inputShouldBeHidden)
+			{
+				return value.Length;
+			}
+			return (!isSelected) ? value.Length : mSelectionEnd;
+		}
+		set
+		{
+			if (isSelected && (mKeyboard == null || inputShouldBeHidden))
+			{
+				mSelectionEnd = value;
+				UpdateLabel();
+			}
+		}
+	}
 
 	public UITexture caret
 	{
@@ -453,15 +443,13 @@ public class UIInput : MonoBehaviour
 		if (label != null && NGUITools.GetActive(this))
 		{
 			mValue = value;
-#if MOBILE
 			if (mKeyboard != null)
 			{
 				mWaitForKeyboard = false;
 				mKeyboard.active = false;
 				mKeyboard = null;
 			}
-#endif
-            if (string.IsNullOrEmpty(mValue))
+			if (string.IsNullOrEmpty(mValue))
 			{
 				label.text = mDefaultText;
 				label.color = mDefaultColor;
@@ -488,15 +476,15 @@ public class UIInput : MonoBehaviour
 		{
 			Init();
 		}
-#if MOBILE
-			// Wait for the keyboard to open. Apparently mKeyboard.active will return 'false' for a while in some cases.
-			if (mWaitForKeyboard)
+		if (mWaitForKeyboard)
+		{
+			if (mKeyboard != null && !mKeyboard.active)
 			{
-				if (mKeyboard != null && !mKeyboard.active) return;
-				mWaitForKeyboard = false;
+				return;
 			}
-#endif
-        if (mSelectMe != -1 && mSelectMe != Time.frameCount)
+			mWaitForKeyboard = false;
+		}
+		if (mSelectMe != -1 && mSelectMe != Time.frameCount)
 		{
 			mSelectMe = -1;
 			mSelectionStart = 0;

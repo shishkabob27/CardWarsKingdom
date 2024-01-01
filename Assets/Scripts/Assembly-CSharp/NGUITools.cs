@@ -599,12 +599,12 @@ public static class NGUITools
 			if (advanced3D)
 			{
 				gameObject.name = "UI Root (3D)";
-				uIRoot.scalingStyle = UIRoot.Scaling.Constrained;
+				uIRoot.scalingStyle = UIRoot.Scaling.FixedSize;
 			}
 			else
 			{
 				gameObject.name = "UI Root";
-				uIRoot.scalingStyle = UIRoot.Scaling.Flexible;
+				uIRoot.scalingStyle = UIRoot.Scaling.PixelPerfect;
 			}
 		}
 		UIPanel uIPanel = uIRoot.GetComponentInChildren<UIPanel>();
