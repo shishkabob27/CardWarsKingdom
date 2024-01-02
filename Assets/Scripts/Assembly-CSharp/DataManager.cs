@@ -224,15 +224,27 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 	{
 		foreach (object item in jlist)
 		{
-			Dictionary<string, object> dict = (Dictionary<string, object>)item;
-			T val = (T)Activator.CreateInstance(typeof(T));
-			val.Populate(dict);
-			if (val.ID != string.Empty && !Database.ContainsKey(val.ID))
+			if (item == null)
 			{
-				Database.Add(val.ID, val);
+				Debug.LogError("Item was Null");
+                continue;
+            }
+			if (item is Dictionary<string, object>)
+			{
+				Dictionary<string, object> dict = (Dictionary<string, object>)item;
+				T val = (T)Activator.CreateInstance(typeof(T));
+				val.Populate(dict);
+				if (val.ID != string.Empty && !Database.ContainsKey(val.ID))
+				{
+					Database.Add(val.ID, val);
+				}
+				DatabaseArray.Add(val);
 			}
-			DatabaseArray.Add(val);
-		}
+			else{
+                Debug.LogError("Unexpected data type: " + item.GetType().FullName);
+            }
+        }
+			
 	}
 
 	protected virtual void PostLoad()
