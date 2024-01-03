@@ -130,6 +130,14 @@ public class SQServer
 		tfServer.GetToJSON(url, callback);
 	}
 
+	public void GetBlueprint(string blueprint, string blueprintText, TFServer.JsonResponseHandler callback)
+	{
+		Dictionary<string, object> dictionary = new Dictionary<string, object>();
+		dictionary["filename"] = blueprint;
+		dictionary["fileb64"] = blueprintText;
+		tfServer.PostToJSON(SQSettings.CDN_URL + "blueprint", dictionary, callback);
+	}
+
 	public void GetPurchases(string playerId, TFServer.JsonResponseHandler callback)
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();

@@ -1,3 +1,4 @@
+using System.Buffers.Binary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Text;
 using Ionic.Zlib;
 using MiniJSON;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class SQContentPatcher : EventDispatcher<string>
 {
@@ -119,45 +121,49 @@ public class SQContentPatcher : EventDispatcher<string>
 		}
 	}
 
-	public void ReadManifests()
+	public async Task ReadManifests()
 	{
 		string text = TFUtils.GetPersistentAssetsPath() + Path.DirectorySeparatorChar + "manifest.json";
 		string blueprintpath = TFUtils.GetStreamingAssetsPath() + Path.DirectorySeparatorChar + "Blueprints" + Path.DirectorySeparatorChar;
 		bool bpvalid = true;
 		string[] files = Directory.GetFiles(blueprintpath, "*.*", SearchOption.TopDirectoryOnly);
+		var tasks = new List<Task>();
 		foreach (string text2 in files)
 		{
 			if (!text2.EndsWith(".json")) continue;
 			string filetext = File.ReadAllText(text2);
-			//send request
-			WWW wWW = null;
-			WWWForm form = new WWWForm();
-			form.AddField("filename", Path.GetFileName(text2));
-			form.AddField("fileb64", filetext);
-			wWW = new WWW(SQSettings.CDN_URL + "blueprint", form);
-			while (!wWW.isDone)
+			TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+
+			TFServer.JsonResponseHandler callback2 = delegate(Dictionary<string, object> data, HttpStatusCode status)
 			{
-			}
-			//if response is ok
-			if ("OK" == wWW.text && wWW.error == null)
-			{
-				continue;
-			}
-			else
-			{
-				bpvalid = false;
-				Debug.LogError(Path.GetFileName(text2) + " ERROR: " + wWW.text + " " + wWW.error);
-				//show error
-				Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error: " + wWW.text + " Please verify game files.", Application.Quit);;
-				break;
-			}
+				if (status != HttpStatusCode.OK)
+				{
+					bpvalid = false;
+					Debug.LogError(Path.GetFileName(text2) + " ERROR: " + status.ToString());
+					Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error! " + " Please verify game files.", Application.Quit);
+				}
+				tcs.SetResult(true);
+			};
+
+			tasks.Add(tcs.Task);
+
+			SessionManager.Instance.theSession.Server.GetBlueprint(Path.GetFileName(text2), filetext, callback2);
+
+			await tcs.Task;
+			
+			if (!bpvalid) break;
 		}
-		if (bpvalid){
+
+		await Task.WhenAll(tasks);
+
+		if (bpvalid)
+		{
 			Debug.Log("Blueprints valid");
 			FireEvent("patchingNotNecessary");
 			PatchingDone();
 		}
 	}
+
 
 	private bool ValidateDownloadedManifests()
 	{
