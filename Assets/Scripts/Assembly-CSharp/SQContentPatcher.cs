@@ -226,7 +226,7 @@ public class SQContentPatcher : EventDispatcher<string>
 			{
 				Debug.LogError("GetBlueprint ERROR: " + status.ToString());
 				Debug.Log("MD5 hashes for all files are " + allmd5hashes);
-				Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error! MD5 does not match manifest. Please verify game files.", Application.Quit);
+				Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error! MD5 does not match manifest. Your game may be out of date.", Application.Quit);
 			}
 			else{
 				Debug.Log("All Blueprints are valid!");
