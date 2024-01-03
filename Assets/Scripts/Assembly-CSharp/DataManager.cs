@@ -173,7 +173,7 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 				string empty2 = string.Empty;
 				if (!appliedFilePath.Contains("://"))
 				{
-					empty = ((!appliedFilePath.EndsWith("asset_bundle_settings.json")) ? RijndaelCrypto.DecryptBase64(appliedFilePath, "210429qbmmfzDb" + partone + partthree) : File.ReadAllText(appliedFilePath));
+					empty = File.ReadAllText(appliedFilePath);
 				}
 				else
 				{

@@ -122,64 +122,41 @@ public class SQContentPatcher : EventDispatcher<string>
 	public void ReadManifests()
 	{
 		string text = TFUtils.GetPersistentAssetsPath() + Path.DirectorySeparatorChar + "manifest.json";
-		string filename = TFUtils.GetStreamingAssetsPath() + Path.DirectorySeparatorChar + "manifest.json";
-		Manifest manifest = null;
-		Manifest manifest2 = null;
-		Debug.Log("Reading bundled manifest");
-		try
+		string blueprintpath = TFUtils.GetStreamingAssetsPath() + Path.DirectorySeparatorChar + "Blueprints" + Path.DirectorySeparatorChar;
+		bool bpvalid = true;
+		string[] files = Directory.GetFiles(blueprintpath, "*.*", SearchOption.TopDirectoryOnly);
+		foreach (string text2 in files)
 		{
-			string jsonLocalContent = TFUtils.GetJsonLocalContent(filename);
-			Dictionary<string, object> dict = (Dictionary<string, object>)Json.Deserialize(jsonLocalContent);
-			manifest = ReadManifest(dict);
-		}
-		catch (IOException)
-		{
-			manifest = ReadManifest(null);
-		}
-		Debug.Log("Looking for downloaded manifest at " + text);
-		if (File.Exists(text))
-		{
-			Debug.Log("Reading downloaded manifest");
-			string json = File.ReadAllText(text);
-			Dictionary<string, object> dict2 = (Dictionary<string, object>)Json.Deserialize(json);
-			manifest2 = ReadManifest(dict2);
-		}
-		else
-		{
-			Debug.Log("No downloaded manifest");
-		}
-		bool flag = true;
-		if (manifest2 != null)
-		{
-			Debug.Log(string.Format("Bundled content is running {0}, Downloaded content is running {1}", manifest.Version, manifest2.Version));
-			flag = manifest.Version >= manifest2.Version;
-			if (flag)
+			if (!text2.EndsWith(".json")) continue;
+			string filetext = File.ReadAllText(text2);
+			//send request
+			WWW wWW = null;
+			WWWForm form = new WWWForm();
+			form.AddField("filename", Path.GetFileName(text2));
+			form.AddField("fileb64", filetext);
+			wWW = new WWW(SQSettings.CDN_URL + "blueprint", form);
+			while (!wWW.isDone)
 			{
-				Debug.Log("Bundled version is the same or greater than the downloaded version. Ignoring outdated downloaded content.");
+			}
+			//if response is ok
+			if ("OK" == wWW.text && wWW.error == null)
+			{
+				continue;
+			}
+			else
+			{
+				bpvalid = false;
+				Debug.LogError(Path.GetFileName(text2) + " ERROR: " + wWW.text + " " + wWW.error);
+				//show error
+				Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error: " + wWW.text + " Please verify game files.", Application.Quit);;
+				break;
 			}
 		}
-		string path;
-		if (flag)
-		{
-			if (Directory.Exists(TFUtils.GetPersistentAssetsPath()))
-			{
-				Debug.Log("Erasing outdated downloaded content.");
-				Directory.Delete(TFUtils.GetPersistentAssetsPath(), true);
-			}
-			_localManifest = manifest;
-			path = TFUtils.GetStreamingAssetsPath() + Path.DirectorySeparatorChar + "lastManifestEtag";
+		if (bpvalid){
+			Debug.Log("Blueprints valid");
+			FireEvent("patchingNotNecessary");
+			PatchingDone();
 		}
-		else
-		{
-			_localManifest = manifest2;
-			path = TFUtils.GetPersistentAssetsPath() + Path.DirectorySeparatorChar + "lastManifestEtag";
-		}
-		string currentETag = null;
-		if (File.Exists(path))
-		{
-			currentETag = File.ReadAllText(path);
-		}
-		FetchRemoteManifest(currentETag);
 	}
 
 	private bool ValidateDownloadedManifests()
