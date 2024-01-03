@@ -121,11 +121,11 @@ public class SQContentPatcher : EventDispatcher<string>
 		}
 	}
 
-	public async Task ReadManifests()
+	public void ReadManifests()
 	{
+		string allmd5hashes = "";
 		Debug.Log("Verifying blueprints...");
 		string blueprintpath = Path.Combine(Application.streamingAssetsPath, "Blueprints");
-		bool bpvalid = true;
 		List<string> files = new List<string>
 		{
 			Path.Combine(blueprintpath, "db_Achievements.json"),
@@ -201,7 +201,6 @@ public class SQContentPatcher : EventDispatcher<string>
 			Path.Combine(blueprintpath, "db_ZH_PVPSeasons.json"),
 			Path.Combine(blueprintpath, "db_ZH_SpecialSales.json")
 		};
-		var tasks = new List<Task>();
 		foreach (string text2 in files)
 		{
 			string filetext = string.Empty;
@@ -216,35 +215,26 @@ public class SQContentPatcher : EventDispatcher<string>
 			else{
 				filetext = File.ReadAllText(text2);
 			}
-			TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-
-			TFServer.JsonResponseHandler callback2 = delegate(Dictionary<string, object> data, HttpStatusCode status)
-			{
-				if (status != HttpStatusCode.OK)
-				{
-					bpvalid = false;
-					Debug.LogError(Path.GetFileName(text2) + " ERROR: " + status.ToString());
-					Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error! " + Path.GetFileName(text2) + " does not match manifest. Please verify game files.", Application.Quit);
-				}
-				tcs.SetResult(true);
-			};
-
-			tasks.Add(tcs.Task);
-
-			SessionManager.Instance.theSession.Server.GetBlueprint(Path.GetFileName(text2), filetext, callback2);
-
-			await tcs.Task;
-			if (!bpvalid) break;
+			filetext = filetext.Replace("\r", string.Empty).Replace("\n", string.Empty).Replace("\t", string.Empty).Replace(" ", string.Empty);
+			string md5hash = CalculateMD5Hash(filetext);
+			allmd5hashes += md5hash;
 		}
 
-		await Task.WhenAll(tasks);
-
-		if (bpvalid)
+		TFServer.JsonResponseHandler callback2 = delegate(Dictionary<string, object> data, HttpStatusCode status)
 		{
-			Debug.Log("All Blueprints are valid!");
-			FireEvent("patchingNotNecessary");
-			PatchingDone();
-		}
+			if (status != HttpStatusCode.OK)
+			{
+				Debug.LogError("GetBlueprint ERROR: " + status.ToString());
+				Debug.Log("MD5 hashes for all files are " + allmd5hashes);
+				Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error! MD5 does not match manifest. Please verify game files.", Application.Quit);
+			}
+			else{
+				Debug.Log("All Blueprints are valid!");
+				FireEvent("patchingNotNecessary");
+				PatchingDone();
+			}
+		};
+		SessionManager.Instance.theSession.Server.GetBlueprint(allmd5hashes, callback2);
 	}
 
 

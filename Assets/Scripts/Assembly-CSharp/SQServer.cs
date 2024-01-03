@@ -130,11 +130,10 @@ public class SQServer
 		tfServer.GetToJSON(url, callback);
 	}
 
-	public void GetBlueprint(string blueprint, string blueprintText, TFServer.JsonResponseHandler callback)
+	public void GetBlueprint(string md5hash, TFServer.JsonResponseHandler callback)
 	{
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary["filename"] = blueprint;
-		dictionary["fileb64"] = blueprintText;
+		dictionary["hash"] = md5hash;
 		tfServer.PostToJSON(SQSettings.CDN_URL + "blueprint", dictionary, callback);
 	}
 
