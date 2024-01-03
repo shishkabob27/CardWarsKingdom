@@ -228,24 +228,32 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 			if (item == null)
 			{
 				Debug.LogError("Item was Null");
-                continue;
-            }
-			if (item is Dictionary<string, object>)
+				continue;
+			}
+			if (item.GetType() == typeof(Dictionary<string, object>))
 			{
 				Dictionary<string, object> dict = (Dictionary<string, object>)item;
 				T val = (T)Activator.CreateInstance(typeof(T));
-				val.Populate(dict);
-				if (val.ID != string.Empty && !Database.ContainsKey(val.ID))
+				
+				try
 				{
-					Database.Add(val.ID, val);
+					val.Populate(dict);
+					if (val.ID != string.Empty && !Database.ContainsKey(val.ID))
+					{
+						Database.Add(val.ID, val);
+					}
+					DatabaseArray.Add(val);
 				}
-				DatabaseArray.Add(val);
+				catch (InvalidCastException ice)
+				{
+					Debug.LogError($"InvalidCastException: {ice.Message}. Failed to populate object from dictionary: {dict}");
+				}
 			}
-			else{
-                Debug.LogError("Unexpected data type: " + item.GetType().FullName);
-            }
-        }
-			
+			else
+			{
+				Debug.LogError($"Unexpected data type encountered: {item.GetType().FullName}. Skipping this item.");
+			}
+		}
 	}
 
 	protected virtual void PostLoad()
