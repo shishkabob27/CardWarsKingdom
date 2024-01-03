@@ -61,6 +61,7 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 		{
 			return;
 		}
+		Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "An error occured while loading data. View log for details.", Application.Quit);
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.AppendLine(ex.ToString());
 		for (Exception innerException = ex.InnerException; innerException != null; innerException = innerException.InnerException)
@@ -72,6 +73,7 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 			stringBuilder.AppendLine("****** Extra Data ******");
 			stringBuilder.AppendLine(string.Format("[{0}] = {1}", key, ex.Data[key]));
 		}
+		Debug.LogError(stringBuilder.ToString());
 	}
 
 	private void CheckAndThrowExeptions()
