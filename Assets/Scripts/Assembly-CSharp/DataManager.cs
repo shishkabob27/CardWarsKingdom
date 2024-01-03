@@ -177,8 +177,7 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 				}
 				else
 				{
-					empty2 = ((wwwText == null) ? TFUtils.getJsonTextFromWWW(appliedFilePath) : wwwText);
-					empty = ((!appliedFilePath.EndsWith("asset_bundle_settings.json")) ? RijndaelCrypto.DecryptBase64Text(empty2, "210429qbmmfzDb" + partone + partthree) : empty2);
+					empty = ((wwwText == null) ? TFUtils.getJsonTextFromWWW(appliedFilePath) : wwwText);
 				}
 				try
 				{

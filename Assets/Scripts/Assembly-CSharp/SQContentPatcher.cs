@@ -123,15 +123,99 @@ public class SQContentPatcher : EventDispatcher<string>
 
 	public async Task ReadManifests()
 	{
-		string text = TFUtils.GetPersistentAssetsPath() + Path.DirectorySeparatorChar + "manifest.json";
-		string blueprintpath = TFUtils.GetStreamingAssetsPath() + Path.DirectorySeparatorChar + "Blueprints" + Path.DirectorySeparatorChar;
+		Debug.Log("Verifying blueprints...");
+		string blueprintpath = Path.Combine(Application.streamingAssetsPath, "Blueprints");
 		bool bpvalid = true;
-		string[] files = Directory.GetFiles(blueprintpath, "*.*", SearchOption.TopDirectoryOnly);
+		List<string> files = new List<string>
+		{
+			Path.Combine(blueprintpath, "db_Achievements.json"),
+			Path.Combine(blueprintpath, "db_ActionCards.json"),
+			Path.Combine(blueprintpath, "db_AssetBundles.json"),
+			Path.Combine(blueprintpath, "db_Buildings.json"),
+			Path.Combine(blueprintpath, "db_CalendarGift.json"),
+			Path.Combine(blueprintpath, "db_CardBacks.json"),
+			Path.Combine(blueprintpath, "db_CardPacks.json"),
+			Path.Combine(blueprintpath, "db_ChatCountryBlacklist.json"),
+			Path.Combine(blueprintpath, "db_CreaturePassives.json"),
+			Path.Combine(blueprintpath, "db_Creatures.json"),
+			Path.Combine(blueprintpath, "db_CreatureStarRatings.json"),
+			Path.Combine(blueprintpath, "db_CurrencyPackages.json"),
+			Path.Combine(blueprintpath, "db_CustomAI.json"),
+			Path.Combine(blueprintpath, "db_DailyGiftRouletteWeights.json"),
+			Path.Combine(blueprintpath, "db_EventBanners.json"),
+			Path.Combine(blueprintpath, "db_EventTemplate.json"),
+			Path.Combine(blueprintpath, "db_EvoMaterials.json"),
+			Path.Combine(blueprintpath, "db_ExpeditionDifficulty.json"),
+			Path.Combine(blueprintpath, "db_ExpeditionLootTables.json"),
+			Path.Combine(blueprintpath, "db_ExpeditionNames.json"),
+			Path.Combine(blueprintpath, "db_ExpeditionParams.json"),
+			Path.Combine(blueprintpath, "db_Expeditions.json"),
+			Path.Combine(blueprintpath, "db_ExpeditionSlotCosts.json"),
+			Path.Combine(blueprintpath, "db_ExpeditionTypes.json"),
+			Path.Combine(blueprintpath, "db_GachaEvents.json"),
+			Path.Combine(blueprintpath, "db_GachaSlots.json"),
+			Path.Combine(blueprintpath, "db_GachaWeights.json"),
+			Path.Combine(blueprintpath, "db_GameEventFX.json"),
+			Path.Combine(blueprintpath, "db_GemEffects.json"),
+			Path.Combine(blueprintpath, "db_Gems.json"),
+			Path.Combine(blueprintpath, "db_Help.json"),
+			Path.Combine(blueprintpath, "db_InviteRewards.json"),
+			Path.Combine(blueprintpath, "db_KeyWords.json"),
+			Path.Combine(blueprintpath, "db_Leaders.json"),
+			Path.Combine(blueprintpath, "db_LeaderVFX.json"),
+			Path.Combine(blueprintpath, "db_Leagues.json"),
+			Path.Combine(blueprintpath, "db_MiscParams.json"),
+			Path.Combine(blueprintpath, "db_Missions.json"),
+			Path.Combine(blueprintpath, "db_NewsMail.json"),
+			Path.Combine(blueprintpath, "db_NewsMail_ZH.json"),
+			Path.Combine(blueprintpath, "db_Notifications.json"),
+			Path.Combine(blueprintpath, "db_PlayerBadges.json"),
+			Path.Combine(blueprintpath, "db_PlayerPortraits.json"),
+			Path.Combine(blueprintpath, "db_PlayerRank.json"),
+			Path.Combine(blueprintpath, "db_PlayerTitles.json"),
+			Path.Combine(blueprintpath, "db_Profanity.json"),
+			Path.Combine(blueprintpath, "db_PVPRanks.json"),
+			Path.Combine(blueprintpath, "db_PVPSeasons.json"),
+			Path.Combine(blueprintpath, "db_Quest.json"),
+			Path.Combine(blueprintpath, "db_QuestLoadouts.json"),
+			Path.Combine(blueprintpath, "db_QuickChat.json"),
+			Path.Combine(blueprintpath, "db_RandomDungeonFloors.json"),
+			Path.Combine(blueprintpath, "db_RandomDungeonRewards.json"),
+			Path.Combine(blueprintpath, "db_Schedule.json"),
+			Path.Combine(blueprintpath, "db_SpecialSales.json"),
+			Path.Combine(blueprintpath, "db_SpeedUps.json"),
+			Path.Combine(blueprintpath, "db_StatusEffects.json"),
+			Path.Combine(blueprintpath, "db_TapMinigame.json"),
+			Path.Combine(blueprintpath, "db_Tips.json"),
+			Path.Combine(blueprintpath, "db_TownBuildings.json"),
+			Path.Combine(blueprintpath, "db_TownSchedule.json"),
+			Path.Combine(blueprintpath, "db_TutorialBoard.json"),
+			Path.Combine(blueprintpath, "db_TutorialCardOverrides.json"),
+			Path.Combine(blueprintpath, "db_Tutorials.json"),
+			Path.Combine(blueprintpath, "db_UpsightMilestone.json"),
+			Path.Combine(blueprintpath, "db_VirtualGoods.json"),
+			Path.Combine(blueprintpath, "db_XPMaterials.json"),
+			Path.Combine(blueprintpath, "db_XPTables.json"),
+			Path.Combine(blueprintpath, "db_ZH_GachaEvents.json"),
+			Path.Combine(blueprintpath, "db_ZH_Leagues.json"),
+			Path.Combine(blueprintpath, "db_ZH_PVPSeasons.json"),
+			Path.Combine(blueprintpath, "db_ZH_SpecialSales.json")
+		};
 		var tasks = new List<Task>();
 		foreach (string text2 in files)
 		{
-			if (!text2.EndsWith(".json")) continue;
-			string filetext = File.ReadAllText(text2);
+			string filetext = string.Empty;
+			if (text2.Contains("://"))
+			{
+				WWW www = new WWW(text2);
+				while (!www.isDone)
+				{
+				}
+				filetext = www.text;
+			}
+			else{
+				filetext = File.ReadAllText(text2);
+			}
 			TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
 			TFServer.JsonResponseHandler callback2 = delegate(Dictionary<string, object> data, HttpStatusCode status)
@@ -140,7 +224,7 @@ public class SQContentPatcher : EventDispatcher<string>
 				{
 					bpvalid = false;
 					Debug.LogError(Path.GetFileName(text2) + " ERROR: " + status.ToString());
-					Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error! " + " Please verify game files.", Application.Quit);
+					Singleton<SimplePopupController>.Instance.ShowMessage(string.Empty, "Blueprint Error! " + Path.GetFileName(text2) + " does not match manifest. Please verify game files.", Application.Quit);
 				}
 				tcs.SetResult(true);
 			};
@@ -150,7 +234,6 @@ public class SQContentPatcher : EventDispatcher<string>
 			SessionManager.Instance.theSession.Server.GetBlueprint(Path.GetFileName(text2), filetext, callback2);
 
 			await tcs.Task;
-			
 			if (!bpvalid) break;
 		}
 
@@ -158,7 +241,7 @@ public class SQContentPatcher : EventDispatcher<string>
 
 		if (bpvalid)
 		{
-			Debug.Log("Blueprints valid");
+			Debug.Log("All Blueprints are valid!");
 			FireEvent("patchingNotNecessary");
 			PatchingDone();
 		}
