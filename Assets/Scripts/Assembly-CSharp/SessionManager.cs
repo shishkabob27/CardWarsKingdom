@@ -658,7 +658,7 @@ public class SessionManager : Singleton<SessionManager>
 
 	public void OnApplicationFocus(bool focus)
 	{
-		//OnApplicationPauseFromFocus(!focus);
+		OnApplicationPauseFromFocus(!focus);
 	}
 
 	public void OnApplicationPauseFromFocus(bool paused)
