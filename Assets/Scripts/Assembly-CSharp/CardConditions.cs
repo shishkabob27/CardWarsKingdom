@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 public class CardConditions
 {
@@ -131,7 +132,7 @@ public class CardConditions
 				return false;
 			}
 			AmountComparison amountComparison = (AmountComparison)(int)Enum.Parse(typeof(AmountComparison), GetParam(data.Parameters, 1));
-			float num = Convert.ToSingle(GetParam(data.Parameters, 2));
+			float num = Convert.ToSingle(GetParam(data.Parameters, 2), CultureInfo.InvariantCulture);
 			return statusState.GetStackedAmount() >= num;
 		}
 		return creature.StatusEffects.Contains((StatusState m) => m.Data.ID == statusName);

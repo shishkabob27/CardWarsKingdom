@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -393,7 +394,7 @@ public class TFUtils
 			object obj = d[key];
 			if (!(obj is string) || ((string)obj).Length > 0)
 			{
-				result = (int)Math.Floor(Convert.ToSingle(obj) + 0.5f);
+				result = (int)Math.Floor(Convert.ToSingle(obj, CultureInfo.InvariantCulture) + 0.5f);
 			}
 		}
 		return result;
@@ -401,7 +402,7 @@ public class TFUtils
 
 	private static int LoadIntHelper(Dictionary<string, object> d, string key)
 	{
-		return (int)Math.Floor(Convert.ToSingle(d[key]) + 0.5f);
+		return (int)Math.Floor(Convert.ToSingle(d[key], CultureInfo.InvariantCulture) + 0.5f);
 	}
 
 	public static uint LoadUint(Dictionary<string, object> data, string key)
@@ -415,7 +416,7 @@ public class TFUtils
 		if (d.ContainsKey(key))
 		{
 			object value = d[key];
-			result = Convert.ToUInt32(value);
+			result = Convert.ToUInt32(value, CultureInfo.InvariantCulture);
 		}
 		return result;
 	}
@@ -431,7 +432,7 @@ public class TFUtils
 
 	private static uint LoadUintHelper(Dictionary<string, object> data, string key)
 	{
-		return Convert.ToUInt32(data[key]);
+		return Convert.ToUInt32(data[key], CultureInfo.InvariantCulture);
 	}
 
 	public static float? TryLoadNullableFloat(Dictionary<string, object> d, string key)
@@ -439,7 +440,7 @@ public class TFUtils
 		//Discarded unreachable code: IL_0017, IL_002c
 		try
 		{
-			return Convert.ToSingle(d[key]);
+			return Convert.ToSingle(d[key], CultureInfo.InvariantCulture);
 		}
 		catch
 		{
@@ -458,7 +459,7 @@ public class TFUtils
 
 	public static float LoadFloat(Dictionary<string, object> d, string key)
 	{
-		return Convert.ToSingle(d[key]);
+		return Convert.ToSingle(d[key], CultureInfo.InvariantCulture);
 	}
 
 	public static float LoadFloat(Dictionary<string, object> d, string key, float defaultValue)
@@ -469,7 +470,7 @@ public class TFUtils
 			object obj = d[key];
 			if (!(obj is string) || ((string)obj).Length > 0)
 			{
-				result = Convert.ToSingle(obj);
+				result = Convert.ToSingle(obj, CultureInfo.InvariantCulture);
 			}
 		}
 		return result;

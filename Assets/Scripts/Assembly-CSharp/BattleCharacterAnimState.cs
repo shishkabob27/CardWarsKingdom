@@ -399,7 +399,7 @@ public class BattleCharacterAnimState : MonoBehaviour
 			{
 				yield return null;
 			}
-			float startTime = float.Parse((string)data[0]["time"]);
+			float startTime = float.Parse((string)data[0]["time"], CultureInfo.InvariantCulture);
 			float prevTime = startTime;
 			mCurrentFacialName = mCharacterFaceAnimPrefx + "_" + animName;
 			Dictionary<string, object>[] array = data;
