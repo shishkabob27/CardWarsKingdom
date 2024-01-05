@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class LeagueData : ILoadableData
@@ -213,8 +214,8 @@ public class LeagueData : ILoadableData
 				{
 					string s = TFUtils.LoadString(dict, "EndTime" + num, null);
 					StartEndTime startEndTime = new StartEndTime();
-					startEndTime.StartTime = DateTime.Parse(text4);
-					startEndTime.EndTime = DateTime.Parse(s);
+					startEndTime.StartTime = DateTime.ParseExact(text4, "M/d/yyyy", CultureInfo.InvariantCulture);
+					startEndTime.EndTime = DateTime.ParseExact(s, "M/d/yyyy", CultureInfo.InvariantCulture);
 					_AvailabilityTimes.Add(startEndTime);
 					_AvailabilityType = QuestAvailabilityType.Date;
 				}
@@ -251,8 +252,8 @@ public class LeagueData : ILoadableData
 			}
 			else
 			{
-				questBonus.StartDate = DateTime.Parse(text6);
-				questBonus.EndDate = DateTime.Parse(text7);
+				questBonus.StartDate = DateTime.ParseExact(text6, "M/d/yyyy", CultureInfo.InvariantCulture);
+				questBonus.EndDate = DateTime.ParseExact(text7, "M/d/yyyy", CultureInfo.InvariantCulture);
 			}
 			_QuestBonuses.Add(questBonus);
 			num2++;

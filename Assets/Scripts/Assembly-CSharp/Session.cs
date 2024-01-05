@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 using System.Threading;
 using Allies;
@@ -576,7 +577,7 @@ public class Session
 			if (status == HttpStatusCode.OK)
 			{
 				Dictionary<string, object> dictionary = (Dictionary<string, object>)data["data"];
-				DateTime serverTime = DateTime.Parse(dictionary["server_time"].ToString());
+				DateTime serverTime = DateTime.ParseExact(dictionary["server_time"].ToString(), "M/d/yyyy", CultureInfo.InvariantCulture);
 				TFUtils.UpdateServerTime(serverTime);
 			}
 		};

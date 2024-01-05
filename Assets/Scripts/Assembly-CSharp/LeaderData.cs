@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using CodeStage.AntiCheat.ObscuredTypes;
 
 public class LeaderData : ILoadableData
@@ -417,8 +418,8 @@ public class LeaderData : ILoadableData
 				break;
 			}
 			StartEndDate startEndDate = new StartEndDate();
-			startEndDate.StartDate = DateTime.Parse(text3);
-			startEndDate.EndDate = DateTime.Parse(text4);
+			startEndDate.StartDate = DateTime.ParseExact(text3, "M/d/yyyy", CultureInfo.InvariantCulture);
+			startEndDate.EndDate = DateTime.ParseExact(text4, "M/d/yyyy", CultureInfo.InvariantCulture);
 			AvailableDates.Add(startEndDate);
 			num++;
 		}

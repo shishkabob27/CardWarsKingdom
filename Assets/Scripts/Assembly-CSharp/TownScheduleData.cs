@@ -45,7 +45,7 @@ public class TownScheduleData : ILoadableData
 
 	public void Populate(Dictionary<string, object> dict)
 	{
-		StartDate = DateTime.ParseExact(TFUtils.LoadString(dict, "StartDate", string.Empty), "M/d", CultureInfo.GetCultureInfo("en-US")).DayOfYear;
+		StartDate = DateTime.ParseExact(TFUtils.LoadString(dict, "StartDate", string.Empty), "M/d", CultureInfo.InvariantCulture).DayOfYear;
 		TownPrefab = TFUtils.LoadString(dict, "TownPrefab", string.Empty);
 		BannerSprite = TFUtils.LoadString(dict, "BannerSprite", string.Empty);
 		BadgeColor = TFUtils.LoadString(dict, "BadgeColor", string.Empty).ToColor();

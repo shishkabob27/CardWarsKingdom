@@ -86,8 +86,8 @@ public class GachaSlotData : ILoadableData
 				ShowDates = new List<StartEndDate>();
 			}
 			StartEndDate startEndDate = new StartEndDate();
-			startEndDate.StartDate = DateTime.ParseExact(text4, "M/d/yyyy", CultureInfo.GetCultureInfo("en-US"));
-			startEndDate.EndDate = DateTime.ParseExact(text5, "M/d/yyyy", CultureInfo.GetCultureInfo("en-US"));
+			startEndDate.StartDate = DateTime.ParseExact(text4, "M/d/yyyy", CultureInfo.InvariantCulture);
+			startEndDate.EndDate = DateTime.ParseExact(text5, "M/d/yyyy", CultureInfo.InvariantCulture);
 			ShowDates.Add(startEndDate);
 			num++;
 		}

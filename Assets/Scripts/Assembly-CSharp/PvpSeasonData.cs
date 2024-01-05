@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 public class PvpSeasonData : ILoadableData
 {
@@ -34,7 +35,7 @@ public class PvpSeasonData : ILoadableData
 	public void Populate(Dictionary<string, object> dict)
 	{
 		ID = TFUtils.LoadString(dict, "Season", string.Empty);
-		EndDate = DateTime.Parse(TFUtils.LoadString(dict, "EndDate", string.Empty));
+		EndDate = DateTime.ParseExact(TFUtils.LoadString(dict, "EndDate", string.Empty), "M/d/yyyy", CultureInfo.InvariantCulture);
 		int count = PvpRankDataManager.Instance.GetDatabase().Count;
 		mRankRewards = new List<RankRewards>(count);
 		for (int i = 0; i < count; i++)

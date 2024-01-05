@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 public class SpecialSaleData : ILoadableData
 {
@@ -79,7 +80,7 @@ public class SpecialSaleData : ILoadableData
 		string text = TFUtils.LoadString(dict, "StartDate", null);
 		if (text != null)
 		{
-			StartDate = DateTime.Parse(text);
+			StartDate = DateTime.ParseExact(text, "M/d/yyyy", CultureInfo.InvariantCulture);
 		}
 		else
 		{
@@ -88,7 +89,7 @@ public class SpecialSaleData : ILoadableData
 		string text2 = TFUtils.LoadString(dict, "EndDate", null);
 		if (text2 != null)
 		{
-			EndDate = DateTime.Parse(text2);
+			EndDate = DateTime.ParseExact(text2, "M/d/yyyy", CultureInfo.InvariantCulture);
 		}
 		else
 		{

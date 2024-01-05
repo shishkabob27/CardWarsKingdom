@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using DarkTonic.MasterAudio;
@@ -412,7 +413,7 @@ public class BattleCharacterAnimState : MonoBehaviour
 				GameObject targetMesh = FindInChildren(childName: controller.Replace("CNT_", "M_"), obj: base.gameObject);
 				if (targetMesh != null)
 				{
-					float time = float.Parse((string)dt["time"]) * 2f - prevTime;
+					float time = float.Parse((string)dt["time"], CultureInfo.InvariantCulture) * 2f - prevTime;
 					yield return new WaitForSeconds(time);
 					float num;
 					totalTime = (num = totalTime + time);
@@ -422,8 +423,8 @@ public class BattleCharacterAnimState : MonoBehaviour
 						startAnimType = mCurrentAnimType;
 					}
 					mCurrentFacialFrame = prevTime.ToString();
-					float x = float.Parse((string)dt["x"]);
-					float y = float.Parse((string)dt["y"]);
+					float x = float.Parse((string)dt["x"], CultureInfo.InvariantCulture);
+					float y = float.Parse((string)dt["y"], CultureInfo.InvariantCulture);
 					Renderer targetRenderer = targetMesh.GetComponent<Renderer>();
 					targetRenderer.material.SetTextureOffset("_MainTex", new Vector2(x, y));
 				}
@@ -468,8 +469,8 @@ public class BattleCharacterAnimState : MonoBehaviour
 			if (text == "CNT_EYES" && !flag)
 			{
 				GameObject gameObject = FindInChildren(base.gameObject, "M_EYES");
-				float x = float.Parse((string)dictionary["x"]);
-				float y = float.Parse((string)dictionary["y"]);
+				float x = float.Parse((string)dictionary["x"], CultureInfo.InvariantCulture);
+				float y = float.Parse((string)dictionary["y"], CultureInfo.InvariantCulture);
 				Renderer component = gameObject.GetComponent<Renderer>();
 				component.material.SetTextureOffset("_MainTex", new Vector2(x, y));
 				flag = true;
@@ -477,8 +478,8 @@ public class BattleCharacterAnimState : MonoBehaviour
 			else if (text == "CNT_MOUTH" && !flag2)
 			{
 				GameObject gameObject2 = FindInChildren(base.gameObject, "M_MOUTH");
-				float x2 = float.Parse((string)dictionary["x"]);
-				float y2 = float.Parse((string)dictionary["y"]);
+				float x2 = float.Parse((string)dictionary["x"], CultureInfo.InvariantCulture);
+				float y2 = float.Parse((string)dictionary["y"], CultureInfo.InvariantCulture);
 				Renderer component2 = gameObject2.GetComponent<Renderer>();
 				component2.material.SetTextureOffset("_MainTex", new Vector2(x2, y2));
 				flag2 = true;

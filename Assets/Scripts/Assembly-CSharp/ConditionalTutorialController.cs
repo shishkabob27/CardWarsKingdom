@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 public class ConditionalTutorialController : DetachedSingleton<ConditionalTutorialController>
 {
@@ -199,7 +200,7 @@ public class ConditionalTutorialController : DetachedSingleton<ConditionalTutori
 		List<Conditional> conditionals = GetConditionals(TutorialState.ConditionTypeEnum.LeaderBar);
 		foreach (Conditional item in conditionals)
 		{
-			if (meter >= float.Parse(item.State.ConditionIds[0]))
+			if (meter >= float.Parse(item.State.ConditionIds[0], CultureInfo.InvariantCulture))
 			{
 				Singleton<TutorialController>.Instance.manulSetAutoFillMeterBar = true;
 				EnterConditionalState(item);

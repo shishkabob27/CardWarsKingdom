@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 
 public class BattleHistory
 {
@@ -53,10 +54,10 @@ public class BattleHistory
 		string text3 = (string)parameters["flag"];
 		string text4 = (string)parameters["season"];
 		bool flag = (bool)parameters["youWon"];
-		int num = int.Parse(parameters["currentLeague"].ToString());
-		int num2 = int.Parse(parameters["bestLeague"].ToString());
-		int num3 = int.Parse(parameters["bestLeagueSeasonID"].ToString());
-		uint num4 = uint.Parse(parameters["recordTime"].ToString());
+		int num = int.Parse(parameters["currentLeague"].ToString(), CultureInfo.InvariantCulture);
+		int num2 = int.Parse(parameters["bestLeague"].ToString(), CultureInfo.InvariantCulture);
+		int num3 = int.Parse(parameters["bestLeagueSeasonID"].ToString(), CultureInfo.InvariantCulture);
+		uint num4 = uint.Parse(parameters["recordTime"].ToString(), CultureInfo.InvariantCulture);
 		string text5 = (string)parameters["opponentId"];
 		string text6 = ((!parameters.ContainsKey("opponentFBId")) ? null : ((string)parameters["opponentFBId"]));
 		string text7 = ((!parameters.ContainsKey("opponentLeader")) ? "Leader_Finn" : ((string)parameters["opponentLeader"]));
