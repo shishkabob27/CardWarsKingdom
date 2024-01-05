@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 public class GachaEventData : ILoadableData
 {
@@ -28,8 +29,8 @@ public class GachaEventData : ILoadableData
 	public void Populate(Dictionary<string, object> dict)
 	{
 		ID = TFUtils.LoadString(dict, "ID", string.Empty);
-		StartTime = DateTime.Parse(TFUtils.LoadString(dict, "Start", string.Empty));
-		EndTime = DateTime.Parse(TFUtils.LoadString(dict, "End", string.Empty));
+		StartTime = DateTime.ParseExact(TFUtils.LoadString(dict, "Start", string.Empty), "M/d/yyyy", CultureInfo.GetCultureInfo("en-US"));
+		EndTime = DateTime.ParseExact(TFUtils.LoadString(dict, "End", string.Empty), "M/d/yyyy", CultureInfo.GetCultureInfo("en-US"));
 		Slot = GachaSlotDataManager.Instance.GetData(TFUtils.LoadString(dict, "Slot", string.Empty));
 		WeightsTable = GachaWeightDataManager.Instance.GetData(TFUtils.LoadString(dict, "WeightsTable", string.Empty));
 		Name = TFUtils.LoadLocalizedString(dict, "Name", string.Empty);

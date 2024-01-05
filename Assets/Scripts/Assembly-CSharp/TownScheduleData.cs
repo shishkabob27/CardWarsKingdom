@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class TownScheduleData : ILoadableData
@@ -44,7 +45,7 @@ public class TownScheduleData : ILoadableData
 
 	public void Populate(Dictionary<string, object> dict)
 	{
-		StartDate = DateTime.Parse(TFUtils.LoadString(dict, "StartDate", string.Empty)).DayOfYear;
+		StartDate = DateTime.ParseExact(TFUtils.LoadString(dict, "StartDate", string.Empty), "M/d", CultureInfo.GetCultureInfo("en-US")).DayOfYear;
 		TownPrefab = TFUtils.LoadString(dict, "TownPrefab", string.Empty);
 		BannerSprite = TFUtils.LoadString(dict, "BannerSprite", string.Empty);
 		BadgeColor = TFUtils.LoadString(dict, "BadgeColor", string.Empty).ToColor();

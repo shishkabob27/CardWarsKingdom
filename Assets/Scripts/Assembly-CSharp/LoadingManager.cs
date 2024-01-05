@@ -30,7 +30,7 @@ public class LoadingManager : Singleton<LoadingManager>
 		Add(CardBackDataManager.Instance);
 		Add(PvpRankDataManager.Instance);
 		Add(LeagueDataManager.Instance);
-		Add(TapMinigameParams.Instance);
+		//Add(TapMinigameParams.Instance);
 		Add(TutorialBoardDataManager.Instance);
 		Add(TutorialDataManager.Instance);
 		Add(TutorialCardOverridesDataManager.Instance);
