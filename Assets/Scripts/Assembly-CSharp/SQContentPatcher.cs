@@ -1,4 +1,3 @@
-using System.Buffers.Binary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +8,6 @@ using System.Text;
 using Ionic.Zlib;
 using MiniJSON;
 using UnityEngine;
-using System.Threading.Tasks;
 
 public class SQContentPatcher : EventDispatcher<string>
 {
