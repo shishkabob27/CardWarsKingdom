@@ -20,7 +20,6 @@ public class LocalizedAsset : MonoBehaviour
 		{
 			return;
 		}
-		/*
 		if (target.GetType() == typeof(GUITexture))
 		{
 			GUITexture gUITexture = (GUITexture)target;
@@ -33,8 +32,7 @@ public class LocalizedAsset : MonoBehaviour
 				}
 			}
 		}
-		*/
-		if (target.GetType() == typeof(Material))
+		else if (target.GetType() == typeof(Material))
 		{
 			Material material = (Material)target;
 			if (material.mainTexture != null)

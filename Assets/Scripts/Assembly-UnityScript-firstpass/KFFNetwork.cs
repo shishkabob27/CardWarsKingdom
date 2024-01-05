@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Boo.Lang.Runtime;
 using CompilerGenerated;
 using UnityEngine;
+using UnityScript.Lang;
 
 [Serializable]
 public class KFFNetwork : MonoBehaviour
@@ -153,8 +155,8 @@ public class KFFNetwork : MonoBehaviour
 		if (activeRequestCount < MAX_CONCURRENT_WWW_REQUEST_COUNT)
 		{
 			WWW wWW = null;
-			wWW = (form == null ? new WWW(url) : new WWW(url, form));
-			if (wWW != null)
+			wWW = (RuntimeServices.EqualityOperator(form, null) ? new WWW(url) : new WWW(url, form));
+			if (!RuntimeServices.EqualityOperator(wWW, null))
 			{
 				wWWInfo = new WWWInfo();
 				wWWInfo.www = wWW;
@@ -170,7 +172,7 @@ public class KFFNetwork : MonoBehaviour
 			wWWInfo.queued = true;
 			wWWInfo.active = false;
 		}
-		if (wWWInfo != null)
+		if (!RuntimeServices.EqualityOperator(wWWInfo, null))
 		{
 			wWWInfo.callback = WWWRequestCallback;
 			wWWInfo.callbackParam = callbackParam;
@@ -193,7 +195,7 @@ public class KFFNetwork : MonoBehaviour
 		if (activeRequestCount < MAX_CONCURRENT_WWW_REQUEST_COUNT)
 		{
 			WWW wWW = WWW.LoadFromCacheOrDownload(url, version);
-			if (wWW != null)
+			if (!RuntimeServices.EqualityOperator(wWW, null))
 			{
 				wWWInfo = new WWWInfo();
 				wWWInfo.www = wWW;
@@ -211,7 +213,7 @@ public class KFFNetwork : MonoBehaviour
 			wWWInfo.active = false;
 			wWWInfo.version = version;
 		}
-		if (wWWInfo != null)
+		if (!RuntimeServices.EqualityOperator(wWWInfo, null))
 		{
 			wWWInfo.callback = WWWRequestCallback;
 			wWWInfo.callbackParam = callbackParam;
@@ -228,7 +230,7 @@ public class KFFNetwork : MonoBehaviour
 	}
 	public void CancelWWWRequest(WWWInfo info)
 	{
-		if (info != null)
+		if (!RuntimeServices.EqualityOperator(info, null))
 		{
 			if ((info.active || info.queued) && info.callback != null)
 			{
@@ -264,8 +266,8 @@ public class KFFNetwork : MonoBehaviour
 				{
 					string url = wWWInfo.url;
 					WWW wWW = null;
-					wWW = ((wWWInfo.version >= 0) ? WWW.LoadFromCacheOrDownload(url, wWWInfo.version) : ((wWWInfo.form == null) ? new WWW(url) : new WWW(url, wWWInfo.form)));
-					if (wWW != null)
+					wWW = ((wWWInfo.version >= 0) ? WWW.LoadFromCacheOrDownload(url, wWWInfo.version) : (RuntimeServices.EqualityOperator(wWWInfo.form, null) ? new WWW(url) : new WWW(url, wWWInfo.form)));
+					if (!RuntimeServices.EqualityOperator(wWW, null))
 					{
 						wWWInfo.www = wWW;
 						wWWInfo.queued = false;
@@ -282,12 +284,12 @@ public class KFFNetwork : MonoBehaviour
 					}
 				}
 			}
-			else if ((wWWInfo.www == null) || wWWInfo.www.isDone || !string.IsNullOrEmpty(wWWInfo.www.error))
+			else if (RuntimeServices.EqualityOperator(wWWInfo.www, null) || wWWInfo.www.isDone || !string.IsNullOrEmpty(wWWInfo.www.error))
 			{
 				object arg = null;
 				string text = null;
 				bool flag = true;
-				if ((wWWInfo.www != null) && wWWInfo.www.error == null)
+				if (!RuntimeServices.EqualityOperator(wWWInfo.www, null) && wWWInfo.www.error == null)
 				{
 					if (wWWInfo.rawRequest)
 					{
@@ -296,65 +298,69 @@ public class KFFNetwork : MonoBehaviour
 					}
 					else
 					{
-                        try
-                        {
-                            object obj = null;
-                            if (deserializeJSONCallback != null)
-                            {
-                                obj = deserializeJSONCallback(wWWInfo.www.text);
-                            }
-
-                            Dictionary<string, object> dictionary = obj as Dictionary<string, object>;
-                            WWWRequestResult wWWRequestResult = null;
-
-                            if (dictionary != null)
-                            {
-                                wWWRequestResult = new WWWRequestResult();
-
-                                foreach (string key in dictionary.Keys)
-                                {
-                                    object valueObj = dictionary[key];
-
-                                    if (valueObj != null)
-                                    {
-                                        Type valueType = valueObj.GetType();
-
-                                        if (valueType == typeof(float))
-                                        {
-                                            float floatValue = (float)valueObj;
-                                            wWWRequestResult.SetValue(key, floatValue);
-                                        }
-                                        else if (valueType == typeof(long))
-                                        {
-                                            int intValue = (int)(long)valueObj;
-                                            wWWRequestResult.SetValue(key, intValue);
-                                        }
-                                        else if (valueType == typeof(string))
-                                        {
-                                            wWWRequestResult.SetValue(key, valueObj as string);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        wWWRequestResult.SetValue(key, null);
-                                    }
-                                }
-                            }
-
-                            string errorText = (wWWInfo.www == null) ? null : wWWInfo.www.error;
-
-                            if (wWWRequestResult != null)
-                            {
-                                arg = wWWRequestResult;
-                                wWWRequestResult.CreateDictionary();
-                            }
-                        }
-                        catch (Exception rhs)
-                        {
-                            Debug.Log("error: " + rhs + " www.text: " + wWWInfo.www.text);
-                            text = "Error parsing JSON: " + wWWInfo.url + "\n\nerror: " + rhs + "\n\nwww.text:\n" + wWWInfo.www.text;
-                        }
-                    }
+						try
+						{
+							object obj = null;
+							if (deserializeJSONCallback != null)
+							{
+								obj = deserializeJSONCallback(wWWInfo.www.text);
+							}
+							Dictionary<string, object> dictionary = obj as Dictionary<string, object>;
+							WWWRequestResult wWWRequestResult = null;
+							if (!RuntimeServices.EqualityOperator(dictionary, null))
+							{
+								wWWRequestResult = new WWWRequestResult();
+								IEnumerator enumerator = UnityRuntimeServices.GetEnumerator(dictionary.Keys);
+								while (enumerator.MoveNext())
+								{
+									object obj2 = enumerator.Current;
+									if (!(obj2 is string))
+									{
+										obj2 = RuntimeServices.Coerce(obj2, typeof(string));
+									}
+									string text2 = (string)obj2;
+									if (!RuntimeServices.EqualityOperator(dictionary[text2], null))
+									{
+										if (RuntimeServices.EqualityOperator(dictionary[text2].GetType(), typeof(float)))
+										{
+											float value = RuntimeServices.UnboxSingle(dictionary[text2]);
+											UnityRuntimeServices.Update(enumerator, text2);
+											wWWRequestResult.SetValue(text2, value);
+											UnityRuntimeServices.Update(enumerator, text2);
+										}
+										else if (RuntimeServices.EqualityOperator(dictionary[text2].GetType(), typeof(long)))
+										{
+											int value2 = RuntimeServices.UnboxInt32(dictionary[text2]);
+											UnityRuntimeServices.Update(enumerator, text2);
+											wWWRequestResult.SetValue(text2, value2);
+											UnityRuntimeServices.Update(enumerator, text2);
+										}
+										else if (RuntimeServices.EqualityOperator(dictionary[text2].GetType(), typeof(string)))
+										{
+											wWWRequestResult.SetValue(text2, dictionary[text2] as string);
+											UnityRuntimeServices.Update(enumerator, text2);
+										}
+									}
+									else
+									{
+										wWWRequestResult.SetValue(text2, null);
+										UnityRuntimeServices.Update(enumerator, text2);
+									}
+								}
+							}
+							text = (RuntimeServices.EqualityOperator(wWWInfo.www, null) ? null : wWWInfo.www.error);
+							if (!RuntimeServices.EqualityOperator(wWWRequestResult, null))
+							{
+								arg = wWWRequestResult;
+								wWWRequestResult.CreateDictionary();
+							}
+						}
+						catch (Exception rhs)
+						{
+							Debug.Log("error: " + rhs + " www.text: " + wWWInfo.www.text);
+							text = "Error parsing JSON: " + wWWInfo.url + "\n\nerror: " + rhs + "\n\nwww.text:\n" + wWWInfo.www.text;
+						}
+					}
 				}
 				else
 				{
