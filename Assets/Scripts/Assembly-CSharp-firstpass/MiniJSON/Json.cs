@@ -95,6 +95,12 @@ namespace MiniJSON {
                 return Char.IsWhiteSpace(c) || WORD_BREAK.IndexOf(c) != -1;
             }
 
+            const string HEX_DIGIT = "0123456789ABCDEFabcdef";
+
+            public static bool IsHexDigit(char c) {
+                return HEX_DIGIT.IndexOf(c) != -1;
+            }
+
             enum TOKEN {
                 NONE,
                 CURLY_OPEN,
@@ -142,7 +148,7 @@ namespace MiniJSON {
                         continue;
                     case TOKEN.CURLY_CLOSE:
                         return table;
-                    default:
+                    case TOKEN.STRING:
                         // name
                         string name = ParseString();
                         if (name == null) {
@@ -157,8 +163,14 @@ namespace MiniJSON {
                         json.Read();
 
                         // value
-                        table[name] = ParseValue();
+                        TOKEN valueToken = NextToken;
+                        object value = ParseByToken(valueToken);
+                        if(value==null && valueToken!=TOKEN.NULL)
+                            return null;
+                        table[name] = value;
                         break;
+                    default:
+                        return null;
                     }
                 }
             }
@@ -184,7 +196,8 @@ namespace MiniJSON {
                         break;
                     default:
                         object value = ParseByToken(nextToken);
-
+                        if(value==null && nextToken!=TOKEN.NULL)
+                            return null;
                         array.Add(value);
                         break;
                     }
@@ -272,6 +285,8 @@ namespace MiniJSON {
 
                             for (int i=0; i< 4; i++) {
                                 hex[i] = NextChar;
+                                if (!IsHexDigit(hex[i]))
+                                    return null;
                             }
 
                             s.Append((char) Convert.ToInt32(new string(hex), 16));
@@ -290,14 +305,14 @@ namespace MiniJSON {
             object ParseNumber() {
                 string number = NextWord;
 
-                if (number.IndexOf('.') == -1) {
+                if (number.IndexOf('.') == -1 && number.IndexOf('E') == -1 && number.IndexOf('e') == -1) {
                     long parsedInt;
-                    Int64.TryParse(number, out parsedInt);
+                    Int64.TryParse(number, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out parsedInt);
                     return parsedInt;
                 }
 
                 double parsedDouble;
-                Double.TryParse(number, out parsedDouble);
+                Double.TryParse(number, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out parsedDouble);
                 return parsedDouble;
             }
 
@@ -396,7 +411,7 @@ namespace MiniJSON {
         /// <summary>
         /// Converts a IDictionary / IList object or a simple type (string, int, etc.) into a JSON string
         /// </summary>
-        /// <param name="json">A Dictionary&lt;string, object&gt; / List&lt;object&gt;</param>
+        /// <param name="obj">A Dictionary&lt;string, object&gt; / List&lt;object&gt;</param>
         /// <returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
         public static string Serialize(object obj) {
             return Serializer.Serialize(obj);
@@ -465,7 +480,8 @@ namespace MiniJSON {
 
                 bool first = true;
 
-                foreach (object obj in anArray) {
+                for (int i=0; i<anArray.Count; i++) {
+                    object obj = anArray[i];
                     if (!first) {
                         builder.Append(',');
                     }
@@ -482,7 +498,8 @@ namespace MiniJSON {
                 builder.Append('\"');
 
                 char[] charArray = str.ToCharArray();
-                foreach (var c in charArray) {
+                for (int i=0; i<charArray.Length; i++) {
+                    char c = charArray[i];
                     switch (c) {
                     case '"':
                         builder.Append("\\\"");
@@ -525,7 +542,7 @@ namespace MiniJSON {
                 // They always have, I'm just letting you know.
                 // Previously floats and doubles lost precision too.
                 if (value is float) {
-                    builder.Append(((float) value).ToString("R"));
+                    builder.Append(((float) value).ToString("R", System.Globalization.CultureInfo.InvariantCulture));
                 } else if (value is int
                     || value is uint
                     || value is long
@@ -537,7 +554,7 @@ namespace MiniJSON {
                     builder.Append(value);
                 } else if (value is double
                     || value is decimal) {
-                    builder.Append(Convert.ToDouble(value).ToString("R"));
+                    builder.Append(Convert.ToDouble(value).ToString("R", System.Globalization.CultureInfo.InvariantCulture));
                 } else {
                     SerializeString(value.ToString());
                 }
