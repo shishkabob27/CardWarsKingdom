@@ -11,7 +11,7 @@ public class PlayerRankDataManager : DataManager<PlayerRankData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_PlayerRank.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_PlayerRank.json");
 				_instance = new PlayerRankDataManager(path);
 			}
 			return _instance;

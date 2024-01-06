@@ -10,7 +10,7 @@ public class EventTemplateDataManager : DataManager<EventTemplateData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_EventTemplate.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_EventTemplate.json");
 				_instance = new EventTemplateDataManager(path);
 			}
 			return _instance;

@@ -11,7 +11,7 @@ public class DailyRouletteGiftDataManager : DataManager<DailyRouletteGiftData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_DailyGiftRouletteWeights.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_DailyGiftRouletteWeights.json");
 				_instance = new DailyRouletteGiftDataManager(path);
 			}
 			return _instance;

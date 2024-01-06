@@ -11,7 +11,7 @@ public class CustomAIDataManager : DataManager<CustomAIData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_CustomAI.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_CustomAI.json");
 				_instance = new CustomAIDataManager(path);
 			}
 			return _instance;

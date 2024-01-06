@@ -10,7 +10,7 @@ public class QuestDataManager : DataManager<QuestData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Quest.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Quest.json");
 				_instance = new QuestDataManager(path);
 			}
 			return _instance;

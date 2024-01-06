@@ -10,7 +10,7 @@ public class RandomDungeonFloorDataManager : DataManager<RandomDungeonFloorData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_RandomDungeonFloors.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_RandomDungeonFloors.json");
 				_instance = new RandomDungeonFloorDataManager(path);
 			}
 			return _instance;

@@ -16,7 +16,7 @@ public class MailDataManager : DataManager<MailData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_NewsMail.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_NewsMail.json");
 				_instance = new MailDataManager(path);
 			}
 			return _instance;

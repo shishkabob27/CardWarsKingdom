@@ -12,7 +12,7 @@ public class XPTableDataManager : DataManager<XPTableData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_XPTables.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_XPTables.json");
 				_instance = new XPTableDataManager(path);
 			}
 			return _instance;

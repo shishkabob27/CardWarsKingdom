@@ -10,7 +10,7 @@ public class HelpDataManager : DataManager<HelpEntry>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Help.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Help.json");
 				_instance = new HelpDataManager(path);
 			}
 			return _instance;

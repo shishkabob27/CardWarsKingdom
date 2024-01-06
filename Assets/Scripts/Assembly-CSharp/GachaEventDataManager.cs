@@ -21,7 +21,7 @@ public class GachaEventDataManager : DataManager<GachaEventData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_GachaEvents.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_GachaEvents.json");
 				_instance = new GachaEventDataManager(path);
 			}
 			return _instance;

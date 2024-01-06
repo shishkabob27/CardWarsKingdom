@@ -116,7 +116,7 @@ public class TapMinigameParams : DataManager<DummyData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_TapMinigame.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_TapMinigame.json");
 				_instance = new TapMinigameParams(path);
 			}
 			return _instance;

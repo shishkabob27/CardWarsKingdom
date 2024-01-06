@@ -14,7 +14,7 @@ public class PlayerPortraitDataManager : DataManager<PlayerPortraitData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_PlayerPortraits.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_PlayerPortraits.json");
 				_instance = new PlayerPortraitDataManager(path);
 			}
 			return _instance;

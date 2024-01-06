@@ -10,7 +10,7 @@ public class CreatureStarRatingDataManager : DataManager<CreatureStarRatingData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_CreatureStarRatings.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_CreatureStarRatings.json");
 				_instance = new CreatureStarRatingDataManager(path);
 			}
 			return _instance;

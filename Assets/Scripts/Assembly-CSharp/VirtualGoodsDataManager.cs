@@ -10,7 +10,7 @@ public class VirtualGoodsDataManager : DataManager<VirtualGoods>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_VirtualGoods.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_VirtualGoods.json");
 				_instance = new VirtualGoodsDataManager(path);
 			}
 			return _instance;

@@ -108,21 +108,13 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 			}
 			CheckAndThrowExeptions();
 		}
-		string appliedFilePath = SessionManager.Instance.GetStreamingAssetsPath(FilePath);
-		if (appliedFilePath.Contains("://"))
+		WWW www = new WWW(FilePath);
+		while (!www.isDone)
 		{
-			WWW www = new WWW(appliedFilePath);
-			while (!www.isDone)
-			{
-				yield return null;
-			}
-			string jsonText = www.text;
-			LoadAndParseJsonDataThread(appliedFilePath, jsonText);
+			yield return null;
 		}
-		else
-		{
-			LoadAndParseJsonDataThread(appliedFilePath);
-		}
+		string jsonText = www.text;
+		LoadAndParseJsonDataThread(null, jsonText);
 		while (!doneLoadingAndParsingJsonData && !ExceptionThrown)
 		{
 			yield return null;
@@ -171,26 +163,16 @@ public abstract class DataManager<T> : IDataManager where T : ILoadableData
 			try
 			{
 				doneLoadingAndParsingJsonData = false;
-				string empty = string.Empty;
-				string empty2 = string.Empty;
-				if (!appliedFilePath.Contains("://"))
-				{
-					empty = File.ReadAllText(appliedFilePath);
-				}
-				else
-				{
-					empty = ((wwwText == null) ? TFUtils.getJsonTextFromWWW(appliedFilePath) : wwwText);
-				}
 				try
 				{
-					List<object> jlist = (List<object>)Json.Deserialize(empty);
+					List<object> jlist = (List<object>)Json.Deserialize(wwwText);
 					ParseRows(jlist);
 					doneLoadingAndParsingJsonData = true;
 				}
 				catch
 				{
 					List<object> list = new List<object>();
-					object item = Json.Deserialize(empty);
+					object item = Json.Deserialize(wwwText);
 					list.Add(item);
 					ParseRows(list);
 					doneLoadingAndParsingJsonData = true;

@@ -1096,7 +1096,7 @@ public class MiscParams : DataManager<DummyData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_MiscParams.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_MiscParams.json");
 				_instance = new MiscParams(path);
 			}
 			return _instance;

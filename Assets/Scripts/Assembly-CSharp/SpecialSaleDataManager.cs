@@ -10,7 +10,7 @@ public class SpecialSaleDataManager : DataManager<SpecialSaleData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_SpecialSales.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_SpecialSales.json");
 				_instance = new SpecialSaleDataManager(path);
 			}
 			return _instance;

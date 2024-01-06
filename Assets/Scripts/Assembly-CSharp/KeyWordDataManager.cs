@@ -12,7 +12,7 @@ public class KeyWordDataManager : DataManager<KeyWordData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_KeyWords.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_KeyWords.json");
 				_instance = new KeyWordDataManager(path);
 			}
 			return _instance;

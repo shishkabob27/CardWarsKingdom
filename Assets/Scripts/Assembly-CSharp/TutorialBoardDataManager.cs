@@ -11,7 +11,7 @@ public class TutorialBoardDataManager : DataManager<TutorialBoardData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_TutorialBoard.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_TutorialBoard.json");
 				_instance = new TutorialBoardDataManager(path);
 			}
 			return _instance;

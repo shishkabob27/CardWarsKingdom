@@ -12,7 +12,7 @@ public class GachaSlotDataManager : DataManager<GachaSlotData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_GachaSlots.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_GachaSlots.json");
 				_instance = new GachaSlotDataManager(path);
 			}
 			return _instance;

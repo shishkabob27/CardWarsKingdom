@@ -10,7 +10,7 @@ public class SpeedUpDataManager : DataManager<SpeedUpData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_SpeedUps.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_SpeedUps.json");
 				_instance = new SpeedUpDataManager(path);
 			}
 			return _instance;

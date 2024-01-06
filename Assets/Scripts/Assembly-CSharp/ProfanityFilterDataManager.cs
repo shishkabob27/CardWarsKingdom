@@ -16,8 +16,8 @@ public class ProfanityFilterDataManager : DataManager<ProfanityFilterData>
 		{
 			if (_instance == null)
 			{
-				string filePath = Path.Combine("Blueprints", "db_Profanity.json");
-				_instance = new ProfanityFilterDataManager(filePath);
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Profanity.json");
+				_instance = new ProfanityFilterDataManager(path);
 			}
 			return _instance;
 		}

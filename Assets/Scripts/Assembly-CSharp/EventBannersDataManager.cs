@@ -11,7 +11,7 @@ public class EventBannersDataManager : DataManager<EventBannersData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_EventBanners.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_EventBanners.json");
 				_instance = new EventBannersDataManager(path);
 			}
 			return _instance;

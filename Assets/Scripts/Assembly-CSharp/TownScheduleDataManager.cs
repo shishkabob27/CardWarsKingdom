@@ -10,7 +10,7 @@ public class TownScheduleDataManager : DataManager<TownScheduleData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_TownSchedule.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_TownSchedule.json");
 				_instance = new TownScheduleDataManager(path);
 			}
 			return _instance;

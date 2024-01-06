@@ -10,7 +10,7 @@ public class UpsightRewardDataManager : DataManager<UpsightRewardData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Achievements.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Achievements.json");
 				_instance = new UpsightRewardDataManager(path);
 			}
 			return _instance;

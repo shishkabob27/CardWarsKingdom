@@ -12,7 +12,7 @@ public class CardBackDataManager : DataManager<CardBackData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_CardBacks.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_CardBacks.json");
 				_instance = new CardBackDataManager(path);
 			}
 			return _instance;

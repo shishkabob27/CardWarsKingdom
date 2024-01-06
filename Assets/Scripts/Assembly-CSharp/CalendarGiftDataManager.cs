@@ -11,7 +11,7 @@ public class CalendarGiftDataManager : DataManager<CalendarTable>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_CalendarGift.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_CalendarGift.json");
 				_instance = new CalendarGiftDataManager(path);
 			}
 			return _instance;

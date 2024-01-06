@@ -10,7 +10,7 @@ public class CardDataManager : DataManager<CardData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_ActionCards.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_ActionCards.json");
 				_instance = new CardDataManager(path);
 			}
 			return _instance;

@@ -13,7 +13,7 @@ public class ExpeditionDifficultyDataManager : DataManager<ExpeditionDifficultyD
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_ExpeditionDifficulty.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_ExpeditionDifficulty.json");
 				_instance = new ExpeditionDifficultyDataManager(path);
 			}
 			return _instance;

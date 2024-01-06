@@ -10,7 +10,7 @@ public class PvpRankDataManager : DataManager<PvpRankData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_PVPRanks.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_PVPRanks.json");
 				_instance = new PvpRankDataManager(path);
 			}
 			return _instance;

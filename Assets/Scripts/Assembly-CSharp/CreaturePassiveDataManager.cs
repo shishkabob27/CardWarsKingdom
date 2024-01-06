@@ -10,7 +10,7 @@ public class CreaturePassiveDataManager : DataManager<CreaturePassiveData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_CreaturePassives.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_CreaturePassives.json");
 				_instance = new CreaturePassiveDataManager(path);
 			}
 			return _instance;

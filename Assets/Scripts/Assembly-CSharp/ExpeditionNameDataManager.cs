@@ -10,7 +10,7 @@ public class ExpeditionNameDataManager : DataManager<ExpeditionNameData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_ExpeditionNames.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_ExpeditionNames.json");
 				_instance = new ExpeditionNameDataManager(path);
 			}
 			return _instance;

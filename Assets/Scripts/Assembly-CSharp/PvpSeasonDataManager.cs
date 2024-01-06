@@ -12,7 +12,7 @@ public class PvpSeasonDataManager : DataManager<PvpSeasonData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_PVPSeasons.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_PVPSeasons.json");
 				_instance = new PvpSeasonDataManager(path);
 			}
 			return _instance;

@@ -10,7 +10,7 @@ public class LeaderDataManager : DataManager<LeaderData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Leaders.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Leaders.json");
 				_instance = new LeaderDataManager(path);
 			}
 			return _instance;

@@ -10,7 +10,7 @@ public class CurrencyPackageDataManager : DataManager<CurrencyPackageData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_CurrencyPackages.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_CurrencyPackages.json");
 				_instance = new CurrencyPackageDataManager(path);
 			}
 			return _instance;

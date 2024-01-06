@@ -10,7 +10,7 @@ public class GameEventFXDataManager : DataManager<GameEventFXData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_GameEventFX.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_GameEventFX.json");
 				_instance = new GameEventFXDataManager(path);
 			}
 			return _instance;

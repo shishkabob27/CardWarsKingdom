@@ -11,7 +11,7 @@ public class TutorialCardOverridesDataManager : DataManager<TutorialCardOverride
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_TutorialCardOverrides.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_TutorialCardOverrides.json");
 				_instance = new TutorialCardOverridesDataManager(path);
 			}
 			return _instance;

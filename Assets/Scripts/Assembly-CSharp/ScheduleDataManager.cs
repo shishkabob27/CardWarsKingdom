@@ -19,7 +19,7 @@ public class ScheduleDataManager : DataManager<ScheduleData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Schedule.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Schedule.json");
 				_instance = new ScheduleDataManager(path);
 			}
 			return _instance;

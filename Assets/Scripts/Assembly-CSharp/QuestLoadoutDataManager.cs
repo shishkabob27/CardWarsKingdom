@@ -11,7 +11,7 @@ public class QuestLoadoutDataManager : DataManager<QuestLoadoutData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_QuestLoadouts.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_QuestLoadouts.json");
 				_instance = new QuestLoadoutDataManager(path);
 			}
 			return _instance;

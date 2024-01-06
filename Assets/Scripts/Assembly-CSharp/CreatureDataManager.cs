@@ -21,7 +21,7 @@ public class CreatureDataManager : DataManager<CreatureData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Creatures.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Creatures.json");
 				_instance = new CreatureDataManager(path);
 			}
 			return _instance;

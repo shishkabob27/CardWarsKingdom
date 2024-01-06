@@ -12,7 +12,7 @@ public class GachaWeightDataManager : DataManager<GachaWeightTable>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_GachaWeights.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_GachaWeights.json");
 				_instance = new GachaWeightDataManager(path);
 			}
 			return _instance;

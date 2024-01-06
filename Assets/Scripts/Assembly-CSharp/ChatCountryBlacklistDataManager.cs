@@ -12,7 +12,7 @@ public class ChatCountryBlacklistDataManager : DataManager<ChatCountryBlacklistD
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_ChatCountryBlacklist.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_ChatCountryBlacklist.json");
 				_instance = new ChatCountryBlacklistDataManager(path);
 			}
 			return _instance;

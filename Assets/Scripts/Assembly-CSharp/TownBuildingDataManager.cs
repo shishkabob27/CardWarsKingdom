@@ -10,7 +10,7 @@ public class TownBuildingDataManager : DataManager<TownBuildingData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_TownBuildings.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_TownBuildings.json");
 				_instance = new TownBuildingDataManager(path);
 			}
 			return _instance;

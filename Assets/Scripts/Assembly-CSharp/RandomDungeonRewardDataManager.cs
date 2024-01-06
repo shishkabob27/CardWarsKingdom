@@ -14,7 +14,7 @@ public class RandomDungeonRewardDataManager : DataManager<RandomDungeonRewardDat
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_RandomDungeonRewards.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_RandomDungeonRewards.json");
 				_instance = new RandomDungeonRewardDataManager(path);
 			}
 			return _instance;

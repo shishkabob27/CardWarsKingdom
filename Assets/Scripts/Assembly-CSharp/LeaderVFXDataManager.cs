@@ -11,7 +11,7 @@ public class LeaderVFXDataManager : DataManager<LeaderVFXData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_LeaderVFX.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_LeaderVFX.json");
 				_instance = new LeaderVFXDataManager(path);
 			}
 			return _instance;

@@ -10,7 +10,7 @@ public class XPMaterialDataManager : DataManager<XPMaterialData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_XPMaterials.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_XPMaterials.json");
 				_instance = new XPMaterialDataManager(path);
 			}
 			return _instance;

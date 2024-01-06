@@ -34,7 +34,7 @@ public class TutorialDataManager : DataManager<TutorialState>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Tutorials.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Tutorials.json");
 				_instance = new TutorialDataManager(path);
 			}
 			return _instance;

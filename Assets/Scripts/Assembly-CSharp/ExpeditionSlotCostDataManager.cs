@@ -10,7 +10,7 @@ public class ExpeditionSlotCostDataManager : DataManager<ExpeditionSlotCostData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_ExpeditionSlotCosts.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_ExpeditionSlotCosts.json");
 				_instance = new ExpeditionSlotCostDataManager(path);
 			}
 			return _instance;

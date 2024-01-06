@@ -11,7 +11,7 @@ public class MissionDataManager : DataManager<MissionData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Missions.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Missions.json");
 				_instance = new MissionDataManager(path);
 			}
 			return _instance;

@@ -10,7 +10,7 @@ public class StatusDataManager : DataManager<StatusData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_StatusEffects.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_StatusEffects.json");
 				_instance = new StatusDataManager(path);
 			}
 			return _instance;

@@ -13,7 +13,7 @@ public class NotificationDataManager : DataManager<NotificationData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Notifications.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Notifications.json");
 				_instance = new NotificationDataManager(path);
 			}
 			return _instance;

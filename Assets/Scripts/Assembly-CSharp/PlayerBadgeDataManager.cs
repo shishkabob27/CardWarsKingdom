@@ -10,7 +10,7 @@ public class PlayerBadgeDataManager : DataManager<PlayerBadgeData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_PlayerBadges.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_PlayerBadges.json");
 				_instance = new PlayerBadgeDataManager(path);
 			}
 			return _instance;

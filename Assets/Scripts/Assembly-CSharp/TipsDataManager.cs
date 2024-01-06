@@ -12,7 +12,7 @@ public class TipsDataManager : DataManager<TipEntry>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Tips.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Tips.json");
 				_instance = new TipsDataManager(path);
 			}
 			return _instance;

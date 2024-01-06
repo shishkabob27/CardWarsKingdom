@@ -11,7 +11,7 @@ public class LeagueDataManager : DataManager<LeagueData>
 		{
 			if (_instance == null)
 			{
-				string path = Path.Combine("Blueprints", "db_Leagues.json");
+				string path = Path.Combine(SQSettings.CDN_URL, "Blueprints", "db_Leagues.json");
 				_instance = new LeagueDataManager(path);
 			}
 			return _instance;
