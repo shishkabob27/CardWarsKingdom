@@ -462,6 +462,7 @@ public class SQServer
 		string value = string.Join(",", excludeIDs.ToArray());
 		Dictionary<string, object> dictionary = new Dictionary<string, object>();
 		dictionary["level"] = optionTarget;
+		dictionary["player_id"] = PlayerInfoScript.Instance.GetPlayerCode();
 		dictionary["version"] = value;
 		dictionary["signature"] = SignDictionary(dictionary, nonce, "xc0u18^g0!ac3k%0+2vgglmnr1)x^!o(n6@$m3t^(7l!(#kv!-");
 		tfServer.PostToJSON(SQSettings.SERVER_URL + "persist/friends_find_candidatesDW/", dictionary, callback);
