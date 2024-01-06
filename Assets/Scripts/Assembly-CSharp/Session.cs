@@ -577,7 +577,7 @@ public class Session
 			if (status == HttpStatusCode.OK)
 			{
 				Dictionary<string, object> dictionary = (Dictionary<string, object>)data["data"];
-				DateTime serverTime = DateTime.ParseExact(dictionary["server_time"].ToString(), "M/d/yyyy", CultureInfo.InvariantCulture);
+				DateTime serverTime = DateTime.ParseExact(dictionary["server_time"].ToString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 				TFUtils.UpdateServerTime(serverTime);
 			}
 		};
