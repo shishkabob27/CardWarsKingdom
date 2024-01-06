@@ -219,7 +219,8 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	public void Populate()
 	{
 		OpenedFromTown = true;
-		OpenToHardCurrency = true;
+		OpenToHeroes = true;
+		HardCurrencyTabButton.gameObject.SetActive(false);
 		mDisplayedHardCurrency = Singleton<PlayerInfoScript>.Instance.SaveData.HardCurrency;
 		mHardCurrencyTickRate = 9999f;
 		StaminaRefillCost.text = MiscParams.StaminaRefillCost.ToString();
@@ -358,7 +359,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 				Singleton<BusyIconPanelController>.Instance.Hide();
 				if (DetachedSingleton<SceneFlowManager>.Instance.InFrontEnd() && Singleton<PlayerInfoScript>.Instance.GetSaleToDisplay(true) != null)
 				{
-					SaleButton.SetActive(true);
+					SaleButton.SetActive(false);
 					TabsGrid.Reposition();
 					SpecialSaleData saleToDisplay = Singleton<PlayerInfoScript>.Instance.GetSaleToDisplay();
 					//if (saleToDisplay != null)
@@ -448,6 +449,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 
 	private int GetCurrency(string googleCurrecny)
 	{
+		return 0;
 		char[] anyOf = new char[23]
 		{
 			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -478,8 +480,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 	private void ProductDataCallback(bool a_Success, List<PurchaseManager.ProductData> a_ProductList, string error)
 	{
 		Debug.Log(string.Format("StoreScreenController::ProductDataCallback, success={0} error={1}", a_Success, error));
-		/*
-		if (a_Success && a_ProductList != null && a_ProductList.Count > 0)
+		if (a_Success && a_ProductList != null)
 		{
 			Debug.Log(string.Format("StoreScreenController::ProductDataCallback, num products={0}", a_ProductList.Count));
 			mFetchedList = new List<FoundProductData>();
@@ -526,7 +527,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 			}
 		}
 		else
-		{*/
+		{
 			Singleton<BusyIconPanelController>.Instance.Hide();
 			if (Singleton<TutorialController>.Instance.IsBlockActive("Bank"))
 			{
@@ -536,7 +537,7 @@ public class StoreScreenController : Singleton<StoreScreenController>
 			{
 				Singleton<SimplePopupController>.Instance.ShowPrompt(string.Empty, KFFLocalization.Get("!!SERVER_ERROR_MESSAGE"), RetryConnection, CancelConnection, KFFLocalization.Get("!!RETRY"), KFFLocalization.Get("!!CANCEL"));
 			}
-		//}
+		}
 	}
 
 	private void RetryConnection()
