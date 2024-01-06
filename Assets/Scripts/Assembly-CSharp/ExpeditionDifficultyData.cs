@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class ExpeditionDifficultyData : ILoadableData
@@ -207,7 +208,7 @@ public class ExpeditionDifficultyData : ILoadableData
 				else
 				{
 					chanceEntry.Amount = Convert.ToInt32(array3[0].Trim());
-					chanceEntry.Chance = Convert.ToSingle(array3[1].Replace("%", string.Empty).Trim()) / 100f;
+					chanceEntry.Chance = Convert.ToSingle(array3[1].Replace("%", string.Empty).Trim(), CultureInfo.InvariantCulture) / 100f;
 				}
 				num += chanceEntry.Chance;
 			}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class CustomAIScripts
@@ -189,7 +190,7 @@ public class CustomAIScripts
 		public override void Parse(CustomAIData.FunctionCall action)
 		{
 			Text = action.GetParam(0);
-			Time = Convert.ToSingle(action.GetParam(1));
+			Time = Convert.ToSingle(action.GetParam(1), CultureInfo.InvariantCulture);
 		}
 
 		public override bool TryToExecute(PlanNode node, out PlanNode nextNode)

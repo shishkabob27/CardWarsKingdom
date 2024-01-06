@@ -282,7 +282,7 @@ public class TFUtils
 		//Discarded unreachable code: IL_0024, IL_0039
 		try
 		{
-			return (int)Math.Floor(Convert.ToSingle(d[key]) + 0.5f);
+			return (int)Math.Floor(Convert.ToSingle(d[key], CultureInfo.InvariantCulture) + 0.5f);
 		}
 		catch
 		{
