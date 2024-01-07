@@ -1,17 +1,16 @@
 Shader "KFF/Unlit Textured Vertex Color"
 {
 	Properties {
-	    _MainTex ("Texture (RGBA)", 2D) = "white" {}
+	    _Color ("Main Color", Color) = (1,1,1,1)
+	    _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
 	}
 	 
 	SubShader {
-    LOD 200
-	    Tags { "Queue"="Transparent" "RenderType" = "Transparent" }
+	    Tags { "Queue"="Transparent"}
 
 	    // Render normally
 	    Pass {
-	        ZWrite Off
-          Cull Off
+	        ZWrite on
 	        Blend SrcAlpha OneMinusSrcAlpha
 	        ColorMask RGB
 	        Material {
