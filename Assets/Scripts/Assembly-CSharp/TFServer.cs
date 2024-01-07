@@ -168,7 +168,7 @@ public class TFServer
 		{
 			return;
 		}
-		Debug.Log("web result: " + e.Result);
+		if (!e.Result.Contains("\"ip\":")) Debug.Log("web result: " + e.Result);
 		string result = e.Result;
 		if (e.Error == null)
 		{
