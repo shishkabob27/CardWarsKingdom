@@ -9,6 +9,8 @@ public class SQSettings
 {
 	private static string serverUrl;
 
+	private static string localServerUrl;
+
 	private static string photonChatAppID;
 
 	private static string photonPUNAppID;
@@ -20,6 +22,8 @@ public class SQSettings
 	private static string bundleIdentifier;
 
 	private static string bundleVersion;
+
+	public static bool useLocalServer;
 
 	public static string CDN_URL
 	{
@@ -41,6 +45,7 @@ public class SQSettings
 	{
 		get
 		{
+			if (useLocalServer) return localServerUrl;
 			return serverUrl;
 		}
 	}
@@ -129,6 +134,7 @@ public class SQSettings
 		empty = ((!streamingAssetsFile.Contains("://")) ? File.ReadAllText(streamingAssetsFile) : getJsonPath(streamingAssetsFile));
 		Dictionary<string, object> dictionary = (Dictionary<string, object>)Json.Deserialize(empty);
 		serverUrl = (string)dictionary["server_url"];
+		localServerUrl = (string)dictionary["local_server_url"];
 		photonChatAppID = (string)dictionary["photon_chat_app_id"];
 		photonPUNAppID = (string)dictionary["photon_pun_app_id"];
 		streamingAssetsFile = TFUtils.GetStreamingAssetsFile("global_settings.json");
