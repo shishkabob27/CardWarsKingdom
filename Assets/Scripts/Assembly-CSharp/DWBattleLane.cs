@@ -1345,7 +1345,7 @@ public class DWBattleLane : Singleton<DWBattleLane>
 		{
 			foreach (DWBattleLaneObject item in BattleLaneObjects[i])
 			{
-				if (item != null && item.HealthBar != null)
+				if (item != null)
 				{
 					item.HealthBar.SetAttackValues(DamageType.Physical);
 				}
@@ -1413,7 +1413,7 @@ public class DWBattleLane : Singleton<DWBattleLane>
 	{
 		foreach (DWBattleLaneObject item in BattleLaneObjects[0])
 		{
-			if (item.HealthBar != null) item.HealthBar.CanAttackIndicator.SetActive(false);
+			item.HealthBar.CanAttackIndicator.SetActive(false);
         }
 		foreach (CardPrefabScript handCard in Singleton<HandCardController>.Instance.GetHandCards())
 		{

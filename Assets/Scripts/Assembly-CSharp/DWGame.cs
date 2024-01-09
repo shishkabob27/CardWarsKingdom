@@ -479,12 +479,7 @@ public class DWGame : Singleton<DWGame>
 		}
 		if (objData2 != null)
 		{
-			GameObject fxObj = laneObj.transform.InstantiateAsChild(objData2);
-			AudioSource sound = fxObj.GetComponent<AudioSource>();
-			if (sound != null && sound.clip != null)
-			{
-				Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Rez_In");
-			}
+			Singleton<SLOTAudioManager>.Instance.PlaySound("battle/SFX_Rez_In");
 		}
 		if ((bool)laneObj.ShadowBlob)
 		{

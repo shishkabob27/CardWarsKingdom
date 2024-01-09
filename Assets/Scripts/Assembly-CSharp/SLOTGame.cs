@@ -488,24 +488,14 @@ public class SLOTGame : Singleton<SLOTGame>
 		}
 	}
 
-	public static UnityEngine.Object InstantiateFX(UnityEngine.Object original)
+	public static GameObject InstantiateFX(UnityEngine.Object original)
 	{
-		UnityEngine.Object @object = UnityEngine.Object.Instantiate(original);
-		if (@object != null)
-		{
-			OnInstantiate(@object);
-		}
-		return @object;
+		return Instantiate(original) as GameObject;
 	}
 
-	public static UnityEngine.Object InstantiateFX(UnityEngine.Object original, Vector3 position, Quaternion rotation)
+	public static GameObject InstantiateFX(UnityEngine.Object original, Vector3 position, Quaternion rotation)
 	{
-		UnityEngine.Object @object = UnityEngine.Object.Instantiate(original, position, rotation);
-		if (@object != null)
-		{
-			OnInstantiate(@object);
-		}
-		return @object;
+		return Instantiate(original, position, rotation) as GameObject;
 	}
 
 	private static void OnInstantiate(UnityEngine.Object clone)

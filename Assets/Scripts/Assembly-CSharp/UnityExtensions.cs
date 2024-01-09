@@ -4,14 +4,6 @@ using UnityEngine;
 
 public static class UnityExtensions
 {
-	public static Transform InstantiateAsChild(this Transform parent, Transform original)
-	{
-		Transform transform = SLOTGame.InstantiateFX(original, parent.position, parent.rotation) as Transform;
-		transform.parent = parent;
-		transform.localScale = original.localScale;
-		transform.localPosition = original.localPosition;
-		return transform;
-	}
 
 	public static GameObject InstantiateAsChild(this Transform parent, GameObject original)
 	{
@@ -24,7 +16,7 @@ public static class UnityExtensions
 
 	public static Transform InstantiateAsChild(this GameObject parent, Transform original)
 	{
-		Transform transform = SLOTGame.InstantiateFX(original, parent.transform.position, parent.transform.rotation) as Transform;
+		Transform transform = UnityEngine.Object.Instantiate(original, parent.transform.position, parent.transform.rotation) as Transform;
 		transform.parent = parent.transform;
 		transform.localScale = original.localScale;
 		transform.localPosition = original.localPosition;
