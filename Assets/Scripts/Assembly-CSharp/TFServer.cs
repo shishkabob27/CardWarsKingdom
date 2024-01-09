@@ -62,7 +62,6 @@ public class TFServer
 		{
 			tFWebClient.Headers.Add(HttpRequestHeader.IfMatch, text2);
 		}
-		if (SessionManager.Instance.theSession.ThePlayer != null) tFWebClient.Headers.Add("player-id", SessionManager.Instance.theSession.ThePlayer.playerId.ToString());
 		tFWebClient.UploadStringCompleted += OnUploadComplete;
 		tFWebClient.UploadStringAsync(new Uri(url), text);
 	}
