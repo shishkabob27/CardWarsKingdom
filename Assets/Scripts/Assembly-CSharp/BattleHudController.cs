@@ -595,7 +595,7 @@ public class BattleHudController : Singleton<BattleHudController>
 		GameObject creatureObject = Singleton<DWBattleLane>.Instance.GetCreatureObject(creature);
 		if (!(creatureObject == null))
 		{
-			GameObject gameObject = SLOTGame.InstantiateFX(ShowDamagePrefab) as GameObject;
+			GameObject gameObject = Instantiate(ShowDamagePrefab) as GameObject;
 			ShowDamagePopup component = gameObject.GetComponent<ShowDamagePopup>();
 			Vector3 position = creatureObject.transform.position;
 			position.y += 2f;
