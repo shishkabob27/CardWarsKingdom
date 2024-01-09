@@ -36,6 +36,10 @@ public class MailDataManager : DataManager<MailData>
 		{
 			return false;
 		}
+		if (!string.IsNullOrEmpty(mail.playerId) && mail.playerId != Singleton<PlayerInfoScript>.Instance.GetPlayerCode())
+		{
+			return false;
+		}
 		if (!string.IsNullOrEmpty(mail.Repeatable))
 		{
 			if (mail.Repeatable == "Monday")

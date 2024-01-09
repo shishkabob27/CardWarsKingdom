@@ -24,6 +24,8 @@ public class MailData : IComparable<MailData>, ILoadableData
 
 	private DateTime _EndDate;
 
+	private string _PlayerID;
+
 	public string ID
 	{
 		get
@@ -88,6 +90,14 @@ public class MailData : IComparable<MailData>, ILoadableData
 		}
 	}
 
+	public string playerId
+	{
+		get
+		{
+			return _PlayerID;
+		}
+	}
+
 	public bool ShowInPopop { get; private set; }
 
 	public string GiftID { get; private set; }
@@ -113,6 +123,12 @@ public class MailData : IComparable<MailData>, ILoadableData
 		if (!flag2)
 		{
 			_EndDate = DateTime.ParseExact(text2, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+		}
+		string tryid = TFUtils.TryLoadString(dict, "PlayerID");
+		if (!string.IsNullOrEmpty(tryid))
+		{
+			UnityEngine.Debug.Log(tryid);
+			_PlayerID = tryid;
 		}
 	}
 
