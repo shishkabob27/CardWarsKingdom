@@ -222,8 +222,8 @@ public class QuestSelectController : Singleton<QuestSelectController>
 	private void CheckForSpecialLeagueChanges()
 	{
 		List<SpecialLeagueEntry> list = BuildSpecialLeagueList();
-		bool flag = list.Count != mSpecialLeagueEntries.Count;
-		if (!flag)
+		bool flag = list.Count == mSpecialLeagueEntries.Count;
+		if (flag)
 		{
 			for (int i = 0; i < list.Count; i++)
 			{
@@ -237,7 +237,7 @@ public class QuestSelectController : Singleton<QuestSelectController>
 				mSpecialLeagueEntries[i].FullTextString = list[i].FullTextString;
 			}
 		}
-		if (flag)
+		if (!flag)
 		{
 			if (mShowingLeague != null)
 			{
