@@ -43,6 +43,9 @@ public class TFWebClient : WebClient
 		httpWebRequest.CookieContainer = cookies;
 		httpWebRequest.Timeout = 30000;
 		httpWebRequest.UserAgent = "Innertube Explorer v0.1";
+		httpWebRequest.Headers.Add("version", Application.version);
+		httpWebRequest.Headers.Add("platform", Application.platform.ToString());
+		if (PlayerInfoScript.Instance != null) httpWebRequest.Headers.Add("player-id", PlayerInfoScript.Instance.GetPlayerCode());
 		ServicePoint servicePoint = ServicePointManager.FindServicePoint(address);
 		servicePoint.Expect100Continue = false;
 		servicePoint.ConnectionLimit = _maxConnections;
