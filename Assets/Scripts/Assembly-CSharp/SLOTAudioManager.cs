@@ -543,7 +543,7 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 		if (mCurrentVoEventCooldowns[(int)voEvent] > 0f || Singleton<TutorialController>.Instance.IsShowingText() || leader.VO == null)
 		{
 			return;
-        }
+		}
 		string text = "vo/" + leader.VO + "/VO_" + leader.VO + "_" + voEvent + "_";
 
 		if (voEvent == VOEvent.P1Intro)
@@ -606,26 +606,58 @@ public class SLOTAudioManager : Singleton<SLOTAudioManager>
 					break;
 				case "FlamePrincess":
 				case "Jake":
-                    PlayRandomSound(text, 9, false, AudioType.VO);
-                    break;
+					PlayRandomSound(text, 9, false, AudioType.VO);
+					break;
 				case "GrandPrixe":
 				case "Marceline":
-                    PlayRandomSound(text, 5, false, AudioType.VO);
-                    break;
+					PlayRandomSound(text, 5, false, AudioType.VO);
+					break;
 				case "IceKing":
-                    PlayRandomSound(text, 7, false, AudioType.VO);
-                    break;
+					PlayRandomSound(text, 7, false, AudioType.VO);
+					break;
 				case "Lemongrab":
-                    PlayRandomSound(text, 4, false, AudioType.VO);
+					PlayRandomSound(text, 4, false, AudioType.VO);
 					break;
-                case "LumpySpacePrincess":
-                    PlayRandomSound(text, 10, false, AudioType.VO);
+				case "LumpySpacePrincess":
+					PlayRandomSound(text, 10, false, AudioType.VO);
 					break;
-                case "BMO":
-                    PlayRandomSound(text, 1, false, AudioType.VO);
-                    break;
-
-            }
+				case "BMO":
+					PlayRandomSound(text, 1, false, AudioType.VO);
+					break;
+			}
+		}
+		else if (voEvent == VOEvent.PlayCard)
+		{
+			switch (leader.VO)
+			{
+				case "FlamePrincess":
+				case "LumpySpacePrincess":
+				case "PrincessBubblegum":
+				case "Marceline":
+					PlayRandomSound(text, 10, false, AudioType.VO);
+					break;
+				case "GrandPrixe":
+				case "Lemongrab":
+					PlayRandomSound(text, 5, false, AudioType.VO);
+					break;
+				case "IceKing":
+					PlayRandomSound(text, 12, false, AudioType.VO);
+					break;
+				case "Jake":
+					PlayRandomSound(text, 8, false, AudioType.VO);
+					break;
+				case "BMO":
+					PlayRandomSound(text, 7, false, AudioType.VO);
+					break;
+				case "Finn":
+					PlayRandomSound(text, 11, false, AudioType.VO);
+					break;
+			}
+		}
+		else
+		{
+			Debug.LogWarning("VO not specified for " + text +". Trying to play it anyways.");
+			PlayRandomSound(text, 5, false, AudioType.VO);
 		}
 		mCurrentVoEventCooldowns[(int)voEvent] = mVoEventCooldowns[(int)voEvent];
 	}
