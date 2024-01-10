@@ -104,14 +104,14 @@ public class MailPrefabScript : UIStreamingGridListItem
 						}
 						num2 = Mail.XPMaterialQuantity;
 					}
-					if (Mail.CreatureID != null)
+				}
+				if (Mail.CreatureID != null)
+				{
+					CreatureData data2 = CreatureDataManager.Instance.GetData(Mail.CreatureID);
+					if (data2 != null)
 					{
-						CreatureData data2 = CreatureDataManager.Instance.GetData(Mail.CreatureID);
-						if (data2 != null)
-						{
-							CreatureItem creatureItem = new CreatureItem(data2);
-							rewardedItem = Singleton<PlayerInfoScript>.Instance.SaveData.AddCreature(creatureItem);
-						}
+						CreatureItem creatureItem = new CreatureItem(data2);
+						rewardedItem = Singleton<PlayerInfoScript>.Instance.SaveData.AddCreature(creatureItem);
 					}
 				}
 				Mail.Opened = true;
